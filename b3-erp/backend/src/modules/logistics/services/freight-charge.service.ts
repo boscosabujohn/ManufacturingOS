@@ -16,7 +16,7 @@ export class FreightChargeService {
   constructor(
     @InjectRepository(FreightCharge)
     private readonly freightChargeRepository: Repository<FreightCharge>,
-  ) {}
+  ) { }
 
   async create(
     createDto: CreateFreightChargeDto,
@@ -32,6 +32,8 @@ export class FreightChargeService {
       amountAfterDiscount,
       taxAmount,
       totalAmount,
+      actualAmount: createDto.actualAmount || 0,
+      variance: (createDto.actualAmount || 0) - totalAmount,
     });
 
     const saved = await this.freightChargeRepository.save(freightCharge);
@@ -95,6 +97,7 @@ export class FreightChargeService {
     freightCharge.amountAfterDiscount = amountAfterDiscount;
     freightCharge.taxAmount = taxAmount;
     freightCharge.totalAmount = amountAfterDiscount + taxAmount;
+    freightCharge.variance = (freightCharge.actualAmount || 0) - freightCharge.totalAmount;
 
     const updated = await this.freightChargeRepository.save(freightCharge);
     return this.mapToResponseDto(updated);

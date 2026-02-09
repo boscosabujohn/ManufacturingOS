@@ -29,7 +29,8 @@ import {
   Percent,
   ArrowUp,
   ArrowDown,
-  RefreshCw
+  RefreshCw,
+  Eye
 } from 'lucide-react'
 import {
   LineChart,
@@ -57,6 +58,8 @@ import {
   RadialBarChart,
   RadialBar
 } from 'recharts'
+import { VendorScorecard } from '@/components/procurement/VendorScorecard'
+import { ContractHealth } from '@/components/procurement/ContractHealth'
 
 interface VendorMetrics {
   vendorId: string
@@ -290,6 +293,8 @@ export default function VendorPerformancePage() {
     }
   }
 
+  const [selectedVendorForScorecard, setSelectedVendorForScorecard] = useState<string | null>(null)
+
   const topVendors = [...vendorMetrics].sort((a, b) => b.overallScore - a.overallScore).slice(0, 3)
   const bottomVendors = [...vendorMetrics].sort((a, b) => a.overallScore - b.overallScore).slice(0, 3)
 
@@ -331,6 +336,28 @@ export default function VendorPerformancePage() {
           </button>
         </div>
       </div>
+
+      {/* Contract Health Alerts Section */}
+      <ContractHealth />
+
+      {/* Real-time Vendor Scorecard (Conditional) */}
+      {selectedVendorForScorecard && (
+        <div className="bg-blue-50/50 p-4 rounded-2xl border border-blue-100 space-y-3">
+          <div className="flex items-center justify-between">
+            <h3 className="text-lg font-bold text-blue-900 flex items-center gap-2">
+              <Star className="h-5 w-5 text-blue-600" />
+              Real-time Scorecard: {vendorMetrics.find(v => v.vendorId === selectedVendorForScorecard)?.vendorName}
+            </h3>
+            <button
+              onClick={() => setSelectedVendorForScorecard(null)}
+              className="text-xs text-blue-600 hover:underline font-bold"
+            >
+              Close Scorecard
+            </button>
+          </div>
+          <VendorScorecard vendorId={selectedVendorForScorecard} />
+        </div>
+      )}
 
       {/* Key Metrics */}
       <div className="grid grid-cols-1 md:grid-cols-6 gap-2">
@@ -561,8 +588,12 @@ export default function VendorPerformancePage() {
                     </div>
                   </td>
                   <td className="px-3 py-2 text-center">
-                    <button className="text-blue-600 hover:text-blue-800">
-                      <BarChart3 className="h-4 w-4" />
+                    <button
+                      onClick={() => setSelectedVendorForScorecard(vendor.vendorId)}
+                      className={`p-2 rounded-lg transition-colors ${selectedVendorForScorecard === vendor.vendorId ? 'bg-blue-600 text-white' : 'text-blue-600 hover:bg-blue-50'}`}
+                      title="View Live Scorecard"
+                    >
+                      <Eye className="h-4 w-4" />
                     </button>
                   </td>
                 </tr>

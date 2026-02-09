@@ -7,7 +7,9 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ClickableTableRow } from '@/components/reports/ClickableTableRow';
 import { Badge } from '@/components/ui/badge';
 
-export default function VendorOrdersDetail() {
+import { Suspense } from 'react';
+
+function VendorOrdersDetailContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const vendorId = searchParams.get('id');
@@ -68,5 +70,13 @@ export default function VendorOrdersDetail() {
                 </CardContent>
             </Card>
         </ReportDetailPage>
+    );
+}
+
+export default function VendorOrdersDetail() {
+    return (
+        <Suspense fallback={<div>Loading orders...</div>}>
+            <VendorOrdersDetailContent />
+        </Suspense>
     );
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
@@ -34,7 +34,7 @@ interface InspectionPoint {
     status: 'Pass' | 'Fail' | 'Pending';
 }
 
-export default function FinalInspectionPage() {
+function FinalInspectionPageContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const { toast } = useToast();
@@ -297,5 +297,13 @@ export default function FinalInspectionPage() {
                 </Card>
             </div>
         </div>
+    );
+}
+
+export default function FinalInspectionPage() {
+    return (
+        <Suspense fallback={<div>Loading inspection...</div>}>
+            <FinalInspectionPageContent />
+        </Suspense>
     );
 }

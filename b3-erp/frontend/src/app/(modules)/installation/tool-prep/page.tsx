@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
@@ -36,7 +36,7 @@ interface Tool {
     lastChecked: string;
 }
 
-export default function ToolPrepPage() {
+function ToolPrepPageContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const { toast } = useToast();
@@ -293,5 +293,13 @@ export default function ToolPrepPage() {
                 </CardContent>
             </Card>
         </div>
+    );
+}
+
+export default function ToolPrepPage() {
+    return (
+        <Suspense fallback={<div>Loading tool prep...</div>}>
+            <ToolPrepPageContent />
+        </Suspense>
     );
 }

@@ -1,6 +1,8 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
+import axios from 'axios';
 import {
   Building2, Plus, Search, Filter, Edit3, Eye, Trash2, Upload,
   Download, Copy, MoreVertical, MapPin, Phone, Mail, Globe,
@@ -8,6 +10,8 @@ import {
   XCircle, AlertCircle, Settings, Save, X, Check
 } from 'lucide-react';
 
+// Interface matching the structure used in the UI
+// Mapped from Backend Entity: Company
 interface Company {
   id: string;
   code: string;
@@ -44,14 +48,15 @@ interface Company {
     industry: string;
     licenses: string[];
   };
-  logo?: string;
-  createdBy: string;
-  createdAt: string;
-  updatedBy?: string;
-  updatedAt?: string;
 }
 
 const CompanyMaster: React.FC = () => {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const [companies, setCompanies] = useState<Company[]>([]);
   const [filteredCompanies, setFilteredCompanies] = useState<Company[]>([]);
   const [selectedCompany, setSelectedCompany] = useState<Company | null>(null);
@@ -62,130 +67,160 @@ const CompanyMaster: React.FC = () => {
   const [filterType, setFilterType] = useState('all');
   const [isLoading, setIsLoading] = useState(false);
 
-  // Mock data - In real app, this would come from API
-  const mockCompanies: Company[] = [
+  // API Base URL
+  // API Base URL
+  const API_URL = `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'}/api/v1/companies`;
+
+  // Mock Data
+  const MOCK_COMPANIES: Company[] = [
     {
-      id: 'COMP001',
-      code: 'KAI',
-      name: 'KreupAI Technologies LLC',
-      shortName: 'KreupAI',
+      id: '1',
+      code: 'OPT-HQ',
+      name: 'OptiForge Industries HQ',
+      shortName: 'OptiForge HQ',
       type: 'holding',
       status: 'active',
-      incorporationDate: '2020-01-15',
-      registrationNumber: 'LLC-2020-001',
-      taxId: 'TAX123456789',
+      incorporationDate: '2010-01-15',
+      registrationNumber: 'CIN-88229-X',
+      taxId: 'TAX-US-9920',
       address: {
-        line1: '123 Technology Drive',
-        line2: 'Suite 500',
-        city: 'San Francisco',
-        state: 'California',
-        country: 'United States',
-        postalCode: '94105'
+        line1: '1200 Manufacturing Blvd',
+        city: 'Austin',
+        state: 'TX',
+        country: 'USA',
+        postalCode: '78701'
       },
       contact: {
-        phone: '+1-555-0123',
-        email: 'info@kreupai.com',
-        website: 'https://kreupai.com',
-        fax: '+1-555-0124'
-      },
-      financial: {
-        baseCurrency: 'USD',
-        fiscalYearStart: '01-01',
-        reportingCurrency: 'USD'
-      },
-      legal: {
-        legalName: 'KreupAI Technologies Limited Liability Company',
-        businessType: 'Limited Liability Company',
-        industry: 'Technology',
-        licenses: ['Business License', 'Technology License']
-      },
-      createdBy: 'admin',
-      createdAt: '2024-01-15T10:00:00Z',
-      updatedBy: 'admin',
-      updatedAt: '2024-12-16T10:00:00Z'
-    },
-    {
-      id: 'COMP002',
-      code: 'B3M',
-      name: 'ManufacturingOS Manufacturing',
-      shortName: 'ManufacturingOS',
-      type: 'subsidiary',
-      parentCompany: 'COMP001',
-      status: 'active',
-      incorporationDate: '2021-03-20',
-      registrationNumber: 'SUB-2021-002',
-      taxId: 'TAX987654321',
-      address: {
-        line1: '456 Manufacturing Blvd',
-        city: 'Detroit',
-        state: 'Michigan',
-        country: 'United States',
-        postalCode: '48201'
-      },
-      contact: {
-        phone: '+1-555-0125',
-        email: 'info@b3macbis.com',
-        website: 'https://b3macbis.com'
+        phone: '+1-512-555-0100',
+        email: 'info@optiforge.com',
+        website: 'www.optiforge.com'
       },
       financial: {
         baseCurrency: 'USD',
         fiscalYearStart: '01-01'
       },
       legal: {
-        legalName: 'ManufacturingOS Manufacturing Corporation',
+        legalName: 'OptiForge Industries Inc.',
         businessType: 'Corporation',
-        industry: 'Kitchen Manufacturing',
-        licenses: ['Manufacturing License', 'Safety Certification']
-      },
-      createdBy: 'admin',
-      createdAt: '2024-03-20T10:00:00Z'
+        industry: 'Industrial Manufacturing',
+        licenses: ['ISO-9001', 'OSHA-Certified']
+      }
     },
     {
-      id: 'COMP003',
-      code: 'B3EU',
-      name: 'ManufacturingOS Europe',
-      shortName: 'B3 Europe',
-      type: 'branch',
-      parentCompany: 'COMP002',
+      id: '2',
+      code: 'OPT-EU',
+      name: 'OptiForge Europe GmbH',
+      shortName: 'OptiForge EU',
+      type: 'subsidiary',
       status: 'active',
-      incorporationDate: '2022-06-10',
-      registrationNumber: 'EU-2022-003',
-      taxId: 'EU123456789',
+      incorporationDate: '2015-06-20',
+      registrationNumber: 'HRB-20239',
+      taxId: 'DE-8829910',
       address: {
-        line1: '789 Industrial Park',
-        city: 'Berlin',
-        state: 'Berlin',
+        line1: 'Industriestraße 45',
+        city: 'Stuttgart',
         country: 'Germany',
-        postalCode: '10115'
+        postalCode: '70173'
       },
       contact: {
-        phone: '+49-30-12345678',
-        email: 'info@b3macbis.eu',
-        website: 'https://b3macbis.eu'
+        phone: '+49-711-555-0922',
+        email: 'eu-sales@optiforge.com'
       },
       financial: {
         baseCurrency: 'EUR',
         fiscalYearStart: '01-01'
       },
       legal: {
-        legalName: 'ManufacturingOS Europe GmbH',
+        legalName: 'OptiForge Europe GmbH',
         businessType: 'GmbH',
-        industry: 'Kitchen Manufacturing',
-        licenses: ['EU Manufacturing License', 'CE Certification']
+        industry: 'Manufacturing',
+        licenses: ['CE-Marking']
+      }
+    },
+    {
+      id: '3',
+      code: 'OPT-ASIA',
+      name: 'OptiForge Asia Pacific Pte Ltd',
+      shortName: 'OptiForge APAC',
+      type: 'subsidiary',
+      status: 'active',
+      incorporationDate: '2018-03-10',
+      registrationNumber: 'UEN-2018299X',
+      taxId: 'SG-299201',
+      address: {
+        line1: '88 Market Street',
+        city: 'Singapore',
+        country: 'Singapore',
+        postalCode: '048948'
       },
-      createdBy: 'admin',
-      createdAt: '2024-06-10T10:00:00Z'
+      contact: {
+        phone: '+65-6555-0192',
+        email: 'apac@optiforge.com'
+      },
+      financial: {
+        baseCurrency: 'SGD',
+        fiscalYearStart: '04-01'
+      },
+      legal: {
+        legalName: 'OptiForge Asia Pacific Pte Ltd',
+        businessType: 'Private Limited',
+        industry: 'Logistics',
+        licenses: []
+      }
     }
   ];
 
-  useEffect(() => {
-    // Simulate API call
+  const fetchCompanies = async () => {
     setIsLoading(true);
-    setTimeout(() => {
-      setCompanies(mockCompanies);
-      setFilteredCompanies(mockCompanies);
+    try {
+      const response = await axios.get(API_URL);
+
+      // Adapt backend entity to frontend interface
+      const adaptedCompanies: Company[] = response.data.map((c: any) => ({
+        id: c.id,
+        code: c.registrationNumber || 'N/A', // Using Reg No as Code
+        name: c.name,
+        shortName: c.name.length > 20 ? c.name.substring(0, 20) + '...' : c.name,
+        type: c.isEliminationEntity ? 'holding' : 'subsidiary',
+        status: c.isActive ? 'active' : 'inactive',
+        incorporationDate: c.fiscalYearStart,
+        registrationNumber: c.registrationNumber,
+        taxId: c.taxId,
+        address: {
+          line1: c.address,
+          city: '', // Single string in backend, mapping limitation
+          country: ''
+        },
+        contact: {
+          phone: c.phone,
+          email: c.email
+        },
+        financial: {
+          baseCurrency: c.baseCurrency,
+          fiscalYearStart: c.fiscalYearStart
+        },
+        legal: {
+          legalName: c.name,
+          businessType: 'Corporation', // Default
+          industry: 'Manufacturing', // Default
+          licenses: []
+        }
+      }));
+
+      setCompanies(adaptedCompanies);
+      setFilteredCompanies(adaptedCompanies);
+    } catch (error) {
+      console.warn('Failed to fetch companies from API, using mock data:', error);
+      // Fallback to mock data
+      setCompanies(MOCK_COMPANIES);
+      setFilteredCompanies(MOCK_COMPANIES);
+    } finally {
       setIsLoading(false);
-    }, 1000);
+    }
+  };
+
+  useEffect(() => {
+    fetchCompanies();
   }, []);
 
   useEffect(() => {
@@ -231,9 +266,15 @@ const CompanyMaster: React.FC = () => {
     setIsModalOpen(true);
   };
 
-  const handleDeleteCompany = (companyId: string) => {
+  const handleDeleteCompany = async (companyId: string) => {
     if (confirm('Are you sure you want to delete this company? This action cannot be undone.')) {
-      setCompanies(companies.filter(c => c.id !== companyId));
+      try {
+        await axios.delete(`${API_URL}/${companyId}`);
+        fetchCompanies();
+      } catch (error) {
+        console.error('Failed to delete company:', error);
+        alert('Failed to delete company');
+      }
     }
   };
 
@@ -304,19 +345,42 @@ const CompanyMaster: React.FC = () => {
       }
     );
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
       e.preventDefault();
-      // Here you would typically call an API
-      console.log('Submitting:', formData);
-      setIsModalOpen(false);
+      try {
+        const payload = {
+          name: formData.name,
+          taxId: formData.taxId,
+          registrationNumber: formData.registrationNumber,
+          baseCurrency: formData.financial?.baseCurrency || 'USD',
+          fiscalYearStart: formData.incorporationDate ? new Date(formData.incorporationDate) : new Date(),
+          address: `${formData.address?.line1 || ''} ${formData.address?.city || ''}`,
+          email: formData.contact?.email,
+          phone: formData.contact?.phone,
+          isActive: formData.status === 'active',
+        };
+
+        if (modalMode === 'create') {
+          await axios.post(API_URL, payload);
+        } else if (modalMode === 'edit' && selectedCompany) {
+          await axios.put(`${API_URL}/${selectedCompany.id}`, payload);
+        }
+        setIsModalOpen(false);
+        fetchCompanies();
+      } catch (error) {
+        console.error('Failed to save company:', error);
+        alert('Failed to save company');
+      }
     };
 
     const isViewMode = modalMode === 'view';
 
-    return (
-      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-        <div className="bg-white rounded-lg w-full  max-h-[90vh] overflow-y-auto">
-          <div className="flex justify-between items-center p-3 border-b">
+    if (!mounted) return null;
+
+    return createPortal(
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[9999]">
+        <div className="bg-white rounded-lg w-full max-w-4xl max-h-[90vh] overflow-y-auto shadow-2xl relative">
+          <div className="flex justify-between items-center p-3 border-b sticky top-0 bg-white z-10">
             <h2 className="text-xl font-semibold flex items-center gap-2">
               <Building2 className="h-5 w-5" />
               {modalMode === 'create' ? 'Create Company' : modalMode === 'edit' ? 'Edit Company' : 'Company Details'}
@@ -333,11 +397,11 @@ const CompanyMaster: React.FC = () => {
             {/* Basic Information */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
-                <label className="block text-sm font-medium mb-1">Company Code *</label>
+                <label className="block text-sm font-medium mb-1">Company Code (Reg No) *</label>
                 <input
                   type="text"
-                  value={formData.code || ''}
-                  onChange={(e) => setFormData({...formData, code: e.target.value})}
+                  value={formData.registrationNumber || ''}
+                  onChange={(e) => setFormData({ ...formData, registrationNumber: e.target.value, code: e.target.value })}
                   className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
                   placeholder="e.g., KAI"
                   disabled={isViewMode}
@@ -348,7 +412,7 @@ const CompanyMaster: React.FC = () => {
                 <label className="block text-sm font-medium mb-1">Company Type *</label>
                 <select
                   value={formData.type || ''}
-                  onChange={(e) => setFormData({...formData, type: e.target.value as Company['type']})}
+                  onChange={(e) => setFormData({ ...formData, type: e.target.value as Company['type'] })}
                   className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
                   disabled={isViewMode}
                   required
@@ -367,7 +431,7 @@ const CompanyMaster: React.FC = () => {
                 <input
                   type="text"
                   value={formData.name || ''}
-                  onChange={(e) => setFormData({...formData, name: e.target.value})}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
                   placeholder="Full company name"
                   disabled={isViewMode}
@@ -379,7 +443,7 @@ const CompanyMaster: React.FC = () => {
                 <input
                   type="text"
                   value={formData.shortName || ''}
-                  onChange={(e) => setFormData({...formData, shortName: e.target.value})}
+                  onChange={(e) => setFormData({ ...formData, shortName: e.target.value })}
                   className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
                   placeholder="Short name"
                   disabled={isViewMode}
@@ -393,7 +457,7 @@ const CompanyMaster: React.FC = () => {
                 <label className="block text-sm font-medium mb-1">Status</label>
                 <select
                   value={formData.status || 'active'}
-                  onChange={(e) => setFormData({...formData, status: e.target.value as Company['status']})}
+                  onChange={(e) => setFormData({ ...formData, status: e.target.value as Company['status'] })}
                   className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
                   disabled={isViewMode}
                 >
@@ -406,8 +470,8 @@ const CompanyMaster: React.FC = () => {
                 <label className="block text-sm font-medium mb-1">Incorporation Date</label>
                 <input
                   type="date"
-                  value={formData.incorporationDate || ''}
-                  onChange={(e) => setFormData({...formData, incorporationDate: e.target.value})}
+                  value={formData.incorporationDate ? new Date(formData.incorporationDate).toISOString().split('T')[0] : ''}
+                  onChange={(e) => setFormData({ ...formData, incorporationDate: e.target.value })}
                   className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
                   disabled={isViewMode}
                 />
@@ -423,7 +487,7 @@ const CompanyMaster: React.FC = () => {
                   <input
                     type="text"
                     value={formData.registrationNumber || ''}
-                    onChange={(e) => setFormData({...formData, registrationNumber: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, registrationNumber: e.target.value })}
                     className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
                     disabled={isViewMode}
                   />
@@ -433,7 +497,7 @@ const CompanyMaster: React.FC = () => {
                   <input
                     type="text"
                     value={formData.taxId || ''}
-                    onChange={(e) => setFormData({...formData, taxId: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, taxId: e.target.value })}
                     className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
                     disabled={isViewMode}
                   />
@@ -452,7 +516,7 @@ const CompanyMaster: React.FC = () => {
                     value={formData.address?.line1 || ''}
                     onChange={(e) => setFormData({
                       ...formData,
-                      address: {...formData.address, line1: e.target.value}
+                      address: { ...formData.address, line1: e.target.value }
                     })}
                     className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
                     disabled={isViewMode}
@@ -465,7 +529,7 @@ const CompanyMaster: React.FC = () => {
                     value={formData.address?.line2 || ''}
                     onChange={(e) => setFormData({
                       ...formData,
-                      address: {...formData.address, line2: e.target.value}
+                      address: { ...formData.address, line2: e.target.value }
                     })}
                     className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
                     disabled={isViewMode}
@@ -479,7 +543,7 @@ const CompanyMaster: React.FC = () => {
                       value={formData.address?.city || ''}
                       onChange={(e) => setFormData({
                         ...formData,
-                        address: {...formData.address, city: e.target.value}
+                        address: { ...formData.address, city: e.target.value }
                       })}
                       className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
                       disabled={isViewMode}
@@ -492,7 +556,7 @@ const CompanyMaster: React.FC = () => {
                       value={formData.address?.state || ''}
                       onChange={(e) => setFormData({
                         ...formData,
-                        address: {...formData.address, state: e.target.value}
+                        address: { ...formData.address, state: e.target.value }
                       })}
                       className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
                       disabled={isViewMode}
@@ -505,7 +569,7 @@ const CompanyMaster: React.FC = () => {
                       value={formData.address?.country || ''}
                       onChange={(e) => setFormData({
                         ...formData,
-                        address: {...formData.address, country: e.target.value}
+                        address: { ...formData.address, country: e.target.value }
                       })}
                       className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
                       disabled={isViewMode}
@@ -518,7 +582,7 @@ const CompanyMaster: React.FC = () => {
                       value={formData.address?.postalCode || ''}
                       onChange={(e) => setFormData({
                         ...formData,
-                        address: {...formData.address, postalCode: e.target.value}
+                        address: { ...formData.address, postalCode: e.target.value }
                       })}
                       className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
                       disabled={isViewMode}
@@ -539,7 +603,7 @@ const CompanyMaster: React.FC = () => {
                     value={formData.contact?.phone || ''}
                     onChange={(e) => setFormData({
                       ...formData,
-                      contact: {...formData.contact, phone: e.target.value}
+                      contact: { ...formData.contact, phone: e.target.value }
                     })}
                     className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
                     disabled={isViewMode}
@@ -552,7 +616,7 @@ const CompanyMaster: React.FC = () => {
                     value={formData.contact?.email || ''}
                     onChange={(e) => setFormData({
                       ...formData,
-                      contact: {...formData.contact, email: e.target.value}
+                      contact: { ...formData.contact, email: e.target.value }
                     })}
                     className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
                     disabled={isViewMode}
@@ -565,7 +629,7 @@ const CompanyMaster: React.FC = () => {
                     value={formData.contact?.website || ''}
                     onChange={(e) => setFormData({
                       ...formData,
-                      contact: {...formData.contact, website: e.target.value}
+                      contact: { ...formData.contact, website: e.target.value }
                     })}
                     className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
                     disabled={isViewMode}
@@ -578,7 +642,7 @@ const CompanyMaster: React.FC = () => {
                     value={formData.contact?.fax || ''}
                     onChange={(e) => setFormData({
                       ...formData,
-                      contact: {...formData.contact, fax: e.target.value}
+                      contact: { ...formData.contact, fax: e.target.value }
                     })}
                     className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
                     disabled={isViewMode}
@@ -588,7 +652,7 @@ const CompanyMaster: React.FC = () => {
             </div>
 
             {/* Modal Actions */}
-            <div className="flex justify-end gap-3 pt-4 border-t">
+            <div className="flex justify-end gap-3 pt-4 border-t sticky bottom-0 bg-white p-3 z-10 border-t">
               <button
                 type="button"
                 onClick={() => setIsModalOpen(false)}
@@ -608,39 +672,32 @@ const CompanyMaster: React.FC = () => {
             </div>
           </form>
         </div>
-      </div>
+      </div>,
+      document.body
     );
   };
 
+
+
   return (
-    <div className="p-6">
-      {/* Header */}
-      <div className="mb-3">
-        <div className="flex items-center justify-between">
-          <div>
-            <h2 className="text-2xl font-bold mb-2 flex items-center gap-2">
-              <Building2 className="h-6 w-6" />
-              Company Master
-            </h2>
-            <p className="text-gray-600">Manage company and organizational entities</p>
-          </div>
-          <div className="flex gap-2">
-            <button className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
-              <Download className="h-4 w-4" />
-              Export
-            </button>
-            <button className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
-              <Upload className="h-4 w-4" />
-              Import
-            </button>
-            <button
-              onClick={handleCreateCompany}
-              className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 flex items-center gap-2"
-            >
-              <Plus className="h-4 w-4" />
-              Add Company
-            </button>
-          </div>
+    <div className="p-6 space-y-6">
+      <div className="flex justify-between items-center">
+        <div>
+          <h1 className="text-2xl font-bold text-gray-900">Company Master</h1>
+          <p className="text-gray-500 text-sm">Manage your organization structure and legal entities</p>
+        </div>
+        <div className="flex gap-3">
+          <button className="px-3 py-2 border rounded-lg hover:bg-gray-50 flex items-center gap-2 text-gray-600">
+            <Download className="h-4 w-4" />
+            Export
+          </button>
+          <button
+            onClick={handleCreateCompany}
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2 shadow-sm transition-all"
+          >
+            <Plus className="h-4 w-4" />
+            Add Company
+          </button>
         </div>
       </div>
 
@@ -800,7 +857,6 @@ const CompanyMaster: React.FC = () => {
         </div>
       )}
 
-      {/* Modal */}
       {isModalOpen && <CompanyModal />}
     </div>
   );

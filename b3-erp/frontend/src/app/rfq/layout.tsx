@@ -3,7 +3,7 @@
 import DashboardLayout from '@/components/DashboardLayout';
 import { usePathname } from 'next/navigation';
 import { NotificationProvider } from '@/context/NotificationContext';
-import { ToastProvider } from '@/components/ui/Toast';
+import { ToastProvider } from '@/components/ui/toast';
 import { EnhancedToastProvider } from '@/components/ui/EnhancedToast';
 
 export default function RFQLayout({

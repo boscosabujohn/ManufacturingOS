@@ -1,7 +1,8 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { leadService } from '@/services/lead.service';
 import {
   Globe,
   Users,
@@ -226,8 +227,38 @@ const mockLeadSources: LeadSource[] = [
 
 export default function LeadSourcesPage() {
   const router = useRouter();
-  const [sources, setSources] = useState<LeadSource[]>(mockLeadSources);
+  const [sources, setSources] = useState<LeadSource[]>([]);
+  const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
+
+  useEffect(() => {
+    const fetchSources = async () => {
+      try {
+        const data = await leadService.getSourceAnalytics();
+        const mappedData: LeadSource[] = data.map((item: any) => ({
+          id: item.name,
+          name: item.name,
+          category: 'General',
+          totalLeads: parseInt(item.totalLeads, 10),
+          qualifiedLeads: parseInt(item.qualifiedLeads, 10),
+          conversionRate: parseFloat(item.conversionRate),
+          avgScore: 0,
+          totalValue: parseFloat(item.totalValue),
+          avgDealSize: item.qualifiedLeads > 0 ? parseFloat(item.totalValue) / parseInt(item.qualifiedLeads, 10) : 0,
+          lastMonth: 0,
+          trend: 'stable',
+          trendPercentage: 0,
+          color: 'bg-blue-500',
+        }));
+        setSources(mappedData);
+      } catch (error) {
+        console.error('Failed to fetch lead sources:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchSources();
+  }, []);
   const [categoryFilter, setCategoryFilter] = useState('all');
   const [sortBy, setSortBy] = useState('totalLeads');
   const [expanded, setExpanded] = useState<Record<string, boolean>>({});
@@ -262,7 +293,7 @@ export default function LeadSourcesPage() {
     const lastMonth = kids.reduce((sum, k) => sum + k.lastMonth, parent.lastMonth);
     const weightedConv = totalLeads
       ? ((kids.reduce((sum, k) => sum + k.conversionRate * k.totalLeads, parent.conversionRate * parent.totalLeads)) /
-          totalLeads)
+        totalLeads)
       : 0;
     const weightedScore = totalLeads
       ? ((kids.reduce((sum, k) => sum + k.avgScore * k.totalLeads, parent.avgScore * parent.totalLeads)) / totalLeads)
@@ -541,13 +572,12 @@ export default function LeadSourcesPage() {
                       <div className="flex items-center space-x-2">
                         <div className="flex-1 bg-gray-200 rounded-full h-2 w-20">
                           <div
-                            className={`h-2 rounded-full ${
-                              agg.conversionRate >= 70
+                            className={`h-2 rounded-full ${agg.conversionRate >= 70
                                 ? 'bg-green-500'
                                 : agg.conversionRate >= 50
-                                ? 'bg-yellow-500'
-                                : 'bg-red-500'
-                            }`}
+                                  ? 'bg-yellow-500'
+                                  : 'bg-red-500'
+                              }`}
                             style={{ width: `${agg.conversionRate}%` }}
                           ></div>
                         </div>
@@ -556,13 +586,12 @@ export default function LeadSourcesPage() {
                     </td>
                     <td className="px-3 py-2">
                       <span
-                        className={`px-2 py-1 text-xs font-bold rounded ${
-                          agg.avgScore >= 70
+                        className={`px-2 py-1 text-xs font-bold rounded ${agg.avgScore >= 70
                             ? 'bg-green-100 text-green-700'
                             : agg.avgScore >= 50
-                            ? 'bg-yellow-100 text-yellow-700'
-                            : 'bg-red-100 text-red-700'
-                        }`}
+                              ? 'bg-yellow-100 text-yellow-700'
+                              : 'bg-red-100 text-red-700'
+                          }`}
                       >
                         {agg.avgScore}
                       </span>
@@ -628,13 +657,12 @@ export default function LeadSourcesPage() {
                         <div className="flex items-center space-x-2">
                           <div className="flex-1 bg-gray-200 rounded-full h-2 w-20">
                             <div
-                              className={`h-2 rounded-full ${
-                                child.conversionRate >= 70
+                              className={`h-2 rounded-full ${child.conversionRate >= 70
                                   ? 'bg-green-500'
                                   : child.conversionRate >= 50
-                                  ? 'bg-yellow-500'
-                                  : 'bg-red-500'
-                              }`}
+                                    ? 'bg-yellow-500'
+                                    : 'bg-red-500'
+                                }`}
                               style={{ width: `${child.conversionRate}%` }}
                             ></div>
                           </div>
@@ -643,13 +671,12 @@ export default function LeadSourcesPage() {
                       </td>
                       <td className="px-3 py-2">
                         <span
-                          className={`px-2 py-1 text-xs font-bold rounded ${
-                            child.avgScore >= 70
+                          className={`px-2 py-1 text-xs font-bold rounded ${child.avgScore >= 70
                               ? 'bg-green-100 text-green-700'
                               : child.avgScore >= 50
-                              ? 'bg-yellow-100 text-yellow-700'
-                              : 'bg-red-100 text-red-700'
-                          }`}
+                                ? 'bg-yellow-100 text-yellow-700'
+                                : 'bg-red-100 text-red-700'
+                            }`}
                         >
                           {child.avgScore}
                         </span>

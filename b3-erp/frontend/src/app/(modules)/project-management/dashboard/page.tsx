@@ -34,6 +34,7 @@ import {
   ViewDetailsModal,
 } from '@/components/project-management/DashboardModals';
 import { StatHighlight, PremiumCard } from '@/components/dashboard/DashboardWidgets';
+import { ProjectProfitabilityGauge } from '@/components/project-management/ProjectProfitabilityGauge';
 
 export default function ProjectDashboardPage() {
   // Modal states
@@ -269,34 +270,12 @@ export default function ProjectDashboardPage() {
 
       {/* Visual Analytics Row */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
-        <PremiumCard className="p-4">
-          <div className="flex items-center justify-between mb-4">
-            <div>
-              <h3 className="text-lg font-black text-gray-900 leading-none mb-1">Performance Trend</h3>
-              <p className="text-[10px] text-gray-400 font-bold uppercase tracking-tight">Aggregate Health Score</p>
-            </div>
-            <div className="p-2 bg-blue-50 rounded-lg">
-              <TrendingUp className="w-4 h-4 text-blue-600" />
-            </div>
-          </div>
-          <div className="h-40 flex items-end justify-between gap-2.5">
-            {healthTrend.map((data, index) => (
-              <div key={index} className="flex-1 flex flex-col items-center group">
-                <div className="w-full bg-gray-50 rounded-lg relative h-full flex items-end overflow-hidden">
-                  <div
-                    className="w-full bg-gradient-to-t from-blue-600 to-blue-400 rounded-t-lg transition-all duration-700 group-hover:to-blue-300"
-                    style={{ height: `${data.score}%` }}
-                  >
-                    <div className="absolute top-0 left-0 right-0 p-1 text-center opacity-0 group-hover:opacity-100 transition-opacity">
-                      <span className="text-[8px] font-black text-blue-900 bg-white/80 backdrop-blur-sm px-1.5 py-0.5 rounded-md">{data.score}%</span>
-                    </div>
-                  </div>
-                </div>
-                <span className="text-[9px] font-black text-gray-400 mt-2 uppercase tracking-tight">{data.month}</span>
-              </div>
-            ))}
-          </div>
-        </PremiumCard>
+        <ProjectProfitabilityGauge
+          income={stats.actualRevenue}
+          expenditure={stats.spentAmount}
+          profit={stats.actualRevenue - stats.spentAmount}
+          margin={((stats.actualRevenue - stats.spentAmount) / stats.actualRevenue) * 100}
+        />
 
         <PremiumCard className="p-4">
           <div className="flex items-center justify-between mb-4">

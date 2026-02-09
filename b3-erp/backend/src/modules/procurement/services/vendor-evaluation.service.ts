@@ -1,15 +1,24 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, In } from 'typeorm';
 import { VendorEvaluation, EvaluationStatus, VendorPerformanceGrade } from '../entities/vendor-evaluation.entity';
 import { CreateVendorEvaluationDto, UpdateVendorEvaluationDto, VendorEvaluationResponseDto } from '../dto';
+import { PurchaseOrder } from '../entities/purchase-order.entity';
+import { GoodsReceipt } from '../entities/goods-receipt.entity';
+import { GoodsReceiptItem } from '../entities/goods-receipt-item.entity';
 
 @Injectable()
 export class VendorEvaluationService {
   constructor(
     @InjectRepository(VendorEvaluation)
     private readonly evaluationRepository: Repository<VendorEvaluation>,
-  ) {}
+    @InjectRepository(PurchaseOrder)
+    private readonly poRepository: Repository<PurchaseOrder>,
+    @InjectRepository(GoodsReceipt)
+    private readonly grnRepository: Repository<GoodsReceipt>,
+    @InjectRepository(GoodsReceiptItem)
+    private readonly grnItemRepository: Repository<GoodsReceiptItem>,
+  ) { }
 
   async create(createDto: CreateVendorEvaluationDto): Promise<VendorEvaluationResponseDto> {
     const evaluationNumber = await this.generateEvaluationNumber();
@@ -106,6 +115,78 @@ export class VendorEvaluationService {
 
     const updated = await this.evaluationRepository.save(evaluation);
     return this.mapToResponse(updated);
+  }
+
+  async calculateRealTimeMetrics(vendorId: string): Promise<any> {
+    // 1. Fetch all POs for this vendor
+    const pos = await this.poRepository.find({
+      where: { vendorId },
+    });
+
+    if (pos.length === 0) {
+      return {
+        onTimeDeliveryPercentage: 0,
+        qualityPassRate: 0,
+        totalOrders: 0,
+      };
+    }
+
+    const poIds = pos.map(po => po.id);
+
+    // 2. Fetch all completed GRNs for these POs
+    const grns = await this.grnRepository.find({
+      where: {
+        purchaseOrderId: In(poIds),
+        // status should be something indicating completion
+      },
+    });
+
+    // 3. Calculate Delivery Accuracy
+    let onTimeCount = 0;
+    let validGrnCount = 0;
+
+    grns.forEach(grn => {
+      const po = pos.find(p => p.id === grn.purchaseOrderId);
+      if (po && po.deliveryDate) {
+        validGrnCount++;
+        const receivedDate = new Date(grn.receiptDateTime);
+        const promisedDate = new Date(po.deliveryDate);
+        if (receivedDate <= promisedDate) {
+          onTimeCount++;
+        }
+      }
+    });
+
+    const onTimeDeliveryPercentage = validGrnCount > 0
+      ? (onTimeCount / validGrnCount) * 100
+      : 0;
+
+    // 4. Calculate Quality Rate
+    const grnIds = grns.map(grn => grn.id);
+    let totalReceived = 0;
+    let totalAccepted = 0;
+
+    if (grnIds.length > 0) {
+      const items = await this.grnItemRepository.find({
+        where: { goodsReceiptId: In(grnIds) },
+      });
+
+      items.forEach(item => {
+        totalReceived += Number(item.receivedQuantity || 0);
+        totalAccepted += Number(item.acceptedQuantity || 0);
+      });
+    }
+
+    const qualityPassRate = totalReceived > 0
+      ? (totalAccepted / totalReceived) * 100
+      : 0;
+
+    return {
+      onTimeDeliveryPercentage: Math.round(onTimeDeliveryPercentage * 100) / 100,
+      qualityPassRate: Math.round(qualityPassRate * 100) / 100,
+      totalOrders: pos.length,
+      totalDeliveries: grns.length,
+    };
   }
 
   async getVendorPerformanceReport(vendorId: string): Promise<any> {

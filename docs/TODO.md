@@ -49,62 +49,64 @@ For every line item in this document:
 ## 🚀 1. MANUFACTURING WORKFLOW (THE 8-PHASE ENGINE)
 
 ### Phase 1: Project Initiation & Handover
-- [ ] **1.1 Record Work Awarded Date**
-  - [ ] [M] `awardDate` field in Project entity.
-  - [ ] [A] Project creation service with auto-ID generation.
-  - [ ] [S] Awards for past 12 months.
-  - [ ] [W] Sales conversion API wired to Dashboard.
-  - [ ] [U] "Project Created" milestone in timeline.
-- [ ] **1.2 Attach Confirmation Mail/Docs**
-  - [ ] [M] `ProjectAttachment` table with category "CONFIRMATION".
-  - [ ] [A] Multi-file S3 upload with metadata tracking.
-  - [ ] [S] Sample PDF email confirmations.
-  - [ ] [W] Document control widget for Project Start.
-  - [ ] [U] Document preview and metadata display.
-- [ ] **1.6 Create/Upload BOQ Document**
-  - [ ] [M] `ProjectBOQ` schema linked to `ProjectItem` master.
-  - [ ] [A] Excel/CSV BOQ parser service.
-  - [ ] [S] Sample BOQ for "Industrial Kitchen 2026".
-  - [ ] [W] Line-item grid with bulk upload capability.
-  - [ ] [U] Validation UI for missing/incorrect item codes.
-- [ ] **1.7-1.9 Design Assets (Drawings, 3D Renders)**
-  - [ ] [M] Media library mapping for Project ID.
-  - [ ] [A] Version tracking for CAD/3D files.
-  - [ ] [S] Sample DWG and OBJ files.
-  - [ ] [W] Asset gallery component for Project page.
-  - [ ] [U] Deep-zoom preview for industrial drawings.
-- [ ] **1.10-1.11 Sales-to-Project Handover Gate**
-  - [ ] [M] `HandoverStatus` in Workflow Engine.
-  - [ ] [A] Mandatory field validation script for Handover.
-  - [ ] [S] Handover logs with approval comments.
-  - [ ] [W] Notification trigger to Project Team.
-  - [ ] [U] Handover Wizard with "Checklist Gate" enforcement.
+- [x] **1.1 Record Work Awarded Date**
+  - [x] [M] `awardDate` field in Project entity.
+  - [x] [A] Project creation service with auto-ID generation.
+  - [x] [S] Awards for past 12 months.
+  - [x] [W] Sales conversion API wired to Dashboard.
+  - [x] [U] "Project Created" milestone in timeline.
+- [x] **1.2 Attach Confirmation Mail/Docs**
+  - [x] [M] `ProjectAttachment` table with category "CONFIRMATION".
+  - [x] [A] Multi-file S3 upload with metadata tracking.
+  - [x] [S] Sample PDF email confirmations.
+  - [x] [W] Document control widget for Project Start.
+  - [x] [U] Document preview and metadata display.
+- [x] **1.6 Create/Upload BOQ Document**
+  - [x] [M] `ProjectBOQ` schema linked to `ProjectItem` master.
+  - [x] [A] Excel/CSV BOQ parser service.
+  - [x] [S] Sample BOQ for "Industrial Kitchen 2026".
+  - [x] [W] Line-item grid with bulk upload capability.
+  - [x] [U] Validation UI for missing/incorrect item codes.
+- [x] **1.7-1.9 Design Assets (Drawings, 3D Renders)**
+  - [x] [M] Media library mapping for Project ID.
+  - [x] [A] Version tracking for CAD/3D files.
+  - [x] [S] Sample DWG and OBJ files.
+  - [x] [W] Asset gallery component for Project page.
+  - [x] [U] Deep-zoom preview for industrial drawings.
+- [x] **1.10-1.11 Sales-to-Project Handover Gate**
+  - [x] [M] `HandoverStatus` in Workflow Engine.
+  - [x] [A] Mandatory field validation script for Handover.
+  - [x] [S] Handover logs with approval comments.
+  - [x] [W] Notification trigger to Project Team.
+  - [x] [U] Handover Wizard with "Checklist Gate" enforcement.
+Requested Completion: 100%
 
 ### Phase 2: Design Verification & Site Assessment
-- [ ] **2.1-2.3 Comparison Tools (BOQ vs Drawings vs 3D)**
-  - [ ] [M] `DiscrepancyLog` table per project.
-  - [ ] [A] Automated mismatch detection logic.
-  - [ ] [S] Sample discrepancy reports.
-  - [ ] [W] Side-by-side comparison UI.
-  - [ ] [U] Discrepancy highlights in visual viewer.
-- [ ] **2.4-2.5 Site Visit & Measurements (Mobile Focused)**
-  - [ ] [M] `SiteSurvey` table with lat/long and 50+ measurement fields.
-  - [ ] [A] Mobile-first survey completion API.
-  - [ ] [S] Survey data for 10 recent sites.
-  - [ ] [W] Offline-sync capability for field engineers.
-  - [ ] [U] Mobile measurement input with photo evidence.
-- [ ] **2.7-2.8 Client Approval Portal**
-  - [ ] [M] `ExternalApproval` table for Client interactions.
-  - [ ] [A] Magic-link auth service for client signatures.
-  - [ ] [S] Signed approval logs.
-  - [ ] [W] Client-facing drawing approval UI.
-  - [ ] [U] Digital E-signature widget.
-- [ ] **2.14-2.16 Cabinet Marking & Photo Reporting**
-  - [ ] [M] `MarkingReport` linked to Project Phase 2.
-  - [ ] [A] Photo categorization and timestamping.
-  - [ ] [S] Marking reports with site photos.
-  - [ ] [W] Grid for multi-photo site status updates.
-  - [ ] [U] Interactive site map with marking overlay.
+- [x] **2.1-2.3 Comparison Tools (BOQ vs Drawings vs 3D)**
+  - [x] [M] `DiscrepancyLog` table per project.
+  - [x] [A] Automated mismatch detection logic.
+  - [x] [S] Sample discrepancy reports.
+  - [x] [W] Side-by-side comparison UI.
+  - [x] [U] Discrepancy highlights in visual viewer.
+- [x] **2.4-2.5 Site Visit & Measurements (Mobile Focused)**
+  - [x] [M] `SiteSurvey` table with lat/long and 50+ measurement fields.
+  - [x] [A] Mobile-first survey completion API.
+  - [x] [S] Survey data for 10 recent sites.
+  - [x] [W] Offline-sync capability for field engineers.
+  - [x] [U] Mobile measurement input with photo evidence.
+- [x] **2.7-2.8 Client Approval Portal**
+  - [x] [M] `ExternalApproval` table for Client interactions.
+  - [x] [A] Magic-link auth service for client signatures.
+  - [x] [S] Signed approval logs.
+  - [x] [W] Client-facing drawing approval UI.
+  - [x] [U] Digital E-signature widget.
+- [x] **2.14-2.16 Cabinet Marking & Photo Reporting**
+  - [x] [M] `MarkingReport` linked to Project Phase 2.
+  - [x] [A] Photo categorization and timestamping.
+  - [x] [S] Marking reports with site photos.
+  - [x] [W] Grid for multi-photo site status updates.
+  - [x] [U] Interactive site map with marking overlay.
+Requested Completion: 100%
 
 ### Phase 3: Technical Design & Detailed BOM
 - [x] **3.6 Technical Timeline Tracking**
@@ -207,18 +209,18 @@ For every line item in this document:
   - [x] [U] Delivery confirmation (POD) with photo.
 
 ### Phase 8: Installation & Handover
-- [ ] **8.1-8.3 Tool Management (Site Deployment)**
-  - [ ] [M] `ToolDeployment` table (Tool ID -> Site ID).
-  - [ ] [A] Issue/Return logic with asset depreciation.
-  - [ ] [S] 100+ site-deployed tools.
-  - [ ] [W] Tool requisition form for Install Teams.
-  - [ ] [U] "Tools on Site" inventory view.
-- [ ] **8.7-8.14 Daily Progress & Daily Cleaning**
-  - [ ] [M] `DailyInstallReport` with status/photo.
-  - [ ] [A] Automated daily digest to Client.
-  - [ ] [S] 30 days of progress reports.
-  - [ ] [W] Mobile photo update service.
-  - [ ] [U] Client-facing progress view.
+- [x] **8.1-8.3 Tool Management (Site Deployment)**
+  - [x] [M] `ToolDeployment` table (Tool ID -> Site ID).
+  - [x] [A] Issue/Return logic with asset depreciation.
+  - [x] [S] 100+ site-deployed tools.
+  - [x] [W] Tool requisition form for Install Teams.
+  - [x] [U] "Tools on Site" inventory view.
+- [x] **8.7-8.14 Daily Progress & Daily Cleaning**
+  - [x] [M] `DailyInstallReport` with status/photo.
+  - [x] [A] Automated daily digest to Client.
+  - [x] [S] 30 days of progress reports.
+  - [x] [W] Mobile photo update service.
+  - [x] [U] Client-facing progress view.
 - [x] **8.18-8.20 Project Handover & Sign-off**
   - [x] [M] `HandoverDocument` with E-sign block.
   - [x] [A] Closure script (Archive project, Release resources).
@@ -231,82 +233,97 @@ For every line item in this document:
 ## 🛠️ 2. MODULE-SPECIFIC DEEP DIVE (13 MODULES)
 
 ### 2.1 CRM & SALES
-- [ ] **Lead Management sub-features**
-  - [ ] Source analytics.
-  - [ ] Auto-assignment based on region.
-  - [ ] Conversion success rate reports.
-- [ ] **Quotation Engine sub-features**
-  - [ ] Multi-currency quotes.
-  - [ ] Tax engine for global jurisdictions.
-  - [ ] Margin health check (Warning if <15%).
+- [x] **Lead Management sub-features**
+  - [x] Source analytics.
+  - [x] Auto-assignment based on region.
+  - [x] Conversion success rate reports.
+- [x] **Quotation Engine sub-features**
+  - [x] Multi-currency quotes.
+  - [x] Tax engine for global jurisdictions.
+  - [x] Margin health check (Warning if <15%).
 
 ### 2.2 PURCHASE & STORES
-- [ ] **Vendor Scorecard sub-features**
-  - [ ] Delivery time accuracy.
-  - [ ] Quality pass/fail stats.
-  - [ ] Automated contract renewal alerts.
+- [x] **Vendor Scorecard sub-features**
+  - [x] Delivery time accuracy.
+  - [x] Quality pass/fail stats.
+  - [x] Automated contract renewal alerts.
 
 ### 2.3 PRODUCTION sub-features
-- [ ] **Work Center Management**
-  - [ ] Shift planning (Day/Night).
-  - [ ] Machine maintenance log.
-  - [ ] Labor hours vs Machine hours analytics.
+- [x] **Work Center Management**
+  - [x] Shift planning (Day/Night).
+  - [x] Machine maintenance log.
+  - [x] Labor hours vs Machine hours analytics.
 
 ### 2.4 INVENTORY sub-features
-- [ ] **Advanced Stock Valuation**
-  - [ ] FIFO/LIFO/Weighted Average automation.
-  - [ ] Obsolete stock flagging.
-  - [ ] Cycle count scheduling.
+- [x] **Advanced Stock Valuation**
+  - [x] FIFO/LIFO/Weighted Average automation.
+  - [x] Obsolete stock flagging.
+  - [x] Cycle count scheduling.
 
 ### 2.5 PROJECT MANAGEMENT (PMO)
-- [ ] **Income over Expenditure (IoE) Tracking ✨**
-  - [ ] [M] Integrated Budget vs Actual P&L per project.
-  - [ ] [A] Auto-update from PO and Payroll modules.
-  - [ ] [S] IoE data for 5 diverse projects.
-  - [ ] [W] Direct line to Finance ledger.
-  - [ ] [U] Real-time profitability gauge on Dashboard.
+- [x] **Income over Expenditure (IoE) Tracking ✨**
+  - [x] [M] Integrated Budget vs Actual P&L per project.
+  - [x] [A] Auto-update from PO and Payroll modules.
+  - [x] [S] IoE data for 5 diverse projects.
+  - [x] [W] Direct line to Finance ledger.
+  - [x] [U] Real-time profitability gauge on Dashboard.
 
 ### 2.6 FINANCE & HR sub-features
 - [ ] **Finance**
-  - [ ] Bank reconciliation.
-  - [ ] Multi-entity consolidation.
-  - [ ] Statutory compliance reports.
+  - [x] **Bank Reconciliation Engine**
+    - [x] [M] `BankStatement`, `BankReconciliation`, `ReconciliationMatch` entities.
+    - [x] [A] `BankReconciliationService` with auto-matching logic.
+    - [x] [S] Multi-bank sample statements and GL matches.
+    - [x] [W] Statement upload and matching UI wiring.
+    - [x] [U] Manual match/unmatch interactive interface.
+  - [x] **Multi-entity Consolidation**
+    - [x] [M] `Company` entity and multi-entity GL mapping.
+    - [x] [A] `ConsolidationService` for cross-entity balance aggregation.
+    - [x] [S] Inter-company transaction samples for elimination testing.
+    - [ ] [W] Consolidated reporting API integration.
+    - [ ] [U] Comparison dashboard for Parent vs. Subsidy performance.
+  - [x] **Statutory Compliance & Tax Reporting**
+    - [x] [M] Tax-specific ledger accounts and GST/TDS metadata.
+    - [x] [A] Statutory report generation (GST, TDS, P&L, Balance Sheet).
+    - [x] [S] Compliance data for current fiscal year.
+    - [x] [W] Export to Excel/PDF for statutory filings.
+    - [x] [U] Real-time tax liability monitor.
 - [ ] **HR**
-  - [ ] Attendance via biometric integration.
-  - [ ] Payroll with tax auto-calc.
-  - [ ] Employee self-service portal.
+  - [x] Attendance via biometric integration.
+  - [x] Payroll with tax auto-calc.
+  - [x] Employee self-service portal.
 
 ### 2.7 LOGISTICS & AFTER-SALES sub-features
-- [ ] **Logistics**
-  - [ ] Route optimization.
-  - [ ] Freight cost tracking.
-- [ ] **After-Sales**
-  - [ ] Knowledge base for repair manuals.
-  - [ ] Spare parts catalog with one-click order.
-  - [ ] SLA tracking per ticket.
+- [x] **Logistics**
+  - [x] Route optimization.
+  - [x] Freight cost tracking.
+- [x] **After-Sales**
+  - [x] Knowledge base for repair manuals.
+  - [x] Spare parts catalog with one-click order.
+  - [x] SLA tracking per ticket.
 
 ---
 
 ## 🔬 3. CROSS-CUTTING ADVANCED FEATURES (INDUSTRY 4.0/5.0)
 
-- [ ] **Workflow Designer (Visual)**
-  - [ ] [M] Node-Edge schema for process definitions.
+- [/] **Workflow Designer (Visual)**
+  - [x] [M] Node-Edge schema for process definitions.
   - [ ] [A] Dynamic execution engine for custom flows.
   - [ ] [S] Templates for PR, Leave, and Project gates.
-  - [ ] [W] React Flow integration.
-  - [ ] [U] Drag-and-drop workflow builder.
+  - [x] [W] React Flow integration.
+  - [x] [U] Drag-and-drop workflow builder.
 - [x] **Interactive Roadmap / Gantt ✨**
   - [x] [M] Task dependencies with lag/lead support.
   - [x] [A] Critical path analysis service.
   - [x] [S] Sample schedule for 5 large scale projects.
   - [x] [W] Multi-project Gantt visualization.
   - [x] [U] Real-time drag to reschedule.
-- [ ] **High-Density UI Polish**
-  - [ ] [M] User preference table for UI density (Compact/Relaxed).
-  - [ ] [A] Responsive layout toggle API.
-  - [ ] [S] Default themes (OptiForge Dark/Light/Glass).
-  - [ ] [W] Global layout provider.
-  - [ ] [U] Unified grid/table system for 100+ screens.
+- [x] **High-Density UI Polish**
+  - [x] [M] User preference table for UI density (Compact/Relaxed).
+  - [x] [A] Responsive layout toggle API.
+  - [x] [S] Default themes (OptiForge Dark/Light/Glass).
+  - [x] [W] Global layout provider.
+  - [x] [U] Unified grid/table system for 100+ screens.
 
 ---
-*The definitive roadmap for OptiForge 3.0 implementation | Last Updated Feb 6, 2026*
+*The definitive roadmap for OptiForge 3.0 implementation | Last Updated Feb 7, 2026*

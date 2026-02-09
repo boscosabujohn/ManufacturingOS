@@ -1,5 +1,5 @@
 import {
-  Controller, Get, Post, Put, Delete, Body, Param, Query, HttpCode, HttpStatus,
+  Controller, Get, Post, Put, Patch, Delete, Body, Param, Query, HttpCode, HttpStatus,
 } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse, ApiParam, ApiQuery } from '@nestjs/swagger';
 import { WorkCenterService } from '../services/work-center.service';
@@ -8,7 +8,7 @@ import { CreateWorkCenterDto, UpdateWorkCenterDto, WorkCenterResponseDto } from 
 @ApiTags('Production - Work Center')
 @Controller('production/work-center')
 export class WorkCenterController {
-  constructor(private readonly workCenterService: WorkCenterService) {}
+  constructor(private readonly workCenterService: WorkCenterService) { }
 
   @Post()
   @ApiOperation({ summary: 'Create a new work center' })
@@ -39,6 +39,20 @@ export class WorkCenterController {
   @ApiResponse({ status: HttpStatus.OK, type: WorkCenterResponseDto })
   async findOne(@Param('id') id: string): Promise<WorkCenterResponseDto> {
     return this.workCenterService.findOne(id);
+  }
+
+  @Patch(':id/shifts')
+  @ApiOperation({ summary: 'Update work center shifts' })
+  @ApiParam({ name: 'id' })
+  async updateShifts(@Param('id') id: string, @Body() shifts: any[]): Promise<WorkCenterResponseDto> {
+    return this.workCenterService.updateShifts(id, shifts);
+  }
+
+  @Get(':id/analytics')
+  @ApiOperation({ summary: 'Get work center analytics' })
+  @ApiParam({ name: 'id' })
+  async getAnalytics(@Param('id') id: string, @Query('period') period?: 'day' | 'week' | 'month'): Promise<any> {
+    return this.workCenterService.getAnalytics(id, period);
   }
 
   @Put(':id')

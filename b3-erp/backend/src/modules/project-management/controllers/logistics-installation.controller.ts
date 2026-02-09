@@ -29,4 +29,19 @@ export class LogisticsInstallationController {
     updateTask(@Param('id') id: string, @Body() data: { progress: number; status: any }) {
         return this.service.updateInstallationProgress(id, data.progress, data.status);
     }
+
+    @Post('daily-report')
+    createDailyReport(@Body() data: any) {
+        return this.service.createDailyReport(data);
+    }
+
+    @Get('daily-reports/:projectId')
+    getDailyReports(@Param('projectId') projectId: string) {
+        return this.service.getDailyReports(projectId);
+    }
+
+    @Post('notify-client/:reportId')
+    notifyClient(@Param('reportId') reportId: string) {
+        return this.service.notifyClientOfProgress(reportId);
+    }
 }

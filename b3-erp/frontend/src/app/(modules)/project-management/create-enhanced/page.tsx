@@ -20,7 +20,7 @@ import {
   Settings,
   FileDown,
   Copy,
-  Trash2 as Trash,
+  Trash2,
   Star,
   Archive,
   Share2,

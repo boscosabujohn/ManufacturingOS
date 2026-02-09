@@ -45,8 +45,9 @@ import { AuthModule } from './modules/auth/auth.module';
         password: configService.get('DB_PASSWORD', 'postgres'),
         database: configService.get('DB_DATABASE', 'manufacturing_erp'),
         entities: [__dirname + '/**/*.entity{.ts,.js}'],
-        synchronize: configService.get('NODE_ENV') === 'development',
-        logging: configService.get('NODE_ENV') === 'development',
+        synchronize: true, // Auto-create tables for now to ensure schema exists
+        logging: configService.get('DB_LOGGING') === 'true',
+        ssl: configService.get('DB_SSL') === 'true' ? { rejectUnauthorized: false } : false,
       }),
       inject: [ConfigService],
     }),

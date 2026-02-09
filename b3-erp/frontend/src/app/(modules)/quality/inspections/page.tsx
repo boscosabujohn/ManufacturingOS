@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
-import InspectionService, { Inspection } from '@/services/inspection.service';
+import { inspectionService as InspectionService, Inspection } from '@/services/inspection.service';
 import {
   ClipboardCheck,
   CheckCircle2,

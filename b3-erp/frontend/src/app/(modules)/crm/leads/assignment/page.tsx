@@ -1,7 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { userManagementService, UserStatus } from '@/services/user-management.service';
+import { leadService } from '@/services/lead.service';
 import {
   Users,
   UserPlus,
@@ -189,15 +191,47 @@ const mockAssignmentRules: AssignmentRule[] = [
 
 export default function LeadAssignmentPage() {
   const router = useRouter();
-  const [salesReps, setSalesReps] = useState<SalesRep[]>(mockSalesReps);
+  const [salesReps, setSalesReps] = useState<SalesRep[]>([]);
+  const [loading, setLoading] = useState(true);
   const [assignmentRules, setAssignmentRules] = useState<AssignmentRule[]>(mockAssignmentRules);
   const [showSettings, setShowSettings] = useState(false);
+
+  useEffect(() => {
+    const fetchReps = async () => {
+      try {
+        const users = await userManagementService.getAllUsers({ department: 'Sales' });
+        const mappedReps: SalesRep[] = users.map(u => ({
+          id: u.id,
+          name: u.displayName,
+          email: u.email,
+          phone: u.phone || '',
+          avatar: u.firstName[0] + u.lastName[0],
+          team: u.department,
+          assignedLeads: Math.floor(Math.random() * 50), // Mocking performance stats for now
+          activeLeads: Math.floor(Math.random() * 30),
+          closedDeals: Math.floor(Math.random() * 15),
+          conversionRate: parseFloat((Math.random() * 30).toFixed(1)),
+          avgResponseTime: '2.5 hrs',
+          capacity: Math.floor(Math.random() * 40),
+          maxCapacity: 50,
+          performance: 70 + Math.floor(Math.random() * 25),
+          status: u.status === 'active' ? 'active' : 'busy'
+        }));
+        setSalesReps(mappedReps);
+      } catch (error) {
+        console.error('Failed to fetch sales reps:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchReps();
+  }, []);
 
   const stats = {
     totalReps: salesReps.length,
     activeReps: salesReps.filter((r) => r.status === 'active').length,
     totalAssigned: salesReps.reduce((sum, r) => sum + r.assignedLeads, 0),
-    avgConversion: (salesReps.reduce((sum, r) => sum + r.conversionRate, 0) / salesReps.length).toFixed(1),
+    avgConversion: salesReps.length > 0 ? (salesReps.reduce((sum, r) => sum + r.conversionRate, 0) / salesReps.length).toFixed(1) : '0.0',
   };
 
   const getCapacityColor = (capacity: number, maxCapacity: number) => {
@@ -288,9 +322,8 @@ export default function LeadAssignmentPage() {
             {assignmentRules.map((rule) => (
               <div
                 key={rule.id}
-                className={`p-4 rounded-lg border-2 ${
-                  rule.enabled ? 'border-green-200 bg-green-50' : 'border-gray-200 bg-gray-50'
-                }`}
+                className={`p-4 rounded-lg border-2 ${rule.enabled ? 'border-green-200 bg-green-50' : 'border-gray-200 bg-gray-50'
+                  }`}
               >
                 <div className="flex items-center justify-between">
                   <div className="flex-1">
@@ -321,11 +354,10 @@ export default function LeadAssignmentPage() {
                   <div className="flex items-center space-x-2">
                     <button
                       onClick={() => toggleRule(rule.id)}
-                      className={`p-2 rounded-lg transition-colors ${
-                        rule.enabled
+                      className={`p-2 rounded-lg transition-colors ${rule.enabled
                           ? 'bg-green-100 text-green-600 hover:bg-green-200'
                           : 'bg-gray-200 text-gray-600 hover:bg-gray-300'
-                      }`}
+                        }`}
                     >
                       {rule.enabled ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
                     </button>
@@ -430,13 +462,12 @@ export default function LeadAssignmentPage() {
                   {/* Performance Score */}
                   <div className="text-center">
                     <div
-                      className={`w-16 h-16 rounded-full flex items-center justify-center border-4 ${
-                        rep.performance >= 85
+                      className={`w-16 h-16 rounded-full flex items-center justify-center border-4 ${rep.performance >= 85
                           ? 'border-green-500 bg-green-50'
                           : rep.performance >= 70
-                          ? 'border-yellow-500 bg-yellow-50'
-                          : 'border-red-500 bg-red-50'
-                      }`}
+                            ? 'border-yellow-500 bg-yellow-50'
+                            : 'border-red-500 bg-red-50'
+                        }`}
                     >
                       <span className="text-xl font-bold text-gray-900">{rep.performance}</span>
                     </div>
@@ -448,7 +479,7 @@ export default function LeadAssignmentPage() {
                     <button
                       onClick={() => router.push(`/crm/leads?assignedTo=${rep.id}`)}
                       className="p-2 text-blue-600 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors"
-                     
+
                     >
                       <Eye className="h-5 w-5" />
                     </button>

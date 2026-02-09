@@ -97,6 +97,47 @@ export interface UpdateAccountDto {
   isReconcilable?: boolean;
 }
 
+export interface BankReconciliation {
+  id: string;
+  bankAccountId: string;
+  reconciliationNumber: string;
+  reconciliationDate: string;
+  statementStartDate: string;
+  statementEndDate: string;
+  status: 'Draft' | 'In-Progress' | 'Completed' | 'Approved' | 'Closed';
+  openingBalancePerBooks: number;
+  closingBalancePerBooks: number;
+  openingBalancePerBank: number;
+  closingBalancePerBank: number;
+  difference: number;
+  createdBy: string;
+  matches?: any[];
+}
+
+export interface StatutoryComplianceReport {
+  companyId: string;
+  reportType: string;
+  period: { startDate: string; endDate: string };
+  totalLiability: number;
+  transactions: number;
+  isCompliant: boolean;
+  generatedAt: Date;
+}
+
+export interface BankStatementTransaction {
+  id: string;
+  transactionDate: string;
+  valueDate: string;
+  description: string;
+  referenceNumber?: string;
+  chequeNumber?: string;
+  debitAmount: number;
+  creditAmount: number;
+  balance: number;
+  isMatched: boolean;
+  status: 'Unmatched' | 'Matched' | 'Excluded';
+}
+
 // ============================================================================
 // Mock Data
 // ============================================================================
@@ -665,6 +706,91 @@ export class FinanceService {
       return roots;
     }
     return this.request<Account[]>('/finance/chart-of-accounts/tree');
+  }
+
+  // Bank Reconciliation
+  static async getBankReconciliations(bankAccountId: string): Promise<BankReconciliation[]> {
+    return this.request<BankReconciliation[]>(`/finance/reconciliation/account/${bankAccountId}`);
+  }
+
+  static async getReconciliation(id: string): Promise<BankReconciliation> {
+    return this.request<BankReconciliation>(`/finance/reconciliation/${id}`);
+  }
+
+  static async startReconciliation(data: {
+    bankAccountId: string;
+    periodStart: string;
+    periodEnd: string;
+    createdBy: string;
+  }): Promise<BankReconciliation> {
+    return this.request<BankReconciliation>('/finance/reconciliation/start', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    });
+  }
+
+  static async importBankStatement(bankAccountId: string, transactions: any[]): Promise<any> {
+    return this.request('/finance/reconciliation/import', {
+      method: 'POST',
+      body: JSON.stringify({ bankAccountId, transactions }),
+    });
+  }
+
+  static async runAutoMatch(reconciliationId: string): Promise<any> {
+    return this.request(`/finance/reconciliation/${reconciliationId}/auto-match`, {
+      method: 'POST',
+    });
+  }
+
+  static async manualMatch(data: {
+    reconciliationId: string;
+    bankStatementId: string;
+    generalLedgerId: string;
+    matchType: string;
+  }): Promise<any> {
+    return this.request('/finance/reconciliation/manual-match', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    });
+  }
+
+  // Statutory Reporting
+  static async getStatutoryComplianceReport(params: {
+    companyId: string;
+    reportType: 'GST' | 'TDS';
+    startDate: string;
+    endDate: string;
+  }): Promise<StatutoryComplianceReport> {
+    if (USE_MOCK_DATA) {
+      await new Promise((resolve) => setTimeout(resolve, 400));
+      return {
+        companyId: params.companyId,
+        reportType: `${params.reportType} Liability Report`,
+        period: { startDate: params.startDate, endDate: params.endDate },
+        totalLiability: params.reportType === 'GST' ? 125000 : 45000,
+        transactions: 156,
+        isCompliant: true,
+        generatedAt: new Date(),
+      };
+    }
+    return this.request<StatutoryComplianceReport>(`/finance/reports/statutory?${new URLSearchParams(params).toString()}`);
+  }
+
+  static async exportFinancialReport(params: {
+    reportType: string;
+    format: 'excel' | 'pdf';
+    filters: any;
+  }): Promise<{ downloadUrl: string }> {
+    if (USE_MOCK_DATA) {
+      await new Promise((resolve) => setTimeout(resolve, 800));
+      return {
+        downloadUrl: `/api/finance/export/mock-report.${params.format === 'excel' ? 'xlsx' : 'pdf'}`,
+      };
+    }
+    return this.request<{ downloadUrl: string }>('/finance/reports/export', {
+      method: 'POST',
+      body: JSON.stringify(params),
+    });
   }
 }
 

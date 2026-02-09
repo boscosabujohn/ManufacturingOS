@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
@@ -34,7 +34,7 @@ interface Photo {
     description: string;
 }
 
-export default function PhotoDocPage() {
+function PhotoDocPageContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const { toast } = useToast();
@@ -246,5 +246,13 @@ export default function PhotoDocPage() {
                 )}
             </div>
         </div>
+    );
+}
+
+export default function PhotoDocPage() {
+    return (
+        <Suspense fallback={<div>Loading photo doc...</div>}>
+            <PhotoDocPageContent />
+        </Suspense>
     );
 }

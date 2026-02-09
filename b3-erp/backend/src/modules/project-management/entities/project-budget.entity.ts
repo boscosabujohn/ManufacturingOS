@@ -25,6 +25,12 @@ export class ProjectBudget {
     @Column({ name: 'forecast_cost', type: 'decimal', precision: 15, scale: 2, default: 0 })
     forecastCost: number;
 
+    @Column({ name: 'actual_spent', type: 'decimal', precision: 15, scale: 2, default: 0 })
+    actualSpent: number;
+
+    @Column({ name: 'variance', type: 'decimal', precision: 15, scale: 2, default: 0 })
+    variance: number;
+
     @Column({ type: 'text', nullable: true })
     notes: string;
 

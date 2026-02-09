@@ -12,6 +12,10 @@ import {
   AlertTriangle, RefreshCw, PlusIcon, PencilIcon,
   EyeIcon, SlidersHorizontal, BarChart3, Info
 } from 'lucide-react';
+import { FinanceService } from '@/services/finance.service';
+import { BankReconciliationView } from '@/app/(modules)/finance/bank-reconciliation/BankReconciliationView';
+import { useToast } from '@/hooks/use-toast';
+import { Button } from '@/components/ui/button';
 
 interface BankAccount {
   id: string;
@@ -170,6 +174,7 @@ interface MatchingAction {
 }
 
 const BankReconciliation: React.FC = () => {
+  const { toast } = useToast();
   const [activeTab, setActiveTab] = useState<'dashboard' | 'accounts' | 'reconcile' | 'statements' | 'rules' | 'history'>('dashboard');
   const [selectedAccount, setSelectedAccount] = useState<BankAccount | null>(null);
   const [selectedStatement, setSelectedStatement] = useState<BankStatement | null>(null);
@@ -178,6 +183,50 @@ const BankReconciliation: React.FC = () => {
   const [showUploadModal, setShowUploadModal] = useState(false);
   const [reconciliationMode, setReconciliationMode] = useState(false);
   const [selectedTransactions, setSelectedTransactions] = useState<Set<string>>(new Set());
+  const [accounts, setAccounts] = useState<BankAccount[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchAccounts();
+  }, []);
+
+  const fetchAccounts = async () => {
+    try {
+      setLoading(true);
+      const data = await FinanceService.getChartOfAccounts({ type: 'ASSET' as any });
+      // Filter for bank accounts
+      const bankAccounts = data.filter((a: any) => a.isBankAccount);
+      // Map to the local BankAccount interface
+      const mappedAccounts: BankAccount[] = bankAccounts.map((a: any) => ({
+        id: a.id,
+        accountNumber: a.code,
+        accountName: a.name,
+        bankName: a.description || 'Bank',
+        accountType: 'checking',
+        currency: a.currency,
+        glAccountId: a.id,
+        glAccountName: a.name,
+        currentBalance: a.balance,
+        availableBalance: a.balance,
+        lastReconciled: a.updatedAt,
+        lastReconciledBalance: a.balance,
+        lastStatementDate: a.updatedAt,
+        lastStatementBalance: a.balance,
+        isActive: a.status === 'ACTIVE',
+        reconciliationFrequency: 'monthly',
+        autoReconcile: true,
+        matchingThreshold: 90,
+        createdDate: a.createdAt,
+        lastModified: a.updatedAt
+      }));
+      setAccounts(mappedAccounts);
+    } catch (error) {
+      const { toast } = useToast();
+      toast({ title: 'Error', description: 'Failed to load bank accounts', variant: 'destructive' });
+    } finally {
+      setLoading(false);
+    }
+  };
 
   // Mock data
   const [bankAccounts] = useState<BankAccount[]>([
@@ -524,8 +573,8 @@ const BankReconciliation: React.FC = () => {
     if (!confidence) return null;
 
     const color = confidence >= 90 ? 'text-green-600' :
-                 confidence >= 75 ? 'text-yellow-600' :
-                 confidence >= 50 ? 'text-orange-600' : 'text-red-600';
+      confidence >= 75 ? 'text-yellow-600' :
+        confidence >= 50 ? 'text-orange-600' : 'text-red-600';
 
     return (
       <span className={`text-sm font-medium ${color}`}>
@@ -756,9 +805,8 @@ const BankReconciliation: React.FC = () => {
 
               <div className="flex justify-between items-center">
                 <span className="text-sm text-gray-600">Auto-Reconcile:</span>
-                <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                  account.autoReconcile ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'
-                }`}>
+                <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${account.autoReconcile ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'
+                  }`}>
                   {account.autoReconcile ? 'Enabled' : 'Disabled'}
                 </span>
               </div>
@@ -799,7 +847,7 @@ const BankReconciliation: React.FC = () => {
         <>
           <h3 className="text-lg font-semibold text-gray-900">Select Account to Reconcile</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-            {bankAccounts.map((account) => (
+            {accounts.map((account) => (
               <button
                 key={account.id}
                 onClick={() => {
@@ -818,180 +866,15 @@ const BankReconciliation: React.FC = () => {
           </div>
         </>
       ) : (
-        <>
-          {/* Reconciliation Interface */}
+        <div className="space-y-4">
           <div className="flex justify-between items-center">
-            <div>
-              <h3 className="text-lg font-semibold text-gray-900">
-                Reconciling: {selectedAccount?.accountName}
-              </h3>
-              <p className="text-sm text-gray-600">
-                Statement Date: {formatDate('2024-01-31T00:00:00Z')}
-              </p>
-            </div>
-            <div className="flex space-x-2">
-              <button
-                onClick={() => setReconciliationMode(false)}
-                className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
-              >
-                Cancel
-              </button>
-              <button className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
-                Complete Reconciliation
-              </button>
-            </div>
+            <h3 className="text-xl font-bold">Reconciling: {selectedAccount?.accountName}</h3>
+            <Button variant="outline" onClick={() => setReconciliationMode(false)}>
+              Back to Selection
+            </Button>
           </div>
-
-          {/* Balance Summary */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
-            <div className="bg-white p-3 rounded-lg border border-gray-200">
-              <p className="text-sm text-gray-600">Statement Balance</p>
-              <p className="text-xl font-semibold text-gray-900">
-                {formatCurrency(selectedAccount?.lastStatementBalance || 0)}
-              </p>
-            </div>
-            <div className="bg-white p-3 rounded-lg border border-gray-200">
-              <p className="text-sm text-gray-600">GL Balance</p>
-              <p className="text-xl font-semibold text-gray-900">
-                {formatCurrency(selectedAccount?.currentBalance || 0)}
-              </p>
-            </div>
-            <div className="bg-white p-3 rounded-lg border border-gray-200">
-              <p className="text-sm text-gray-600">Difference</p>
-              <p className={`text-xl font-semibold ${
-                Math.abs((selectedAccount?.lastStatementBalance || 0) - (selectedAccount?.currentBalance || 0)) < 0.01
-                  ? 'text-green-600' : 'text-red-600'
-              }`}>
-                {formatCurrency(Math.abs((selectedAccount?.lastStatementBalance || 0) - (selectedAccount?.currentBalance || 0)))}
-              </p>
-            </div>
-            <div className="bg-white p-3 rounded-lg border border-gray-200">
-              <p className="text-sm text-gray-600">Match Progress</p>
-              <div className="flex items-center mt-1">
-                <div className="flex-1 bg-gray-200 rounded-full h-2 mr-2">
-                  <div className="bg-green-600 h-2 rounded-full" style={{ width: '85%' }}></div>
-                </div>
-                <span className="text-sm font-medium text-gray-900">85%</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Transaction Matching */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
-            {/* Bank Transactions */}
-            <div className="bg-white rounded-lg shadow-sm border border-gray-200">
-              <div className="px-3 py-2 border-b border-gray-200">
-                <h4 className="font-medium text-gray-900">Bank Transactions</h4>
-              </div>
-              <div className="p-6">
-                <div className="space-y-3">
-                  {bankTransactions.map((transaction) => (
-                    <div
-                      key={transaction.id}
-                      className={`p-3 border rounded-lg cursor-pointer hover:bg-gray-50 ${
-                        selectedTransactions.has(transaction.id)
-                          ? 'border-blue-500 bg-blue-50'
-                          : 'border-gray-200'
-                      }`}
-                      onClick={() => {
-                        const newSelection = new Set(selectedTransactions);
-                        if (newSelection.has(transaction.id)) {
-                          newSelection.delete(transaction.id);
-                        } else {
-                          newSelection.add(transaction.id);
-                        }
-                        setSelectedTransactions(newSelection);
-                      }}
-                    >
-                      <div className="flex justify-between items-start">
-                        <div className="flex-1">
-                          <p className="text-sm font-medium text-gray-900">
-                            {transaction.description}
-                          </p>
-                          <p className="text-xs text-gray-500">
-                            {formatDate(transaction.transactionDate)} • {transaction.reference}
-                          </p>
-                        </div>
-                        <div className="text-right">
-                          <p className={`font-medium ${
-                            transaction.amount >= 0 ? 'text-green-600' : 'text-red-600'
-                          }`}>
-                            {formatCurrency(Math.abs(transaction.amount))}
-                          </p>
-                          <div className="mt-1">
-                            {getStatusBadge(transaction.status)}
-                          </div>
-                          {transaction.matchConfidence && (
-                            <div className="mt-1">
-                              {getMatchConfidenceBadge(transaction.matchConfidence)}
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* GL Transactions */}
-            <div className="bg-white rounded-lg shadow-sm border border-gray-200">
-              <div className="px-3 py-2 border-b border-gray-200">
-                <h4 className="font-medium text-gray-900">General Ledger Transactions</h4>
-              </div>
-              <div className="p-6">
-                <div className="space-y-3">
-                  {glTransactions.map((transaction) => (
-                    <div
-                      key={transaction.id}
-                      className={`p-3 border rounded-lg ${
-                        transaction.isReconciled
-                          ? 'border-green-200 bg-green-50'
-                          : 'border-gray-200 hover:bg-gray-50 cursor-pointer'
-                      }`}
-                    >
-                      <div className="flex justify-between items-start">
-                        <div className="flex-1">
-                          <p className="text-sm font-medium text-gray-900">
-                            {transaction.description}
-                          </p>
-                          <p className="text-xs text-gray-500">
-                            {formatDate(transaction.transactionDate)} • {transaction.reference}
-                          </p>
-                        </div>
-                        <div className="text-right">
-                          <p className={`font-medium ${
-                            transaction.netAmount >= 0 ? 'text-green-600' : 'text-red-600'
-                          }`}>
-                            {formatCurrency(Math.abs(transaction.netAmount))}
-                          </p>
-                          {transaction.isReconciled && (
-                            <div className="mt-1">
-                              <CheckCircleIcon className="w-4 h-4 text-green-600 inline" />
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Action Buttons */}
-          <div className="flex justify-center space-x-4">
-            <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-              Auto-Match Selected
-            </button>
-            <button className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
-              Create Adjustment
-            </button>
-            <button className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
-              Exclude Transaction
-            </button>
-          </div>
-        </>
+          {selectedAccount && <BankReconciliationView bankAccountId={selectedAccount.id} />}
+        </div>
       )}
     </div>
   );
@@ -1160,9 +1043,8 @@ const BankReconciliation: React.FC = () => {
 
               <div className="flex justify-between items-center">
                 <span className="text-sm text-gray-600">Status:</span>
-                <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                  rule.isActive ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'
-                }`}>
+                <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${rule.isActive ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'
+                  }`}>
                   {rule.isActive ? 'Active' : 'Inactive'}
                 </span>
               </div>
@@ -1172,11 +1054,10 @@ const BankReconciliation: React.FC = () => {
               <button className="flex-1 bg-blue-600 text-white px-3 py-2 rounded text-sm hover:bg-blue-700">
                 Test Rule
               </button>
-              <button className={`px-3 py-2 rounded text-sm ${
-                rule.isActive
-                  ? 'bg-red-100 text-red-800 hover:bg-red-200'
-                  : 'bg-green-100 text-green-800 hover:bg-green-200'
-              }`}>
+              <button className={`px-3 py-2 rounded text-sm ${rule.isActive
+                ? 'bg-red-100 text-red-800 hover:bg-red-200'
+                : 'bg-green-100 text-green-800 hover:bg-green-200'
+                }`}>
                 {rule.isActive ? 'Disable' : 'Enable'}
               </button>
             </div>
@@ -1282,11 +1163,10 @@ const BankReconciliation: React.FC = () => {
             <button
               key={key}
               onClick={() => setActiveTab(key as any)}
-              className={`py-2 px-1 border-b-2 font-medium text-sm flex items-center ${
-                activeTab === key
-                  ? 'border-blue-500 text-blue-600'
-                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-              }`}
+              className={`py-2 px-1 border-b-2 font-medium text-sm flex items-center ${activeTab === key
+                ? 'border-blue-500 text-blue-600'
+                : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                }`}
             >
               <Icon className="w-5 h-5 mr-2" />
               {label}

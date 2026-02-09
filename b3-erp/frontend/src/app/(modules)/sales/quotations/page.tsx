@@ -14,6 +14,8 @@ interface Quotation {
   validityDate: string;
   status: 'draft' | 'sent' | 'accepted' | 'rejected' | 'expired' | 'converted';
   totalAmount: number;
+  currency: string;
+  marginStatus: 'Healthy' | 'Warning' | 'Critical';
   items: number;
   assignedTo: string;
   discount: number;
@@ -30,13 +32,18 @@ const statusColors = {
   converted: 'bg-purple-100 text-purple-700',
 };
 
-const statusLabels = {
-  draft: 'Draft',
-  sent: 'Sent',
-  accepted: 'Accepted',
-  rejected: 'Rejected',
-  expired: 'Expired',
-  converted: 'Converted',
+const marginColors = {
+  Healthy: 'text-green-600 bg-green-50 px-2 py-0.5 rounded-full border border-green-200',
+  Warning: 'text-orange-600 bg-orange-50 px-2 py-0.5 rounded-full border border-orange-200',
+  Critical: 'text-red-600 bg-red-50 px-2 py-0.5 rounded-full border border-red-200',
+};
+
+const CURRENCY_SYMBOLS: Record<string, string> = {
+  INR: '₹',
+  USD: '$',
+  EUR: '€',
+  GBP: '£',
+  AED: 'د.إ',
 };
 
 export default function QuotationsPage() {
@@ -56,9 +63,7 @@ export default function QuotationsPage() {
         setError(null);
         const response = await quotationService.getAllQuotations();
 
-        // Map service quotations to page format
         const mappedQuotations: Quotation[] = response.data.map((quote: ServiceQuotation) => {
-          // Map status
           let pageStatus: Quotation['status'] = 'draft';
           const statusLower = quote.status.toLowerCase();
           if (statusLower === 'draft') pageStatus = 'draft';
@@ -69,7 +74,6 @@ export default function QuotationsPage() {
           else if (statusLower === 'converted') pageStatus = 'converted';
           else if (statusLower === 'under review') pageStatus = 'sent';
 
-          // Calculate discount percentage
           const discountPercent = quote.subtotal > 0
             ? Math.round((quote.discountAmount / quote.subtotal) * 100)
             : 0;
@@ -82,6 +86,8 @@ export default function QuotationsPage() {
             quoteDate: quote.quotationDate,
             validityDate: quote.validUntil,
             status: pageStatus,
+            marginStatus: quote.marginStatus || 'Healthy',
+            currency: quote.currency || 'INR',
             totalAmount: quote.totalAmount,
             items: quote.items.length,
             assignedTo: quote.salesPersonName || 'Unassigned',
@@ -138,7 +144,7 @@ export default function QuotationsPage() {
       <div className="w-full h-full px-4 py-2 flex items-center justify-center">
         <div className="flex flex-col items-center gap-2">
           <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
-          <p className="text-gray-600">Loading quotations...</p>
+          <p className="text-gray-600 text-sm">Loading quotations...</p>
         </div>
       </div>
     );
@@ -152,7 +158,7 @@ export default function QuotationsPage() {
           <p className="text-red-600 font-medium">{error}</p>
           <button
             onClick={() => window.location.reload()}
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 shadow-sm transition-all"
           >
             Retry
           </button>
@@ -164,74 +170,82 @@ export default function QuotationsPage() {
   return (
     <div className="w-full h-full px-4 py-2">
       {/* Stats */}
-      <div className="mb-3 flex items-start gap-2">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-2 flex-1">
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
+      <div className="mb-4 flex items-start gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3 flex-1">
+          <div className="bg-white rounded-xl p-4 border border-gray-100 shadow-sm border-l-4 border-l-blue-500">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-blue-600">Total Quotes</p>
-                <p className="text-2xl font-bold text-blue-900 mt-1">{stats.totalQuotes}</p>
+                <p className="text-xs font-bold text-gray-400 uppercase tracking-wider">Total Quotes</p>
+                <p className="text-2xl font-black text-gray-900 mt-1">{stats.totalQuotes}</p>
               </div>
-              <FileText className="h-8 w-8 text-blue-600" />
+              <div className="p-2 bg-blue-50 rounded-lg">
+                <FileText className="h-6 w-6 text-blue-600" />
+              </div>
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
+          <div className="bg-white rounded-xl p-4 border border-gray-100 shadow-sm border-l-4 border-l-purple-500">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-purple-600">Sent</p>
-                <p className="text-2xl font-bold text-purple-900 mt-1">{stats.sent}</p>
+                <p className="text-xs font-bold text-gray-400 uppercase tracking-wider">Sent</p>
+                <p className="text-2xl font-black text-gray-900 mt-1">{stats.sent}</p>
               </div>
-              <Send className="h-8 w-8 text-purple-600" />
+              <div className="p-2 bg-purple-50 rounded-lg">
+                <Send className="h-6 w-6 text-purple-600" />
+              </div>
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
+          <div className="bg-white rounded-xl p-4 border border-gray-100 shadow-sm border-l-4 border-l-green-500">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-green-600">Accepted</p>
-                <p className="text-2xl font-bold text-green-900 mt-1">{stats.accepted}</p>
+                <p className="text-xs font-bold text-gray-400 uppercase tracking-wider">Accepted</p>
+                <p className="text-2xl font-black text-gray-900 mt-1">{stats.accepted}</p>
               </div>
-              <CheckCircle className="h-8 w-8 text-green-600" />
+              <div className="p-2 bg-green-50 rounded-lg">
+                <CheckCircle className="h-6 w-6 text-green-600" />
+              </div>
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
+          <div className="bg-white rounded-xl p-4 border border-gray-100 shadow-sm border-l-4 border-l-orange-500">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-yellow-600">Conversion Rate</p>
-                <p className="text-2xl font-bold text-yellow-900 mt-1">{stats.conversionRate}%</p>
+                <p className="text-xs font-bold text-gray-400 uppercase tracking-wider">Conv. Rate</p>
+                <p className="text-2xl font-black text-gray-900 mt-1">{stats.conversionRate}%</p>
               </div>
-              <TrendingUp className="h-8 w-8 text-yellow-600" />
+              <div className="p-2 bg-orange-50 rounded-lg">
+                <TrendingUp className="h-6 w-6 text-orange-600" />
+              </div>
             </div>
           </div>
         </div>
 
         <button
-          onClick={() => router.push('/sales/quotations/add')}
-          className="flex items-center space-x-2 px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors h-fit flex-shrink-0"
+          onClick={() => router.push('/sales/quotations/create')}
+          className="flex items-center gap-2 px-5 py-4 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-all shadow-md shadow-blue-100 font-bold flex-shrink-0"
         >
           <Plus className="h-5 w-5" />
-          <span>Create Quote</span>
+          <span>New Quote</span>
         </button>
       </div>
 
       {/* Filters */}
-      <div className="flex gap-2 mb-3">
+      <div className="flex gap-2 mb-4">
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
           <input
             type="text"
-            placeholder="Search by quote number, customer name, or ID..."
+            placeholder="Search by quote number, customer name..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-sm"
           />
         </div>
         <select
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value)}
-          className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="px-4 py-2 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 text-sm font-medium bg-white"
         >
           <option value="all">All Status</option>
           <option value="draft">Draft</option>
@@ -243,108 +257,100 @@ export default function QuotationsPage() {
         </select>
         <button
           onClick={handleExport}
-          className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
+          className="flex items-center gap-2 px-4 py-2 border border-gray-200 rounded-xl hover:bg-gray-50 text-sm font-medium transition-all"
         >
-          <Download className="h-4 w-4" />
+          <Download className="h-4 w-4 text-gray-500" />
           <span>Export</span>
         </button>
       </div>
 
       {/* Table */}
-      <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+      <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full">
-            <thead className="bg-gray-50 border-b border-gray-200">
+            <thead className="bg-gray-50/50 border-b border-gray-200">
               <tr>
-                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Quotation</th>
-                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Customer</th>
-                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Dates</th>
-                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Amount</th>
-                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Discount</th>
-                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Assigned To</th>
-                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Conversion</th>
-                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                <th className="px-4 py-3 text-left text-[10px] font-bold text-gray-400 uppercase tracking-widest">Quotation</th>
+                <th className="px-4 py-3 text-left text-[10px] font-bold text-gray-400 uppercase tracking-widest">Customer</th>
+                <th className="px-4 py-3 text-left text-[10px] font-bold text-gray-400 uppercase tracking-widest">Amount & Margin</th>
+                <th className="px-4 py-3 text-left text-[10px] font-bold text-gray-400 uppercase tracking-widest">Status</th>
+                <th className="px-4 py-3 text-left text-[10px] font-bold text-gray-400 uppercase tracking-widest">Dates</th>
+                <th className="px-4 py-3 text-right text-[10px] font-bold text-gray-400 uppercase tracking-widest">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-200">
+            <tbody className="divide-y divide-gray-100">
               {paginatedQuotations.map((quote) => {
                 const isExpired = new Date(quote.validityDate) < new Date() && quote.status === 'sent';
+                const currencySymbol = CURRENCY_SYMBOLS[quote.currency] || quote.currency;
 
                 return (
-                  <tr key={quote.id} className="hover:bg-gray-50">
-                    <td className="px-3 py-2">
-                      <div className="flex items-start space-x-3">
-                        <div className="h-10 w-10 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-full flex items-center justify-center flex-shrink-0">
-                          <FileText className="h-5 w-5 text-white" />
+                  <tr key={quote.id} className="hover:bg-gray-50/50 transition-colors group">
+                    <td className="px-4 py-4">
+                      <div className="flex items-center gap-3">
+                        <div className="h-9 w-9 bg-indigo-50 rounded-lg flex items-center justify-center text-indigo-600">
+                          <FileText className="h-5 w-5" />
                         </div>
                         <div>
-                          <div className="font-semibold text-gray-900">{quote.quoteNumber}</div>
-                          <div className="text-xs text-gray-500">{quote.items} items</div>
+                          <div className="font-bold text-gray-900 text-sm">{quote.quoteNumber}</div>
+                          <div className="text-[10px] text-gray-400 font-medium px-1.5 py-0.5 bg-gray-100 rounded inline-block mt-1">
+                            {quote.items} ITEMS
+                          </div>
                         </div>
                       </div>
                     </td>
-                    <td className="px-3 py-2">
-                      <div className="font-medium text-gray-900">{quote.customerName}</div>
-                      <div className="text-sm text-gray-500">{quote.customerId}</div>
-                    </td>
-                    <td className="px-3 py-2">
-                      <div className="space-y-1">
-                        <div className="flex items-center text-xs text-gray-600">
-                          <Calendar className="h-3 w-3 mr-1" />
-                          <span>Quote: {quote.quoteDate}</span>
-                        </div>
-                        <div className={`flex items-center text-xs ${isExpired ? 'text-red-600 font-semibold' : 'text-blue-600'}`}>
-                          <Clock className="h-3 w-3 mr-1" />
-                          <span>Valid: {quote.validityDate}</span>
-                        </div>
+                    <td className="px-4 py-4">
+                      <div className="font-bold text-gray-900 text-sm">{quote.customerName}</div>
+                      <div className="text-xs text-gray-500 mt-0.5 flex items-center gap-1">
+                        <User className="h-3 w-3" /> {quote.assignedTo}
                       </div>
                     </td>
-                    <td className="px-3 py-2">
-                      <div className="font-bold text-gray-900">${quote.totalAmount.toLocaleString()}</div>
-                      <div className="text-xs text-gray-500">{quote.notes}</div>
-                    </td>
-                    <td className="px-3 py-2">
-                      <div className="flex items-center space-x-1">
-                        <Percent className="h-4 w-4 text-orange-500" />
-                        <span className="font-semibold text-orange-700">{quote.discount}%</span>
+                    <td className="px-4 py-4">
+                      <div className="font-black text-gray-900 text-base">
+                        {currencySymbol}{quote.totalAmount.toLocaleString(undefined, { minimumFractionDigits: 2 })}
+                      </div>
+                      <div className="mt-1 flex items-center gap-2">
+                        <span className={`text-[10px] font-bold uppercase ${marginColors[quote.marginStatus]}`}>
+                          {quote.marginStatus} Margin
+                        </span>
+                        {quote.discount > 0 && (
+                          <span className="text-[10px] font-bold text-orange-600 bg-orange-50 px-1.5 py-0.5 rounded border border-orange-100">
+                            -{quote.discount}% DISC
+                          </span>
+                        )}
                       </div>
                     </td>
-                    <td className="px-3 py-2">
-                      <span className={`px-3 py-1 text-xs font-semibold rounded-full ${statusColors[quote.status]}`}>
-                        {statusLabels[quote.status]}
+                    <td className="px-4 py-4">
+                      <span className={`px-2.5 py-1 text-[10px] font-black uppercase rounded-full ${statusColors[quote.status]}`}>
+                        {quote.status}
                       </span>
                     </td>
-                    <td className="px-3 py-2">
-                      <div className="flex items-center space-x-2">
-                        <User className="h-4 w-4 text-gray-400" />
-                        <span className="text-sm text-gray-900">{quote.assignedTo}</span>
+                    <td className="px-4 py-4">
+                      <div className="space-y-1.5">
+                        <div className="flex items-center text-[10px] text-gray-500 font-medium">
+                          <Calendar className="h-3 w-3 mr-1.5 text-gray-400" />
+                          {new Date(quote.quoteDate).toLocaleDateString()}
+                        </div>
+                        <div className={`flex items-center text-[10px] font-bold ${isExpired ? 'text-red-500' : 'text-blue-500'}`}>
+                          <Clock className="h-3 w-3 mr-1.5" />
+                          EXP: {new Date(quote.validityDate).toLocaleDateString()}
+                        </div>
                       </div>
                     </td>
-                    <td className="px-3 py-2">
-                      {quote.convertedToOrder ? (
-                        <div className="text-xs font-medium text-green-600">{quote.convertedToOrder}</div>
-                      ) : (
-                        <div className="text-xs text-gray-400">-</div>
-                      )}
-                    </td>
-                    <td className="px-3 py-2">
-                      <div className="flex items-center space-x-1">
+                    <td className="px-4 py-4">
+                      <div className="flex items-center justify-end space-x-2">
                         <button
                           onClick={() => router.push(`/sales/quotations/view/${quote.id}`)}
-                          className="flex items-center space-x-1 px-3 py-1.5 text-blue-600 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors text-sm font-medium"
-                         
+                          className="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all"
+                          title="View Details"
                         >
                           <Eye className="h-4 w-4" />
-                          <span>View</span>
                         </button>
                         <button
                           onClick={() => router.push(`/sales/quotations/edit/${quote.id}`)}
-                          className="flex items-center space-x-1 px-3 py-1.5 text-green-600 bg-green-50 hover:bg-green-100 rounded-lg transition-colors text-sm font-medium"
-                         
+                          className="p-2 text-gray-400 hover:text-green-600 hover:bg-green-50 rounded-lg transition-all"
+                          title="Edit Quotation"
                         >
                           <Edit className="h-4 w-4" />
-                          <span>Edit</span>
                         </button>
                       </div>
                     </td>
@@ -356,44 +362,38 @@ export default function QuotationsPage() {
         </div>
 
         {/* Pagination */}
-        <div className="px-3 py-2 border-t border-gray-200 flex items-center justify-between">
-          <div className="text-sm text-gray-700">
-            Showing {startIndex + 1} to {Math.min(startIndex + itemsPerPage, filteredQuotations.length)} of{' '}
-            {filteredQuotations.length} items
+        <div className="px-4 py-3 bg-gray-50/50 border-t border-gray-100 flex items-center justify-between">
+          <div className="text-[11px] font-bold text-gray-400 uppercase tracking-wider">
+            Displaying {startIndex + 1}-{Math.min(startIndex + itemsPerPage, filteredQuotations.length)} of {filteredQuotations.length}
           </div>
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center gap-1">
             <button
               onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
               disabled={currentPage === 1}
-              className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="p-1.5 text-gray-400 hover:text-blue-600 disabled:opacity-30 disabled:hover:text-gray-400"
             >
-              <ChevronLeft className="h-4 w-4" />
+              <ChevronLeft className="h-5 w-5" />
             </button>
-            <div className="flex items-center space-x-1">
-              {Array.from({ length: totalPages }, (_, i) => i + 1)
-                .filter((page) => {
-                  return page === 1 || page === totalPages || (page >= currentPage - 1 && page <= currentPage + 1);
-                })
-                .map((page, index, array) => (
-                  <div key={page} className="flex items-center">
-                    {index > 0 && array[index - 1] !== page - 1 && <span className="px-2 text-gray-400">...</span>}
-                    <button
-                      onClick={() => setCurrentPage(page)}
-                      className={`px-3 py-1 rounded-lg ${
-                        currentPage === page ? 'bg-blue-600 text-white' : 'border border-gray-300 hover:bg-gray-50'
-                      }`}
-                    >
-                      {page}
-                    </button>
-                  </div>
-                ))}
+            <div className="flex items-center gap-1">
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                <button
+                  key={page}
+                  onClick={() => setCurrentPage(page)}
+                  className={`w-7 h-7 text-[11px] font-bold rounded-lg transition-all ${currentPage === page
+                      ? 'bg-blue-600 text-white shadow-md shadow-blue-100'
+                      : 'text-gray-500 hover:bg-white border border-transparent hover:border-gray-200'
+                    }`}
+                >
+                  {page}
+                </button>
+              ))}
             </div>
             <button
               onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
               disabled={currentPage === totalPages}
-              className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="p-1.5 text-gray-400 hover:text-blue-600 disabled:opacity-30 disabled:hover:text-gray-400"
             >
-              <ChevronRight className="h-4 w-4" />
+              <ChevronRight className="h-5 w-5" />
             </button>
           </div>
         </div>

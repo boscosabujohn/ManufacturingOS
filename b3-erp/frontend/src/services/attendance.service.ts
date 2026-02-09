@@ -64,7 +64,7 @@ export interface MarkAttendanceDto {
   remarks?: string;
 }
 
-export interface UpdateAttendanceDto extends Partial<MarkAttendanceDto> {}
+export interface UpdateAttendanceDto extends Partial<MarkAttendanceDto> { }
 
 export interface AttendanceFilters {
   employeeId?: string;
@@ -531,6 +531,20 @@ export class AttendanceService {
     return this.request<Attendance[]>('/hr/attendance/bulk', {
       method: 'POST',
       body: JSON.stringify({ records }),
+    });
+  }
+
+  /**
+   * Sync biometric logs from a device
+   */
+  static async syncBiometricLogs(deviceId: string, logs: any[]): Promise<any> {
+    if (USE_MOCK_DATA) {
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+      return { success: true, syncedCount: logs.length };
+    }
+    return this.request<any>(`/hr/attendance/sync/${deviceId}`, {
+      method: 'POST',
+      body: JSON.stringify({ logs }),
     });
   }
 }

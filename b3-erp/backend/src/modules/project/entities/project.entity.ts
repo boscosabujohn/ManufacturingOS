@@ -82,6 +82,18 @@ export class Project {
     @Column({ name: 'budget_spent', type: 'decimal', precision: 15, scale: 2, default: 0 })
     budgetSpent: number;
 
+    @Column({ name: 'total_income', type: 'decimal', precision: 15, scale: 2, default: 0 })
+    totalIncome: number;
+
+    @Column({ name: 'total_expenditure', type: 'decimal', precision: 15, scale: 2, default: 0 })
+    totalExpenditure: number;
+
+    @Column({ name: 'net_profit', type: 'decimal', precision: 15, scale: 2, default: 0 })
+    netProfit: number;
+
+    @Column({ name: 'profit_margin', type: 'decimal', precision: 5, scale: 2, default: 0 })
+    profitMargin: number;
+
     @Column({ name: 'project_manager_id', nullable: true })
     projectManagerId: string;
 

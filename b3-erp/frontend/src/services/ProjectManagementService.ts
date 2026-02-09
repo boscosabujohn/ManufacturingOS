@@ -1383,6 +1383,22 @@ class ProjectManagementService {
             project.handoverStatus = status as any;
         }
     }
+
+    async getAttachments(projectId: string, category?: string): Promise<any[]> {
+        return apiClient.get(`/api/project-attachments/${projectId}`, { params: { category } });
+    }
+
+    async uploadAttachment(projectId: string, data: any): Promise<any> {
+        return apiClient.post(`/api/project-attachments/${projectId}`, data);
+    }
+
+    async deleteAttachment(id: string): Promise<void> {
+        return apiClient.delete(`/api/project-attachments/${id}`);
+    }
+
+    async getUploadUrl(fileName: string, contentType: string): Promise<{ url: string; key: string }> {
+        return apiClient.post('/api/project-attachments/simulate-upload', { fileName, contentType });
+    }
 }
 
 export const projectManagementService = new ProjectManagementService();

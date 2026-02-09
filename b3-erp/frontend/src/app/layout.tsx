@@ -4,6 +4,7 @@ import './globals.css'
 import { ServiceWorkerRegistration } from '@/components/ServiceWorkerRegistration'
 import { AuthProvider } from '@/context/AuthContext'
 import { NotificationProvider } from '@/context/NotificationContext'
+import { UserPreferenceProvider } from '@/contexts/UserPreferenceContext'
 
 const roboto = Roboto({
   subsets: ['latin'],
@@ -57,10 +58,12 @@ export default function RootLayout({
       </head>
       <body className={roboto.className}>
         <AuthProvider>
-          <NotificationProvider>
-            {children}
-            <ServiceWorkerRegistration />
-          </NotificationProvider>
+          <UserPreferenceProvider>
+            <NotificationProvider>
+              {children}
+              <ServiceWorkerRegistration />
+            </NotificationProvider>
+          </UserPreferenceProvider>
         </AuthProvider>
       </body>
     </html>

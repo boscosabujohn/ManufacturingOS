@@ -7,7 +7,7 @@ export enum BOQStatus {
     REJECTED = 'Rejected',
 }
 
-@Entity('boq')
+@Entity('estimation_boqs')
 export class BOQ {
     @PrimaryGeneratedColumn('uuid')
     id: string;
@@ -50,7 +50,7 @@ export class BOQ {
     updatedAt: Date;
 }
 
-@Entity('boq_items')
+@Entity('estimation_boq_items')
 export class BOQItem {
     @PrimaryGeneratedColumn('uuid')
     id: string;

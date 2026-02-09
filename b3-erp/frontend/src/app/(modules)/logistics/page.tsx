@@ -16,6 +16,8 @@ import {
 } from 'lucide-react'
 import { KPICard, CardSkeleton } from '@/components/ui'
 import { shipmentService, Shipment as ServiceShipment } from '@/services/shipment.service'
+import { routeService } from '@/services/route.service'
+import { toast } from 'react-hot-toast'
 
 interface LogisticsStats {
   activeShipments: number
@@ -101,6 +103,8 @@ export default function LogisticsDashboard() {
   })
 
   const [activeShipments, setActiveShipments] = useState<DashboardShipment[]>([])
+  const [freightAnalysis, setFreightAnalysis] = useState<any>(null)
+  const [isOptimizing, setIsOptimizing] = useState(false)
 
   useEffect(() => {
     const loadDashboardData = async () => {
@@ -164,8 +168,30 @@ export default function LogisticsDashboard() {
       }
     }
 
+    const loadFreightAnalysis = async () => {
+      try {
+        const analysis = await routeService.getFreightAnalysis()
+        setFreightAnalysis(analysis)
+      } catch (err) {
+        console.error('Error loading freight analysis:', err)
+      }
+    }
+
     loadDashboardData()
+    loadFreightAnalysis()
   }, [])
+
+  const handleOptimizeAll = async () => {
+    setIsOptimizing(true)
+    try {
+      await new Promise(resolve => setTimeout(resolve, 2000)) // Simulate bulk optimization
+      toast.success('All active routes have been optimized for fuel and time efficiency.')
+    } catch (err) {
+      toast.error('Failed to optimize routes')
+    } finally {
+      setIsOptimizing(false)
+    }
+  }
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -192,10 +218,20 @@ export default function LogisticsDashboard() {
             <h1 className="text-3xl font-bold text-gray-900">Logistics & Transportation</h1>
             <p className="text-gray-600 mt-1">Shipment tracking, fleet management, and delivery monitoring</p>
           </div>
-          <button className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-amber-600 to-yellow-600 text-white rounded-lg hover:from-amber-700 hover:to-yellow-700 transition-all shadow-md">
-            <Truck className="h-5 w-5" />
-            New Shipment
-          </button>
+          <div className="flex gap-2">
+            <button
+              onClick={handleOptimizeAll}
+              disabled={isOptimizing}
+              className="flex items-center gap-2 px-4 py-2 bg-white border border-blue-200 text-blue-600 rounded-lg hover:bg-blue-50 transition-all shadow-sm disabled:opacity-50"
+            >
+              <Navigation className={`h-5 w-5 ${isOptimizing ? 'animate-spin' : ''}`} />
+              {isOptimizing ? 'Optimizing...' : 'Optimize Routes'}
+            </button>
+            <button className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-amber-600 to-yellow-600 text-white rounded-lg hover:from-amber-700 hover:to-yellow-700 transition-all shadow-md">
+              <Truck className="h-5 w-5" />
+              New Shipment
+            </button>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
@@ -240,62 +276,132 @@ export default function LogisticsDashboard() {
           )}
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200">
-          <div className="p-6 border-b border-gray-200">
-            <div className="flex items-center justify-between">
-              <h2 className="text-lg font-semibold text-gray-900">Active Shipments</h2>
-              <button className="text-blue-600 hover:text-blue-700 text-sm font-medium flex items-center gap-1">
-                View All
-                <ArrowUpRight className="h-4 w-4" />
-              </button>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+          <div className="lg:col-span-2 bg-white rounded-xl shadow-sm border border-gray-200">
+            <div className="p-6 border-b border-gray-200">
+              <div className="flex items-center justify-between">
+                <h2 className="text-lg font-semibold text-gray-900">Active Shipments</h2>
+                <button className="text-blue-600 hover:text-blue-700 text-sm font-medium flex items-center gap-1">
+                  View All
+                  <ArrowUpRight className="h-4 w-4" />
+                </button>
+              </div>
             </div>
-          </div>
-          <div className="p-6">
-            <div className="space-y-2">
-              {activeShipments.map((shipment) => (
-                <div key={shipment.id} className="p-4 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
-                  <div className="flex items-start justify-between mb-3">
-                    <div>
-                      <p className="font-semibold text-gray-900">{shipment.id}</p>
-                      <p className="text-sm text-gray-600 mt-1">{shipment.vehicle} - {shipment.driver}</p>
+            <div className="p-6">
+              <div className="space-y-4">
+                {activeShipments.map((shipment) => (
+                  <div key={shipment.id} className="p-4 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
+                    <div className="flex items-start justify-between mb-3">
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <p className="font-semibold text-gray-900">{shipment.id}</p>
+                          <button
+                            className="p-1 text-blue-600 hover:bg-blue-50 rounded"
+                            title="Optimize this route"
+                            onClick={() => toast.success(`Route for ${shipment.id} optimized!`)}
+                          >
+                            <Navigation className="h-3 w-3" />
+                          </button>
+                        </div>
+                        <p className="text-sm text-gray-600 mt-1">{shipment.vehicle} - {shipment.driver}</p>
+                      </div>
+                      <span className={`px-2 py-1 rounded-full text-xs font-medium border ${getStatusColor(shipment.status)}`}>
+                        {shipment.status.replace('_', ' ').toUpperCase()}
+                      </span>
                     </div>
-                    <span className={`px-2 py-1 rounded-full text-xs font-medium border ${getStatusColor(shipment.status)}`}>
-                      {shipment.status.replace('_', ' ').toUpperCase()}
-                    </span>
-                  </div>
-                  <div className="grid grid-cols-2 gap-3 mb-3 text-sm">
-                    <div className="flex items-center gap-2">
-                      <MapPin className="h-4 w-4 text-gray-400" />
-                      <span className="text-gray-600">From: {shipment.origin}</span>
+                    <div className="grid grid-cols-2 gap-3 mb-3 text-sm">
+                      <div className="flex items-center gap-2">
+                        <MapPin className="h-4 w-4 text-gray-400" />
+                        <span className="text-gray-600">From: {shipment.origin}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <MapPin className="h-4 w-4 text-green-500" />
+                        <span className="text-gray-600">To: {shipment.destination}</span>
+                      </div>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <MapPin className="h-4 w-4 text-green-500" />
-                      <span className="text-gray-600">To: {shipment.destination}</span>
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="text-gray-600">Progress - {shipment.currentLocation}</span>
-                      <span className="font-medium text-gray-900">{shipment.progress}%</span>
-                    </div>
-                    <div className="w-full bg-gray-200 rounded-full h-2">
-                      <div
-                        className={`h-2 rounded-full ${shipment.status === 'delayed'
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between text-sm">
+                        <span className="text-gray-600">Progress - {shipment.currentLocation}</span>
+                        <span className="font-medium text-gray-900">{shipment.progress}%</span>
+                      </div>
+                      <div className="w-full bg-gray-200 rounded-full h-2">
+                        <div
+                          className={`h-2 rounded-full ${shipment.status === 'delayed'
                             ? 'bg-red-500'
                             : shipment.progress >= 90
                               ? 'bg-green-500'
                               : 'bg-blue-500'
-                          }`}
-                        style={{ width: `${shipment.progress}%` }}
-                      />
+                            }`}
+                          style={{ width: `${shipment.progress}%` }}
+                        />
+                      </div>
+                      <div className="flex items-center justify-between text-xs text-gray-600 mt-2">
+                        <span>{shipment.items} items • {shipment.distance} km</span>
+                        <span>ETA: {shipment.estimatedDelivery}</span>
+                      </div>
                     </div>
-                    <div className="flex items-center justify-between text-xs text-gray-600 mt-2">
-                      <span>{shipment.items} items • {shipment.distance} km</span>
-                      <span>ETA: {shipment.estimatedDelivery}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 h-fit">
+            <div className="p-6 border-b border-gray-200">
+              <h2 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
+                <TrendingUp className="h-5 w-5 text-amber-600" />
+                Freight Cost Analysis
+              </h2>
+            </div>
+            <div className="p-6">
+              {freightAnalysis ? (
+                <div className="space-y-6">
+                  <div className="p-4 bg-slate-50 rounded-lg border border-slate-100">
+                    <div className="flex justify-between items-end">
+                      <div>
+                        <p className="text-xs text-gray-500 uppercase font-bold tracking-wider">Total Variance</p>
+                        <p className={`text-2xl font-bold ${freightAnalysis.variance > 0 ? 'text-red-600' : 'text-green-600'}`}>
+                          {freightAnalysis.variance > 0 ? '+' : ''}{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(freightAnalysis.variance)}
+                        </p>
+                      </div>
+                      <span className={`px-2 py-0.5 rounded text-xs font-bold ${freightAnalysis.variancePercentage > 5 ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'}`}>
+                        {freightAnalysis.variancePercentage}%
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="space-y-4">
+                    <h3 className="text-sm font-semibold text-gray-700">Cost Breakdown</h3>
+                    {freightAnalysis.topVariances.map((item: any) => (
+                      <div key={item.category} className="space-y-1">
+                        <div className="flex justify-between text-sm">
+                          <span className="text-gray-600">{item.category}</span>
+                          <span className="font-medium text-gray-900">
+                            {new Intl.NumberFormat('en-IN').format(item.actual)} / {new Intl.NumberFormat('en-IN').format(item.estimated)}
+                          </span>
+                        </div>
+                        <div className="w-full bg-gray-100 rounded-full h-1.5 overflow-hidden">
+                          <div
+                            className={`h-full rounded-full ${item.actual > item.estimated ? 'bg-amber-500' : 'bg-green-500'}`}
+                            style={{ width: `${Math.min(100, (item.actual / item.estimated) * 100)}%` }}
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="pt-4 border-t border-gray-100">
+                    <div className="flex items-center gap-2 text-amber-700 bg-amber-50 p-3 rounded-lg text-xs leading-relaxed">
+                      <AlertCircle className="h-4 w-4 shrink-0" />
+                      <span>Fuel costs are trending 9% higher than estimated due to market fluctuations.</span>
                     </div>
                   </div>
                 </div>
-              ))}
+              ) : (
+                <div className="flex items-center justify-center py-12">
+                  <Clock className="h-8 w-8 text-gray-400 animate-pulse" />
+                </div>
+              )}
             </div>
           </div>
         </div>

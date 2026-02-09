@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
@@ -34,7 +34,7 @@ interface Installer {
     status: 'Available' | 'Assigned';
 }
 
-export default function TeamAssignmentPage() {
+function TeamAssignmentPageContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const { toast } = useToast();
@@ -232,5 +232,13 @@ export default function TeamAssignmentPage() {
                 </CardContent>
             </Card>
         </div>
+    );
+}
+
+export default function TeamAssignmentPage() {
+    return (
+        <Suspense fallback={<div>Loading team...</div>}>
+            <TeamAssignmentPageContent />
+        </Suspense>
     );
 }

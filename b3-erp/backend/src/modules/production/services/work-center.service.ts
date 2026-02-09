@@ -2,6 +2,7 @@ import { Injectable, NotFoundException, BadRequestException } from '@nestjs/comm
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { WorkCenter, WorkCenterStatus } from '../entities/work-center.entity';
+import { ProductionEntry } from '../entities/production-entry.entity';
 import { CreateWorkCenterDto, UpdateWorkCenterDto, WorkCenterResponseDto } from '../dto';
 
 @Injectable()
@@ -9,7 +10,9 @@ export class WorkCenterService {
   constructor(
     @InjectRepository(WorkCenter)
     private readonly workCenterRepository: Repository<WorkCenter>,
-  ) {}
+    @InjectRepository(ProductionEntry)
+    private readonly productionEntryRepository: Repository<ProductionEntry>,
+  ) { }
 
   async create(createDto: CreateWorkCenterDto): Promise<WorkCenterResponseDto> {
     const existing = await this.workCenterRepository.findOne({
@@ -92,8 +95,8 @@ export class WorkCenterService {
 
     // Recalculate costs and capacity if needed
     if (updateDto.hourlyOperatingCost !== undefined ||
-        updateDto.laborCostPerHour !== undefined ||
-        updateDto.overheadCostPerHour !== undefined) {
+      updateDto.laborCostPerHour !== undefined ||
+      updateDto.overheadCostPerHour !== undefined) {
       workCenter.totalCostPerHour =
         (workCenter.hourlyOperatingCost || 0) +
         (workCenter.laborCostPerHour || 0) +
@@ -101,8 +104,8 @@ export class WorkCenterService {
     }
 
     if (updateDto.workingHoursPerDay !== undefined ||
-        updateDto.numberOfStations !== undefined ||
-        updateDto.efficiency !== undefined) {
+      updateDto.numberOfStations !== undefined ||
+      updateDto.efficiency !== undefined) {
       workCenter.availableCapacityHoursPerDay =
         (workCenter.workingHoursPerDay || 8) *
         (workCenter.numberOfStations || 1) *
@@ -174,5 +177,62 @@ export class WorkCenterService {
       createdAt: workCenter.createdAt,
       updatedAt: workCenter.updatedAt,
     };
+  }
+
+  async updateShifts(id: string, shifts: any[]): Promise<WorkCenterResponseDto> {
+    const workCenter = await this.workCenterRepository.findOne({ where: { id } });
+    if (!workCenter) {
+      throw new NotFoundException(`Work Center with ID ${id} not found`);
+    }
+
+    workCenter.shifts = shifts;
+    const saved = await this.workCenterRepository.save(workCenter);
+    return this.mapToResponseDto(saved);
+  }
+
+  async getAnalytics(id: string, period: 'day' | 'week' | 'month' = 'week'): Promise<any> {
+    const workCenter = await this.workCenterRepository.findOne({ where: { id } });
+    if (!workCenter) {
+      throw new NotFoundException(`Work Center with ID ${id} not found`);
+    }
+
+    // Get production entries for the work center
+    const entries = await this.productionEntryRepository.find({
+      where: { workCenterId: id },
+      order: { postingDate: 'DESC' },
+      take: 50,
+    });
+
+    const analytics = {
+      workCenterId: id,
+      totalMachineHours: 0,
+      totalLaborHours: 0,
+      oee: workCenter.oeePercentage,
+      uptime: workCenter.uptimePercentage,
+      shiftComparison: {} as any,
+    };
+
+    entries.forEach(entry => {
+      const machineHours = (Number(entry.runTimeMinutes) + Number(entry.setupTimeMinutes)) / 60;
+      analytics.totalMachineHours += machineHours;
+
+      let laborHours = 0;
+      if (entry.laborEntries) {
+        entry.laborEntries.forEach(le => {
+          laborHours += Number(le.hoursWorked);
+        });
+      }
+      analytics.totalLaborHours += laborHours;
+
+      if (entry.shift) {
+        if (!analytics.shiftComparison[entry.shift]) {
+          analytics.shiftComparison[entry.shift] = { machineHours: 0, laborHours: 0 };
+        }
+        analytics.shiftComparison[entry.shift].machineHours += machineHours;
+        analytics.shiftComparison[entry.shift].laborHours += laborHours;
+      }
+    });
+
+    return analytics;
   }
 }

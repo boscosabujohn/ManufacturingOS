@@ -683,6 +683,52 @@ class RouteService {
             return this.mockRoutes[index];
         }
     }
+    /**
+     * Optimize a route
+     */
+    async optimizeRoute(id: string): Promise<Route> {
+        try {
+            const response = await apiClient.post<Route>(`/logistics/routes/${id}/optimize`, {});
+            return response.data;
+        } catch (error) {
+            console.error(`API Error optimizing route ${id}, using mock:`, error);
+
+            const index = this.mockRoutes.findIndex(r => r.id === id);
+            if (index === -1) throw new Error('Route not found');
+
+            this.mockRoutes[index] = {
+                ...this.mockRoutes[index],
+                status: 'Active',
+                description: (this.mockRoutes[index].description || '') + ' [Optimized]',
+                updatedAt: new Date().toISOString(),
+            };
+
+            return this.mockRoutes[index];
+        }
+    }
+
+    /**
+     * Get freight charges and variance analysis
+     */
+    async getFreightAnalysis(): Promise<any> {
+        try {
+            const response = await apiClient.get<any>('/logistics/freight-charges/analysis');
+            return response.data;
+        } catch (error) {
+            console.error('API Error fetching freight analysis, using mock:', error);
+            return {
+                estimatedTotal: 125000,
+                actualTotal: 132450,
+                variance: 7450,
+                variancePercentage: 5.96,
+                topVariances: [
+                    { category: 'Fuel', estimated: 45000, actual: 49200, variance: 4200 },
+                    { category: 'Toll', estimated: 12000, actual: 12150, variance: 150 },
+                    { category: 'Driver', estimated: 35000, actual: 36000, variance: 1000 },
+                ]
+            };
+        }
+    }
 
     /**
      * Get active routes

@@ -9,3 +9,6 @@ export * from './batch-number.service';
 export * from './warehouse-seeder.service';
 export * from './stock-location-seeder.service';
 export * from './adjustment-reason-seeder.service';
+export * from './stock-valuation.service';
+export * from './inventory-analytics.service';
+export * from './cycle-count.service';

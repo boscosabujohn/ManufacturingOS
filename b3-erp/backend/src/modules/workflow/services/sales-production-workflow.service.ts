@@ -10,7 +10,7 @@ import {
 } from '../events/event-types';
 import { EventBusService } from './event-bus.service';
 import { NotificationService } from './notification.service';
-import { ProjectService } from '../../project/services/project.service';
+import { ProjectService } from '../../project-management/project.service';
 
 @Injectable()
 export class SalesProductionWorkflowService {
@@ -73,19 +73,18 @@ export class SalesProductionWorkflowService {
 
     try {
       // Create Project for the confirmed order
-      const project = await this.projectService.createProject({
-        name: `Project for Order ${payload.orderNumber}`,
-        clientName: payload.customerName,
-        salesOrderId: payload.orderId,
-        managerId: payload.userId, // Default to user who confirmed order, or assign later
+      const project = await this.projectService.create({
+        projectName: `Project for Order ${payload.orderNumber}`,
+        customer: payload.customerName,
+        salesOrderNumber: payload.orderId,
+        projectManager: payload.userId,
         startDate: new Date(),
         endDate: payload.deliveryDate ? new Date(payload.deliveryDate) : undefined,
-        status: 'active',
-        metadata: {
-          orderNumber: payload.orderNumber,
-          priority: payload.priority,
-        }
-      });
+        status: 'Planning', // Default status
+        priority: payload.priority || 'medium',
+        description: `Project created automatically from Sales Order ${payload.orderNumber}`,
+        budget: payload.totalAmount,
+      } as any);
       this.logger.log(`Project created: ${project.id} for Order: ${payload.orderNumber}`);
 
       // Queue job to create work orders from sales order

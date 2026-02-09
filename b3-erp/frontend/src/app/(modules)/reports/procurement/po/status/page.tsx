@@ -7,7 +7,9 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ClickableTableRow } from '@/components/reports/ClickableTableRow';
 import { Badge } from '@/components/ui/badge';
 
-export default function POStatusDetail() {
+import { Suspense } from 'react';
+
+function POStatusDetailContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const status = searchParams.get('status') || 'All';
@@ -67,5 +69,13 @@ export default function POStatusDetail() {
                 </CardContent>
             </Card>
         </ReportDetailPage>
+    );
+}
+
+export default function POStatusDetail() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <POStatusDetailContent />
+        </Suspense>
     );
 }

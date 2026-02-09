@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, forwardRef } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { WorkflowModule } from '../workflow/workflow.module';
 
@@ -14,6 +14,7 @@ import {
   WorkCenter,
   Routing,
   ProductionEntry,
+  MachineMaintenanceLog,
 } from './entities';
 import { WorkOrderStatusEntity } from './entities/work-order-status.entity';
 
@@ -29,6 +30,7 @@ import {
   ProductionEntryService,
   WorkCenterSeederService,
   OperationSeederService,
+  MaintenanceLogService,
 } from './services';
 import { WorkOrderStatusSeederService } from './services/work-order-status-seeder.service';
 import { EscalationManagementService } from './services/escalation-management.service';
@@ -46,6 +48,7 @@ import {
   WorkCenterController,
   RoutingController,
   ProductionEntryController,
+  MaintenanceLogController,
 } from './controllers';
 import { DiesToolsController } from './controllers/dies-tools.controller';
 
@@ -64,8 +67,9 @@ import { DiesToolsController } from './controllers/dies-tools.controller';
       Routing,
       ProductionEntry,
       WorkOrderStatusEntity,
+      MachineMaintenanceLog,
     ]),
-    WorkflowModule,
+    forwardRef(() => WorkflowModule),
   ],
   controllers: [
     BOMController,
@@ -94,6 +98,7 @@ import { DiesToolsController } from './controllers/dies-tools.controller';
     WorkCenterSeederService,
     OperationSeederService,
     WorkOrderStatusSeederService,
+    MaintenanceLogService,
   ],
   exports: [
     BOMService,
@@ -108,6 +113,7 @@ import { DiesToolsController } from './controllers/dies-tools.controller';
     MRPRequisitionService,
     DemandForecastingService,
     DiesToolsService,
+    MaintenanceLogService,
   ],
 })
 export class ProductionModule { }

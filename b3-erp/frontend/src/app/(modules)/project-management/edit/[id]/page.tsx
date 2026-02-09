@@ -170,6 +170,7 @@ interface FormData {
   safetyRequirements: string;
   // Documents
   attachments: FileItem[];
+  [key: string]: any;
 }
 
 const STEPS = [

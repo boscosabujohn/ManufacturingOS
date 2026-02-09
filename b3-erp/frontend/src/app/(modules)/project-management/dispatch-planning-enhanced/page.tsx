@@ -20,9 +20,9 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Input } from '@/components/ui/Input';
+import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/Textarea';
+import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import {
  Select,
@@ -30,7 +30,7 @@ import {
  SelectItem,
  SelectTrigger,
  SelectValue
-} from '@/components/ui/Select';
+} from '@/components/ui/select';
 import { StepIndicator } from '@/components/ui/StepIndicator';
 import {
  useAutoSaveDraft,

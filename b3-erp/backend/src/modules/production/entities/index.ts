@@ -9,3 +9,4 @@ export * from './work-center.entity';
 export * from './routing.entity';
 export * from './production-entry.entity';
 export * from './work-order-status.entity';
+export * from './machine-maintenance-log.entity';

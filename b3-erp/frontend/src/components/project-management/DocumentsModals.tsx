@@ -1,17 +1,16 @@
-```javascript
 import { useState } from 'react';
 import { X, FileSearch, Share2, Edit, CheckCircle2 } from 'lucide-react';
 
 export function UploadDocumentModal({ isOpen, onClose, onUpload }: any) {
   const [data, setData] = useState({ name: '', category: 'Contract', tags: '' });
   if (!isOpen) return null;
-  return (<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3"><div className="bg-white rounded-lg shadow-xl w-full max-w-2xl"><div className="bg-gradient-to-r from-blue-600 to-blue-700 px-3 py-2 flex justify-between items-center"><h2 className="text-xl font-bold text-white">Upload Document</h2><button onClick={onClose} className="text-white"><X className="h-5 w-5" /></button></div><div className="p-6 space-y-2"><div><label className="block text-sm font-medium mb-1">Document Name</label><input type="text" value={data.name} onChange={(e) => setData({...data, name: e.target.value})} className="w-full px-3 py-2 border rounded-lg" /></div><div><label className="block text-sm font-medium mb-1">Category</label><select value={data.category} onChange={(e) => setData({...data, category: e.target.value})} className="w-full px-3 py-2 border rounded-lg"><option>Contract</option><option>Drawing</option><option>Report</option><option>Certificate</option><option>Confirmation</option></select></div><div className="border-2 border-dashed rounded-lg p-8 text-center"><button className="px-4 py-2 bg-blue-600 text-white rounded-lg">Choose File</button></div></div><div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t"><button onClick={onClose} className="px-4 py-2 border rounded-lg">Cancel</button><button onClick={() => onUpload(data)} className="px-4 py-2 bg-blue-600 text-white rounded-lg">Upload</button></div></div></div>);
+  return (<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3"><div className="bg-white rounded-lg shadow-xl w-full max-w-2xl"><div className="bg-gradient-to-r from-blue-600 to-blue-700 px-3 py-2 flex justify-between items-center"><h2 className="text-xl font-bold text-white">Upload Document</h2><button onClick={onClose} className="text-white"><X className="h-5 w-5" /></button></div><div className="p-6 space-y-2"><div><label className="block text-sm font-medium mb-1">Document Name</label><input type="text" value={data.name} onChange={(e) => setData({ ...data, name: e.target.value })} className="w-full px-3 py-2 border rounded-lg" /></div><div><label className="block text-sm font-medium mb-1">Category</label><select value={data.category} onChange={(e) => setData({ ...data, category: e.target.value })} className="w-full px-3 py-2 border rounded-lg"><option>Contract</option><option>Drawing</option><option>Report</option><option>Certificate</option><option>Confirmation</option></select></div><div className="border-2 border-dashed rounded-lg p-8 text-center"><button className="px-4 py-2 bg-blue-600 text-white rounded-lg">Choose File</button></div></div><div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t"><button onClick={onClose} className="px-4 py-2 border rounded-lg">Cancel</button><button onClick={() => onUpload(data)} className="px-4 py-2 bg-blue-600 text-white rounded-lg">Upload</button></div></div></div>);
 }
 
 export function EditDocumentModal({ isOpen, onClose, onEdit, doc }: any) {
   const [data, setData] = useState({ name: doc?.name || '', tags: doc?.tags || '' });
   if (!isOpen || !doc) return null;
-  return (<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3"><div className="bg-white rounded-lg shadow-xl w-full max-w-2xl"><div className="bg-gradient-to-r from-green-600 to-green-700 px-3 py-2 flex justify-between items-center"><h2 className="text-xl font-bold text-white">Edit Document</h2><button onClick={onClose} className="text-white"><X className="h-5 w-5" /></button></div><div className="p-6 space-y-2"><div><label className="block text-sm font-medium mb-1">Name</label><input type="text" value={data.name} onChange={(e) => setData({...data, name: e.target.value})} className="w-full px-3 py-2 border rounded-lg" /></div><div><label className="block text-sm font-medium mb-1">Tags</label><input type="text" value={data.tags} onChange={(e) => setData({...data, tags: e.target.value})} className="w-full px-3 py-2 border rounded-lg" /></div></div><div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t"><button onClick={onClose} className="px-4 py-2 border rounded-lg">Cancel</button><button onClick={() => onEdit(data)} className="px-4 py-2 bg-green-600 text-white rounded-lg">Save</button></div></div></div>);
+  return (<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3"><div className="bg-white rounded-lg shadow-xl w-full max-w-2xl"><div className="bg-gradient-to-r from-green-600 to-green-700 px-3 py-2 flex justify-between items-center"><h2 className="text-xl font-bold text-white">Edit Document</h2><button onClick={onClose} className="text-white"><X className="h-5 w-5" /></button></div><div className="p-6 space-y-2"><div><label className="block text-sm font-medium mb-1">Name</label><input type="text" value={data.name} onChange={(e) => setData({ ...data, name: e.target.value })} className="w-full px-3 py-2 border rounded-lg" /></div><div><label className="block text-sm font-medium mb-1">Tags</label><input type="text" value={data.tags} onChange={(e) => setData({ ...data, tags: e.target.value })} className="w-full px-3 py-2 border rounded-lg" /></div></div><div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t"><button onClick={onClose} className="px-4 py-2 border rounded-lg">Cancel</button><button onClick={() => onEdit(data)} className="px-4 py-2 bg-green-600 text-white rounded-lg">Save</button></div></div></div>);
 }
 
 export function ShareDocumentModal({ isOpen, onClose, onShare, doc }: any) {
@@ -35,7 +34,7 @@ export function CreateFolderModal({ isOpen, onClose, onCreate }: any) {
 export function SetPermissionsModal({ isOpen, onClose, onSet, doc }: any) {
   const [permissions, setPermissions] = useState({ view: true, edit: false, delete: false });
   if (!isOpen || !doc) return null;
-  return (<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3"><div className="bg-white rounded-lg shadow-xl w-full max-w-md"><div className="bg-gradient-to-r from-indigo-600 to-indigo-700 px-3 py-2 flex justify-between items-center"><h2 className="text-xl font-bold text-white">Set Permissions</h2><button onClick={onClose} className="text-white"><X className="h-5 w-5" /></button></div><div className="p-6 space-y-3"><label className="flex items-center"><input type="checkbox" checked={permissions.view} onChange={(e) => setPermissions({...permissions, view: e.target.checked})} className="mr-2" /><span>View</span></label><label className="flex items-center"><input type="checkbox" checked={permissions.edit} onChange={(e) => setPermissions({...permissions, edit: e.target.checked})} className="mr-2" /><span>Edit</span></label><label className="flex items-center"><input type="checkbox" checked={permissions.delete} onChange={(e) => setPermissions({...permissions, delete: e.target.checked})} className="mr-2" /><span>Delete</span></label></div><div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t"><button onClick={onClose} className="px-4 py-2 border rounded-lg">Cancel</button><button onClick={() => onSet(permissions)} className="px-4 py-2 bg-indigo-600 text-white rounded-lg">Save</button></div></div></div>);
+  return (<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3"><div className="bg-white rounded-lg shadow-xl w-full max-w-md"><div className="bg-gradient-to-r from-indigo-600 to-indigo-700 px-3 py-2 flex justify-between items-center"><h2 className="text-xl font-bold text-white">Set Permissions</h2><button onClick={onClose} className="text-white"><X className="h-5 w-5" /></button></div><div className="p-6 space-y-3"><label className="flex items-center"><input type="checkbox" checked={permissions.view} onChange={(e) => setPermissions({ ...permissions, view: e.target.checked })} className="mr-2" /><span>View</span></label><label className="flex items-center"><input type="checkbox" checked={permissions.edit} onChange={(e) => setPermissions({ ...permissions, edit: e.target.checked })} className="mr-2" /><span>Edit</span></label><label className="flex items-center"><input type="checkbox" checked={permissions.delete} onChange={(e) => setPermissions({ ...permissions, delete: e.target.checked })} className="mr-2" /><span>Delete</span></label></div><div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t"><button onClick={onClose} className="px-4 py-2 border rounded-lg">Cancel</button><button onClick={() => onSet(permissions)} className="px-4 py-2 bg-indigo-600 text-white rounded-lg">Save</button></div></div></div>);
 }
 
 export function VersionHistoryModal({ isOpen, onClose, doc }: any) {
@@ -51,7 +50,7 @@ export function BulkDownloadModal({ isOpen, onClose, onDownload, selectedDocs }:
 export function FilterDocumentsModal({ isOpen, onClose, onApply }: any) {
   const [filters, setFilters] = useState({ category: 'all', dateRange: 'all' });
   if (!isOpen) return null;
-  return (<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3"><div className="bg-white rounded-lg shadow-xl w-full max-w-2xl"><div className="bg-gradient-to-r from-cyan-600 to-cyan-700 px-3 py-2 flex justify-between items-center"><h2 className="text-xl font-bold text-white">Filter Documents</h2><button onClick={onClose} className="text-white"><X className="h-5 w-5" /></button></div><div className="p-6"><div className="grid grid-cols-2 gap-2"><div><label className="block text-sm font-medium mb-1">Category</label><select value={filters.category} onChange={(e) => setFilters({...filters, category: e.target.value})} className="w-full px-3 py-2 border rounded-lg"><option value="all">All</option><option>Contract</option><option>Drawing</option><option>Confirmation</option></select></div><div><label className="block text-sm font-medium mb-1">Date Range</label><select value={filters.dateRange} onChange={(e) => setFilters({...filters, dateRange: e.target.value})} className="w-full px-3 py-2 border rounded-lg"><option value="all">All</option><option>This Week</option><option>This Month</option></select></div></div></div><div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t"><button onClick={onClose} className="px-4 py-2 border rounded-lg">Cancel</button><button onClick={() => onApply(filters)} className="px-4 py-2 bg-cyan-600 text-white rounded-lg">Apply</button></div></div></div>);
+  return (<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3"><div className="bg-white rounded-lg shadow-xl w-full max-w-2xl"><div className="bg-gradient-to-r from-cyan-600 to-cyan-700 px-3 py-2 flex justify-between items-center"><h2 className="text-xl font-bold text-white">Filter Documents</h2><button onClick={onClose} className="text-white"><X className="h-5 w-5" /></button></div><div className="p-6"><div className="grid grid-cols-2 gap-2"><div><label className="block text-sm font-medium mb-1">Category</label><select value={filters.category} onChange={(e) => setFilters({ ...filters, category: e.target.value })} className="w-full px-3 py-2 border rounded-lg"><option value="all">All</option><option>Contract</option><option>Drawing</option><option>Confirmation</option></select></div><div><label className="block text-sm font-medium mb-1">Date Range</label><select value={filters.dateRange} onChange={(e) => setFilters({ ...filters, dateRange: e.target.value })} className="w-full px-3 py-2 border rounded-lg"><option value="all">All</option><option>This Week</option><option>This Month</option></select></div></div></div><div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t"><button onClick={onClose} className="px-4 py-2 border rounded-lg">Cancel</button><button onClick={() => onApply(filters)} className="px-4 py-2 bg-cyan-600 text-white rounded-lg">Apply</button></div></div></div>);
 }
 
 export function SearchDocumentsModal({ isOpen, onClose, onSearch }: any) {
@@ -90,52 +89,52 @@ export function PreviewDocumentModal({ isOpen, onClose, doc }: any) {
             <X className="h-6 w-6 text-white" />
           </button>
         </div>
-        
+
         <div className="flex-1 flex min-h-0 overflow-hidden">
           {/* Main Preview Area */}
           <div className="flex-1 bg-gray-100 overflow-y-auto p-8 flex items-center justify-center">
             <div className="bg-white shadow-lg w-full max-w-[800px] aspect-[1/1.41] flex flex-col items-center justify-center rounded-lg border border-gray-200 p-12 text-center">
-               <FileSearch className="w-20 h-20 text-gray-200 mb-6" />
-               <h3 className="text-xl font-black text-gray-900 mb-2">Attachment Preview</h3>
-               <p className="text-gray-500 max-w-sm">Detailed content preview for {doc.documentName || doc.name} is currently loading or requires a specialized viewer.</p>
-               <div className="mt-8 flex gap-3">
-                 <button className="px-6 py-2 bg-violet-600 text-white font-bold rounded-lg hover:bg-violet-700 shadow-md">Download Original</button>
-                 <button className="px-6 py-2 border border-gray-300 text-gray-700 font-bold rounded-lg hover:bg-gray-50">Open in New Tab</button>
-               </div>
+              <FileSearch className="w-20 h-20 text-gray-200 mb-6" />
+              <h3 className="text-xl font-black text-gray-900 mb-2">Attachment Preview</h3>
+              <p className="text-gray-500 max-w-sm">Detailed content preview for {doc.documentName || doc.name} is currently loading or requires a specialized viewer.</p>
+              <div className="mt-8 flex gap-3">
+                <button className="px-6 py-2 bg-violet-600 text-white font-bold rounded-lg hover:bg-violet-700 shadow-md">Download Original</button>
+                <button className="px-6 py-2 border border-gray-300 text-gray-700 font-bold rounded-lg hover:bg-gray-50">Open in New Tab</button>
+              </div>
             </div>
           </div>
 
           {/* Metadata Sidebar */}
           <div className="w-72 bg-white border-l border-gray-200 p-6 flex flex-col gap-6 overflow-y-auto">
-             <div>
-               <h4 className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3">Document Details</h4>
-               <div className="space-y-4">
-                 <div className="flex justify-between items-start">
-                   <span className="text-xs text-gray-500">Category</span>
-                   <span className="text-xs font-bold text-gray-900 bg-gray-100 px-2 py-0.5 rounded">{doc.category}</span>
-                 </div>
-                 <div className="flex justify-between items-start">
-                   <span className="text-xs text-gray-500">Project</span>
-                   <span className="text-xs font-bold text-gray-900 text-right">{doc.projectName}</span>
-                 </div>
-                 <div className="flex justify-between items-start">
-                   <span className="text-xs text-gray-500">Uploaded At</span>
-                   <span className="text-xs font-bold text-gray-900">{doc.uploadDate}</span>
-                 </div>
-                 <div className="flex justify-between items-start">
-                   <span className="text-xs text-gray-500">Uploaded By</span>
-                   <span className="text-xs font-bold text-gray-900">{doc.uploadedBy}</span>
-                 </div>
-               </div>
-             </div>
+            <div>
+              <h4 className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3">Document Details</h4>
+              <div className="space-y-4">
+                <div className="flex justify-between items-start">
+                  <span className="text-xs text-gray-500">Category</span>
+                  <span className="text-xs font-bold text-gray-900 bg-gray-100 px-2 py-0.5 rounded">{doc.category}</span>
+                </div>
+                <div className="flex justify-between items-start">
+                  <span className="text-xs text-gray-500">Project</span>
+                  <span className="text-xs font-bold text-gray-900 text-right">{doc.projectName}</span>
+                </div>
+                <div className="flex justify-between items-start">
+                  <span className="text-xs text-gray-500">Uploaded At</span>
+                  <span className="text-xs font-bold text-gray-900">{doc.uploadDate}</span>
+                </div>
+                <div className="flex justify-between items-start">
+                  <span className="text-xs text-gray-500">Uploaded By</span>
+                  <span className="text-xs font-bold text-gray-900">{doc.uploadedBy}</span>
+                </div>
+              </div>
+            </div>
 
-             <div className="pt-6 border-t border-gray-100">
-               <h4 className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3">Compliance</h4>
-               <div className="flex items-center gap-2 bg-green-50 p-3 rounded-lg border border-green-100">
-                 <CheckCircle2 className="w-4 h-4 text-green-600" />
-                 <span className="text-[10px] font-bold text-green-800 uppercase">Verified Secure</span>
-               </div>
-             </div>
+            <div className="pt-6 border-t border-gray-100">
+              <h4 className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3">Compliance</h4>
+              <div className="flex items-center gap-2 bg-green-50 p-3 rounded-lg border border-green-100">
+                <CheckCircle2 className="w-4 h-4 text-green-600" />
+                <span className="text-[10px] font-bold text-green-800 uppercase">Verified Secure</span>
+              </div>
+            </div>
           </div>
         </div>
 

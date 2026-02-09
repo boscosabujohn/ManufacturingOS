@@ -66,7 +66,7 @@ export class ProjectClosureService {
         return this.certificateRepository.save(cert);
     }
 
-    async getCertificate(projectId: string): Promise<HandoverCertificate> {
+    async getCertificate(projectId: string): Promise<HandoverCertificate | null> {
         return this.certificateRepository.findOne({ where: { projectId }, order: { createdAt: 'DESC' } });
     }
 }

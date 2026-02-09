@@ -94,4 +94,10 @@ export class WorkflowDefinition {
 
   @OneToMany(() => WorkflowInstance, (instance) => instance.definition)
   instances: WorkflowInstance[];
+
+  @OneToMany('WorkflowNode', (node: any) => node.workflowDefinition, { cascade: true })
+  nodes: any[];
+
+  @OneToMany('WorkflowEdge', (edge: any) => edge.workflowDefinition, { cascade: true })
+  edges: any[];
 }

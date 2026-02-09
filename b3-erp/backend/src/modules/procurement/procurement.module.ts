@@ -14,6 +14,7 @@ import {
   PurchaseReturn,
   PurchaseInvoice,
   VendorEvaluation,
+  VendorContract,
 } from './entities';
 
 // Controllers
@@ -26,6 +27,7 @@ import {
   PurchaseReturnController,
   PurchaseInvoiceController,
   VendorEvaluationController,
+  VendorContractController,
 } from './controllers';
 
 // Services
@@ -72,6 +74,9 @@ import { SpendAnalysisService } from './services/spend-analysis.service';
 
       // Vendor Evaluations
       VendorEvaluation,
+
+      // Vendor Contracts
+      VendorContract,
     ]),
     WorkflowModule,
   ],
@@ -84,6 +89,7 @@ import { SpendAnalysisService } from './services/spend-analysis.service';
     PurchaseReturnController,
     PurchaseInvoiceController,
     VendorEvaluationController,
+    VendorContractController,
   ],
   providers: [
     PurchaseRequisitionService,
@@ -118,4 +124,4 @@ import { SpendAnalysisService } from './services/spend-analysis.service';
     ApprovalThresholdSeederService,
   ],
 })
-export class ProcurementModule {}
+export class ProcurementModule { }

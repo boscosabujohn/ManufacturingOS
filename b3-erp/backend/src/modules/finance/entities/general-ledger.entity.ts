@@ -10,6 +10,7 @@ import {
 } from 'typeorm';
 import { ChartOfAccounts } from './chart-of-accounts.entity';
 import { FinancialPeriod } from './financial-period.entity';
+import { Company } from '../../core/entities/company.entity';
 
 export enum TransactionType {
   JOURNAL_ENTRY = 'Journal Entry',
@@ -39,6 +40,14 @@ export enum EntryStatus {
 export class GeneralLedger {
   @PrimaryGeneratedColumn('uuid')
   id: string;
+
+  // Company tracking
+  @Column()
+  companyId: string;
+
+  @ManyToOne(() => Company)
+  @JoinColumn({ name: 'companyId' })
+  company: Company;
 
   // Reference to Chart of Accounts
   @Column()

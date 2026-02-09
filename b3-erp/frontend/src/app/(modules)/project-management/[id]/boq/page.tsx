@@ -54,6 +54,19 @@ export default function BOQManagementPage() {
         }
     };
 
+    const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
+        if (!file || !selectedBOQ) return;
+
+        try {
+            const parsedItems = await boqService.parseBOQFile(file);
+            await boqService.bulkCreateItems(selectedBOQ.id, parsedItems);
+            await loadBOQs();
+        } catch (error) {
+            console.error('File upload failed:', error);
+        }
+    };
+
     const getStatusBadge = (status: string) => {
         switch (status) {
             case 'approved': return 'bg-green-100 text-green-700 border-green-200';
@@ -74,7 +87,17 @@ export default function BOQManagementPage() {
                     <p className="text-xs text-gray-400 font-bold mt-1">Project ID: {id}</p>
                 </div>
                 <div className="flex gap-2">
-                    <button className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-bold shadow-lg shadow-blue-200 hover:bg-blue-700 transition-all">
+                    <input
+                        type="file"
+                        id="boq-upload"
+                        className="hidden"
+                        accept=".csv,.xlsx"
+                        onChange={handleFileUpload}
+                    />
+                    <button
+                        onClick={() => document.getElementById('boq-upload')?.click()}
+                        className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-bold shadow-lg shadow-blue-200 hover:bg-blue-700 transition-all"
+                    >
                         <Upload className="w-4 h-4" />
                         Upload Excel
                     </button>

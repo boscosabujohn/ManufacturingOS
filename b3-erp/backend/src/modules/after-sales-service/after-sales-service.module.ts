@@ -4,6 +4,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 // Entities
 import { ServiceType } from './entities/service-type.entity';
 import { WarrantyTypeEntity } from './entities/warranty-type.entity';
+import { KnowledgeBase } from './entities/knowledge-base.entity';
+import { SparePart } from './entities/spare-part.entity';
 
 // Service Contracts
 import { ServiceContractsController } from './service-contracts/service-contracts.controller';
@@ -32,12 +34,16 @@ import { ServiceBillingService } from './service-billing/service-billing.service
 // Seeders
 import { ServiceTypeSeederService } from './services/service-type-seeder.service';
 import { WarrantyTypeSeederService } from './services/warranty-type-seeder.service';
+import { AfterSalesService } from './services/after-sales.service';
+import { AfterSalesController } from './after-sales.controller';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([
       ServiceType,
       WarrantyTypeEntity,
+      KnowledgeBase,
+      SparePart,
     ]),
   ],
   controllers: [
@@ -47,6 +53,7 @@ import { WarrantyTypeSeederService } from './services/warranty-type-seeder.servi
     InstallationsController,
     FieldServiceController,
     ServiceBillingController,
+    AfterSalesController,
   ],
   providers: [
     ServiceContractsService,
@@ -57,6 +64,7 @@ import { WarrantyTypeSeederService } from './services/warranty-type-seeder.servi
     ServiceBillingService,
     ServiceTypeSeederService,
     WarrantyTypeSeederService,
+    AfterSalesService,
   ],
   exports: [
     ServiceContractsService,
@@ -65,6 +73,7 @@ import { WarrantyTypeSeederService } from './services/warranty-type-seeder.servi
     InstallationsService,
     FieldServiceService,
     ServiceBillingService,
+    AfterSalesService,
   ],
 })
-export class AfterSalesServiceModule {}
+export class AfterSalesServiceModule { }

@@ -8,3 +8,4 @@ export * from './goods-receipt-item.entity';
 export * from './purchase-return.entity';
 export * from './purchase-invoice.entity';
 export * from './vendor-evaluation.entity';
+export * from './vendor-contract.entity';

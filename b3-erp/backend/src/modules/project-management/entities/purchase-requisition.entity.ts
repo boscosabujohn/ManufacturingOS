@@ -10,7 +10,7 @@ export enum PRStatus {
     CANCELLED = 'cancelled',
 }
 
-@Entity('purchase_requisitions')
+@Entity('pm_purchase_requisitions')
 export class PurchaseRequisition {
     @PrimaryGeneratedColumn('uuid')
     id: string;

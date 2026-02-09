@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
@@ -27,7 +27,7 @@ interface ProjectInfo {
     status: string;
 }
 
-export default function ProjectClosurePage() {
+function ProjectClosurePageContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const { toast } = useToast();
@@ -279,5 +279,13 @@ export default function ProjectClosurePage() {
                 </div>
             )}
         </div>
+    );
+}
+
+export default function ProjectClosurePage() {
+    return (
+        <Suspense fallback={<div>Loading closure...</div>}>
+            <ProjectClosurePageContent />
+        </Suspense>
     );
 }

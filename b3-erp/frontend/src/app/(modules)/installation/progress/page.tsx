@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -48,7 +48,7 @@ interface InstallationProgress {
     issues: number;
 }
 
-export default function InstallationProgressPage() {
+function InstallationProgressPageContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const { toast } = useToast();
@@ -389,5 +389,13 @@ export default function InstallationProgressPage() {
                 </div>
             </div>
         </div>
+    );
+}
+
+export default function InstallationProgressPage() {
+    return (
+        <Suspense fallback={<div>Loading progress...</div>}>
+            <InstallationProgressPageContent />
+        </Suspense>
     );
 }

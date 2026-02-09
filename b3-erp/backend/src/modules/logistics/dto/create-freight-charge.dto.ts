@@ -109,4 +109,10 @@ export class CreateFreightChargeDto {
   @IsString()
   @IsOptional()
   notes?: string;
+
+  @ApiPropertyOptional()
+  @IsNumber()
+  @IsOptional()
+  @Type(() => Number)
+  actualAmount?: number;
 }

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Search, Filter, Download, Clock, CheckCircle, XCircle, AlertCircle, Loader2 } from 'lucide-react';
+import { Search, Filter, Download, Clock, CheckCircle, XCircle, AlertCircle, Loader2, Fingerprint, RefreshCw } from 'lucide-react';
 import {
   AttendanceService,
   Attendance,
@@ -79,6 +79,7 @@ export default function AttendancePage() {
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [departmentFilter, setDepartmentFilter] = useState<string>('all');
   const [currentPage, setCurrentPage] = useState(1);
+  const [isSyncing, setIsSyncing] = useState(false);
   const [stats, setStats] = useState({
     present: 0,
     onLeave: 0,
@@ -154,6 +155,24 @@ export default function AttendancePage() {
         {config.label}
       </span>
     );
+  };
+
+  const handleBiometricSync = async () => {
+    try {
+      setIsSyncing(true);
+      // Simulate raw logs from device
+      const mockLogs = [
+        { employeeId: 'emp-001', date: new Date().toISOString().split('T')[0], time: '09:05', type: 'IN' },
+        { employeeId: 'emp-005', date: new Date().toISOString().split('T')[0], time: '09:12', type: 'IN' },
+      ];
+      await AttendanceService.syncBiometricLogs('DEV-8829', mockLogs);
+      alert('Biometric synchronization completed successfully!');
+    } catch (err) {
+      console.error('Sync error:', err);
+      alert('Failed to sync biometric data.');
+    } finally {
+      setIsSyncing(false);
+    }
   };
 
   const statsCards = [
@@ -320,7 +339,19 @@ export default function AttendancePage() {
               </div>
             </div>
           </div>
-          <div className="flex justify-end mt-4">
+          <div className="flex justify-end mt-4 space-x-2">
+            <button
+              onClick={handleBiometricSync}
+              disabled={isSyncing}
+              className="flex items-center px-4 py-2 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-lg hover:from-blue-600 hover:to-indigo-700 transition-all disabled:opacity-50"
+            >
+              {isSyncing ? (
+                <RefreshCw className="w-4 h-4 mr-2 animate-spin" />
+              ) : (
+                <Fingerprint className="w-4 h-4 mr-2" />
+              )}
+              {isSyncing ? 'Syncing...' : 'Sync Biometric Data'}
+            </button>
             <button className="flex items-center px-4 py-2 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-lg hover:from-green-600 hover:to-emerald-700 transition-all">
               <Download className="w-4 h-4 mr-2" />
               Export Report
@@ -433,8 +464,8 @@ export default function AttendancePage() {
                     key={idx}
                     onClick={() => setCurrentPage(idx + 1)}
                     className={`px-4 py-2 border rounded-lg text-sm font-medium transition-colors ${currentPage === idx + 1
-                        ? 'bg-gradient-to-r from-blue-500 to-cyan-600 text-white border-transparent'
-                        : 'border-gray-300 text-gray-700 bg-white hover:bg-gray-50'
+                      ? 'bg-gradient-to-r from-blue-500 to-cyan-600 text-white border-transparent'
+                      : 'border-gray-300 text-gray-700 bg-white hover:bg-gray-50'
                       }`}
                   >
                     {idx + 1}

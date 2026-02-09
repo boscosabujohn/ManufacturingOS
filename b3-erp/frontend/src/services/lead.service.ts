@@ -4,7 +4,7 @@
  */
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
-const USE_MOCK_DATA = true;
+const USE_MOCK_DATA = false; // Set to false to use backend
 
 // ============================================================================
 // Interfaces
@@ -37,7 +37,7 @@ export interface CreateLeadDto {
   assignedTo: string;
 }
 
-export interface UpdateLeadDto extends Partial<CreateLeadDto> {}
+export interface UpdateLeadDto extends Partial<CreateLeadDto> { }
 
 export interface LeadFilters {
   status?: LeadStatus;
@@ -414,7 +414,30 @@ export class LeadService {
       totalValue: number;
       leadsByStatus: Record<string, number>;
       leadsBySource: Record<string, number>;
-    }>('/crm/leads/statistics');
+    }>('/crm/leads/stats');
+  }
+
+  /**
+   * Get source analytics
+   */
+  static async getSourceAnalytics(): Promise<any[]> {
+    return this.request<any[]>('/crm/leads/analytics/sources');
+  }
+
+  /**
+   * Get conversion stats
+   */
+  static async getConversionStats(): Promise<any> {
+    return this.request<any>('/crm/leads/analytics/conversion');
+  }
+
+  /**
+   * Trigger auto-assignment for a lead
+   */
+  static async autoAssign(id: string): Promise<Lead> {
+    return this.request<Lead>(`/crm/leads/${id}/auto-assign`, {
+      method: 'POST',
+    });
   }
 }
 

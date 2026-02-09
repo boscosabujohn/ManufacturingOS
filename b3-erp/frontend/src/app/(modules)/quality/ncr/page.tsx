@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
-import NCRService, { NCR } from '@/services/ncr.service';
+import { ncrService as NCRService, NCR } from '@/services/ncr.service';
 import {
     AlertCircle,
     CheckCircle2,

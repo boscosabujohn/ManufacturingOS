@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
@@ -33,7 +33,7 @@ interface Accessory {
     status: 'Pending' | 'Installed' | 'Testing';
 }
 
-export default function AccessoryFixPage() {
+function AccessoryFixPageContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const { toast } = useToast();
@@ -257,5 +257,13 @@ export default function AccessoryFixPage() {
                 </CardContent>
             </Card>
         </div>
+    );
+}
+
+export default function AccessoryFixPage() {
+    return (
+        <Suspense fallback={<div>Loading accessories...</div>}>
+            <AccessoryFixPageContent />
+        </Suspense>
     );
 }

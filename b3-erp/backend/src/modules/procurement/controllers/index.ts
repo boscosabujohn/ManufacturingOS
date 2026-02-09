@@ -6,3 +6,4 @@ export * from './goods-receipt.controller';
 export * from './purchase-return.controller';
 export * from './purchase-invoice.controller';
 export * from './vendor-evaluation.controller';
+export * from './vendor-contract.controller';

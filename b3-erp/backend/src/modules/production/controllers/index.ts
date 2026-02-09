@@ -6,3 +6,4 @@ export * from './operation.controller';
 export * from './work-center.controller';
 export * from './routing.controller';
 export * from './production-entry.controller';
+export * from './maintenance-log.controller';

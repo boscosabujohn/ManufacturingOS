@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, forwardRef } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { WorkflowModule } from '../workflow/workflow.module';
 
@@ -16,6 +16,8 @@ import {
   SerialNumber,
   BatchNumber,
   AdjustmentReason,
+  CycleCountPlan,
+  CycleCountItem,
 } from './entities';
 
 // Controllers
@@ -44,6 +46,9 @@ import {
   WarehouseSeederService,
   StockLocationSeederService,
   AdjustmentReasonSeederService,
+  StockValuationService,
+  InventoryAnalyticsService,
+  CycleCountService,
 } from './services';
 import { ReorderManagementService } from './services/reorder-management.service';
 import { StorageLocationService as StorageLocationClassificationService } from './services/storage-location.service';
@@ -65,8 +70,11 @@ import { VEDAnalysisService } from './services/ved-analysis.service';
       SerialNumber,
       BatchNumber,
       AdjustmentReason,
+      CycleCountPlan,
+      CycleCountItem,
+      CycleCountItem,
     ]),
-    WorkflowModule,
+    forwardRef(() => WorkflowModule),
   ],
   controllers: [
     WarehouseController,
@@ -95,6 +103,9 @@ import { VEDAnalysisService } from './services/ved-analysis.service';
     WarehouseSeederService,
     StockLocationSeederService,
     AdjustmentReasonSeederService,
+    StockValuationService,
+    InventoryAnalyticsService,
+    CycleCountService,
   ],
   exports: [
     WarehouseService,
@@ -112,6 +123,9 @@ import { VEDAnalysisService } from './services/ved-analysis.service';
     WarehouseSeederService,
     StockLocationSeederService,
     AdjustmentReasonSeederService,
+    StockValuationService,
+    InventoryAnalyticsService,
+    CycleCountService,
   ],
 })
 export class InventoryModule { }

@@ -13,6 +13,7 @@ import { PasswordHistory } from './entities/password-history.entity';
 import { SystemConfig } from './entities/system-config.entity';
 import { Notification } from './entities/notification.entity';
 import { NotificationPreference } from './entities/notification-preference.entity';
+import { UserPreference } from './entities/user-preference.entity';
 
 // Services
 import { UserService } from './services/user.service';
@@ -44,6 +45,8 @@ import { UserSessionController } from './controllers/user-session.controller';
 import { SystemConfigController } from './controllers/system-config.controller';
 import { NotificationController } from './controllers/notification.controller';
 import { NotificationPreferenceController } from './controllers/notification-preference.controller';
+import { UserPreferenceController } from './controllers/user-preference.controller';
+import { UserPreferenceService } from './services/user-preference.service';
 
 @Module({
   imports: [
@@ -59,6 +62,7 @@ import { NotificationPreferenceController } from './controllers/notification-pre
       SystemConfig,
       Notification,
       NotificationPreference,
+      UserPreference,
     ]),
   ],
   controllers: [
@@ -84,6 +88,7 @@ import { NotificationPreferenceController } from './controllers/notification-pre
     SystemConfigService,
     NotificationService,
     NotificationPreferenceService,
+    UserPreferenceService,
     // Seeders
     RoleSeederService,
     PermissionSeederService,
@@ -103,6 +108,7 @@ import { NotificationPreferenceController } from './controllers/notification-pre
     SystemConfigService,
     NotificationService,
     NotificationPreferenceService,
+    UserPreferenceService,
   ],
 })
-export class ItAdminModule {}
+export class ItAdminModule { }

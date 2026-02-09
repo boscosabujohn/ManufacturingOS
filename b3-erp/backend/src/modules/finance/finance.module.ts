@@ -59,6 +59,9 @@ import {
 import { AccountsReceivableService } from './services/accounts-receivable.service';
 import { AccountsPayableService } from './services/accounts-payable.service';
 import { BankReconciliationService } from './services/bank-reconciliation.service';
+import { ConsolidationService } from './services/consolidation.service';
+import { FinanceSeederService } from './services/finance-seeder.service';
+import { Company } from '../core/entities/company.entity';
 
 @Module({
   imports: [
@@ -66,6 +69,7 @@ import { BankReconciliationService } from './services/bank-reconciliation.servic
       // Core Accounting
       ChartOfAccounts,
       GeneralLedger,
+      Company,
 
       // Journal Entries
       JournalEntry,
@@ -136,6 +140,8 @@ import { BankReconciliationService } from './services/bank-reconciliation.servic
     FinancialPeriodSeederService,
     TaxConfigSeederService,
     CostCenterSeederService,
+    ConsolidationService,
+    FinanceSeederService,
   ],
   exports: [
     ChartOfAccountsService,
@@ -150,6 +156,8 @@ import { BankReconciliationService } from './services/bank-reconciliation.servic
     FinancialPeriodSeederService,
     TaxConfigSeederService,
     CostCenterSeederService,
+    ConsolidationService,
+    FinanceSeederService,
   ],
 })
-export class FinanceModule {}
+export class FinanceModule { }

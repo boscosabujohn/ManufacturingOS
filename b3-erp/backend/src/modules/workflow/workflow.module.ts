@@ -9,6 +9,8 @@ import { WorkflowDefinition } from './entities/workflow-definition.entity';
 import { WorkflowInstance } from './entities/workflow-instance.entity';
 import { WorkflowStep } from './entities/workflow-step.entity';
 import { WorkflowHistory } from './entities/workflow-history.entity';
+import { WorkflowNode } from './entities/workflow-node.entity';
+import { WorkflowEdge } from './entities/workflow-edge.entity';
 
 // New workflow engine entities
 import {
@@ -28,6 +30,7 @@ import {
 // Import other modules for processor dependencies
 import { ProductionModule } from '../production/production.module';
 import { InventoryModule } from '../inventory/inventory.module';
+import { ProjectManagementModule } from '../project-management/project-management.module';
 
 // Services
 import {
@@ -68,12 +71,12 @@ import { WorkflowAnalyticsController } from './controllers/workflow-analytics.co
 import { UserTaskController } from './controllers/user-task.controller';
 import { AnalyticsService } from './services/analytics.service';
 import { Project } from '../project/entities/project.entity';
-import { ProjectService } from '../project/services/project.service';
-import { ProjectController } from '../project/controllers/project.controller';
+import { ProjectService } from '../project-management/project.service';
+import { ProjectController } from '../project-management/project.controller';
 import { BOQ } from '../project/entities/boq.entity';
 import { BOQItem } from '../project/entities/boq-item.entity';
-import { BOQService } from '../project/services/boq.service';
-import { BOQController } from '../project/controllers/boq.controller';
+import { BOQService } from '../project-management/services/boq.service';
+import { BOQController } from '../project-management/controllers/boq.controller';
 
 // Processors
 // Processors
@@ -118,6 +121,8 @@ import { WorkflowGateway } from './gateways/workflow.gateway';
       Project,
       BOQ,
       BOQItem,
+      WorkflowNode,
+      WorkflowEdge,
     ]),
 
     // Bull queues for async job processing
@@ -151,6 +156,7 @@ import { WorkflowGateway } from './gateways/workflow.gateway';
     // Import other modules with forwardRef to resolve circular dependencies
     forwardRef(() => ProductionModule),
     forwardRef(() => InventoryModule),
+    ProjectManagementModule,
   ],
   controllers: [
     OrderTrackingController,
@@ -162,8 +168,6 @@ import { WorkflowGateway } from './gateways/workflow.gateway';
     NotificationController,
     QualityGateController,
     AnalyticsController,
-    ProjectController,
-    BOQController,
     WorkflowTemplateController,
     WorkflowAnalyticsController,
     UserTaskController,
@@ -185,8 +189,6 @@ import { WorkflowGateway } from './gateways/workflow.gateway';
     ApprovalService,
     QualityGateService,
     AnalyticsService,
-    ProjectService,
-    BOQService,
 
     // Queue processors
     WorkflowProcessor,
@@ -201,6 +203,8 @@ import { WorkflowGateway } from './gateways/workflow.gateway';
     WorkflowAnalyticsService,
     WorkflowEventListener,
     WorkflowGateway,
+    UserTaskService,
+    EnhancedNotificationService,
   ],
   exports: [
     EventBusService,

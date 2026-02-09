@@ -43,7 +43,7 @@ export class BankTransaction {
     @Column({ nullable: true })
     statementLineId: string;
 
-    @Column({ nullable: true })
+    @Column({ type: 'uuid', nullable: true })
     journalEntryId: string | null;
 
     @CreateDateColumn()

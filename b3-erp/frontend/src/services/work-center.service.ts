@@ -690,6 +690,34 @@ class WorkCenterService {
     );
     return response.data;
   }
+
+  async updateWorkCenterShifts(id: string, shifts: any[]): Promise<WorkCenter> {
+    const response = await apiClient.patch<WorkCenter>(`/production/work-center/${id}/shifts`, shifts);
+    return response.data;
+  }
+
+  async getWorkCenterAnalytics(id: string, period: 'day' | 'week' | 'month' = 'week'): Promise<any> {
+    const response = await apiClient.get<any>(`/production/work-center/${id}/analytics?period=${period}`);
+    return response.data;
+  }
+
+  async getMaintenanceLogs(workCenterId?: string, status?: string): Promise<any[]> {
+    const params = new URLSearchParams();
+    if (workCenterId) params.append('workCenterId', workCenterId);
+    if (status) params.append('status', status);
+    const response = await apiClient.get<any[]>(`/production/maintenance-logs?${params.toString()}`);
+    return response.data;
+  }
+
+  async createMaintenanceLog(data: any): Promise<any> {
+    const response = await apiClient.post<any>('/production/maintenance-logs', data);
+    return response.data;
+  }
+
+  async updateMaintenanceLog(id: string, data: any): Promise<any> {
+    const response = await apiClient.patch<any>(`/production/maintenance-logs/${id}`, data);
+    return response.data;
+  }
 }
 
 export const workCenterService = new WorkCenterService();

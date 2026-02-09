@@ -5,6 +5,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   OneToMany,
+  OneToOne,
   Index,
 } from 'typeorm';
 
@@ -173,6 +174,9 @@ export class User {
 
   @OneToMany(() => Notification, (notification) => notification.user)
   notifications: Notification[];
+
+  @OneToOne('UserPreference', (preference: any) => preference.user, { cascade: true })
+  userPreference: any;
 }
 
 // Import related entities

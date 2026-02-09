@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -64,7 +64,7 @@ const TOOL_LIST = [
     'Clamps & Clips',
 ];
 
-export default function InstallationManagementPage() {
+function InstallationManagementPageContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const { toast } = useToast();
@@ -398,5 +398,13 @@ export default function InstallationManagementPage() {
                 </div>
             </div>
         </div>
+    );
+}
+
+export default function InstallationManagementPage() {
+    return (
+        <Suspense fallback={<div>Loading management...</div>}>
+            <InstallationManagementPageContent />
+        </Suspense>
     );
 }

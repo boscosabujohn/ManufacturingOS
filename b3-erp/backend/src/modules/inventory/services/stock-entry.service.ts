@@ -12,6 +12,9 @@ import {
   MovementDirection,
   StockEntryType,
 } from '../entities/stock-entry.entity';
+import { StockValuationService } from './stock-valuation.service';
+import { StockBalanceService } from './stock-balance.service';
+import { StockBalance } from '../entities/stock-balance.entity';
 import {
   CreateStockEntryDto,
   UpdateStockEntryDto,
@@ -25,8 +28,10 @@ export class StockEntryService {
     private readonly stockEntryRepository: Repository<StockEntry>,
     @InjectRepository(StockEntryLine)
     private readonly stockEntryLineRepository: Repository<StockEntryLine>,
+    private readonly stockValuationService: StockValuationService,
+    private readonly stockBalanceService: StockBalanceService,
     private readonly dataSource: DataSource,
-  ) {}
+  ) { }
 
   async create(createDto: CreateStockEntryDto): Promise<StockEntryResponseDto> {
     return await this.dataSource.transaction(async (manager) => {
@@ -202,13 +207,90 @@ export class StockEntryService {
       throw new BadRequestException('Stock entry already posted');
     }
 
-    // Update stock balances logic would go here
-    entry.status = StockEntryStatus.POSTED;
-    entry.isPosted = true;
-    entry.postedAt = new Date();
-    await this.stockEntryRepository.save(entry);
+    return await this.dataSource.transaction(async (manager) => {
+      for (const line of entry.lines) {
+        // 1. Process IN movement (Receipt)
+        if (line.toLocationId) {
+          const warehouseId = line.toLocationId.split(':')[0]; // Assuming format 'warehouseId:locationId' or just warehouseId
 
-    return this.findOne(id);
+          let balance = await manager.findOne(StockBalance, {
+            where: { itemId: line.itemId, warehouseId }
+          });
+
+          if (!balance) {
+            balance = manager.create(StockBalance, {
+              itemId: line.itemId,
+              itemCode: line.itemCode,
+              itemName: line.itemName,
+              warehouseId,
+              availableQuantity: 0,
+              valuationRate: 0,
+              uom: line.uom,
+            });
+          }
+
+          const method = (balance.valuationMethod as any) || 'Weighted Average';
+          const { valuationRate, stockValue } = await this.stockValuationService.calculateNewRate(
+            line.itemId,
+            warehouseId,
+            method,
+            Number(line.quantity),
+            Number(line.rate),
+            balance
+          );
+
+          balance.availableQuantity = Number(balance.availableQuantity) + Number(line.quantity);
+          balance.totalQuantity = Number(balance.totalQuantity) + Number(line.quantity);
+          balance.freeQuantity = Number(balance.freeQuantity) + Number(line.quantity);
+          balance.valuationRate = valuationRate;
+          balance.stockValue = stockValue;
+          balance.lastReceiptDate = new Date();
+
+          await manager.save(StockBalance, balance);
+        }
+
+        // 2. Process OUT movement (Issue)
+        if (line.fromLocationId) {
+          const warehouseId = line.fromLocationId.split(':')[0];
+
+          const balance = await manager.findOne(StockBalance, {
+            where: { itemId: line.itemId, warehouseId }
+          });
+
+          if (!balance || Number(balance.availableQuantity) < Number(line.quantity)) {
+            throw new BadRequestException(`Insufficient stock for item ${line.itemCode} in warehouse ${warehouseId}`);
+          }
+
+          const method = (balance.valuationMethod as any) || 'Weighted Average';
+          const { averageRate } = await this.stockValuationService.calculateIssueValue(
+            line.itemId,
+            warehouseId,
+            Number(line.quantity),
+            method
+          );
+
+          // Update the line's rate to reflect the valuation at time of issue
+          line.rate = averageRate;
+          line.amount = averageRate * Number(line.quantity);
+          await manager.save(StockEntryLine, line);
+
+          balance.availableQuantity = Number(balance.availableQuantity) - Number(line.quantity);
+          balance.totalQuantity = Number(balance.totalQuantity) - Number(line.quantity);
+          balance.freeQuantity = Number(balance.freeQuantity) - Number(line.quantity);
+          balance.stockValue = Number(balance.availableQuantity) * Number(balance.valuationRate);
+          balance.lastIssueDate = new Date();
+
+          await manager.save(StockBalance, balance);
+        }
+      }
+
+      entry.status = StockEntryStatus.POSTED;
+      entry.isPosted = true;
+      entry.postedAt = new Date();
+      const saved = await manager.save(StockEntry, entry);
+
+      return this.mapToResponseDto(saved);
+    });
   }
 
   async cancel(id: string): Promise<StockEntryResponseDto> {

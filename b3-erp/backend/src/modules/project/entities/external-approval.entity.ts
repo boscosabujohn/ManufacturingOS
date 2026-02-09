@@ -36,10 +36,10 @@ export class ExternalApproval {
     status: ApprovalStatus;
 
     @Column({ nullable: true })
-    signatureUrl: string;
+    signatureUrl?: string;
 
     @Column('text', { nullable: true })
-    comments: string;
+    comments?: string;
 
     @Column({ type: 'timestamp', nullable: true })
     expiresAt: Date;

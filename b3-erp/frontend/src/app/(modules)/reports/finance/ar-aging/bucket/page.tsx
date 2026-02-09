@@ -7,7 +7,9 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ClickableTableRow } from '@/components/reports/ClickableTableRow';
 import { Badge } from '@/components/ui/badge';
 
-export default function ARAgingBucketDetail() {
+import { Suspense } from 'react';
+
+function ARAgingBucketDetailContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const bucket = searchParams.get('bucket') || '0-30';
@@ -103,5 +105,13 @@ export default function ARAgingBucketDetail() {
                 </CardContent>
             </Card>
         </ReportDetailPage>
+    );
+}
+
+export default function ARAgingBucketDetail() {
+    return (
+        <Suspense fallback={<div>Loading aging bucket...</div>}>
+            <ARAgingBucketDetailContent />
+        </Suspense>
     );
 }

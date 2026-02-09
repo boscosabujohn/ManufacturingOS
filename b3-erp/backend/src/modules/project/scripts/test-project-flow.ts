@@ -1,7 +1,7 @@
 
 import { Test, TestingModule } from '@nestjs/testing';
-import { ProjectService } from '../services/project.service';
-import { BOQService } from '../services/boq.service';
+import { ProjectService } from '../../project-management/project.service';
+import { BOQService } from '../../project-management/services/boq.service';
 import { SalesProductionWorkflowService } from '../../workflow/services/sales-production-workflow.service';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Project } from '../entities/project.entity';
@@ -72,12 +72,12 @@ async function runProjectFlowSimulation() {
 
     // Mock project creation to return a project
     const mockProject = { id: 'project-new-1', name: 'Project for Order SO-001' };
-    jest.spyOn(projectService, 'createProject').mockResolvedValue(mockProject as any);
+    jest.spyOn(projectService, 'create').mockResolvedValue(mockProject as any);
 
     await workflowService.handleOrderConfirmed(orderPayload as any);
 
     console.log('Order Confirmed handled.');
-    expect(projectService.createProject).toHaveBeenCalled();
+    expect(projectService.create).toHaveBeenCalled();
     console.log('Project creation triggered.');
 
     // 2. Create BOQ for Project

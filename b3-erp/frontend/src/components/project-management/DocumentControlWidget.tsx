@@ -1,102 +1,86 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import {
     FileText,
+    Upload,
+    Trash2,
+    Eye,
     CheckCircle2,
     Clock,
-    AlertTriangle,
-    FileUp,
-    ExternalLink,
-    Search
+    FileImage,
+    AlertCircle,
+    Plus
 } from 'lucide-react';
 
-interface Document {
+interface Attachment {
     id: string;
-    name: string;
-    category: 'Confirmation' | 'Technical' | 'Financial' | 'Legal';
-    status: 'Approved' | 'Under Review' | 'Missing';
-    uploadDate?: string;
+    fileName: string;
+    category: string;
+    createdAt: string;
+    url: string;
 }
 
-const mockDocuments: Document[] = [
-    { id: '1', name: 'Award Letter - Taj Hotel', category: 'Confirmation', status: 'Approved', uploadDate: '2026-01-05' },
-    { id: '2', name: 'Signed Contract - Taj Hotel', category: 'Confirmation', status: 'Approved', uploadDate: '2026-01-07' },
-    { id: '3', name: 'Handover Package - Hyatt Dubai', category: 'Confirmation', status: 'Under Review', uploadDate: '2026-02-01' },
-    { id: '4', name: 'Confirmation Mail - private villa', category: 'Confirmation', status: 'Missing' },
-];
+export function DocumentControlWidget({ projectId, category }: { projectId: string; category?: string }) {
+    const [attachments, setAttachments] = useState<Attachment[]>([
+        { id: '1', fileName: 'Project_Confirmation_Email.pdf', category: 'CONFIRMATION', createdAt: '2026-02-05T10:00:00Z', url: '#' },
+        { id: '2', fileName: 'Site_Layout_V1.dwg', category: 'DRAWING', createdAt: '2026-02-06T14:30:00Z', url: '#' },
+    ]);
 
-export function DocumentControlWidget() {
+    const filtered = category ? attachments.filter(a => a.category === category) : attachments;
+
     return (
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200">
-            <div className="p-4 border-b border-gray-100 flex items-center justify-between">
+        <div className="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden">
+            <div className="p-4 bg-slate-50 border-b border-gray-100 flex justify-between items-center">
                 <div className="flex items-center gap-2">
-                    <FileText className="w-5 h-5 text-blue-600" />
-                    <h2 className="text-lg font-bold text-gray-900">Document Control (Phase 1)</h2>
+                    <FileText className="w-4 h-4 text-slate-400" />
+                    <h3 className="text-[10px] font-black uppercase tracking-widest text-slate-500">Document Control</h3>
                 </div>
-                <button className="text-xs text-blue-600 font-bold hover:underline">View All</button>
+                <button className="p-1.5 bg-white border border-gray-200 rounded-lg text-indigo-600 hover:bg-indigo-50 transition-all">
+                    <Plus className="w-4 h-4" />
+                </button>
             </div>
 
-            <div className="p-4">
-                <div className="flex items-center gap-2 mb-4 bg-blue-50 p-3 rounded-lg border border-blue-100">
-                    <AlertTriangle className="w-4 h-4 text-blue-600" />
-                    <p className="text-xs text-blue-800 font-medium">
-                        3 of 4 projects have confirmed handover packages.
-                    </p>
-                </div>
-
-                <div className="space-y-3">
-                    {mockDocuments.map((doc) => (
-                        <div key={doc.id} className="flex items-center justify-between p-2 hover:bg-gray-50 rounded-lg transition-colors border border-transparent hover:border-gray-200">
-                            <div className="flex items-center gap-3">
-                                <div className={`w-8 h-8 rounded flex items-center justify-center ${doc.status === 'Approved' ? 'bg-green-50' :
-                                        doc.status === 'Under Review' ? 'bg-blue-50' : 'bg-red-50'
-                                    }`}>
-                                    <FileText className={`w-4 h-4 ${doc.status === 'Approved' ? 'text-green-600' :
-                                            doc.status === 'Under Review' ? 'text-blue-600' : 'text-red-600'
-                                        }`} />
-                                </div>
-                                <div>
-                                    <p className="text-sm font-bold text-gray-900 leading-none">{doc.name}</p>
-                                    <p className="text-[10px] text-gray-500 mt-1">
-                                        {doc.category} • {doc.uploadDate || 'Not Uploaded'}
-                                    </p>
-                                </div>
+            <div className="divide-y divide-gray-50">
+                {filtered.map((file) => (
+                    <div key={file.id} className="p-4 flex items-center justify-between hover:bg-slate-50/50 transition-all group">
+                        <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-400 group-hover:bg-indigo-50 group-hover:text-indigo-600 transition-colors">
+                                {file.fileName.endsWith('.pdf') ? <FileText className="w-5 h-5" /> : <FileImage className="w-5 h-5" />}
                             </div>
-
-                            <div className="flex items-center gap-2">
-                                {doc.status === 'Approved' ? (
-                                    <CheckCircle2 className="w-4 h-4 text-green-500" />
-                                ) : doc.status === 'Under Review' ? (
-                                    <Clock className="w-4 h-4 text-blue-500" />
-                                ) : (
-                                    <button className="flex items-center gap-1 bg-red-600 text-white px-2 py-1 rounded text-[10px] font-bold hover:bg-red-700">
-                                        <FileUp className="w-3 h-3" />
-                                        Upload
-                                    </button>
-                                )}
-                                {doc.status !== 'Missing' && (
-                                    <button className="p-1 text-gray-400 hover:text-blue-600 rounded">
-                                        <ExternalLink className="w-3 h-3" />
-                                    </button>
-                                )}
+                            <div>
+                                <h4 className="text-xs font-black text-slate-900 uppercase tracking-tight truncate max-w-[150px]">{file.fileName}</h4>
+                                <div className="flex items-center gap-2 mt-0.5">
+                                    <span className="text-[8px] font-black text-slate-400 uppercase tracking-widest bg-slate-50 px-1.5 py-0.5 rounded">{file.category}</span>
+                                    <span className="text-[8px] font-bold text-slate-300">Added 2h ago</span>
+                                </div>
                             </div>
                         </div>
-                    ))}
-                </div>
+                        <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <button className="p-2 text-slate-400 hover:text-indigo-600 rounded-lg hover:bg-white transition-all">
+                                <Eye className="w-4 h-4" />
+                            </button>
+                            <button className="p-2 text-slate-400 hover:text-rose-600 rounded-lg hover:bg-white transition-all">
+                                <Trash2 className="w-4 h-4" />
+                            </button>
+                        </div>
+                    </div>
+                ))}
 
-                <div className="mt-4 pt-4 border-t border-gray-100">
-                    <div className="flex items-center justify-between mb-2 text-[10px] font-bold text-gray-500 uppercase">
-                        <span>Handover Status</span>
-                        <span>75%</span>
+                {filtered.length === 0 && (
+                    <div className="p-10 text-center">
+                        <Upload className="w-8 h-8 text-slate-200 mx-auto" />
+                        <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mt-4">No documents found</p>
                     </div>
-                    <div className="w-full bg-gray-100 rounded-full h-1.5">
-                        <div className="bg-blue-600 h-1.5 rounded-full" style={{ width: '75%' }}></div>
-                    </div>
-                </div>
+                )}
+            </div>
+
+            <div className="p-4 bg-slate-50 border-t border-gray-100">
+                <button className="w-full py-3 bg-white border-2 border-dashed border-slate-200 rounded-2xl flex items-center justify-center gap-2 group hover:border-indigo-300 transition-all">
+                    <Upload className="w-4 h-4 text-slate-300 group-hover:text-indigo-500" />
+                    <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest group-hover:text-indigo-600">Drop files to upload</span>
+                </button>
             </div>
         </div>
     );
 }
-
-export default DocumentControlWidget;

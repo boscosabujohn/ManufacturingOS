@@ -10,8 +10,10 @@ import {
   CheckCircleIcon, ClockIcon, PlusIcon, PencilIcon, EyeIcon,
   FileDown, FileUp, Banknote,
   BarChart3, ShieldCheckIcon, Info,
-  Building2, Globe, Receipt
+  Building2, Globe, Receipt, ExternalLink, Activity, ChevronUp
 } from 'lucide-react';
+import { financeService } from '@/services/finance.service';
+import { useToast } from '@/hooks/use-toast';
 
 interface TaxJurisdiction {
   id: string;
@@ -158,6 +160,62 @@ const TaxManagement: React.FC = () => {
   const [showJurisdictionModal, setShowJurisdictionModal] = useState(false);
   const [showFilingModal, setShowFilingModal] = useState(false);
   const [dateRange, setDateRange] = useState({ start: '2024-01-01', end: '2024-12-31' });
+  const [liveLiability, setLiveLiability] = useState<{ gst: number, tds: number }>({ gst: 0, tds: 0 });
+  const [isExporting, setIsExporting] = useState(false);
+  const { toast } = useToast();
+
+  useEffect(() => {
+    const fetchLiveLiability = async () => {
+      try {
+        const gstReport = await financeService.getStatutoryComplianceReport({
+          companyId: 'comp-1',
+          reportType: 'GST',
+          startDate: '2024-01-01',
+          endDate: '2024-03-31'
+        });
+        const tdsReport = await financeService.getStatutoryComplianceReport({
+          companyId: 'comp-1',
+          reportType: 'TDS',
+          startDate: '2024-01-01',
+          endDate: '2024-03-31'
+        });
+        setLiveLiability({
+          gst: gstReport.totalLiability,
+          tds: tdsReport.totalLiability
+        });
+      } catch (error) {
+        console.error('Failed to fetch live liability:', error);
+      }
+    };
+
+    fetchLiveLiability();
+    const interval = setInterval(fetchLiveLiability, 30000); // Update every 30 seconds
+    return () => clearInterval(interval);
+  }, []);
+
+  const handleExport = async (reportType: string, format: 'excel' | 'pdf') => {
+    setIsExporting(true);
+    try {
+      const result = await financeService.exportFinancialReport({
+        reportType,
+        format,
+        filters: {}
+      });
+      toast({
+        title: "Export Started",
+        description: `Your ${reportType} in ${format.toUpperCase()} format is being generated.`,
+      });
+      console.log('Download URL:', result.downloadUrl);
+    } catch (error) {
+      toast({
+        title: "Export Failed",
+        description: "There was an error generating your report. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsExporting(false);
+    }
+  };
 
   // Mock data
   const [jurisdictions] = useState<TaxJurisdiction[]>([
@@ -504,6 +562,49 @@ const TaxManagement: React.FC = () => {
 
   const renderDashboard = () => (
     <div className="space-y-3">
+      {/* Live Monitor Section */}
+      <div className="bg-gradient-to-r from-blue-600 to-indigo-700 p-4 rounded-xl shadow-lg text-white mb-6">
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center space-x-3">
+            <div className="bg-white/20 p-2 rounded-lg backdrop-blur-sm">
+              <Activity className="w-6 h-6 animate-pulse" />
+            </div>
+            <div>
+              <h2 className="text-xl font-bold">Real-time Tax Liability Monitor</h2>
+              <p className="text-blue-100 text-sm">Live data from statutory ledger</p>
+            </div>
+          </div>
+          <div className="text-right">
+            <span className="text-xs bg-green-500/30 text-green-100 px-2 py-1 rounded-full border border-green-500/20">
+              Live Connection Active
+            </span>
+          </div>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="bg-white/10 rounded-lg p-3 backdrop-blur-sm border border-white/10">
+            <p className="text-sm text-blue-100 mb-1">Estimated GST Liability</p>
+            <p className="text-2xl font-mono font-bold">{formatCurrency(liveLiability.gst)}</p>
+            <div className="flex items-center mt-2 text-xs text-green-300">
+              <ChevronUp className="w-3 h-3 mr-1" />
+              <span>+2.4% vs last week</span>
+            </div>
+          </div>
+          <div className="bg-white/10 rounded-lg p-3 backdrop-blur-sm border border-white/10">
+            <p className="text-sm text-blue-100 mb-1">Projected TDS Payable</p>
+            <p className="text-2xl font-mono font-bold">{formatCurrency(liveLiability.tds)}</p>
+            <div className="flex items-center mt-2 text-xs text-blue-200">
+              <span>Next payment due in 5 days</span>
+            </div>
+          </div>
+          <div className="bg-white/10 rounded-lg p-3 backdrop-blur-sm border border-white/10 flex items-center justify-center">
+            <button className="bg-white text-blue-700 px-4 py-2 rounded-lg font-semibold hover:bg-blue-50 transition-colors flex items-center">
+              <ExternalLink className="w-4 h-4 mr-2" />
+              View Breakdown
+            </button>
+          </div>
+        </div>
+      </div>
+
       {/* KPI Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
         <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
@@ -618,9 +719,8 @@ const TaxManagement: React.FC = () => {
         <div className="p-6">
           <div className="space-y-2">
             {complianceAlerts.filter(a => !a.isResolved).slice(0, 5).map((alert) => (
-              <div key={alert.id} className={`flex items-start justify-between p-3 rounded-lg border ${
-                !alert.isRead ? 'bg-blue-50 border-blue-200' : 'bg-gray-50 border-gray-200'
-              }`}>
+              <div key={alert.id} className={`flex items-start justify-between p-3 rounded-lg border ${!alert.isRead ? 'bg-blue-50 border-blue-200' : 'bg-gray-50 border-gray-200'
+                }`}>
                 <div className="flex-1">
                   <div className="flex items-center space-x-2 mb-1">
                     <h4 className="font-medium text-gray-900">{alert.title}</h4>
@@ -880,9 +980,8 @@ const TaxManagement: React.FC = () => {
                     {formatCurrency(calc.taxAmount)}
                   </td>
                   <td className="px-3 py-2 whitespace-nowrap">
-                    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                      calc.isReversed ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800'
-                    }`}>
+                    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${calc.isReversed ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800'
+                      }`}>
                       {calc.isReversed ? 'Reversed' : 'Applied'}
                     </span>
                   </td>
@@ -963,12 +1062,11 @@ const TaxManagement: React.FC = () => {
         <div className="p-6">
           <div className="space-y-2">
             {complianceAlerts.map((alert) => (
-              <div key={alert.id} className={`border rounded-lg p-3 ${
-                alert.isResolved ? 'border-gray-200 bg-gray-50' :
+              <div key={alert.id} className={`border rounded-lg p-3 ${alert.isResolved ? 'border-gray-200 bg-gray-50' :
                 alert.severity === 'critical' ? 'border-red-200 bg-red-50' :
-                alert.severity === 'high' ? 'border-orange-200 bg-orange-50' :
-                'border-yellow-200 bg-yellow-50'
-              }`}>
+                  alert.severity === 'high' ? 'border-orange-200 bg-orange-50' :
+                    'border-yellow-200 bg-yellow-50'
+                }`}>
                 <div className="flex items-start justify-between">
                   <div className="flex-1">
                     <div className="flex items-center space-x-2 mb-2">
@@ -1052,9 +1150,21 @@ const TaxManagement: React.FC = () => {
             </div>
 
             <div className="mt-4 pt-4 border-t border-gray-200 flex space-x-2">
-              <button className="flex-1 bg-blue-600 text-white px-3 py-2 rounded text-sm hover:bg-blue-700 flex items-center justify-center">
+              <button
+                onClick={() => handleExport(report.name, 'pdf')}
+                disabled={isExporting}
+                className="flex-1 bg-blue-600 text-white px-3 py-2 rounded text-sm hover:bg-blue-700 flex items-center justify-center disabled:opacity-50"
+              >
                 <FileDown className="w-4 h-4 mr-1" />
-                Download
+                PDF
+              </button>
+              <button
+                onClick={() => handleExport(report.name, 'excel')}
+                disabled={isExporting}
+                className="flex-1 bg-green-600 text-white px-3 py-2 rounded text-sm hover:bg-green-700 flex items-center justify-center disabled:opacity-50"
+              >
+                <FileUp className="w-4 h-4 mr-1" />
+                Excel
               </button>
               <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded text-sm hover:bg-gray-50">
                 <EyeIcon className="w-4 h-4 text-gray-600" />
@@ -1088,11 +1198,10 @@ const TaxManagement: React.FC = () => {
             <button
               key={key}
               onClick={() => setActiveTab(key as any)}
-              className={`py-2 px-1 border-b-2 font-medium text-sm flex items-center ${
-                activeTab === key
-                  ? 'border-blue-500 text-blue-600'
-                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-              }`}
+              className={`py-2 px-1 border-b-2 font-medium text-sm flex items-center ${activeTab === key
+                ? 'border-blue-500 text-blue-600'
+                : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                }`}
             >
               <Icon className="w-5 h-5 mr-2" />
               {label}

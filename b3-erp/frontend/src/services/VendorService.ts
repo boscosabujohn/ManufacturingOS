@@ -42,6 +42,31 @@ export interface VendorEvaluation {
     createdAt: string;
 }
 
+export interface VendorContract {
+    id: string;
+    contractNumber: string;
+    title: string;
+    description?: string;
+    contractType: 'framework' | 'rate' | 'quantity' | 'value' | 'service' | 'maintenance';
+    status: 'draft' | 'pending_approval' | 'active' | 'expired' | 'terminated' | 'suspended' | 'renewed';
+    vendorId: string;
+    vendorName: string;
+    vendorCode?: string;
+    startDate: string;
+    endDate: string;
+    totalValue?: number;
+    currency: string;
+    utilizationPercentage: number;
+    autoRenewal: boolean;
+}
+
+export interface VendorScorecard {
+    onTimeDeliveryPercentage: number;
+    qualityPassRate: number;
+    totalOrders: number;
+    totalDeliveries: number;
+}
+
 export interface CreateVendorDto {
     vendorCode: string;
     vendorName: string;
@@ -120,7 +145,34 @@ export const vendorService = {
     },
 
     async getVendorPerformanceReport(vendorId: string): Promise<any> {
-        const response = await apiClient.get<any>(`/vendor-evaluations/report/${vendorId}`);
+        const response = await apiClient.get<any>(`/procurement/vendor-evaluations/vendor/${vendorId}/performance`);
+        return response.data;
+    },
+
+    async getVendorScorecard(vendorId: string): Promise<VendorScorecard> {
+        const response = await apiClient.get<VendorScorecard>(`/procurement/vendor-evaluations/vendor/${vendorId}/scorecard`);
+        return response.data;
+    },
+
+    // Contract Management
+    async getContracts(filters?: any): Promise<VendorContract[]> {
+        const params = new URLSearchParams(filters);
+        const response = await apiClient.get<VendorContract[]>(`/procurement/contracts?${params.toString()}`);
+        return response.data;
+    },
+
+    async getContractById(id: string): Promise<VendorContract> {
+        const response = await apiClient.get<VendorContract>(`/procurement/contracts/${id}`);
+        return response.data;
+    },
+
+    async getExpiringContracts(days: number = 30): Promise<VendorContract[]> {
+        const response = await apiClient.get<VendorContract[]>(`/procurement/contracts/expiring?days=${days}`);
+        return response.data;
+    },
+
+    async getContractStatistics(): Promise<any> {
+        const response = await apiClient.get<any>('/procurement/contracts/statistics');
         return response.data;
     }
 };

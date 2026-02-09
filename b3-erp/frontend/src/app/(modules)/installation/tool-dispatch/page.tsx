@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
@@ -27,7 +27,7 @@ interface ProjectInfo {
     status: string;
 }
 
-export default function ToolDispatchPage() {
+function ToolDispatchPageContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const { toast } = useToast();
@@ -237,5 +237,13 @@ export default function ToolDispatchPage() {
                 </Card>
             </div>
         </div>
+    );
+}
+
+export default function ToolDispatchPage() {
+    return (
+        <Suspense fallback={<div>Loading tool dispatch...</div>}>
+            <ToolDispatchPageContent />
+        </Suspense>
     );
 }

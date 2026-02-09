@@ -11,8 +11,13 @@ import {
   TrendingUp,
   Calendar,
   ArrowUpRight,
-  Star
+  Star,
+  ShieldCheck,
+  Zap,
+  Book,
+  Layers
 } from 'lucide-react'
+import Link from 'next/link'
 
 interface ServiceStats {
   totalTickets: number
@@ -38,6 +43,9 @@ interface ServiceTicket {
   createdDate: string
   estimatedResolution: string
   satisfaction: number | null
+  slaStatus: 'on_track' | 'breached' | 'at_risk'
+  responseDeadline: string
+  resolutionDeadline: string
 }
 
 export default function AfterSalesServiceDashboard() {
@@ -65,7 +73,10 @@ export default function AfterSalesServiceDashboard() {
       assignedTo: 'Service Engineer A',
       createdDate: '2025-10-16',
       estimatedResolution: '2025-10-19',
-      satisfaction: null
+      satisfaction: null,
+      slaStatus: 'on_track',
+      responseDeadline: '2025-10-16T14:00:00',
+      resolutionDeadline: '2025-10-19T10:00:00'
     },
     {
       id: 'SRV-2025-457',
@@ -77,7 +88,10 @@ export default function AfterSalesServiceDashboard() {
       assignedTo: 'Service Engineer B',
       createdDate: '2025-10-15',
       estimatedResolution: '2025-10-22',
-      satisfaction: null
+      satisfaction: null,
+      slaStatus: 'breached',
+      responseDeadline: '2025-10-15T10:00:00',
+      resolutionDeadline: '2025-10-16T18:00:00'
     },
     {
       id: 'SRV-2025-458',
@@ -89,7 +103,10 @@ export default function AfterSalesServiceDashboard() {
       assignedTo: 'Service Engineer C',
       createdDate: '2025-10-14',
       estimatedResolution: '2025-10-17',
-      satisfaction: 5
+      satisfaction: 5,
+      slaStatus: 'on_track',
+      responseDeadline: '2025-10-14T15:00:00',
+      resolutionDeadline: '2025-10-17T12:00:00'
     },
     {
       id: 'SRV-2025-459',
@@ -101,7 +118,10 @@ export default function AfterSalesServiceDashboard() {
       assignedTo: 'Not Assigned',
       createdDate: '2025-10-18',
       estimatedResolution: '2025-10-25',
-      satisfaction: null
+      satisfaction: null,
+      slaStatus: 'at_risk',
+      responseDeadline: '2025-10-18T22:00:00',
+      resolutionDeadline: '2025-10-25T10:00:00'
     }
   ])
 
@@ -145,10 +165,26 @@ export default function AfterSalesServiceDashboard() {
             <h1 className="text-3xl font-bold text-gray-900">After-Sales Service</h1>
             <p className="text-gray-600 mt-1">Service tickets, warranty management, and customer support</p>
           </div>
-          <button className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-rose-600 to-pink-600 text-white rounded-lg hover:from-rose-700 hover:to-pink-700 transition-all shadow-md">
-            <Wrench className="h-5 w-5" />
-            New Service Ticket
-          </button>
+          <div className="flex gap-2">
+            <Link
+              href="/after-sales-service/knowledge"
+              className="flex items-center gap-2 px-4 py-2 bg-white border border-rose-200 text-rose-600 rounded-lg hover:bg-rose-50 transition-all shadow-sm"
+            >
+              <Book className="h-5 w-5" />
+              Knowledge Base
+            </Link>
+            <Link
+              href="/after-sales-service/parts"
+              className="flex items-center gap-2 px-4 py-2 bg-white border border-rose-200 text-rose-600 rounded-lg hover:bg-rose-50 transition-all shadow-sm"
+            >
+              <Layers className="h-5 w-5" />
+              Spare Parts
+            </Link>
+            <button className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-rose-600 to-pink-600 text-white rounded-lg hover:from-rose-700 hover:to-pink-700 transition-all shadow-md">
+              <Wrench className="h-5 w-5" />
+              New Service Ticket
+            </button>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
@@ -229,17 +265,20 @@ export default function AfterSalesServiceDashboard() {
                     <p className="text-sm font-medium text-gray-700">{ticket.product}</p>
                     <p className="text-sm text-gray-600 mt-1">{ticket.issue}</p>
                   </div>
-                  <div className="flex items-center justify-between text-sm">
-                    <div className="flex items-center gap-2">
-                      <span className="text-gray-600 text-xs">Assigned: {ticket.assignedTo}</span>
-                      {ticket.satisfaction && (
-                        <div className="flex items-center gap-1">
-                          <Star className="h-4 w-4 text-yellow-500 fill-yellow-500" />
-                          <span className="font-medium text-gray-900">{ticket.satisfaction}/5</span>
-                        </div>
-                      )}
+                  <div className="flex items-center justify-between text-sm pt-3 border-t border-gray-50 mt-3">
+                    <div className="flex items-center gap-4">
+                      <div className="flex items-center gap-2">
+                        <span className="text-gray-600 text-xs">Assigned: {ticket.assignedTo}</span>
+                      </div>
+                      <div className={`flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] font-bold uppercase ${ticket.slaStatus === 'on_track' ? 'bg-green-50 text-green-700' :
+                          ticket.slaStatus === 'at_risk' ? 'bg-amber-50 text-amber-700' :
+                            'bg-red-50 text-red-700'
+                        }`}>
+                        <Zap className="h-3 w-3" />
+                        SLA: {ticket.slaStatus.replace('_', ' ')}
+                      </div>
                     </div>
-                    <span className="text-gray-600 text-xs">ETA: {ticket.estimatedResolution}</span>
+                    <span className="text-gray-600 text-xs font-medium">ETA: {ticket.estimatedResolution}</span>
                   </div>
                 </div>
               ))}

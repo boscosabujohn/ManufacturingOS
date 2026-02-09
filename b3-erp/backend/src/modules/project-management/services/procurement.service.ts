@@ -34,7 +34,7 @@ export class ProcurementService {
         for (const detail of bomDetails) {
             // Simulated stock check: Reserve if item quantity in stock > requested
             // In a real system, we'd check item.currentStock
-            if (detail.item.name.includes('Steel')) { // Mock logic
+            if (detail.item.itemName.includes('Steel')) { // Mock logic
                 const reservation = this.reservationRepository.create({
                     projectId,
                     bomDetailId: detail.id,

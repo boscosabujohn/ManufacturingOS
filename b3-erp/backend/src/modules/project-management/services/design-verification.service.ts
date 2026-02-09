@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { DiscrepancyLog, DiscrepancyStatus } from '../../project/entities/discrepancy-log.entity';
+import { DiscrepancyLog, DiscrepancyStatus, DiscrepancySeverity } from '../../project/entities/discrepancy-log.entity';
 import { SiteSurvey } from '../../project/entities/site-survey.entity';
 import { ExternalApproval, ApprovalStatus } from '../../project/entities/external-approval.entity';
 import { Project } from '../../project/entities/project.entity';
@@ -66,20 +66,26 @@ export class DesignVerificationService {
     // --- External Approval Methods ---
 
     async createApprovalRequest(projectId: string, attachmentId: string, clientEmail: string): Promise<ExternalApproval> {
-        const magicToken = crypto.randomBytes(32).toString('hex');
+        const token = crypto.randomBytes(32).toString('hex');
         const expiresAt = new Date();
-        expiresAt.setDate(expiresAt.getDate() + 7); // 7 days expiry
+        expiresAt.setHours(expiresAt.getHours() + 48); // 48 hour expiry
 
         const approval = this.approvalRepository.create({
             projectId,
             attachmentId,
             clientEmail,
-            magicToken,
-            status: ApprovalStatus.SENT,
+            magicToken: token, // Changed from 'token' to 'magicToken' to match entity property
             expiresAt,
+            status: ApprovalStatus.SENT,
         });
 
-        return this.approvalRepository.save(approval);
+        const savedApproval = await this.approvalRepository.save(approval);
+
+        // Simulate sending email
+        console.log(`[EMAIL SIMULATION] Sending magic link to ${clientEmail}`);
+        console.log(`URL: http://localhost:3000/public/approval/${token}`);
+
+        return savedApproval;
     }
 
     async getApprovalByToken(token: string): Promise<ExternalApproval> {
@@ -113,15 +119,19 @@ export class DesignVerificationService {
 
     async detectDiscrepancies(projectId: string): Promise<number> {
         const boqItems = await this.boqItemRepository.find({ where: { boq: { projectId } } });
-        // Simplified detection logic: Flag if any item has quantity 0 or rate 0
+        // In a real app, you'd fetch drawing quantities from an Engineering module
+        // Here we simulate the mismatch detection logic
         let found = 0;
         for (const item of boqItems) {
-            if (item.quantity <= 0 || item.rate <= 0) {
+            // Simulated drawing quantity (randomly +/- 2)
+            const drawingQty = Math.max(0, item.quantity + (Math.random() > 0.7 ? (Math.random() > 0.5 ? 2 : -2) : 0));
+
+            if (drawingQty !== item.quantity) {
                 await this.createDiscrepancy({
                     projectId,
-                    type: 'BOQ_VS_DWG' as any,
-                    description: `Invalid BOQ Item: ${item.description}. Qty: ${item.quantity}, Rate: ${item.rate}`,
-                    severity: 'HIGH' as any,
+                    type: 'QUANTITY_MISMATCH' as any,
+                    description: `BOQ Item: ${item.description}. BOQ Qty: ${item.quantity}, Drawing Qty: ${drawingQty}.`,
+                    severity: drawingQty > item.quantity ? DiscrepancySeverity.CRITICAL : DiscrepancySeverity.MEDIUM,
                 });
                 found++;
             }

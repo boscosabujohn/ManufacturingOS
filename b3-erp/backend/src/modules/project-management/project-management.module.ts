@@ -37,6 +37,11 @@ import { DispatchRecord } from './entities/dispatch-record.entity';
 import { SiteReadiness } from './entities/site-readiness.entity';
 import { InstallationTask } from './entities/installation-task.entity';
 import { HandoverCertificate } from './entities/handover-certificate.entity';
+import { ToolDeployment } from './entities/tool-deployment.entity';
+import { DailyInstallReport } from './entities/daily-install-report.entity';
+import { Invoice } from '../finance/entities/invoice.entity';
+import { PurchaseOrder } from '../procurement/entities/purchase-order.entity';
+import { GeneralLedger } from '../finance/entities/general-ledger.entity';
 
 import { ProjectTasksService } from './services/project-tasks.service';
 import { ProjectResourcesService } from './services/project-resources.service';
@@ -55,10 +60,18 @@ import { ProductionService } from './services/production.service';
 import { QCPackagingService } from './services/qc-packaging.service';
 import { LogisticsInstallationService } from './services/logistics-installation.service';
 import { ProjectClosureService } from './services/project-closure.service';
+import { ProjectAttachmentService } from './services/project-attachment.service';
+import { ToolManagementService } from './services/tool-management.service';
 
 import { ProjectStatusSeederService } from './services/project-status-seeder.service';
 import { ProjectTypeSeederService } from './services/project-type-seeder.service';
 import { ProjectSeederService } from './services/project-seeder.service';
+import {
+    InvoiceSyncSubscriber,
+    PurchaseOrderSyncSubscriber,
+    TimeLogSyncSubscriber
+} from './subscribers/project-finance-sync.subscriber';
+import { ProjectFinanceSeederService } from './services/project-finance-seeder.service';
 
 import { ProjectTasksController } from './controllers/project-tasks.controller';
 import { ProjectResourcesController } from './controllers/project-resources.controller';
@@ -73,6 +86,8 @@ import { ProductionController } from './controllers/production.controller';
 import { QCPackagingController } from './controllers/qc-packaging.controller';
 import { LogisticsInstallationController } from './controllers/logistics-installation.controller';
 import { ProjectClosureController } from './controllers/project-closure.controller';
+import { ProjectAttachmentController } from './controllers/project-attachment.controller';
+import { ToolManagementController } from './controllers/tool-management.controller';
 
 @Module({
     imports: [TypeOrmModule.forFeature([
@@ -106,7 +121,12 @@ import { ProjectClosureController } from './controllers/project-closure.controll
         DispatchRecord,
         SiteReadiness,
         InstallationTask,
-        HandoverCertificate
+        HandoverCertificate,
+        ToolDeployment,
+        DailyInstallReport,
+        Invoice,
+        PurchaseOrder,
+        GeneralLedger
     ])],
     controllers: [
         ProjectController,
@@ -126,7 +146,9 @@ import { ProjectClosureController } from './controllers/project-closure.controll
         ProductionController,
         QCPackagingController,
         LogisticsInstallationController,
-        ProjectClosureController
+        ProjectClosureController,
+        ProjectAttachmentController,
+        ToolManagementController
     ],
     providers: [
         ProjectService,
@@ -146,9 +168,15 @@ import { ProjectClosureController } from './controllers/project-closure.controll
         QCPackagingService,
         LogisticsInstallationService,
         ProjectClosureService,
+        ProjectAttachmentService,
+        ToolManagementService,
         ProjectStatusSeederService,
         ProjectTypeSeederService,
-        ProjectSeederService
+        ProjectSeederService,
+        InvoiceSyncSubscriber,
+        PurchaseOrderSyncSubscriber,
+        TimeLogSyncSubscriber,
+        ProjectFinanceSeederService
     ],
     exports: [
         ProjectService,
@@ -159,7 +187,9 @@ import { ProjectClosureController } from './controllers/project-closure.controll
         ProjectResourcesService,
         ProjectBudgetsService,
         ProjectMilestonesService,
-        TimeLogsService
+        ProjectMilestonesService,
+        TimeLogsService,
+        BOQService,
     ],
 })
 export class ProjectManagementModule { }

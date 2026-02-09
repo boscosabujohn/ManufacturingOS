@@ -9,3 +9,4 @@ export * from './production-entry.service';
 export * from './work-center-seeder.service';
 export * from './operation-seeder.service';
 export * from './work-order-status-seeder.service';
+export * from './maintenance-log.service';

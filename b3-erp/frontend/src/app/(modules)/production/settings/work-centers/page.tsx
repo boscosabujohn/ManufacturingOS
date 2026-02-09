@@ -2,8 +2,10 @@
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { ArrowLeft, Plus, Search, Edit2, Trash2, Settings, MapPin, Users, Clock, Activity, Loader2, AlertCircle } from 'lucide-react';
+import { ArrowLeft, Plus, Search, Edit2, Trash2, Settings, MapPin, Users, Clock, Activity, Loader2, AlertCircle, X, BarChart3, Wrench } from 'lucide-react';
 import { workCenterService, WorkCenter as ServiceWorkCenter } from '@/services/work-center.service';
+import { ShiftManager } from '@/components/production/ShiftManager';
+import { MaintenanceLogList } from '@/components/production/MaintenanceLogList';
 
 interface WorkCenter {
   id: string;
@@ -58,31 +60,39 @@ export default function WorkCentersSettingsPage() {
   const [error, setError] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [filterStatus, setFilterStatus] = useState<string>('all');
+  const [selectedWC, setSelectedWC] = useState<ServiceWorkCenter | null>(null);
+  const [isPanelOpen, setIsPanelOpen] = useState(false);
 
   // Fetch work centers from service
-  useEffect(() => {
-    async function fetchWorkCenters() {
-      setLoading(true);
-      setError(null);
-      try {
-        const data = await workCenterService.getAllWorkCenters();
-        setWorkCenters(data.map(mapServiceWorkCenterToLocal));
-      } catch (err) {
-        console.error('Error fetching work centers:', err);
-        setError('Failed to load work centers. Please try again.');
-      } finally {
-        setLoading(false);
-      }
+  const fetchWorkCenters = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const data = await workCenterService.getAllWorkCenters();
+      setWorkCenters(data.map(mapServiceWorkCenterToLocal));
+    } catch (err) {
+      console.error('Error fetching work centers:', err);
+      setError('Failed to load work centers. Please try again.');
+    } finally {
+      setLoading(false);
     }
+  };
 
+  useEffect(() => {
     fetchWorkCenters();
   }, []);
+
+  const handleSaveShifts = async (shifts: any[]) => {
+    if (!selectedWC) return;
+    await workCenterService.updateWorkCenterShifts(selectedWC.id, shifts);
+    await fetchWorkCenters();
+  };
 
 
   const filteredWorkCenters = workCenters.filter(wc => {
     const matchesSearch = wc.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         wc.code.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         wc.department.toLowerCase().includes(searchQuery.toLowerCase());
+      wc.code.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      wc.department.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesStatus = filterStatus === 'all' || wc.status === filterStatus;
     return matchesSearch && matchesStatus;
   });
@@ -302,13 +312,26 @@ export default function WorkCentersSettingsPage() {
                   </td>
                   <td className="px-4 py-3">
                     <div className="flex items-center justify-center gap-2">
-                      <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
-                        <Edit2 className="w-4 h-4 text-gray-600" />
-                        <span className="text-gray-700">Edit</span>
+                      <button
+                        onClick={async () => {
+                          const data = await workCenterService.getWorkCenterById(wc.id);
+                          setSelectedWC(data);
+                          setIsPanelOpen(true);
+                        }}
+                        className="inline-flex items-center gap-1.5 px-3 py-2 border border-blue-300 rounded-lg hover:bg-blue-50 text-sm font-semibold text-blue-600 transition-colors"
+                      >
+                        <Wrench className="w-4 h-4" />
+                        Manage
                       </button>
-                      <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-red-300 rounded-lg hover:bg-red-50 text-sm">
-                        <Trash2 className="w-4 h-4 text-red-600" />
-                        <span className="text-red-600">Delete</span>
+                      <button
+                        onClick={() => router.push(`/production/analytics/work-centers/${wc.id}`)}
+                        className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-gray-600 transition-colors"
+                        title="Analytics"
+                      >
+                        <BarChart3 className="w-4 h-4" />
+                      </button>
+                      <button className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-gray-600 transition-colors">
+                        <Edit2 className="w-4 h-4" />
                       </button>
                     </div>
                   </td>
@@ -324,6 +347,42 @@ export default function WorkCentersSettingsPage() {
           </div>
         )}
       </div>
+
+      {/* Side Management Panel */}
+      {isPanelOpen && selectedWC && (
+        <>
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-40 transition-opacity" onClick={() => setIsPanelOpen(false)} />
+          <div className="fixed right-0 top-0 h-full w-full max-w-2xl bg-white shadow-2xl z-50 overflow-y-auto animate-in slide-in-from-right duration-300">
+            <div className="p-6">
+              <div className="flex items-center justify-between mb-8 border-b pb-4">
+                <div>
+                  <h2 className="text-2xl font-black text-gray-900">{selectedWC.workCenterCode}</h2>
+                  <p className="text-gray-500 font-medium">{selectedWC.workCenterName}</p>
+                </div>
+                <button
+                  onClick={() => setIsPanelOpen(false)}
+                  className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                >
+                  <X className="w-6 h-6 text-gray-400" />
+                </button>
+              </div>
+
+              <div className="space-y-8">
+                <section>
+                  <ShiftManager
+                    initialShifts={(selectedWC as any).shifts}
+                    onSave={handleSaveShifts}
+                  />
+                </section>
+
+                <section>
+                  <MaintenanceLogList workCenterId={selectedWC.id} />
+                </section>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }

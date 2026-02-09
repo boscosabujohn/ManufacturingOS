@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
@@ -33,7 +33,7 @@ interface FinalCheck {
     status: 'Pending' | 'Perfect' | 'Adjusted';
 }
 
-export default function FinalAlignPage() {
+function FinalAlignPageContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const { toast } = useToast();
@@ -275,5 +275,13 @@ export default function FinalAlignPage() {
                 </Card>
             </div>
         </div>
+    );
+}
+
+export default function FinalAlignPage() {
+    return (
+        <Suspense fallback={<div>Loading alignment...</div>}>
+            <FinalAlignPageContent />
+        </Suspense>
     );
 }

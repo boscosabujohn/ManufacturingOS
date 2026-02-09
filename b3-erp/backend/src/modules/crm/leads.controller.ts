@@ -16,7 +16,7 @@ import { UpdateLeadDto } from './dto/update-lead.dto';
 
 @Controller('crm/leads')
 export class LeadsController {
-  constructor(private readonly leadsService: LeadsService) {}
+  constructor(private readonly leadsService: LeadsService) { }
 
   @Post()
   @HttpCode(HttpStatus.CREATED)
@@ -52,6 +52,23 @@ export class LeadsController {
   @Get('stats')
   getStats() {
     return this.leadsService.getStats();
+  }
+
+  @Get('analytics/sources')
+  async getSourceAnalytics() {
+    return this.leadsService.getLeadSourceAnalytics();
+  }
+
+  @Get('analytics/conversion')
+  async getConversionStats() {
+    return this.leadsService.getLeadConversionStats();
+  }
+
+  @Post(':id/auto-assign')
+  async autoAssign(@Param('id') id: string) {
+    const lead = await this.leadsService.findOne(id);
+    await this.leadsService.autoAssignLead(lead);
+    return this.leadsService.update(id, lead as any);
   }
 
   @Get(':id')

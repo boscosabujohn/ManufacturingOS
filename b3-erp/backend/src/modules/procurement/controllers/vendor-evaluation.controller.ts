@@ -21,7 +21,7 @@ import {
 @ApiTags('Procurement - Vendor Evaluations')
 @Controller('procurement/vendor-evaluations')
 export class VendorEvaluationController {
-  constructor(private readonly evaluationService: VendorEvaluationService) {}
+  constructor(private readonly evaluationService: VendorEvaluationService) { }
 
   @Post()
   @ApiOperation({ summary: 'Create a new vendor evaluation' })
@@ -39,6 +39,12 @@ export class VendorEvaluationController {
   @ApiOperation({ summary: 'Get vendor performance report' })
   async getVendorPerformanceReport(@Param('vendorId') vendorId: string): Promise<any> {
     return this.evaluationService.getVendorPerformanceReport(vendorId);
+  }
+
+  @Get('vendor/:vendorId/scorecard')
+  @ApiOperation({ summary: 'Get real-time vendor scorecard metrics' })
+  async getVendorScorecard(@Param('vendorId') vendorId: string): Promise<any> {
+    return this.evaluationService.calculateRealTimeMetrics(vendorId);
   }
 
   @Get(':id')

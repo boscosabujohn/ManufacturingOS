@@ -8,6 +8,7 @@ import {
   ManyToOne,
   JoinColumn,
 } from 'typeorm';
+import { Project } from '../../project/entities/project.entity';
 
 export enum InvoiceType {
   SALES_INVOICE = 'Sales Invoice',
@@ -71,6 +72,16 @@ export class Invoice {
 
   @Column({ nullable: true })
   referenceId: string;
+
+  @Column({ nullable: true })
+  projectId: string;
+
+  @Column({ nullable: true })
+  companyId: string;
+
+  @ManyToOne(() => Project)
+  @JoinColumn({ name: 'projectId' })
+  project?: Project;
 
   // Financial details
   @Column({ type: 'decimal', precision: 15, scale: 2, default: 0 })

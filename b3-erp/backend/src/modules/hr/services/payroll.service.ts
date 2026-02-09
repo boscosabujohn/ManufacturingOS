@@ -15,7 +15,7 @@ export class PayrollService {
     @InjectRepository(Employee)
     private readonly employeeRepository: Repository<Employee>,
     private readonly dataSource: DataSource,
-  ) {}
+  ) { }
 
   async create(createDto: any): Promise<any> {
     const payrollNumber = await this.generatePayrollNumber();
@@ -96,6 +96,9 @@ export class PayrollService {
       for (const employee of employees) {
         const slipNumber = await this.generateSlipNumber(payroll.id);
 
+        // Calculate Statutory Deductions
+        const deductions = this.calculateStatutoryDeductions(employee.grossSalary);
+
         const salarySlip = manager.create(SalarySlip, {
           slipNumber,
           payrollId: payroll.id,
@@ -114,16 +117,24 @@ export class PayrollService {
             { component: 'Basic Salary', amount: employee.basicSalary, isTaxable: true },
           ],
           grossSalary: employee.grossSalary,
-          deductions: [],
-          totalDeductions: 0,
-          netSalary: employee.grossSalary,
+          deductions: [
+            { component: 'PF', amount: deductions.pf },
+            { component: 'ESI', amount: deductions.esi },
+            { component: 'TDS', amount: deductions.tds },
+          ],
+          totalDeductions: deductions.total,
+          netSalary: employee.grossSalary - deductions.total,
+          pfEmployeeContribution: deductions.pf,
+          esiEmployeeContribution: deductions.esi,
+          tds: deductions.tds,
           status: SalarySlipStatus.GENERATED,
         });
 
         await manager.save(SalarySlip, salarySlip);
 
         totalGross += employee.grossSalary;
-        totalNet += employee.grossSalary;
+        totalDeductions += deductions.total;
+        totalNet += (employee.grossSalary - deductions.total);
       }
 
       payroll.totalEmployees = employees.length;
@@ -205,5 +216,31 @@ export class PayrollService {
     const count = await this.salarySlipRepository.count({ where: { payrollId } });
     const year = new Date().getFullYear();
     return `SLIP-${year}-${String(count + 1).padStart(6, '0')}`;
+  }
+
+  private calculateStatutoryDeductions(grossSalary: number): { pf: number, esi: number, tds: number, total: number } {
+    // Simplified Indian Tax Slab Logic (Old Regime approx)
+    let tds = 0;
+    const annualGross = grossSalary * 12;
+
+    if (annualGross > 1500000) {
+      tds = (annualGross - 1500000) * 0.3 + 375000 / 12;
+    } else if (annualGross > 1000000) {
+      tds = (annualGross - 1000000) * 0.2 + 125000 / 12;
+    } else if (annualGross > 500000) {
+      tds = (annualGross - 500000) * 0.1 / 12;
+    }
+
+    const pf = Math.min(grossSalary * 0.12, 1800); // PF capped at 1800 often
+    const esi = grossSalary <= 21000 ? grossSalary * 0.0075 : 0;
+
+    const total = Number((pf + esi + tds).toFixed(2));
+
+    return {
+      pf: Number(pf.toFixed(2)),
+      esi: Number(esi.toFixed(2)),
+      tds: Number(tds.toFixed(2)),
+      total
+    };
   }
 }

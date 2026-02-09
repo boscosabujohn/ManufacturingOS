@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
@@ -35,7 +35,7 @@ interface AlignmentCheck {
     notes: string;
 }
 
-export default function CabinetAlignPage() {
+function CabinetAlignPageContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const { toast } = useToast();
@@ -306,5 +306,13 @@ export default function CabinetAlignPage() {
                 </CardContent>
             </Card>
         </div>
+    );
+}
+
+export default function CabinetAlignPage() {
+    return (
+        <Suspense fallback={<div>Loading cabinet align...</div>}>
+            <CabinetAlignPageContent />
+        </Suspense>
     );
 }

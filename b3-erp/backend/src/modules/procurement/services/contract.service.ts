@@ -1,26 +1,10 @@
 import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
 import { v4 as uuidv4 } from 'uuid';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository, LessThanOrEqual } from 'typeorm';
 import { EventBusService } from '../../workflow/services/event-bus.service';
 import { WorkflowEventType } from '../../workflow/events/event-types';
-
-export enum ContractStatus {
-  DRAFT = 'draft',
-  PENDING_APPROVAL = 'pending_approval',
-  ACTIVE = 'active',
-  EXPIRED = 'expired',
-  TERMINATED = 'terminated',
-  SUSPENDED = 'suspended',
-  RENEWED = 'renewed',
-}
-
-export enum ContractType {
-  FRAMEWORK = 'framework',
-  RATE = 'rate',
-  QUANTITY = 'quantity',
-  VALUE = 'value',
-  SERVICE = 'service',
-  MAINTENANCE = 'maintenance',
-}
+import { VendorContract, ContractStatus, ContractType } from '../entities/vendor-contract.entity';
 
 export interface ContractItem {
   id: string;
@@ -56,145 +40,37 @@ export interface PriceRevision {
   approvedAt?: string;
 }
 
-export interface Contract {
-  id: string;
-  contractNumber: string;
-  title: string;
-  description?: string;
-  contractType: ContractType;
-  status: ContractStatus;
-
-  // Vendor Information
-  vendorId: string;
-  vendorName: string;
-  vendorCode?: string;
-  vendorContact?: string;
-  vendorEmail?: string;
-  vendorPhone?: string;
-
-  // Contract Period
-  startDate: string;
-  endDate: string;
-  effectiveDate?: string;
-  terminationDate?: string;
-
-  // Financial Terms
-  totalValue?: number;
-  currency: string;
-  paymentTerms: string;
-  minimumOrderValue?: number;
-  maximumOrderValue?: number;
-
-  // Contract Items
-  items: ContractItem[];
-
-  // SLA Terms
-  slaTerms: ContractSLA[];
-
-  // Price Revision
-  priceRevisionPolicy?: string;
-  priceRevisionFrequency?: string; // Annual, Semi-annual, Quarterly
-  priceRevisionHistory: PriceRevision[];
-
-  // Delivery Terms
-  deliveryTerms: string;
-  defaultLeadTime: number;
-  deliveryLocations?: string[];
-
-  // Renewal
-  autoRenewal: boolean;
-  renewalNoticeDays: number;
-  renewalTerms?: string;
-
-  // Termination
-  terminationNoticeDays: number;
-  terminationClauses?: string;
-  earlyTerminationPenalty?: number;
-
-  // Compliance
-  complianceRequirements?: string[];
-  certifications?: string[];
-  insuranceRequirements?: string;
-
-  // Utilization
-  totalOrdered: number;
-  totalDelivered: number;
-  utilizationPercentage: number;
-
-  // Approval
-  approvedBy?: string;
-  approvedAt?: string;
-  approvalNotes?: string;
-
-  // Documents
-  attachments?: Array<{
-    id: string;
-    fileName: string;
-    fileUrl: string;
-    uploadedAt: string;
-  }>;
-
-  // Audit
-  createdAt: string;
-  updatedAt: string;
-  createdBy: string;
-  updatedBy: string;
-
-  // Notes
-  internalNotes?: string;
-  tags?: string[];
-}
-
 @Injectable()
 export class ContractService {
-  private contracts: Contract[] = [];
+  constructor(
+    private readonly eventBusService: EventBusService,
+    @InjectRepository(VendorContract)
+    private readonly contractRepository: Repository<VendorContract>,
+  ) { }
 
-  constructor(private readonly eventBusService: EventBusService) {
-    this.seedMockData();
-  }
-
-  async create(createDto: Partial<Contract>): Promise<Contract> {
+  async create(createDto: Partial<VendorContract>): Promise<VendorContract> {
     const contractNumber = await this.generateContractNumber();
 
-    const contract: Contract = {
-      id: uuidv4(),
+    const contract = this.contractRepository.create({
       contractNumber,
-      title: createDto.title || '',
-      contractType: createDto.contractType || ContractType.FRAMEWORK,
       status: ContractStatus.DRAFT,
-      vendorId: createDto.vendorId || '',
-      vendorName: createDto.vendorName || '',
-      startDate: createDto.startDate || new Date().toISOString(),
-      endDate: createDto.endDate || new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString(),
-      currency: createDto.currency || 'INR',
-      paymentTerms: createDto.paymentTerms || 'Net 30',
-      items: createDto.items || [],
-      slaTerms: createDto.slaTerms || [],
-      priceRevisionHistory: [],
-      deliveryTerms: createDto.deliveryTerms || 'DAP',
-      defaultLeadTime: createDto.defaultLeadTime || 7,
-      autoRenewal: createDto.autoRenewal ?? false,
-      renewalNoticeDays: createDto.renewalNoticeDays || 30,
-      terminationNoticeDays: createDto.terminationNoticeDays || 30,
       totalOrdered: 0,
       totalDelivered: 0,
       utilizationPercentage: 0,
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
       createdBy: createDto.createdBy || 'system',
       updatedBy: createDto.updatedBy || 'system',
       ...createDto,
-    };
-
-    this.contracts.push(contract);
-
-    await this.eventBusService.emit<any>(WorkflowEventType.CONTRACT_CREATED, {
-      contractId: contract.id,
-      contractNumber,
-      userId: contract.createdBy,
     });
 
-    return contract;
+    const saved = await this.contractRepository.save(contract);
+
+    await this.eventBusService.emit<any>(WorkflowEventType.CONTRACT_CREATED, {
+      contractId: saved.id,
+      contractNumber: saved.contractNumber,
+      userId: saved.createdBy,
+    });
+
+    return saved;
   }
 
   async findAll(filters?: {
@@ -202,66 +78,53 @@ export class ContractService {
     vendorId?: string;
     contractType?: ContractType;
     expiringWithinDays?: number;
-  }): Promise<Contract[]> {
-    let result = [...this.contracts];
+  }): Promise<VendorContract[]> {
+    const query = this.contractRepository.createQueryBuilder('contract');
 
     if (filters?.status) {
-      result = result.filter(c => c.status === filters.status);
+      query.andWhere('contract.status = :status', { status: filters.status });
     }
     if (filters?.vendorId) {
-      result = result.filter(c => c.vendorId === filters.vendorId);
+      query.andWhere('contract.vendorId = :vendorId', { vendorId: filters.vendorId });
     }
     if (filters?.contractType) {
-      result = result.filter(c => c.contractType === filters.contractType);
+      query.andWhere('contract.contractType = :contractType', { contractType: filters.contractType });
     }
     if (filters?.expiringWithinDays) {
       const cutoffDate = new Date();
       cutoffDate.setDate(cutoffDate.getDate() + filters.expiringWithinDays);
-      result = result.filter(c =>
-        c.status === ContractStatus.ACTIVE &&
-        new Date(c.endDate) <= cutoffDate
-      );
+      query.andWhere('contract.status = :activeStatus', { activeStatus: ContractStatus.ACTIVE });
+      query.andWhere('contract.endDate <= :cutoffDate', { cutoffDate });
     }
 
-    return result.sort((a, b) =>
-      new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-    );
+    query.orderBy('contract.createdAt', 'DESC');
+    return await query.getMany();
   }
 
-  async findOne(id: string): Promise<Contract> {
-    const contract = this.contracts.find(c => c.id === id);
+  async findOne(id: string): Promise<VendorContract> {
+    const contract = await this.contractRepository.findOne({ where: { id } });
     if (!contract) {
       throw new NotFoundException(`Contract with ID ${id} not found`);
     }
     return contract;
   }
 
-  async update(id: string, updateDto: Partial<Contract>): Promise<Contract> {
-    const index = this.contracts.findIndex(c => c.id === id);
-    if (index === -1) {
-      throw new NotFoundException(`Contract with ID ${id} not found`);
-    }
-
-    this.contracts[index] = {
-      ...this.contracts[index],
-      ...updateDto,
-      updatedAt: new Date().toISOString(),
-    };
-
-    return this.contracts[index];
+  async update(id: string, updateDto: Partial<VendorContract>): Promise<VendorContract> {
+    const contract = await this.findOne(id);
+    Object.assign(contract, updateDto);
+    return await this.contractRepository.save(contract);
   }
 
-  async submitForApproval(id: string, submittedBy: string): Promise<Contract> {
+  async submitForApproval(id: string, submittedBy: string): Promise<VendorContract> {
     const contract = await this.findOne(id);
 
     if (contract.status !== ContractStatus.DRAFT) {
       throw new BadRequestException('Only draft contracts can be submitted for approval');
     }
 
-    const updatedContract = await this.update(id, {
-      status: ContractStatus.PENDING_APPROVAL,
-      updatedBy: submittedBy,
-    });
+    contract.status = ContractStatus.PENDING_APPROVAL;
+    contract.updatedBy = submittedBy;
+    const updated = await this.contractRepository.save(contract);
 
     await this.eventBusService.emit<any>(WorkflowEventType.CONTRACT_SUBMITTED_FOR_APPROVAL, {
       contractId: id,
@@ -269,24 +132,24 @@ export class ContractService {
       userId: submittedBy,
     });
 
-    return updatedContract;
+    return updated;
   }
 
-  async approve(id: string, approvedBy: string, notes?: string): Promise<Contract> {
+  async approve(id: string, approvedBy: string, notes?: string): Promise<VendorContract> {
     const contract = await this.findOne(id);
 
     if (contract.status !== ContractStatus.PENDING_APPROVAL) {
       throw new BadRequestException('Contract is not pending approval');
     }
 
-    const updatedContract = await this.update(id, {
-      status: ContractStatus.ACTIVE,
-      approvedBy,
-      approvedAt: new Date().toISOString(),
-      approvalNotes: notes,
-      effectiveDate: contract.startDate,
-      updatedBy: approvedBy,
-    });
+    contract.status = ContractStatus.ACTIVE;
+    contract.approvedBy = approvedBy;
+    contract.approvedAt = new Date();
+    contract.approvalNotes = notes || '';
+    contract.effectiveDate = contract.startDate;
+    contract.updatedBy = approvedBy;
+
+    const updated = await this.contractRepository.save(contract);
 
     await this.eventBusService.emit<any>(WorkflowEventType.CONTRACT_APPROVED, {
       contractId: id,
@@ -294,22 +157,22 @@ export class ContractService {
       userId: approvedBy,
     });
 
-    return updatedContract;
+    return updated;
   }
 
-  async terminate(id: string, terminatedBy: string, reason: string): Promise<Contract> {
+  async terminate(id: string, terminatedBy: string, reason: string): Promise<VendorContract> {
     const contract = await this.findOne(id);
 
     if (contract.status !== ContractStatus.ACTIVE) {
       throw new BadRequestException('Only active contracts can be terminated');
     }
 
-    const updatedContract = await this.update(id, {
-      status: ContractStatus.TERMINATED,
-      terminationDate: new Date().toISOString(),
-      internalNotes: `${contract.internalNotes || ''}\nTerminated by ${terminatedBy}: ${reason}`,
-      updatedBy: terminatedBy,
-    });
+    contract.status = ContractStatus.TERMINATED;
+    contract.terminationDate = new Date();
+    contract.description = `${contract.description || ''}\nTerminated by ${terminatedBy}: ${reason}`;
+    contract.updatedBy = terminatedBy;
+
+    const updated = await this.contractRepository.save(contract);
 
     await this.eventBusService.emit<any>(WorkflowEventType.CONTRACT_TERMINATED, {
       contractId: id,
@@ -317,25 +180,26 @@ export class ContractService {
       userId: terminatedBy,
     });
 
-    return updatedContract;
+    return updated;
   }
 
-  async renew(id: string, renewedBy: string, newEndDate: string): Promise<Contract> {
+  async renew(id: string, renewedBy: string, newEndDate: string): Promise<VendorContract> {
     const contract = await this.findOne(id);
 
     if (contract.status !== ContractStatus.ACTIVE && contract.status !== ContractStatus.EXPIRED) {
       throw new BadRequestException('Contract cannot be renewed in current status');
     }
 
-    const updatedContract = await this.update(id, {
-      status: ContractStatus.RENEWED,
-      endDate: newEndDate,
-      internalNotes: `${contract.internalNotes || ''}\nRenewed by ${renewedBy} until ${newEndDate}`,
-      updatedBy: renewedBy,
-    });
+    contract.status = ContractStatus.RENEWED;
+    contract.endDate = new Date(newEndDate);
+    contract.description = `${contract.description || ''}\nRenewed by ${renewedBy} until ${newEndDate}`;
+    contract.updatedBy = renewedBy;
 
-    // Reset to active after renewal
-    await this.update(id, { status: ContractStatus.ACTIVE });
+    const updated = await this.contractRepository.save(contract);
+
+    // Reset to active after renewal record saved
+    updated.status = ContractStatus.ACTIVE;
+    await this.contractRepository.save(updated);
 
     await this.eventBusService.emit<any>(WorkflowEventType.CONTRACT_RENEWED, {
       contractId: id,
@@ -343,24 +207,31 @@ export class ContractService {
       userId: renewedBy,
     });
 
-    return updatedContract;
+    return updated;
   }
 
   async checkContractAvailability(
     itemId: string,
     vendorId?: string
-  ): Promise<Contract | null> {
-    const now = new Date().toISOString();
+  ): Promise<VendorContract | null> {
+    const now = new Date();
 
-    const activeContracts = this.contracts.filter(c =>
-      c.status === ContractStatus.ACTIVE &&
-      c.startDate <= now &&
-      c.endDate >= now &&
-      c.items.some(i => i.itemId === itemId) &&
-      (!vendorId || c.vendorId === vendorId)
+    const query = this.contractRepository.createQueryBuilder('contract')
+      .where('contract.status = :status', { status: ContractStatus.ACTIVE })
+      .andWhere('contract.startDate <= :now', { now })
+      .andWhere('contract.endDate >= :now', { now });
+
+    if (vendorId) {
+      query.andWhere('contract.vendorId = :vendorId', { vendorId });
+    }
+
+    const contracts = await query.getMany();
+
+    // Filter by item existence in JSON column
+    const activeContracts = contracts.filter(c =>
+      c.items && c.items.some(i => i.itemId === itemId)
     );
 
-    // Return the contract with best price if multiple found
     if (activeContracts.length === 0) return null;
 
     return activeContracts.reduce((best, current) => {
@@ -374,7 +245,7 @@ export class ContractService {
 
   async getContractPrice(contractId: string, itemId: string): Promise<ContractItem | null> {
     const contract = await this.findOne(contractId);
-    return contract.items.find(i => i.itemId === itemId) || null;
+    return contract.items?.find(i => i.itemId === itemId) || null;
   }
 
   async addPriceRevision(
@@ -383,15 +254,16 @@ export class ContractService {
     newPrice: number,
     reason: string,
     revisedBy: string
-  ): Promise<Contract> {
+  ): Promise<VendorContract> {
     const contract = await this.findOne(contractId);
-    const itemIndex = contract.items.findIndex(i => i.itemId === itemId);
+    const items = [...(contract.items || [])];
+    const itemIndex = items.findIndex(i => i.itemId === itemId);
 
     if (itemIndex === -1) {
       throw new NotFoundException(`Item ${itemId} not found in contract`);
     }
 
-    const previousPrice = contract.items[itemIndex].unitPrice;
+    const previousPrice = items[itemIndex].unitPrice;
     const percentageChange = ((newPrice - previousPrice) / previousPrice) * 100;
 
     const revision: PriceRevision = {
@@ -403,8 +275,8 @@ export class ContractService {
       reason,
     };
 
-    contract.items[itemIndex].unitPrice = newPrice;
-    contract.priceRevisionHistory.push(revision);
+    items[itemIndex].unitPrice = newPrice;
+    const history = [...(contract.priceRevisionHistory || []), revision];
 
     await this.eventBusService.emit<any>(WorkflowEventType.CONTRACT_PRICE_REVISED, {
       contractId,
@@ -415,9 +287,9 @@ export class ContractService {
       userId: revisedBy,
     });
 
-    return this.update(contractId, {
-      items: contract.items,
-      priceRevisionHistory: contract.priceRevisionHistory,
+    return await this.update(contractId, {
+      items,
+      priceRevisionHistory: history,
       updatedBy: revisedBy,
     });
   }
@@ -426,30 +298,32 @@ export class ContractService {
     contractId: string,
     orderedAmount: number,
     deliveredAmount: number
-  ): Promise<Contract> {
+  ): Promise<VendorContract> {
     const contract = await this.findOne(contractId);
 
-    const newTotalOrdered = contract.totalOrdered + orderedAmount;
-    const newTotalDelivered = contract.totalDelivered + deliveredAmount;
+    const newTotalOrdered = Number(contract.totalOrdered) + orderedAmount;
+    const newTotalDelivered = Number(contract.totalDelivered) + deliveredAmount;
     const utilizationPercentage = contract.totalValue
-      ? (newTotalOrdered / contract.totalValue) * 100
+      ? (newTotalOrdered / Number(contract.totalValue)) * 100
       : 0;
 
-    return this.update(contractId, {
+    return await this.update(contractId, {
       totalOrdered: newTotalOrdered,
       totalDelivered: newTotalDelivered,
       utilizationPercentage,
     });
   }
 
-  async checkExpiringContracts(days: number = 30): Promise<Contract[]> {
+  async checkExpiringContracts(days: number = 30): Promise<VendorContract[]> {
     const cutoffDate = new Date();
     cutoffDate.setDate(cutoffDate.getDate() + days);
 
-    const expiring = this.contracts.filter(c =>
-      c.status === ContractStatus.ACTIVE &&
-      new Date(c.endDate) <= cutoffDate
-    );
+    const expiring = await this.contractRepository.find({
+      where: {
+        status: ContractStatus.ACTIVE,
+        endDate: LessThanOrEqual(cutoffDate),
+      }
+    });
 
     // Emit alerts for expiring contracts
     for (const contract of expiring) {
@@ -477,6 +351,8 @@ export class ContractService {
     averageUtilization: number;
     expiringSoon: number;
   }> {
+    const contracts = await this.contractRepository.find();
+
     const byStatus: Record<string, number> = {};
     const byType: Record<string, number> = {};
     let totalValue = 0;
@@ -485,25 +361,25 @@ export class ContractService {
     const cutoffDate = new Date();
     cutoffDate.setDate(cutoffDate.getDate() + 30);
 
-    this.contracts.forEach(c => {
+    contracts.forEach(c => {
       byStatus[c.status] = (byStatus[c.status] || 0) + 1;
       byType[c.contractType] = (byType[c.contractType] || 0) + 1;
-      totalValue += c.totalValue || 0;
-      totalUtilization += c.utilizationPercentage;
+      totalValue += Number(c.totalValue || 0);
+      totalUtilization += Number(c.utilizationPercentage);
     });
 
-    const expiringSoon = this.contracts.filter(c =>
+    const expiringSoon = contracts.filter(c =>
       c.status === ContractStatus.ACTIVE &&
       new Date(c.endDate) <= cutoffDate
     ).length;
 
     return {
-      total: this.contracts.length,
+      total: contracts.length,
       byStatus,
       byType,
       totalValue,
-      averageUtilization: this.contracts.length > 0
-        ? totalUtilization / this.contracts.length
+      averageUtilization: contracts.length > 0
+        ? totalUtilization / contracts.length
         : 0,
       expiringSoon,
     };
@@ -513,83 +389,8 @@ export class ContractService {
     const date = new Date();
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
-    const sequence = String(this.contracts.length + 1).padStart(5, '0');
+    const count = await this.contractRepository.count();
+    const sequence = String(count + 1).padStart(5, '0');
     return `CTR-${year}${month}-${sequence}`;
-  }
-
-  private seedMockData(): void {
-    const now = new Date();
-    const oneYear = new Date(now);
-    oneYear.setFullYear(oneYear.getFullYear() + 1);
-
-    this.contracts.push({
-      id: uuidv4(),
-      contractNumber: 'CTR-202401-00001',
-      title: 'Annual Steel Supply Agreement',
-      description: 'Framework agreement for steel supply',
-      contractType: ContractType.FRAMEWORK,
-      status: ContractStatus.ACTIVE,
-      vendorId: 'vendor-001',
-      vendorName: 'Steel Corp India',
-      startDate: now.toISOString(),
-      endDate: oneYear.toISOString(),
-      effectiveDate: now.toISOString(),
-      totalValue: 5000000,
-      currency: 'INR',
-      paymentTerms: 'Net 45',
-      items: [
-        {
-          id: uuidv4(),
-          itemId: 'item-steel-001',
-          itemCode: 'STL-001',
-          itemName: 'Mild Steel Sheet 2mm',
-          unitPrice: 75,
-          currency: 'INR',
-          unitOfMeasure: 'Kg',
-          leadTimeDays: 5,
-        },
-        {
-          id: uuidv4(),
-          itemId: 'item-steel-002',
-          itemCode: 'STL-002',
-          itemName: 'Stainless Steel Bar',
-          unitPrice: 250,
-          currency: 'INR',
-          unitOfMeasure: 'Kg',
-          leadTimeDays: 7,
-        },
-      ],
-      slaTerms: [
-        {
-          id: uuidv4(),
-          metric: 'On-time Delivery',
-          target: '95%',
-          measurement: 'Monthly',
-          penalty: '1% of order value for each 5% below target',
-        },
-        {
-          id: uuidv4(),
-          metric: 'Quality Acceptance',
-          target: '99%',
-          measurement: 'Per delivery',
-          penalty: 'Replacement at vendor cost',
-        },
-      ],
-      priceRevisionHistory: [],
-      deliveryTerms: 'DAP Factory',
-      defaultLeadTime: 7,
-      autoRenewal: true,
-      renewalNoticeDays: 60,
-      terminationNoticeDays: 30,
-      totalOrdered: 1500000,
-      totalDelivered: 1450000,
-      utilizationPercentage: 30,
-      approvedBy: 'procurement-manager',
-      approvedAt: now.toISOString(),
-      createdAt: now.toISOString(),
-      updatedAt: now.toISOString(),
-      createdBy: 'system',
-      updatedBy: 'system',
-    });
   }
 }

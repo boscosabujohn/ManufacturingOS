@@ -24,15 +24,15 @@ import {
 import { useNotifications, Notification, NotificationCategory } from '@/context/NotificationContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Input } from '@/components/ui/Input';
+import { Input } from '@/components/ui/input';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/Select';
-import { Checkbox } from '@/components/ui/Checkbox';
+} from '@/components/ui/select';
+import { Checkbox } from '@/components/ui/checkbox';
 
 // ============================================================================
 // Category Config

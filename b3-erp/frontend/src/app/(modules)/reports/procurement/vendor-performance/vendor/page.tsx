@@ -7,7 +7,9 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ClickableTableRow } from '@/components/reports/ClickableTableRow';
 import { Badge } from '@/components/ui/badge';
 
-export default function VendorPOsDetail() {
+import { Suspense } from 'react';
+
+function VendorPOsDetailContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const vendorId = searchParams.get('vendor') || 'all';
@@ -117,5 +119,13 @@ export default function VendorPOsDetail() {
                 </CardContent>
             </Card>
         </ReportDetailPage>
+    );
+}
+
+export default function VendorPOsDetail() {
+    return (
+        <Suspense fallback={<div>Loading vendor POs...</div>}>
+            <VendorPOsDetailContent />
+        </Suspense>
     );
 }

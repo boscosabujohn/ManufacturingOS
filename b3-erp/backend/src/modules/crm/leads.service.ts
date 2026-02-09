@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, Like, In } from 'typeorm';
 import { Lead } from './entities/lead.entity';
+import { SalesTerritory } from './entities/sales-territory.entity';
 import { CreateLeadDto } from './dto/create-lead.dto';
 import { UpdateLeadDto } from './dto/update-lead.dto';
 
@@ -21,7 +22,9 @@ export class LeadsService {
   constructor(
     @InjectRepository(Lead)
     private readonly leadRepository: Repository<Lead>,
-  ) {}
+    @InjectRepository(SalesTerritory)
+    private readonly territoryRepository: Repository<SalesTerritory>,
+  ) { }
 
   async create(createLeadDto: CreateLeadDto): Promise<Lead> {
     const lead = this.leadRepository.create(createLeadDto);
@@ -30,6 +33,9 @@ export class LeadsService {
     if (!lead.leadScore) {
       lead.leadScore = this.calculateLeadScore(lead);
     }
+
+    // Auto-assign lead based on region
+    await this.autoAssignLead(lead);
 
     return await this.leadRepository.save(lead);
   }
@@ -106,7 +112,12 @@ export class LeadsService {
   async update(id: string, updateLeadDto: UpdateLeadDto): Promise<Lead> {
     const lead = await this.findOne(id);
 
-    Object.assign(lead, updateLeadDto);
+    const { estimatedCloseDate, ...rest } = updateLeadDto;
+    Object.assign(lead, rest);
+
+    if (estimatedCloseDate) {
+      lead.estimatedCloseDate = new Date(estimatedCloseDate);
+    }
 
     // Recalculate lead score if relevant fields changed
     if (this.shouldRecalculateScore(updateLeadDto)) {
@@ -162,6 +173,72 @@ export class LeadsService {
     const lead = await this.findOne(id);
     lead.lastContactDate = new Date();
     return await this.leadRepository.save(lead);
+  }
+
+  async getLeadSourceAnalytics(): Promise<any[]> {
+    const analytics = await this.leadRepository
+      .createQueryBuilder('lead')
+      .select('lead.leadSource', 'name')
+      .addSelect('COUNT(lead.id)', 'totalLeads')
+      .addSelect('COUNT(CASE WHEN lead.status = \'qualified\' THEN 1 END)', 'qualifiedLeads')
+      .addSelect('COUNT(CASE WHEN lead.status = \'won\' THEN 1 END)', 'wonLeads')
+      .addSelect('SUM(lead.estimatedValue)', 'totalValue')
+      .groupBy('lead.leadSource')
+      .getRawMany();
+
+    return analytics.map(item => ({
+      ...item,
+      totalLeads: parseInt(item.totalLeads, 10),
+      qualifiedLeads: parseInt(item.qualifiedLeads, 10),
+      wonLeads: parseInt(item.wonLeads, 10),
+      conversionRate: item.totalLeads > 0 ? (parseInt(item.wonLeads, 10) / parseInt(item.totalLeads, 10)) * 100 : 0,
+      totalValue: parseFloat(item.totalValue || '0'),
+    }));
+  }
+
+  async getLeadConversionStats(): Promise<any> {
+    const stats = await this.leadRepository
+      .createQueryBuilder('lead')
+      .select('lead.status', 'status')
+      .addSelect('COUNT(lead.id)', 'count')
+      .groupBy('lead.status')
+      .getRawMany();
+
+    const total = stats.reduce((sum, s) => sum + parseInt(s.count, 10), 0);
+    const won = stats.find(s => s.status === 'won')?.count || 0;
+
+    return {
+      byStatus: stats.map(s => ({
+        status: s.status,
+        count: parseInt(s.count, 10),
+        percentage: total > 0 ? (parseInt(s.count, 10) / total) * 100 : 0,
+      })),
+      overallConversionRate: total > 0 ? (parseInt(won, 10) / total) * 100 : 0,
+      totalLeads: total,
+    };
+  }
+
+  async autoAssignLead(lead: Lead): Promise<void> {
+    if (lead.assignedTo) return; // Don't override if already assigned
+
+    const territories = await this.territoryRepository.find({
+      where: { isActive: true },
+      order: { priority: 'DESC' },
+    });
+
+    for (const territory of territories) {
+      let match = true;
+
+      if (territory.country && lead.country !== territory.country) match = false;
+      if (match && territory.state && lead.state !== territory.state) match = false;
+      if (match && territory.city && lead.city !== territory.city) match = false;
+
+      if (match) {
+        lead.assignedTo = territory.assignedUserId;
+        lead.teamAssignment = territory.assignedTeamId;
+        break;
+      }
+    }
   }
 
   private calculateLeadScore(lead: Partial<Lead>): number {

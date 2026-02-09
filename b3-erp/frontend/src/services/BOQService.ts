@@ -1,5 +1,5 @@
 
-import axiosInstance from '@/lib/axios';
+import axiosInstance from '@/lib/api-client';
 
 export interface BOQItem {
     id: string;
@@ -58,6 +58,20 @@ class BOQService {
 
     async syncWithInventory(boqId: string): Promise<BOQItem[]> {
         const response = await axiosInstance.post(`/api/boq/${boqId}/sync-inventory`);
+        return response.data;
+    }
+
+    async bulkCreateItems(boqId: string, items: Partial<BOQItem>[]): Promise<BOQItem[]> {
+        const response = await axiosInstance.post(`/api/boq/${boqId}/bulk-items`, items);
+        return response.data;
+    }
+
+    async parseBOQFile(file: File): Promise<Partial<BOQItem>[]> {
+        const formData = new FormData();
+        formData.append('file', file);
+        const response = await axiosInstance.post('/api/boq/parse', formData, {
+            headers: { 'Content-Type': 'multipart/form-data ' }
+        });
         return response.data;
     }
 }

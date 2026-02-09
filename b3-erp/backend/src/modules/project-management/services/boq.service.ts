@@ -98,7 +98,6 @@ export class BOQService {
         const boqItems = await this.boqItemRepository.find({ where: { boq: { id: boqId } } });
 
         for (const boqItem of boqItems) {
-            // Try to find item by code or description
             const item = await this.itemRepository.findOne({
                 where: [
                     { itemCode: boqItem.itemCode },
@@ -115,5 +114,33 @@ export class BOQService {
         }
 
         return this.boqItemRepository.find({ where: { boq: { id: boqId } }, relations: ['item'] });
+    }
+
+    async bulkCreateItems(boqId: string, items: any[]): Promise<BOQItem[]> {
+        const entities: any[] = items.map(item => this.boqItemRepository.create({
+            ...item,
+            boq: { id: boqId } as any,
+        }));
+        const saved = await this.boqItemRepository.save(entities) as BOQItem[];
+        await this.calculateTotal(boqId);
+        return saved;
+    }
+
+    async parseBOQFile(fileBuffer: Buffer): Promise<any[]> {
+        // Mock parsing logic for CSV/Excel
+        // In reality, use 'papaparse' or 'xlsx'
+        const content = fileBuffer.toString();
+        const lines = content.split('\n').filter(l => l.trim());
+        const result = lines.slice(1).map(line => {
+            const [description, quantity, rate] = line.split(',');
+            return {
+                description,
+                quantity: parseFloat(quantity) || 0,
+                rate: parseFloat(rate) || 0,
+                amount: (parseFloat(quantity) || 0) * (parseFloat(rate) || 0),
+                unit: 'PCS'
+            };
+        });
+        return result;
     }
 }

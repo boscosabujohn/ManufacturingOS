@@ -162,6 +162,12 @@ export class FreightCharge {
   @Column({ type: 'decimal', precision: 15, scale: 2, default: 0 })
   totalAmount: number;
 
+  @Column({ type: 'decimal', precision: 15, scale: 2, default: 0 })
+  actualAmount: number;
+
+  @Column({ type: 'decimal', precision: 15, scale: 2, default: 0 })
+  variance: number;
+
   @Column({ length: 10, default: 'INR' })
   currency: string;
 

@@ -37,6 +37,12 @@ export class FreightChargeResponseDto {
   totalAmount: number;
 
   @ApiPropertyOptional()
+  actualAmount?: number;
+
+  @ApiPropertyOptional()
+  variance?: number;
+
+  @ApiPropertyOptional()
   currency?: string;
 
   @ApiPropertyOptional()

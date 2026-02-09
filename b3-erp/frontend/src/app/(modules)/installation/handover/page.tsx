@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -51,7 +51,7 @@ interface ClientHandover {
     closureDate?: string;
 }
 
-export default function ClientHandoverPage() {
+function ClientHandoverPageContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const { toast } = useToast();
@@ -405,5 +405,13 @@ export default function ClientHandoverPage() {
                 </div>
             </div>
         </div>
+    );
+}
+
+export default function ClientHandoverPage() {
+    return (
+        <Suspense fallback={<div>Loading handover...</div>}>
+            <ClientHandoverPageContent />
+        </Suspense>
     );
 }

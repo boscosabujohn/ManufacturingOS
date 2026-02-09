@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
@@ -33,7 +33,7 @@ interface CleaningTask {
     status: 'Pending' | 'Cleaned';
 }
 
-export default function KitchenCleaningPage() {
+function KitchenCleaningPageContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const { toast } = useToast();
@@ -266,5 +266,13 @@ export default function KitchenCleaningPage() {
                 </Card>
             </div>
         </div>
+    );
+}
+
+export default function KitchenCleaningPage() {
+    return (
+        <Suspense fallback={<div>Loading cleaning...</div>}>
+            <KitchenCleaningPageContent />
+        </Suspense>
     );
 }

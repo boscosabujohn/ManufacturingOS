@@ -1,0 +1,27 @@
+
+> b3-erp-frontend@1.0.0 build
+> next build
+
+  ▲ Next.js 14.2.35
+  - Environments: .env.local
+
+   Creating an optimized production build ...
+
+warn - The class `duration-[10s]` is ambiguous and matches multiple utilities.
+warn - If this is content and not a class, replace it with `duration-&lsqb;10s&rsqb;` to silence this warning.
+ ✓ Compiled successfully
+   Linting and checking validity of types ...
+ ⨯ ESLint: Failed to load config "prettier" to extend from. Referenced from: /Users/sabujohnbosco/KreupAI/ManufacturingOS/b3-erp/frontend/.eslintrc.json
+Failed to compile.
+
+./src/app/(modules)/project-management/create-enhanced/page.tsx:931:26
+Type error: Cannot find name 'Trash2'. Did you mean 'Trash'?
+
+[0m [90m 929 |[39m                         className[33m=[39m[32m"p-2 text-red-600 hover:bg-red-50 rounded-lg"[39m[0m
+[0m [90m 930 |[39m                       [33m>[39m[0m
+[0m[31m[1m>[22m[39m[90m 931 |[39m                         [33m<[39m[33mTrash2[39m className[33m=[39m[32m"w-4 h-4"[39m [33m/[39m[33m>[39m[0m
+[0m [90m     |[39m                          [31m[1m^[22m[39m[0m
+[0m [90m 932 |[39m                       [33m<[39m[33m/[39m[33mbutton[39m[33m>[39m[0m
+[0m [90m 933 |[39m                     )}[0m
+[0m [90m 934 |[39m                   [33m<[39m[33m/[39m[33mdiv[39m[33m>[39m[0m
+Next.js build worker exited with code: 1 and signal: null

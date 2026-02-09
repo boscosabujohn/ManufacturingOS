@@ -32,7 +32,7 @@ export default function DashboardLayout({ children, pageTitle }: DashboardLayout
       <Sidebar isOpen={sidebarOpen} onToggle={() => setSidebarOpen(!sidebarOpen)} />
 
       {/* Main Content Area */}
-      <div className={`flex-1 flex flex-col transition-all duration-300 ${sidebarOpen ? 'lg:ml-[280px]' : 'lg:ml-20'} overflow-hidden`}>
+      <div className={`flex-1 flex flex-col min-w-0 transition-all duration-300 ${sidebarOpen ? 'lg:pl-[280px]' : 'lg:pl-20'} overflow-hidden`}>
         {/* Header */}
         <header className="bg-gradient-to-r from-white via-white to-brand-blue/5 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-40 shadow-sm flex-shrink-0">
           <div className="w-full px-3">

@@ -8,11 +8,15 @@ interface PremiumCardProps {
     children: React.ReactNode;
     className?: string;
     gradient?: string;
+    onClick?: () => void;
 }
 
-export const PremiumCard = ({ children, className = '', gradient = 'from-white/80 to-white/40' }: PremiumCardProps) => {
+export const PremiumCard = ({ children, className = '', gradient = 'from-white/80 to-white/40', onClick }: PremiumCardProps) => {
     return (
-        <div className={`relative overflow-hidden rounded-xl border border-white/20 bg-gradient-to-br ${gradient} backdrop-blur-md shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 ${className}`}>
+        <div
+            className={`relative overflow-hidden rounded-xl border border-white/20 bg-gradient-to-br ${gradient} backdrop-blur-md shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 ${className}`}
+            onClick={onClick}
+        >
             {children}
         </div>
     );

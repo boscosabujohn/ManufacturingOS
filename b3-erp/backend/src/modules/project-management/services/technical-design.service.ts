@@ -62,24 +62,24 @@ export class TechnicalDesignService {
             headerId,
             itemId,
             quantity,
-            uom: item.uom,
+            uom: item.baseUOM,
             parentDetailId,
         });
 
         const savedDetail = await this.bomDetailRepository.save(detail);
 
         // Simulated recursive explosion for known prototype items (e.g., "Steel Shutter Unit")
-        if (item.name.includes('Steel Shutter Unit')) {
+        if (item.itemName.includes('Steel Shutter Unit')) {
             // Suppose it has 2 Panels and 4 Screws
             const subItems = await this.itemRepository.find({
                 where: [
-                    { name: 'Steel Panel' },
-                    { name: 'M6 Screw' }
+                    { itemName: 'Steel Panel' },
+                    { itemName: 'M6 Screw' }
                 ]
             });
 
             for (const subItem of subItems) {
-                const subQty = subItem.name.includes('Panel') ? 2 : 4;
+                const subQty = subItem.itemName.includes('Panel') ? 2 : 4;
                 await this.explodePrototypeToBOM(headerId, subItem.id, subQty * quantity, savedDetail.id);
             }
         }

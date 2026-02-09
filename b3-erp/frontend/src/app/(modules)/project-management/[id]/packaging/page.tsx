@@ -65,7 +65,7 @@ export default function PackingDashboard() {
                                 <h3 className="text-xl font-black text-slate-900 italic uppercase tracking-tighter">{crate.number}</h3>
                             </div>
                             <div className={`p-2 rounded-xl ${crate.status === 'Sealed' ? 'bg-emerald-50 text-emerald-600' :
-                                    crate.status === 'Mismatch' ? 'bg-rose-50 text-rose-600' : 'bg-slate-50 text-slate-400'
+                                crate.status === 'Mismatch' ? 'bg-rose-50 text-rose-600' : 'bg-slate-50 text-slate-400'
                                 }`}>
                                 <QrCode className="w-6 h-6" />
                             </div>
@@ -79,7 +79,7 @@ export default function PackingDashboard() {
                             <div>
                                 <div className="text-[8px] font-black text-slate-400 uppercase tracking-widest mb-1">Status</div>
                                 <div className={`text-[8px] font-black uppercase inline-block px-1.5 py-0.5 rounded ${crate.status === 'Sealed' ? 'bg-emerald-50 text-emerald-600' :
-                                        crate.status === 'Mismatch' ? 'bg-rose-50 text-rose-600' : 'bg-slate-50 text-slate-400'
+                                    crate.status === 'Mismatch' ? 'bg-rose-50 text-rose-600' : 'bg-slate-50 text-slate-400'
                                     }`}>{crate.status}</div>
                             </div>
                         </div>
@@ -100,7 +100,7 @@ export default function PackingDashboard() {
 
                         {crate.status === 'Mismatch' && (
                             <div className="text-[8px] font-bold text-rose-500 italic leading-none">
-                                Rule 6.8: Deviation > 5%. Verify contents against BOQ before sealing.
+                                Rule 6.8: Deviation {'>'} 5%. Verify contents against BOQ before sealing.
                             </div>
                         )}
 

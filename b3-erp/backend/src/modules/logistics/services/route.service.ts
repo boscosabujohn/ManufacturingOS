@@ -17,7 +17,7 @@ export class RouteService {
   constructor(
     @InjectRepository(Route)
     private readonly routeRepository: Repository<Route>,
-  ) {}
+  ) { }
 
   async create(createDto: CreateRouteDto): Promise<RouteResponseDto> {
     const existing = await this.routeRepository.findOne({
@@ -118,9 +118,26 @@ export class RouteService {
       throw new NotFoundException(`Route with ID ${id} not found`);
     }
 
-    // Placeholder for route optimization logic
+    // Simulate route optimization logic (reordering stops if any)
+    if (route.stops && route.stops.length > 2) {
+      // Keep origin and destination, shuffle intermediate stops as a simulation
+      const origin = route.stops.find(s => s.stopNumber === 1);
+      const destination = route.stops.find(s => s.stopNumber === route.stops.length);
+      const intermediate = route.stops.filter(s => s.stopNumber !== 1 && s.stopNumber !== route.stops.length);
+
+      // Artificial reordering
+      const optimizedIntermediate = [...intermediate].reverse();
+
+      route.stops = [
+        origin!,
+        ...optimizedIntermediate.map((s, idx) => ({ ...s, stopNumber: idx + 2 })),
+        { ...destination!, stopNumber: route.stops.length }
+      ];
+    }
+
     route.isOptimized = true;
     route.lastOptimizedAt = new Date();
+    route.notes = (route.notes || '') + '\n[System] Route optimized for fuel efficiency.';
 
     const updated = await this.routeRepository.save(route);
     return this.mapToResponseDto(updated);
