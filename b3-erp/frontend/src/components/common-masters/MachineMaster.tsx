@@ -1,235 +1,129 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Cog, Plus, Search, Eye, Edit3, Activity, AlertCircle, Wrench } from 'lucide-react';
+import { manufacturingMastersService, Machine as BackendMachine } from '../../services/manufacturing-masters.service';
 
 interface Machine {
   id: string;
   machineCode: string;
   machineName: string;
   description: string;
-  
-  category: 'cutting' | 'drilling' | 'assembly' | 'finishing' | 'packaging' | 'testing';
+
+  category: string;
   manufacturer: string;
   model: string;
   serialNumber: string;
-  
+
   specifications: {
     capacity: string;
     power: string; // kW
     dimensions?: string; // L x W x H
     weight?: number; // kg
   };
-  
+
   location: {
     plant: string;
     workCenter: string;
     floor?: string;
   };
-  
+
   acquisition: {
     purchaseDate: string;
     supplier: string;
     purchaseCost: number;
     warrantyExpiry?: string;
   };
-  
+
   maintenance: {
     lastServiceDate?: string;
     nextServiceDate: string;
     serviceInterval: number; // days
     downtime: number; // hours
   };
-  
+
   performance: {
     efficiency: number; // percentage
     utilizationRate: number; // percentage
     productionRate: number; // units per hour
   };
-  
+
   operators: string[];
-  
-  status: 'operational' | 'maintenance' | 'breakdown' | 'idle';
+
+  status: string;
   createdBy: string;
   createdAt: string;
 }
 
 const MachineMaster: React.FC = () => {
-  const [machines, setMachines] = useState<Machine[]>([
-    {
-      id: '1',
-      machineCode: 'CNC-001',
-      machineName: 'CNC Router Machine',
-      description: 'High precision CNC router for cabinet cutting',
-      category: 'cutting',
-      manufacturer: 'Biesse',
-      model: 'Rover A 1632',
-      serialNumber: 'BIE-2023-CNC-001',
-      specifications: {
-        capacity: '1600 x 3200 mm',
-        power: '9.2 kW',
-        dimensions: '4500 x 2800 x 2200 mm',
-        weight: 3500
-      },
-      location: {
-        plant: 'Main Manufacturing Plant',
-        workCenter: 'Cutting Center',
-        floor: 'Ground Floor'
-      },
-      acquisition: {
-        purchaseDate: '2023-06-15',
-        supplier: 'Biesse India',
-        purchaseCost: 4500000,
-        warrantyExpiry: '2026-06-15'
-      },
-      maintenance: {
-        lastServiceDate: '2024-09-15',
-        nextServiceDate: '2024-12-15',
-        serviceInterval: 90,
-        downtime: 12
-      },
-      performance: {
-        efficiency: 92,
-        utilizationRate: 85,
-        productionRate: 25
-      },
-      operators: ['OP-001', 'OP-002', 'OP-005'],
-      status: 'operational',
-      createdBy: 'admin',
-      createdAt: '2023-06-15T10:00:00Z'
-    },
-    {
-      id: '2',
-      machineCode: 'EDG-001',
-      machineName: 'Edge Banding Machine',
-      description: 'Automatic edge banding for cabinet panels',
-      category: 'finishing',
-      manufacturer: 'SCM Group',
-      model: 'Olimpic K 560',
-      serialNumber: 'SCM-2022-EDG-001',
-      specifications: {
-        capacity: '560 mm width',
-        power: '14.5 kW',
-        dimensions: '6800 x 1200 x 1650 mm',
-        weight: 2800
-      },
-      location: {
-        plant: 'Main Manufacturing Plant',
-        workCenter: 'Finishing Center',
-        floor: 'Ground Floor'
-      },
-      acquisition: {
-        purchaseDate: '2022-08-20',
-        supplier: 'SCM India',
-        purchaseCost: 3800000,
-        warrantyExpiry: '2025-08-20'
-      },
-      maintenance: {
-        lastServiceDate: '2024-08-20',
-        nextServiceDate: '2024-11-20',
-        serviceInterval: 90,
-        downtime: 8
-      },
-      performance: {
-        efficiency: 88,
-        utilizationRate: 90,
-        productionRate: 40
-      },
-      operators: ['OP-003', 'OP-004'],
-      status: 'operational',
-      createdBy: 'admin',
-      createdAt: '2022-08-20T10:00:00Z'
-    },
-    {
-      id: '3',
-      machineCode: 'DRL-002',
-      machineName: 'Multi-Spindle Drilling Machine',
-      description: 'Multiple drilling heads for cabinet assembly',
-      category: 'drilling',
-      manufacturer: 'Vitap',
-      model: 'Point K2',
-      serialNumber: 'VIT-2023-DRL-002',
-      specifications: {
-        capacity: '32 spindles',
-        power: '5.5 kW',
-        dimensions: '1800 x 1200 x 2100 mm',
-        weight: 1200
-      },
-      location: {
-        plant: 'Main Manufacturing Plant',
-        workCenter: 'Drilling Center',
-        floor: 'Ground Floor'
-      },
-      acquisition: {
-        purchaseDate: '2023-03-10',
-        supplier: 'Vitap India',
-        purchaseCost: 1500000
-      },
-      maintenance: {
-        nextServiceDate: '2024-11-10',
-        serviceInterval: 60,
-        downtime: 4
-      },
-      performance: {
-        efficiency: 95,
-        utilizationRate: 78,
-        productionRate: 60
-      },
-      operators: ['OP-006', 'OP-007'],
-      status: 'operational',
-      createdBy: 'admin',
-      createdAt: '2023-03-10T10:00:00Z'
-    },
-    {
-      id: '4',
-      machineCode: 'SPR-001',
-      machineName: 'Spray Booth',
-      description: 'Automated spray painting booth with drying',
-      category: 'finishing',
-      manufacturer: 'Col-Met',
-      model: 'Spray Booth SB-2040',
-      serialNumber: 'CLM-2021-SPR-001',
-      specifications: {
-        capacity: '20 x 40 ft',
-        power: '25 kW',
-        dimensions: '7000 x 13000 x 3500 mm',
-        weight: 5500
-      },
-      location: {
-        plant: 'Main Manufacturing Plant',
-        workCenter: 'Finishing Center',
-        floor: 'First Floor'
-      },
-      acquisition: {
-        purchaseDate: '2021-11-25',
-        supplier: 'Col-Met India',
-        purchaseCost: 2500000,
-        warrantyExpiry: '2024-11-25'
-      },
-      maintenance: {
-        lastServiceDate: '2024-07-25',
-        nextServiceDate: '2024-10-25',
-        serviceInterval: 90,
-        downtime: 24
-      },
-      performance: {
-        efficiency: 82,
-        utilizationRate: 72,
-        productionRate: 15
-      },
-      operators: ['OP-008', 'OP-009'],
-      status: 'maintenance',
-      createdBy: 'admin',
-      createdAt: '2021-11-25T10:00:00Z'
+  const [machines, setMachines] = useState<Machine[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    fetchMachines();
+  }, []);
+
+  const fetchMachines = async () => {
+    try {
+      setIsLoading(true);
+      const data = await manufacturingMastersService.getAllMachines('1'); // Use '1' as default companyId
+
+      const mappedMachines: Machine[] = data.map((m: BackendMachine) => ({
+        id: m.id,
+        machineCode: m.machineCode,
+        machineName: m.machineName,
+        description: m.description || '',
+        category: m.category || 'other',
+        manufacturer: m.manufacturer || '',
+        model: m.model || '',
+        serialNumber: m.serialNumber || '',
+        specifications: {
+          capacity: m.capacity || '',
+          power: m.power || '',
+          dimensions: m.dimensions || '',
+          weight: m.weight || 0,
+        },
+        location: {
+          plant: 'Main Plant',
+          workCenter: m.workCenter?.name || 'Unassigned',
+          floor: 'Ground Floor',
+        },
+        acquisition: {
+          purchaseDate: '2023-01-01',
+          supplier: 'OEM',
+          purchaseCost: 0,
+        },
+        maintenance: {
+          nextServiceDate: '2024-12-31',
+          serviceInterval: 90,
+          downtime: 0,
+        },
+        performance: {
+          efficiency: m.efficiency || 0,
+          utilizationRate: m.utilizationRate || 0,
+          productionRate: 0,
+        },
+        operators: [],
+        status: m.status || 'operational',
+        createdBy: 'admin',
+        createdAt: new Date().toISOString(),
+      }));
+
+      setMachines(mappedMachines);
+    } catch (error) {
+      console.error('Error fetching machines:', error);
+    } finally {
+      setIsLoading(false);
     }
-  ]);
+  };
+
 
   const [searchTerm, setSearchTerm] = useState('');
   const [filterStatus, setFilterStatus] = useState<string>('all');
 
   const filteredMachines = machines.filter(m => {
     const matchesSearch = m.machineName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         m.machineCode.toLowerCase().includes(searchTerm.toLowerCase());
+      m.machineCode.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesStatus = filterStatus === 'all' || m.status === filterStatus;
     return matchesSearch && matchesStatus;
   });
@@ -342,26 +236,24 @@ const MachineMaster: React.FC = () => {
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-2">
                     <h3 className="text-lg font-semibold text-gray-900">{machine.machineName}</h3>
-                    <span className={`px-2 py-1 text-xs rounded-full uppercase font-medium ${
-                      machine.category === 'cutting' 
+                    <span className={`px-2 py-1 text-xs rounded-full uppercase font-medium ${machine.category === 'cutting'
                         ? 'bg-blue-100 text-blue-800'
                         : machine.category === 'drilling'
-                        ? 'bg-green-100 text-green-800'
-                        : machine.category === 'finishing'
-                        ? 'bg-purple-100 text-purple-800'
-                        : 'bg-gray-100 text-gray-800'
-                    }`}>
+                          ? 'bg-green-100 text-green-800'
+                          : machine.category === 'finishing'
+                            ? 'bg-purple-100 text-purple-800'
+                            : 'bg-gray-100 text-gray-800'
+                      }`}>
                       {machine.category}
                     </span>
-                    <span className={`px-2 py-1 text-xs rounded-full font-medium ${
-                      machine.status === 'operational' 
+                    <span className={`px-2 py-1 text-xs rounded-full font-medium ${machine.status === 'operational'
                         ? 'bg-green-100 text-green-800'
                         : machine.status === 'maintenance'
-                        ? 'bg-yellow-100 text-yellow-800'
-                        : machine.status === 'breakdown'
-                        ? 'bg-red-100 text-red-800'
-                        : 'bg-gray-100 text-gray-800'
-                    }`}>
+                          ? 'bg-yellow-100 text-yellow-800'
+                          : machine.status === 'breakdown'
+                            ? 'bg-red-100 text-red-800'
+                            : 'bg-gray-100 text-gray-800'
+                      }`}>
                       {machine.status}
                     </span>
                   </div>

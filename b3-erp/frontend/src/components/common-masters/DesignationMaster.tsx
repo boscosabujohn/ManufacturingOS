@@ -8,182 +8,95 @@ interface Designation {
   designationCode: string;
   designationName: string;
   description: string;
-  
+
   department: string;
   level: 'entry' | 'junior' | 'mid' | 'senior' | 'executive' | 'cxo';
   reportingTo?: string;
-  
+
   responsibilities: string[];
   qualifications: string[];
-  
+
   salaryRange: {
     minSalary: number;
     maxSalary: number;
     currency: string;
   };
-  
+
   requiredExperience: {
     minYears: number;
     maxYears?: number;
   };
-  
+
   headcount: {
     sanctioned: number;
     current: number;
     vacant: number;
   };
-  
+
   benefits: string[];
-  
+
   status: 'active' | 'inactive' | 'on-hold';
   createdBy: string;
   createdAt: string;
 }
 
+import { hrMastersService } from '@/services/hr-masters.service';
+
 const DesignationMaster: React.FC = () => {
-  const [designations, setDesignations] = useState<Designation[]>([
-    {
-      id: '1',
-      designationCode: 'CEO',
-      designationName: 'Chief Executive Officer',
-      description: 'Head of the organization responsible for overall operations',
-      department: 'Executive',
-      level: 'cxo',
-      responsibilities: [
-        'Strategic planning and execution',
-        'Business development',
-        'Stakeholder management',
-        'P&L responsibility'
-      ],
-      qualifications: ['MBA from top-tier institute', '15+ years experience', 'Proven leadership'],
-      salaryRange: {
-        minSalary: 3000000,
-        maxSalary: 5000000,
-        currency: 'INR'
-      },
-      requiredExperience: {
-        minYears: 15
-      },
-      headcount: {
-        sanctioned: 1,
-        current: 1,
-        vacant: 0
-      },
-      benefits: ['ESOP', 'Company Car', 'Health Insurance', 'Performance Bonus'],
-      status: 'active',
-      createdBy: 'admin',
-      createdAt: '2024-01-01T10:00:00Z'
-    },
-    {
-      id: '2',
-      designationCode: 'PM',
-      designationName: 'Production Manager',
-      description: 'Oversees manufacturing operations and production planning',
-      department: 'Production',
-      level: 'senior',
-      reportingTo: 'Chief Operating Officer',
-      responsibilities: [
-        'Production planning and scheduling',
-        'Quality control',
-        'Team management',
-        'Process optimization'
-      ],
-      qualifications: ['B.Tech/B.E. in Mechanical/Industrial', 'Production management experience'],
-      salaryRange: {
-        minSalary: 800000,
-        maxSalary: 1200000,
-        currency: 'INR'
-      },
-      requiredExperience: {
-        minYears: 8,
-        maxYears: 15
-      },
-      headcount: {
-        sanctioned: 3,
-        current: 2,
-        vacant: 1
-      },
-      benefits: ['Health Insurance', 'PF', 'Performance Bonus'],
-      status: 'active',
-      createdBy: 'admin',
-      createdAt: '2024-01-01T10:00:00Z'
-    },
-    {
-      id: '3',
-      designationCode: 'SE',
-      designationName: 'Senior Engineer',
-      description: 'Senior technical role in design and development',
-      department: 'Engineering',
-      level: 'senior',
-      reportingTo: 'Engineering Manager',
-      responsibilities: [
-        'Product design and development',
-        'Technical documentation',
-        'Mentoring junior engineers',
-        'Project execution'
-      ],
-      qualifications: ['B.Tech/B.E. in relevant field', 'CAD/CAM proficiency'],
-      salaryRange: {
-        minSalary: 600000,
-        maxSalary: 900000,
-        currency: 'INR'
-      },
-      requiredExperience: {
-        minYears: 5,
-        maxYears: 10
-      },
-      headcount: {
-        sanctioned: 10,
-        current: 8,
-        vacant: 2
-      },
-      benefits: ['Health Insurance', 'PF', 'Learning Allowance'],
-      status: 'active',
-      createdBy: 'admin',
-      createdAt: '2024-01-01T10:00:00Z'
-    },
-    {
-      id: '4',
-      designationCode: 'QCI',
-      designationName: 'Quality Control Inspector',
-      description: 'Ensures product quality meets standards',
-      department: 'Quality',
-      level: 'junior',
-      reportingTo: 'Quality Manager',
-      responsibilities: [
-        'Product inspection',
-        'Quality testing',
-        'Documentation',
-        'Non-conformance reporting'
-      ],
-      qualifications: ['Diploma/ITI in relevant field', 'Quality certification preferred'],
-      salaryRange: {
-        minSalary: 250000,
-        maxSalary: 400000,
-        currency: 'INR'
-      },
-      requiredExperience: {
-        minYears: 2,
-        maxYears: 5
-      },
-      headcount: {
-        sanctioned: 15,
-        current: 12,
-        vacant: 3
-      },
-      benefits: ['Health Insurance', 'PF'],
-      status: 'active',
-      createdBy: 'admin',
-      createdAt: '2024-01-01T10:00:00Z'
-    }
-  ]);
+  const [designations, setDesignations] = useState<Designation[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  React.useEffect(() => {
+    const fetchDesignations = async () => {
+      try {
+        setLoading(true);
+        const data = await hrMastersService.getAllDesignations('1');
+
+        const transformedDesignations: Designation[] = data.map(item => ({
+          id: item.id,
+          designationCode: item.code,
+          designationName: item.name,
+          description: item.name,
+          department: 'Unassigned',
+          level: 'mid',
+          responsibilities: [],
+          qualifications: [],
+          salaryRange: {
+            minSalary: 0,
+            maxSalary: 0,
+            currency: 'INR'
+          },
+          requiredExperience: {
+            minYears: 0
+          },
+          headcount: {
+            sanctioned: 0,
+            current: 0,
+            vacant: 0
+          },
+          benefits: [],
+          status: 'active',
+          createdBy: 'System',
+          createdAt: new Date().toISOString()
+        }));
+
+        setDesignations(transformedDesignations);
+      } catch (error) {
+        console.error('Error fetching designations:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchDesignations();
+  }, []);
 
   const [searchTerm, setSearchTerm] = useState('');
   const [filterLevel, setFilterLevel] = useState<string>('all');
 
   const filteredDesignations = designations.filter(d => {
     const matchesSearch = d.designationName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         d.designationCode.toLowerCase().includes(searchTerm.toLowerCase());
+      d.designationCode.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesLevel = filterLevel === 'all' || d.level === filterLevel;
     return matchesSearch && matchesLevel;
   });
@@ -286,15 +199,14 @@ const DesignationMaster: React.FC = () => {
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-2">
                     <h3 className="text-lg font-semibold text-gray-900">{designation.designationName}</h3>
-                    <span className={`px-2 py-1 text-xs rounded-full uppercase font-medium ${
-                      designation.level === 'cxo' 
+                    <span className={`px-2 py-1 text-xs rounded-full uppercase font-medium ${designation.level === 'cxo'
                         ? 'bg-purple-100 text-purple-800'
                         : designation.level === 'executive' || designation.level === 'senior'
-                        ? 'bg-blue-100 text-blue-800'
-                        : designation.level === 'mid'
-                        ? 'bg-green-100 text-green-800'
-                        : 'bg-gray-100 text-gray-800'
-                    }`}>
+                          ? 'bg-blue-100 text-blue-800'
+                          : designation.level === 'mid'
+                            ? 'bg-green-100 text-green-800'
+                            : 'bg-gray-100 text-gray-800'
+                      }`}>
                       {designation.level}
                     </span>
                     <span className="px-2 py-1 bg-indigo-100 text-indigo-800 text-xs rounded-full">

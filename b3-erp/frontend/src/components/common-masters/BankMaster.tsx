@@ -1,159 +1,36 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Building2, Plus, Search, Eye, Edit3, Download, Upload, CheckCircle, AlertCircle, CreditCard } from 'lucide-react';
-
-interface BankAccount {
-  id: string;
-  bankName: string;
-  branchName: string;
-  accountNumber: string;
-  accountType: 'savings' | 'current' | 'cc' | 'od';
-  ifscCode: string;
-  swiftCode?: string;
-  micrCode?: string;
-  
-  accountHolderName: string;
-  currency: string;
-  
-  contactDetails: {
-    branchAddress: string;
-    city: string;
-    state: string;
-    pincode: string;
-    phone?: string;
-    email?: string;
-  };
-  
-  bankingDetails: {
-    openingBalance: number;
-    currentBalance: number;
-    overdraftLimit?: number;
-    chequebookPages?: number;
-  };
-  
-  onlineAccess: {
-    internetBanking: boolean;
-    netbankingId?: string;
-    upiId?: string;
-  };
-  
-  isPrimary: boolean;
-  status: 'active' | 'inactive' | 'closed';
-  
-  createdBy: string;
-  createdAt: string;
-}
+import { commonMastersService, BankAccount } from '@/services/common-masters.service';
 
 const BankMaster: React.FC = () => {
-  const [banks, setBanks] = useState<BankAccount[]>([
-    {
-      id: '1',
-      bankName: 'HDFC Bank',
-      branchName: 'MG Road Branch',
-      accountNumber: '50200012345678',
-      accountType: 'current',
-      ifscCode: 'HDFC0001234',
-      swiftCode: 'HDFCINBB',
-      micrCode: '560240002',
-      accountHolderName: 'ManufacturingOS Private Limited',
-      currency: 'INR',
-      contactDetails: {
-        branchAddress: '123 MG Road, Richmond Town',
-        city: 'Bangalore',
-        state: 'Karnataka',
-        pincode: '560025',
-        phone: '+91-80-12345678',
-        email: 'mgroad@hdfcbank.com'
-      },
-      bankingDetails: {
-        openingBalance: 5000000,
-        currentBalance: 12500000,
-        overdraftLimit: 2000000,
-        chequebookPages: 50
-      },
-      onlineAccess: {
-        internetBanking: true,
-        netbankingId: 'ManufacturingOS001',
-        upiId: 'b3macbis@hdfc'
-      },
-      isPrimary: true,
-      status: 'active',
-      createdBy: 'admin',
-      createdAt: '2024-01-01T10:00:00Z'
-    },
-    {
-      id: '2',
-      bankName: 'ICICI Bank',
-      branchName: 'Koramangala Branch',
-      accountNumber: '001705123456',
-      accountType: 'current',
-      ifscCode: 'ICIC0001705',
-      swiftCode: 'ICICINBB',
-      accountHolderName: 'ManufacturingOS Private Limited',
-      currency: 'INR',
-      contactDetails: {
-        branchAddress: 'Sony World Junction, Koramangala',
-        city: 'Bangalore',
-        state: 'Karnataka',
-        pincode: '560034',
-        phone: '+91-80-87654321',
-        email: 'koramangala@icicibank.com'
-      },
-      bankingDetails: {
-        openingBalance: 3000000,
-        currentBalance: 8750000,
-        overdraftLimit: 1500000,
-        chequebookPages: 50
-      },
-      onlineAccess: {
-        internetBanking: true,
-        netbankingId: 'ManufacturingOS002'
-      },
-      isPrimary: false,
-      status: 'active',
-      createdBy: 'admin',
-      createdAt: '2024-01-15T10:00:00Z'
-    },
-    {
-      id: '3',
-      bankName: 'State Bank of India',
-      branchName: 'Indiranagar Branch',
-      accountNumber: '34567890123',
-      accountType: 'savings',
-      ifscCode: 'SBIN0012345',
-      micrCode: '560002045',
-      accountHolderName: 'ManufacturingOS Private Limited',
-      currency: 'INR',
-      contactDetails: {
-        branchAddress: '100 Feet Road, Indiranagar',
-        city: 'Bangalore',
-        state: 'Karnataka',
-        pincode: '560038',
-        phone: '+91-80-23456789'
-      },
-      bankingDetails: {
-        openingBalance: 500000,
-        currentBalance: 2250000
-      },
-      onlineAccess: {
-        internetBanking: true,
-        upiId: 'b3macbis@sbi'
-      },
-      isPrimary: false,
-      status: 'active',
-      createdBy: 'admin',
-      createdAt: '2024-02-01T10:00:00Z'
+  const [banks, setBanks] = useState<BankAccount[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchBanks();
+  }, []);
+
+  const fetchBanks = async () => {
+    try {
+      setLoading(true);
+      const data = await commonMastersService.getAllBankAccounts();
+      setBanks(data);
+    } catch (error) {
+      console.error('Failed to fetch banks:', error);
+    } finally {
+      setLoading(false);
     }
-  ]);
+  };
 
   const [searchTerm, setSearchTerm] = useState('');
   const [filterStatus, setFilterStatus] = useState<string>('all');
 
   const filteredBanks = banks.filter(b => {
     const matchesSearch = b.bankName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         b.accountNumber.includes(searchTerm) ||
-                         b.ifscCode.toLowerCase().includes(searchTerm.toLowerCase());
+      b.accountNumber.includes(searchTerm) ||
+      b.ifscCode.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesStatus = filterStatus === 'all' || b.status === filterStatus;
     return matchesSearch && matchesStatus;
   });
@@ -268,13 +145,12 @@ const BankMaster: React.FC = () => {
                         Primary
                       </span>
                     )}
-                    <span className={`px-2 py-1 text-xs rounded-full font-medium ${
-                      bank.status === 'active' 
-                        ? 'bg-green-100 text-green-800' 
+                    <span className={`px-2 py-1 text-xs rounded-full font-medium ${bank.status === 'active'
+                        ? 'bg-green-100 text-green-800'
                         : bank.status === 'inactive'
-                        ? 'bg-yellow-100 text-yellow-800'
-                        : 'bg-red-100 text-red-800'
-                    }`}>
+                          ? 'bg-yellow-100 text-yellow-800'
+                          : 'bg-red-100 text-red-800'
+                      }`}>
                       {bank.status}
                     </span>
                   </div>

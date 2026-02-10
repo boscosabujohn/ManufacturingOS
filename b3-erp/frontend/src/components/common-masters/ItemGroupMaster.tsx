@@ -6,6 +6,8 @@ import {
   Download, Save, X, MoreVertical, CheckCircle, XCircle,
   AlertCircle, Grid, List, Tag, Package, TrendingUp, DollarSign
 } from 'lucide-react';
+import { commonMastersService, ItemGroup } from '@/services/common-masters.service';
+
 
 interface ItemGroup {
   id: string;
@@ -14,7 +16,7 @@ interface ItemGroup {
   description: string;
   category?: string;
   status: 'active' | 'inactive';
-  
+
   // Configuration
   attributes: {
     allowDiscounts: boolean;
@@ -22,7 +24,7 @@ interface ItemGroup {
     requireApproval: boolean;
     trackMargins: boolean;
   };
-  
+
   // Pricing
   pricingRules: {
     defaultMarkup?: number;
@@ -30,7 +32,7 @@ interface ItemGroup {
     maxDiscount?: number;
     priceListAssociation?: string[];
   };
-  
+
   // Business Rules
   businessRules: {
     taxable: boolean;
@@ -39,11 +41,11 @@ interface ItemGroup {
     allowBackorders: boolean;
     returnPolicy?: string;
   };
-  
+
   // Reporting
   reportingGroup?: string;
   profitCenter?: string;
-  
+
   // Statistics
   statistics: {
     itemCount: number;
@@ -51,7 +53,7 @@ interface ItemGroup {
     totalRevenue?: number;
     averageMargin?: number;
   };
-  
+
   // System Fields
   createdBy: string;
   createdAt: string;
@@ -178,11 +180,28 @@ const ItemGroupMaster: React.FC = () => {
   ];
 
   useEffect(() => {
-    setTimeout(() => {
-      setGroups(mockGroups);
-      setFilteredGroups(mockGroups);
-    }, 500);
-  }, []);
+    loadItemGroups();
+  }, [searchTerm, filterStatus]);
+
+  const loadItemGroups = async () => {
+    try {
+      const data = await commonMastersService.getAllItemGroups();
+      // Map API data to component interface
+      const mappedData: any[] = data.map(g => ({
+        ...g,
+        groupCode: g.id.substring(0, 8).toUpperCase(),
+        groupName: g.name,
+        category: g.category?.name || 'Uncategorized',
+        status: g.isActive ? 'active' : 'inactive',
+        statistics: { itemCount: 0, activeItemsCount: 0 }
+      }));
+      setGroups(mappedData);
+      setFilteredGroups(mappedData);
+    } catch (error) {
+      console.error('Failed to load item groups:', error);
+    }
+  };
+
 
   useEffect(() => {
     let filtered = groups;

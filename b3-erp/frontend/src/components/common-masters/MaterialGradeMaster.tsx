@@ -1,10 +1,11 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import {
   Award, Plus, Search, Edit2, Trash2, CheckCircle2,
   XCircle, Star, DollarSign, Package, TrendingUp
 } from 'lucide-react';
+import { manufacturingMastersService, MaterialGrade as BackendMaterialGrade } from '@/services/manufacturing-masters.service';
 
 interface MaterialGrade {
   id: string;
@@ -30,142 +31,65 @@ interface MaterialGrade {
   leadTime: string;
   certifications: string[];
   warranty: string;
-  status: 'Active' | 'Inactive' | 'Discontinued';
-  metadata: {
+  status: string;
+  metadata?: {
     createdAt: Date;
     updatedAt: Date;
     createdBy: string;
   };
 }
 
-const mockMaterialGrades: MaterialGrade[] = [
-  {
-    id: '1',
-    code: 'MAT-PLY-PREM-001',
-    name: 'Premium Grade BWP Plywood',
-    category: 'Plywood',
-    grade: 'Premium',
-    specifications: {
-      thickness: 19,
-      density: 680,
-      moistureContent: 8,
-      bondingQuality: 'BWP (Boiling Water Proof)',
-      formaldehydeEmission: 'E0 (<0.5 mg/L)'
-    },
-    qualityStandards: ['IS 303', 'IS 710', 'CARB P2'],
-    applications: [
-      'High-end Kitchen Cabinets',
-      'Premium Furniture',
-      'Exterior Applications'
-    ],
-    features: [
-      'Boiling waterproof',
-      'Zero formaldehyde emission',
-      'Termite resistant',
-      'Borer proof treatment',
-      'Consistent thickness'
-    ],
-    pricePerUnit: 2800,
-    unit: 'per sheet (8x4 ft)',
-    minOrderQuantity: 10,
-    availableSizes: ['8x4 ft', '7x4 ft', '6x4 ft'],
-    supplierRating: 4.8,
-    leadTime: '5-7 days',
-    certifications: ['IS 303', 'E0 Certified', 'FSC', 'CARB P2'],
-    warranty: '15 Years against delamination',
-    status: 'Active',
-    metadata: {
-      createdAt: new Date('2024-01-10'),
-      updatedAt: new Date('2024-03-15'),
-      createdBy: 'Procurement Manager'
-    }
-  },
-  {
-    id: '2',
-    code: 'MAT-MDF-STD-001',
-    name: 'Standard Grade MDF Board',
-    category: 'MDF',
-    grade: 'Standard',
-    specifications: {
-      thickness: 18,
-      density: 720,
-      moistureContent: 6,
-      formaldehydeEmission: 'E1 (<1.5 mg/L)'
-    },
-    qualityStandards: ['IS 14587', 'EN 622-5'],
-    applications: [
-      'Interior Furniture',
-      'Kitchen Cabinets',
-      'Wall Panels',
-      'Doors'
-    ],
-    features: [
-      'Uniform density',
-      'Smooth surface',
-      'Easy to machine',
-      'Good screw holding capacity',
-      'Paint-friendly surface'
-    ],
-    pricePerUnit: 1800,
-    unit: 'per sheet (8x4 ft)',
-    minOrderQuantity: 20,
-    availableSizes: ['8x4 ft', '7x4 ft', '6x3 ft'],
-    supplierRating: 4.5,
-    leadTime: '3-5 days',
-    certifications: ['IS 14587', 'E1 Certified'],
-    warranty: '10 Years with proper usage',
-    status: 'Active',
-    metadata: {
-      createdAt: new Date('2024-01-12'),
-      updatedAt: new Date('2024-03-10'),
-      createdBy: 'Procurement Manager'
-    }
-  },
-  {
-    id: '3',
-    code: 'MAT-PB-ECO-001',
-    name: 'Economy Grade Particle Board',
-    category: 'Particle Board',
-    grade: 'Economy',
-    specifications: {
-      thickness: 18,
-      density: 650,
-      moistureContent: 7,
-      formaldehydeEmission: 'E1 (<1.5 mg/L)'
-    },
-    qualityStandards: ['IS 12823'],
-    applications: [
-      'Budget Furniture',
-      'Kitchen Cabinets (dry areas)',
-      'Shelving',
-      'Core material'
-    ],
-    features: [
-      'Cost-effective',
-      'Good screw holding',
-      'Suitable for laminates',
-      'Moderate strength'
-    ],
-    pricePerUnit: 950,
-    unit: 'per sheet (8x4 ft)',
-    minOrderQuantity: 30,
-    availableSizes: ['8x4 ft', '7x4 ft'],
-    supplierRating: 4.0,
-    leadTime: '2-4 days',
-    certifications: ['IS 12823'],
-    warranty: '5 Years for indoor use',
-    status: 'Active',
-    metadata: {
-      createdAt: new Date('2024-01-15'),
-      updatedAt: new Date('2024-03-20'),
-      createdBy: 'Procurement Manager'
-    }
-  }
-];
-
 export default function MaterialGradeMaster() {
-  const [materialGrades, setMaterialGrades] = useState<MaterialGrade[]>(mockMaterialGrades);
+  const [materialGrades, setMaterialGrades] = useState<MaterialGrade[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [selectedGrade, setSelectedGrade] = useState<MaterialGrade | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filterGrade, setFilterGrade] = useState<string>('All');
+
+  useEffect(() => {
+    fetchMaterialGrades();
+  }, []);
+
+  const fetchMaterialGrades = async () => {
+    try {
+      setIsLoading(true);
+      const data = await manufacturingMastersService.getAllMaterialGrades('123e4567-e89b-12d3-a456-426614174000');
+
+      const mapped: MaterialGrade[] = data.map(mg => ({
+        id: mg.id,
+        code: mg.code,
+        name: mg.name,
+        category: mg.category as any,
+        grade: mg.grade as any,
+        specifications: {
+          thickness: mg.specifications?.thickness,
+          density: mg.specifications?.density,
+          moistureContent: mg.specifications?.moistureContent,
+          bondingQuality: mg.specifications?.bondingQuality,
+          formaldehydeEmission: mg.specifications?.formaldehydeEmission
+        },
+        qualityStandards: mg.qualityStandards,
+        applications: mg.applications,
+        features: mg.features,
+        pricePerUnit: mg.pricePerUnit,
+        unit: mg.unit || 'per unit',
+        minOrderQuantity: mg.minOrderQuantity,
+        availableSizes: mg.availableSizes,
+        supplierRating: mg.supplierRating,
+        leadTime: mg.leadTime || '',
+        certifications: mg.certifications,
+        warranty: mg.warranty || '',
+        status: mg.status
+      }));
+
+      setMaterialGrades(mapped);
+    } catch (error) {
+      console.error('Error fetching material grades:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterGrade, setFilterGrade] = useState<string>('All');
@@ -215,8 +139,8 @@ export default function MaterialGradeMaster() {
   const filteredGrades = useMemo(() => {
     return materialGrades.filter(grade => {
       const matchesSearch = grade.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           grade.code.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           grade.category.toLowerCase().includes(searchTerm.toLowerCase());
+        grade.code.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        grade.category.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesGrade = filterGrade === 'All' || grade.grade === filterGrade;
       return matchesSearch && matchesGrade;
     });
@@ -418,7 +342,7 @@ export default function MaterialGradeMaster() {
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Category *
                     </label>
-                    <select 
+                    <select
                       defaultValue={selectedGrade?.category || 'Plywood'}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
                     >
@@ -435,7 +359,7 @@ export default function MaterialGradeMaster() {
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Grade *
                     </label>
-                    <select 
+                    <select
                       defaultValue={selectedGrade?.grade || 'Standard'}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
                     >
@@ -519,7 +443,7 @@ export default function MaterialGradeMaster() {
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Status
                   </label>
-                  <select 
+                  <select
                     defaultValue={selectedGrade?.status || 'Active'}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
                   >

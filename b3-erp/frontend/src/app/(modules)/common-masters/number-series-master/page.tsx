@@ -1,17 +1,33 @@
 'use client';
 
-import React, { useState, useMemo, useEffect } from 'react';
-import { Plus, Search, Download, Filter, X, Hash, TrendingUp, AlertCircle, FileText, CheckCircle, XCircle } from 'lucide-react';
+import React, { useState, useEffect, useMemo } from 'react';
+import { Plus, Search, Download, Filter, X, Hash, AlertCircle, TrendingUp, CheckCircle, XCircle } from 'lucide-react';
 import { DataTable, Column } from '@/components/ui/DataTable';
 import { StatusBadge } from '@/components/ui/StatusBadge';
-import { mockNumberSeries, NumberSeries, getNumberSeriesStats } from '@/data/common-masters/number-series';
+import { systemMastersService, NumberSeries } from '@/services/system-masters.service';
 
 export default function NumberSeriesMasterPage() {
-  const [numberSeries, setNumberSeries] = useState<NumberSeries[]>(mockNumberSeries);
+  const [numberSeries, setNumberSeries] = useState<NumberSeries[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterModule, setFilterModule] = useState<string>('all');
   const [showFilters, setShowFilters] = useState(false);
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' | 'info' } | null>(null);
+
+  useEffect(() => {
+    const fetchSeries = async () => {
+      setIsLoading(true);
+      try {
+        const data = await systemMastersService.getAllNumberSeries('123e4567-e89b-12d3-a456-426614174000');
+        setNumberSeries(data);
+      } catch (error) {
+        showToast('Failed to fetch number series', 'error');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchSeries();
+  }, []);
 
   useEffect(() => {
     if (toast) {
@@ -68,13 +84,21 @@ export default function NumberSeriesMasterPage() {
   };
 
   const getUsagePercentage = (series: NumberSeries) => {
-    return Math.round(((series.currentNumber - series.startingNumber) / (series.endingNumber - series.startingNumber)) * 100);
+    const total = series.endingNumber - series.startingNumber;
+    if (total === 0) return 0;
+    return Math.round(((series.currentNumber - series.startingNumber) / total) * 100);
   };
 
   const getUsageColor = (percentage: number) => {
     if (percentage >= 90) return 'text-red-600';
     if (percentage >= 70) return 'text-yellow-600';
     return 'text-green-600';
+  };
+
+  // Construct current format sample
+  const getFormatSample = (row: NumberSeries) => {
+    const num = row.currentNumber.toString().padStart(row.paddingLength, '0');
+    return `${row.prefix || ''}${row.separator || ''}${num}${row.suffix || ''}`;
   };
 
   // Table columns
@@ -86,7 +110,7 @@ export default function NumberSeriesMasterPage() {
       sortable: true,
       render: (value, row) => (
         <div>
-          <div className="font-medium text-gray-900">{value}</div>
+          <div className="font-medium text-gray-900">{String(value)}</div>
           <div className="text-xs text-gray-500">
             <span className="font-mono font-semibold text-blue-600">{row.seriesCode}</span>
           </div>
@@ -100,19 +124,19 @@ export default function NumberSeriesMasterPage() {
       accessor: 'module',
       sortable: true,
       render: (value) => (
-        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium capitalize ${getModuleColor(value)}`}>
-          {value}
+        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium capitalize ${getModuleColor(String(value))}`}>
+          {String(value)}
         </span>
       )
     },
     {
       id: 'format',
-      header: 'Format',
-      accessor: 'sampleFormat',
+      header: 'Format Sample',
+      accessor: 'id',
       sortable: false,
-      render: (value, row) => (
+      render: (_, row) => (
         <div className="text-sm">
-          <div className="font-mono font-medium text-gray-900">{value}</div>
+          <div className="font-mono font-medium text-gray-900">{getFormatSample(row)}</div>
           <div className="text-xs text-gray-500">
             Reset: {row.resetFrequency}
           </div>
@@ -128,7 +152,7 @@ export default function NumberSeriesMasterPage() {
         const usage = getUsagePercentage(row);
         return (
           <div className="text-sm">
-            <div className="font-medium text-gray-900">{value}</div>
+            <div className="font-medium text-gray-900">{String(value)}</div>
             <div className={`text-xs font-medium ${getUsageColor(usage)}`}>
               {usage}% used
               {usage >= 80 && <AlertCircle className="inline w-3 h-3 ml-1" />}
@@ -144,21 +168,7 @@ export default function NumberSeriesMasterPage() {
       sortable: false,
       render: (value, row) => (
         <div className="text-sm text-gray-600">
-          {value} - {row.endingNumber}
-        </div>
-      )
-    },
-    {
-      id: 'generated',
-      header: 'Generated',
-      accessor: 'documentsGenerated',
-      sortable: true,
-      render: (value, row) => (
-        <div className="text-sm">
-          <div className="font-medium text-gray-900">{value}</div>
-          <div className="text-xs text-gray-500">
-            Last: {new Date(row.lastGeneratedDate).toLocaleDateString()}
-          </div>
+          {String(value)} - {row.endingNumber}
         </div>
       )
     },
@@ -228,28 +238,33 @@ export default function NumberSeriesMasterPage() {
     searchTerm !== ''
   ].filter(Boolean).length;
 
-  // Statistics
-  const stats = useMemo(() => getNumberSeriesStats(), [numberSeries]);
+  // Simple stats
+  const stats = useMemo(() => ({
+    total: numberSeries.length,
+    active: numberSeries.filter(s => s.isActive).length,
+    nearingLimit: numberSeries.filter(s => getUsagePercentage(s) >= 90).length,
+    production: numberSeries.filter(s => s.module === 'production').length,
+    sales: numberSeries.filter(s => s.module === 'sales').length,
+    totalGenerated: numberSeries.reduce((acc, s) => acc + (s.currentNumber - s.startingNumber), 0)
+  }), [numberSeries]);
 
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-indigo-50 to-violet-50">
       {/* Toast Notification */}
       {toast && (
         <div className="fixed top-4 right-4 z-50 max-w-md animate-slide-in">
-          <div className={`rounded-lg shadow-lg p-3 ${
-            toast.type === 'success' ? 'bg-green-50 border border-green-200' :
+          <div className={`rounded-lg shadow-lg p-3 ${toast.type === 'success' ? 'bg-green-50 border border-green-200' :
             toast.type === 'error' ? 'bg-red-50 border border-red-200' :
-            'bg-blue-50 border border-blue-200'
-          }`}>
+              'bg-blue-50 border border-blue-200'
+            }`}>
             <div className="flex items-start gap-3">
               {toast.type === 'success' && <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />}
               {toast.type === 'error' && <XCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />}
               {toast.type === 'info' && <AlertCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />}
-              <p className={`text-sm font-medium ${
-                toast.type === 'success' ? 'text-green-800' :
+              <p className={`text-sm font-medium ${toast.type === 'success' ? 'text-green-800' :
                 toast.type === 'error' ? 'text-red-800' :
-                'text-blue-800'
-              }`}>{toast.message}</p>
+                  'text-blue-800'
+                }`}>{toast.message}</p>
             </div>
           </div>
         </div>
@@ -332,9 +347,8 @@ export default function NumberSeriesMasterPage() {
               </div>
               <button
                 onClick={() => setShowFilters(!showFilters)}
-                className={`inline-flex items-center gap-2 px-4 py-2 border rounded-lg transition-colors ${
-                  showFilters ? 'bg-indigo-50 border-indigo-300 text-indigo-700' : 'border-gray-300 hover:bg-gray-50'
-                }`}
+                className={`inline-flex items-center gap-2 px-4 py-2 border rounded-lg transition-colors ${showFilters ? 'bg-indigo-50 border-indigo-300 text-indigo-700' : 'border-gray-300 hover:bg-gray-50'
+                  }`}
               >
                 <Filter className="w-4 h-4" />
                 <span>Filters</span>

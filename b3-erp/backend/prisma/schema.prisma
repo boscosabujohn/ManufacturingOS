@@ -1,0 +1,1402 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// --- Geographic Masters ---
+
+model Country {
+  id        String   @id @default(uuid())
+  code      String   @unique
+  name      String
+  phoneCode String?
+  isActive  Boolean  @default(true)
+  states    State[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("core_countries")
+}
+
+model State {
+  id        String   @id @default(uuid())
+  name      String
+  countryId String
+  country   Country  @relation(fields: [countryId], references: [id])
+  isActive  Boolean  @default(true)
+  cities    City[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("core_states")
+}
+
+model City {
+  id        String   @id @default(uuid())
+  name      String
+  stateId   String
+  state     State    @relation(fields: [stateId], references: [id])
+  isActive  Boolean  @default(true)
+  branches  Branch[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("core_cities")
+}
+
+model Territory {
+  id            String   @id @default(uuid())
+  code          String
+  name          String
+  companyId     String
+  company       Company  @relation(fields: [companyId], references: [id])
+  isActive      Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@unique([code, companyId])
+  @@map("core_territories")
+}
+
+// --- Organizational Masters ---
+
+model Company {
+  id                 String           @id @default(uuid())
+  name               String           @unique
+  taxId              String           @unique
+  registrationNumber String?
+  baseCurrencyId     String?
+  baseCurrency       Currency?        @relation("BaseCurrency", fields: [baseCurrencyId], references: [id])
+  logoUrl            String?
+  address            String?
+  email              String?
+  phone              String?
+  isActive           Boolean          @default(true)
+  isEliminationEntity Boolean         @default(false)
+  
+  branches           Branch[]
+  departments        Department[]
+  designations       Designation[]
+  costCenters        CostCenter[]
+  plants             Plant[]
+  warehouses         Warehouse[]
+  exchangeRates      ExchangeRate[]
+  uoms               Uom[]
+  uomConversions     UomConversion[]
+  itemCategories     ItemCategory[]
+  itemGroups         ItemGroup[]
+  brands             Brand[]
+  hsnSacs            HsnSac[]
+  items              Item[]
+  barcodes           Barcode[]
+  customerCategories CustomerCategory[]
+  customers          Customer[]
+  vendorCategories   VendorCategory[]
+  vendors            Vendor[]
+  
+  // HR Masters
+  employees          Employee[]
+  shifts             Shift[]
+  holidays           Holiday[]
+  
+  // Financial Masters
+  accounts           Account[]
+  bankAccounts       BankAccount[]
+  taxes              Tax[]
+  paymentTerms       PaymentTerm[]
+  priceLists         PriceList[]
+  territories        Territory[]
+  
+  // Manufacturing Masters
+  machines           Machine[]
+  workCenters        WorkCenter[]
+  operations         Operation[]
+  routings           Routing[]
+  tools              Tool[]
+  qualityParameters  QualityParameter[]
+  skills             Skill[]
+  batches            Batch[]
+  
+  // Kitchen Manufacturing Masters
+  cabinetTypes      CabinetType[]
+  kitchenHardware   KitchenHardware[]
+  kitchenFinishes   KitchenFinish[]
+  materialGrades    MaterialGrade[]
+  kitchenLayouts    KitchenLayout[]
+  installationTypes InstallationType[]
+  kitchenAppliances KitchenAppliance[]
+
+  // System Masters
+  roles             Role[]
+  users             User[]
+  documentTypes     DocumentType[]
+  numberSeries      NumberSeries[]
+  
+  createdAt          DateTime         @default(now())
+  updatedAt          DateTime         @updatedAt
+
+  @@map("core_companies")
+}
+
+model Branch {
+  id        String   @id @default(uuid())
+  name      String
+  companyId String
+  company   Company  @relation(fields: [companyId], references: [id])
+  cityId    String?
+  city      City?    @relation(fields: [cityId], references: [id])
+  address   String?
+  isActive  Boolean  @default(true)
+  
+  departments Department[]
+  plants      Plant[]
+  warehouses  Warehouse[]
+  employees   Employee[]
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("core_branches")
+}
+
+model Department {
+  id        String   @id @default(uuid())
+  name      String
+  companyId String
+  company   Company  @relation(fields: [companyId], references: [id])
+  branchId  String?
+  branch    Branch?  @relation(fields: [branchId], references: [id])
+  isActive  Boolean  @default(true)
+  
+  employees Employee[]
+  workCenters WorkCenter[]
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([name, companyId])
+  @@map("core_departments")
+}
+
+model Designation {
+  id        String   @id @default(uuid())
+  code      String
+  name      String
+  level     Int?
+  grade     String?
+  companyId String
+  company   Company  @relation(fields: [companyId], references: [id])
+  isActive  Boolean  @default(true)
+  
+  employees Employee[]
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([code, companyId])
+  @@map("core_designations")
+}
+
+model CostCenter {
+  id        String   @id @default(uuid())
+  code      String
+  name      String
+  companyId String
+  company   Company  @relation(fields: [companyId], references: [id])
+  isActive  Boolean  @default(true)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([code, companyId])
+  @@map("core_cost_centers")
+}
+
+model Plant {
+  id        String   @id @default(uuid())
+  code      String
+  name      String
+  companyId String
+  company   Company  @relation(fields: [companyId], references: [id])
+  branchId  String?
+  branch    Branch?  @relation(fields: [branchId], references: [id])
+  isActive  Boolean  @default(true)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([code, companyId])
+  @@map("core_plants")
+}
+
+model Warehouse {
+  id        String   @id @default(uuid())
+  code      String
+  name      String
+  companyId String
+  company   Company  @relation(fields: [companyId], references: [id])
+  branchId  String?
+  branch    Branch?  @relation(fields: [branchId], references: [id])
+  address   String?
+  isActive  Boolean  @default(true)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([code, companyId])
+  @@map("core_warehouses")
+}
+
+model ExchangeRate {
+  id             String   @id @default(uuid())
+  fromCurrencyId String
+  fromCurrency   Currency @relation("FromCurrency", fields: [fromCurrencyId], references: [id])
+  toCurrencyId   String
+  toCurrency     Currency @relation("ToCurrency", fields: [toCurrencyId], references: [id])
+  rate           Float
+  effectiveDate  DateTime
+  companyId      String
+  company        Company  @relation(fields: [companyId], references: [id])
+  
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@map("core_exchange_rates")
+}
+
+// --- Foundation Masters ---
+
+model Currency {
+  id            String    @id @default(uuid())
+  code          String    @unique
+  name          String
+  symbol        String
+  symbolNative  String?
+  decimalDigits Int       @default(2)
+  rounding      Float     @default(0)
+  isActive      Boolean   @default(true)
+  
+  baseCompanies     Company[] @relation("BaseCurrency")
+  fromExchangeRates ExchangeRate[] @relation("FromCurrency")
+  toExchangeRates   ExchangeRate[] @relation("ToCurrency")
+  
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@map("core_currencies")
+}
+
+model Uom {
+  id        String   @id @default(uuid())
+  code      String
+  name      String
+  companyId String
+  company   Company  @relation(fields: [companyId], references: [id])
+  isActive  Boolean  @default(true)
+  
+  conversionsFrom UomConversion[] @relation("FromUom")
+  conversionsTo   UomConversion[] @relation("ToUom")
+  items           Item[]
+  workCenters     WorkCenter[]
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([code, companyId])
+  @@map("core_uoms")
+}
+
+model UomConversion {
+  id        String   @id @default(uuid())
+  fromUomId String
+  fromUom   Uom      @relation("FromUom", fields: [fromUomId], references: [id])
+  toUomId   String
+  toUom     Uom      @relation("ToUom", fields: [toUomId], references: [id])
+  factor    Float
+  companyId String
+  company   Company  @relation(fields: [companyId], references: [id])
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("core_uom_conversions")
+}
+
+model ItemCategory {
+  id        String   @id @default(uuid())
+  name      String
+  companyId String
+  company   Company  @relation(fields: [companyId], references: [id])
+  isActive  Boolean  @default(true)
+  
+  groups    ItemGroup[]
+  items     Item[]
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([name, companyId])
+  @@map("core_item_categories")
+}
+
+model ItemGroup {
+  id             String       @id @default(uuid())
+  name           String
+  categoryId     String
+  category       ItemCategory @relation(fields: [categoryId], references: [id])
+  companyId      String
+  company        Company      @relation(fields: [companyId], references: [id])
+  isActive       Boolean      @default(true)
+  
+  items          Item[]
+  
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  @@unique([name, companyId])
+  @@map("core_item_groups")
+}
+
+model Brand {
+  id        String   @id @default(uuid())
+  name      String
+  companyId String
+  company   Company  @relation(fields: [companyId], references: [id])
+  isActive  Boolean  @default(true)
+  items     Item[]
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([name, companyId])
+  @@map("core_brands")
+}
+
+model HsnSac {
+  id          String   @id @default(uuid())
+  code        String
+  description String?
+  gstPercentage Float    @default(0)
+  companyId   String
+  company     Company  @relation(fields: [companyId], references: [id])
+  isActive    Boolean  @default(true)
+  items       Item[]
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([code, companyId])
+  @@map("core_hsn_sac")
+}
+
+model Item {
+  id            String       @id @default(uuid())
+  code          String
+  name          String
+  description   String?
+  itemType      String       // RAW_MATERIAL, FINISHED_GOODS, etc.
+  categoryId    String?
+  category      ItemCategory? @relation(fields: [categoryId], references: [id])
+  groupId       String?
+  group         ItemGroup?    @relation(fields: [groupId], references: [id])
+  uomId         String
+  uom           Uom           @relation(fields: [uomId], references: [id])
+  brandId       String?
+  brand         Brand?        @relation(fields: [brandId], references: [id])
+  hsnSacId      String?
+  hsnSac        HsnSac?       @relation(fields: [hsnSacId], references: [id])
+  sku           String?
+  purchasePrice Float?       @default(0)
+  sellingPrice  Float?       @default(0)
+  costPrice     Float?       @default(0)
+  minStockLevel Float?       @default(0)
+  maxStockLevel Float?       @default(0)
+  reorderLevel  Float?       @default(0)
+  reorderQuantity Float?     @default(0)
+  isStockable   Boolean      @default(true)
+  isSellable    Boolean      @default(true)
+  isPurchasable Boolean      @default(true)
+  companyId     String
+  company       Company      @relation(fields: [companyId], references: [id])
+  isActive      Boolean      @default(true)
+  barcodes      Barcode[]
+  routings      Routing[]
+  batches       Batch[]
+  
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+
+  @@unique([code, companyId])
+  @@map("core_items")
+}
+
+model Barcode {
+  id        String   @id @default(uuid())
+  code      String
+  itemId    String
+  item      Item     @relation(fields: [itemId], references: [id])
+  companyId String
+  company   Company  @relation(fields: [companyId], references: [id])
+  isActive  Boolean  @default(true)
+  
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+
+  @@unique([code, companyId])
+  @@map("core_barcodes")
+}
+
+// --- Stakeholder Masters ---
+
+model CustomerCategory {
+  id          String   @id @default(uuid())
+  code        String
+  name        String
+  description String?
+  color       String?  @default("#3B82F6")
+  icon        String?
+  level       String?  @default("Primary")
+  classification String? @default("Standard")
+  status      String   @default("Active")
+  
+  // Nested JSON fields for consistency with UI
+  criteria    Json?    // minRevenue, minOrders, etc.
+  benefits    Json?    // discountPercent, creditLimit, etc.
+  terms       Json?    // paymentTerms, deliveryPriority, etc.
+  targets     Json?    // revenueTarget, growthTarget, etc.
+  metrics     Json?    // customerCount, totalRevenue, etc.
+
+  companyId   String
+  company     Company  @relation(fields: [companyId], references: [id])
+  
+  customers   Customer[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([code, companyId])
+  @@map("crm_customer_categories")
+}
+
+model Customer {
+  id            String   @id @default(uuid())
+  customerCode  String
+  customerName  String
+  customerType  String   @default("business") // individual, business, government
+  status        String   @default("active")
+  
+  categoryId    String?
+  category      CustomerCategory? @relation(fields: [categoryId], references: [id])
+  
+  contactPerson String?
+  email         String?
+  phone         String?
+  mobile        String?
+  website       String?
+
+  // Nested JSON fields for consistency with UI
+  address       Json?    // line1, city, state, etc.
+  billingAddress Json?
+  taxInfo       Json?    // taxId, vatNumber, etc.
+  creditInfo    Json?    // creditLimit, paymentTerms, etc.
+  pricing       Json?    // priceList, discountPercentage, etc.
+  salesInfo     Json?    // salesRep, totalSales, etc.
+
+  companyId     String
+  company       Company  @relation(fields: [companyId], references: [id])
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@unique([customerCode, companyId])
+  @@map("crm_customers")
+}
+
+model VendorCategory {
+  id          String   @id @default(uuid())
+  name        String
+  description String?
+  isActive    Boolean  @default(true)
+  
+  companyId   String
+  company     Company  @relation(fields: [companyId], references: [id])
+  
+  vendors     Vendor[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([name, companyId])
+  @@map("proc_vendor_categories")
+}
+
+model Vendor {
+  id            String   @id @default(uuid())
+  vendorCode    String
+  vendorName    String
+  vendorType    String   @default("supplier")
+  status        String   @default("active")
+  
+  categoryId    String?
+  category      VendorCategory? @relation(fields: [categoryId], references: [id])
+  
+  contactPerson String?
+  email         String?
+  phone         String?
+  mobile        String?
+  website       String?
+
+  // Nested JSON fields for consistency with UI
+  address       Json?
+  taxInfo       Json?
+  paymentInfo   Json?
+  qualifications Json?   // certifications, licenses, etc.
+  supplierInfo  Json?   // leadTime, minimumOrderValue, etc.
+  performance   Json?   // onTimeDelivery, qualityScore, etc.
+
+  companyId     String
+  company       Company  @relation(fields: [companyId], references: [id])
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@unique([vendorCode, companyId])
+  @@map("proc_vendors")
+}
+
+// --- HR Masters ---
+
+model Employee {
+  id              String      @id @default(uuid())
+  employeeCode    String
+  firstName       String
+  lastName        String
+  email           String?
+  phone           String?
+  designationId   String?
+  designation     Designation? @relation(fields: [designationId], references: [id])
+  departmentId    String?
+  department      Department?  @relation(fields: [departmentId], references: [id])
+  branchId        String?
+  branch          Branch?      @relation(fields: [branchId], references: [id])
+  companyId       String
+  company         Company      @relation(fields: [companyId], references: [id])
+  joiningDate     DateTime?
+  status          String       @default("Active") // Active, Inactive, Terminated, Resigned
+  isActive        Boolean      @default(true)
+  user            User?
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+
+  @@unique([employeeCode, companyId])
+  @@map("hr_employees")
+}
+
+model Shift {
+  id        String   @id @default(uuid())
+  code      String
+  name      String
+  startTime String?  // e.g., "09:00"
+  endTime   String?  // e.g., "18:00"
+  companyId String
+  company   Company  @relation(fields: [companyId], references: [id])
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([code, companyId])
+  @@map("hr_shifts")
+}
+
+model Holiday {
+  id          String   @id @default(uuid())
+  date        DateTime
+  name        String
+  holidayType String   @default("Public") // Public, Company
+  companyId   String
+  company     Company  @relation(fields: [companyId], references: [id])
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([date, companyId])
+  @@map("hr_holidays")
+}
+
+// --- Financial Masters ---
+
+model Account {
+  id               String   @id @default(uuid())
+  accountCode      String
+  accountName      String
+  parentId         String?
+  parent           Account?  @relation("AccountHierarchy", fields: [parentId], references: [id])
+  children         Account[] @relation("AccountHierarchy")
+  level            Int      @default(1)
+  accountType      String   // asset, liability, equity, revenue, expense
+  accountSubType   String?
+  status           String   @default("active")
+  description      String?
+  isControlAccount Boolean  @default(false)
+  allowPosting     Boolean  @default(true)
+  currency         String   @default("INR")
+  
+  // JSON fields for specific settings
+  taxConfiguration Json?    // taxable, defaultTaxCode, etc.
+  reportingSettings Json?   // includeInBalanceSheet, etc.
+  balanceInfo      Json?    // openingBalance, currentBalance, etc.
+  restrictions     Json?    // department, costCenter, etc.
+  integration      Json?    // bankAccount, externalCode, etc.
+
+  companyId        String
+  company          Company  @relation(fields: [companyId], references: [id])
+
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@unique([accountCode, companyId])
+  @@map("fin_accounts")
+}
+
+model BankAccount {
+  id                String   @id @default(uuid())
+  bankName          String
+  branchName        String?
+  accountNumber     String
+  accountType       String   // savings, current, cc, od
+  ifscCode          String
+  swiftCode         String?
+  micrCode          String?
+  accountHolderName String
+  currency          String   @default("INR")
+  status            String   @default("active")
+  isPrimary         Boolean  @default(false)
+
+  contactDetails    Json?    // branchAddress, city, state, pincode, etc.
+  bankingDetails    Json?    // openingBalance, currentBalance, overdraftLimit, etc.
+  onlineAccess      Json?    // internetBanking, netbankingId, upiId, etc.
+
+  companyId         String
+  company           Company  @relation(fields: [companyId], references: [id])
+
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@unique([accountNumber, companyId])
+  @@map("fin_bank_accounts")
+}
+
+model Tax {
+  id            String   @id @default(uuid())
+  taxCode       String
+  taxName       String
+  taxType       String   // sales, purchase, service, vat, gst, etc.
+  status        String   @default("active")
+  description   String?
+  rate          Float
+  rateType      String   @default("percentage") // percentage, fixed
+  
+  taxComponents Json?    // Array of {componentName, rate, account}
+  applicability Json?    // applicableOn, territory, etc.
+  calculation   Json?    // method, roundingMethod, etc.
+  compliance    Json?    // reportingRequired, filingFrequency, etc.
+  validity      Json?    // effectiveFrom, effectiveTo, isDefault
+  accounting    Json?    // salesTaxAccount, purchaseTaxAccount, etc.
+
+  companyId     String
+  company       Company  @relation(fields: [companyId], references: [id])
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@unique([taxCode, companyId])
+  @@map("fin_taxes")
+}
+
+model PaymentTerm {
+  id            String   @id @default(uuid())
+  termCode      String
+  termName      String
+  description   String?
+  paymentType   String   // immediate, days, date, installment
+  dueDays       Int?
+  dueDate       Int?     // Day of month
+  
+  installments  Json?    // Array of {installmentNumber, percentage, daysAfter}
+  discountTerms Json?    // {discountPercentage, discountDays}
+  penaltyTerms  Json?    // {penaltyPercentage, gracePeriodDays}
+  
+  applicableTo  String   @default("both") // purchase, sales, both
+  isDefault     Boolean  @default(false)
+  status        String   @default("active")
+
+  companyId     String
+  company       Company  @relation(fields: [companyId], references: [id])
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@unique([termCode, companyId])
+  @@map("fin_payment_terms")
+}
+
+model PriceList {
+  id               String   @id @default(uuid())
+  priceListCode    String
+  priceListName    String
+  description      String?
+  effectiveFrom    DateTime
+  effectiveTo      DateTime?
+  customerCategory String   @default("all")
+  applicableFor    String   @default("sales") // sales, purchase
+  pricingMethod    String   @default("fixed") // fixed, markup, markdown, formula
+  markupPercentage Float?
+  currency         String   @default("INR")
+  includeTax       Boolean  @default(false)
+  isDefault        Boolean  @default(false)
+  status           String   @default("active")
+
+  items            PriceListItem[]
+
+  companyId        String
+  company          Company  @relation(fields: [companyId], references: [id])
+
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@unique([priceListCode, companyId])
+  @@map("fin_price_lists")
+}
+
+model PriceListItem {
+  id          String   @id @default(uuid())
+  itemCode    String
+  itemName    String
+  price       Float
+  minQty      Float?
+  maxQty      Float?
+
+  priceListId String
+  priceList   PriceList @relation(fields: [priceListId], references: [id])
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("fin_price_list_items")
+}
+
+// -----------------------------------------
+// Manufacturing Masters
+// -----------------------------------------
+
+model Machine {
+  id              String   @id @default(uuid())
+  machineCode     String
+  machineName     String
+  description     String?
+  category        String?  // cutting, drilling, etc.
+  manufacturer    String?
+  model           String?
+  serialNumber    String?
+  
+  // Specifications
+  capacity        String?
+  power           String?
+  dimensions      String?
+  weight          Float?
+  
+  // Location
+  plantId         String?
+  workCenterId    String?
+  workCenter      WorkCenter? @relation(fields: [workCenterId], references: [id])
+  
+  // Acquisition
+  purchaseDate    DateTime?
+  purchaseCost    Float?
+  warrantyExpiry  DateTime?
+  
+  // Performance
+  efficiency      Float    @default(0)
+  utilizationRate Float    @default(0)
+  
+  status          String   @default("operational") // operational, maintenance, breakdown, idle
+  
+  companyId       String
+  company         Company  @relation(fields: [companyId], references: [id])
+  
+  isActive        Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@unique([machineCode, companyId])
+  @@map("mfg_machines")
+}
+
+model WorkCenter {
+  id            String   @id @default(uuid())
+  code          String
+  name          String
+  type          String?  // Production, Assembly, etc.
+  departmentId  String?
+  department    Department? @relation(fields: [departmentId], references: [id])
+  location      String?
+  
+  // Capacity
+  dailyCapacity Float?
+  uomId         String?
+  uom           Uom?     @relation(fields: [uomId], references: [id])
+  efficiency    Float    @default(0)
+  
+  status        String   @default("Active") // Active, Inactive, Maintenance
+  
+  machines      Machine[]
+  operations    Operation[]
+  routingSteps  RoutingStep[]
+
+  companyId     String
+  company       Company  @relation(fields: [companyId], references: [id])
+  
+  isActive      Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@unique([code, companyId])
+  @@map("mfg_work_centers")
+}
+
+model Operation {
+  id            String   @id @default(uuid())
+  code          String
+  name          String
+  description   String?
+  
+  workCenterId  String
+  workCenter    WorkCenter @relation(fields: [workCenterId], references: [id])
+  
+  setupTime     Float?   // in minutes
+  runTime       Float?   // in minutes
+  
+  routingSteps  RoutingStep[]
+
+  companyId     String
+  company       Company    @relation(fields: [companyId], references: [id])
+  
+  isActive      Boolean    @default(true)
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+
+  @@unique([code, companyId])
+  @@map("mfg_operations")
+}
+
+model Routing {
+  id            String   @id @default(uuid())
+  code          String
+  name          String
+  itemId        String
+  item          Item     @relation(fields: [itemId], references: [id])
+  
+  isDefault     Boolean  @default(false)
+  
+  steps         RoutingStep[]
+
+  companyId     String
+  company       Company  @relation(fields: [companyId], references: [id])
+  
+  isActive      Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@unique([code, companyId])
+  @@map("mfg_routings")
+}
+
+model RoutingStep {
+  id            String   @id @default(uuid())
+  stepNumber    Int
+  routingId     String
+  routing       Routing  @relation(fields: [routingId], references: [id])
+  
+  operationId   String
+  operation     Operation @relation(fields: [operationId], references: [id])
+  
+  workCenterId  String
+  workCenter    WorkCenter @relation(fields: [workCenterId], references: [id])
+  
+  description   String?
+  
+  @@unique([routingId, stepNumber])
+  @@map("mfg_routing_steps")
+}
+
+model Tool {
+  id            String   @id @default(uuid())
+  code          String
+  name          String
+  description   String?
+  category      String?
+  
+  lastSharpened DateTime?
+  nextService   DateTime?
+  status        String   @default("Available")
+  
+  companyId     String
+  company       Company  @relation(fields: [companyId], references: [id])
+  
+  isActive      Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@unique([code, companyId])
+  @@map("mfg_tools")
+}
+
+model QualityParameter {
+  id            String   @id @default(uuid())
+  code          String
+  name          String
+  description   String?
+  unit          String?
+  minValue      Float?
+  maxValue      Float?
+  targetValue   Float?
+  
+  companyId     String
+  company       Company  @relation(fields: [companyId], references: [id])
+  
+  isActive      Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@unique([code, companyId])
+  @@map("mfg_quality_parameters")
+}
+
+model Skill {
+  id            String   @id @default(uuid())
+  name          String
+  description   String?
+  category      String?
+  
+  companyId     String
+  company       Company  @relation(fields: [companyId], references: [id])
+  
+  isActive      Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@unique([name, companyId])
+  @@map("mfg_skills")
+}
+
+model Batch {
+  id            String   @id @default(uuid())
+  batchNumber   String
+  itemId        String
+  item          Item     @relation(fields: [itemId], references: [id])
+  
+  manufacturingDate DateTime?
+  expiryDate        DateTime?
+  
+  quantity      Float    @default(0)
+  status        String   @default("In Production") // In Production, Quarantined, Released, Expired
+  
+  companyId     String
+  company       Company  @relation(fields: [companyId], references: [id])
+  
+  isActive      Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@unique([batchNumber, companyId])
+  @@map("mfg_batches")
+}
+
+// -----------------------------------------
+// Kitchen Manufacturing Masters
+// -----------------------------------------
+
+model CabinetType {
+  id               String   @id @default(uuid())
+  code             String
+  name             String
+  category         String   // Base Cabinet, Wall Cabinet, etc.
+  subcategory      String?
+  
+  // Dimensions
+  widthOptions     String?  // e.g., "450, 600, 750, 900"
+  depth            Float?
+  height           Float?
+  unit             String   @default("mm")
+  
+  // Configuration
+  doors            Int      @default(0)
+  drawers          Int      @default(0)
+  shelves          Int      @default(0)
+  
+  features         String[]
+  materials        String[]
+  finishOptions    String[]
+  hardwareIncluded String[]
+  
+  basePrice        Float    @default(0)
+  installationType String?  // Freestanding, Built-in, Modular
+  weightCapacity   Float?
+  status           String   @default("Active") // Active, Inactive, Discontinued
+  
+  companyId        String
+  company          Company  @relation(fields: [companyId], references: [id])
+  
+  isActive         Boolean  @default(true)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@unique([code, companyId])
+  @@map("mfg_kitchen_cabinet_types")
+}
+
+model KitchenHardware {
+  id               String   @id @default(uuid())
+  code             String
+  name             String
+  category         String   // Hinges, Handles, etc.
+  subcategory      String?
+  brand            String?
+  
+  specifications   Json?
+  priceMin         Float    @default(0)
+  priceMax         Float    @default(0)
+  warranty         String?
+  installationType String?
+  features         String[]
+  
+  stock            Float    @default(0)
+  reorderLevel     Float    @default(0)
+  status           String   @default("Active")
+  
+  companyId        String
+  company          Company  @relation(fields: [companyId], references: [id])
+  
+  isActive         Boolean  @default(true)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@unique([code, companyId])
+  @@map("mfg_kitchen_hardware")
+}
+
+model KitchenFinish {
+  id                String   @id @default(uuid())
+  code              String
+  name              String
+  category          String   // Paint, Laminate, etc.
+  subcategory       String?
+  
+  properties        Json?
+  colors            String[]
+  applicationMethod String[]
+  suitableFor       String[]
+  
+  coverageValue     Float?
+  coverageUnit      String?
+  
+  pricePerUnit      Float    @default(0)
+  maintenance       String?
+  warranty          String?
+  certifications    String[]
+  status            String   @default("Active")
+  
+  companyId         String
+  company           Company  @relation(fields: [companyId], references: [id])
+  
+  isActive          Boolean  @default(true)
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  @@unique([code, companyId])
+  @@map("mfg_kitchen_finishes")
+}
+
+model MaterialGrade {
+  id                   String   @id @default(uuid())
+  code                 String
+  name                 String
+  category             String   // Plywood, MDF, etc.
+  grade                String   // Premium, Standard, etc.
+  
+  specifications       Json?
+  qualityStandards     String[]
+  applications         String[]
+  features             String[]
+  
+  pricePerUnit         Float    @default(0)
+  unit                 String?
+  minOrderQuantity     Float    @default(1)
+  availableSizes       String[]
+  supplierRating       Float    @default(0)
+  leadTime             String?
+  certifications       String[]
+  warranty             String?
+  status               String   @default("Active")
+  
+  companyId            String
+  company              Company  @relation(fields: [companyId], references: [id])
+  
+  isActive             Boolean  @default(true)
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+
+  @@unique([code, companyId])
+  @@map("mfg_kitchen_material_grades")
+}
+
+model KitchenLayout {
+  id              String   @id @default(uuid())
+  code            String
+  name            String
+  layoutType      String   // L-Shape, Island, etc.
+  style           String   // Modern, Traditional, etc.
+  
+  dimensions      Json?
+  features        String[]
+  cabinetUnits    Json?
+  workTriangle    Json?
+  specifications  Json?
+  
+  appliances      String[]
+  estimatedCost   Float    @default(0)
+  popularity      Int      @default(0)
+  status          String   @default("Active")
+  
+  companyId       String
+  company         Company  @relation(fields: [companyId], references: [id])
+  
+  isActive        Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@unique([code, companyId])
+  @@map("mfg_kitchen_layouts")
+}
+
+model InstallationType {
+  id                 String   @id @default(uuid())
+  code               String
+  name               String
+  category           String
+  complexity         String
+  
+  requirements       Json?
+  prerequisites      String[]
+  steps              String[]
+  materials          String[]
+  suitableFor        String[]
+  
+  costMin            Float    @default(0)
+  costMax            Float    @default(0)
+  durationValue      Float?
+  durationUnit       String?
+  
+  warranty           String?
+  safetyRequirements String[]
+  certifications     String[]
+  status             String   @default("Active")
+  
+  companyId          String
+  company            Company  @relation(fields: [companyId], references: [id])
+  
+  isActive           Boolean  @default(true)
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  @@unique([code, companyId])
+  @@map("mfg_kitchen_installation_types")
+}
+
+model KitchenAppliance {
+  id                   String   @id @default(uuid())
+  code                 String
+  name                 String
+  category             String
+  subcategory          String?
+  brand                String?
+  model                String?
+  
+  specifications       Json?
+  energyRating         String?
+  color                String[]
+  warranty             String?
+  price                Float    @default(0)
+  installationRequired Boolean  @default(false)
+  installationCost     Float    @default(0)
+  certification        String[]
+  availability         String   @default("In Stock")
+  leadTime             String?
+  rating               Float    @default(0)
+  reviews              Int      @default(0)
+  status               String   @default("Active")
+  
+  companyId            String
+  company              Company  @relation(fields: [companyId], references: [id])
+  
+  isActive             Boolean  @default(true)
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+
+  @@unique([code, companyId])
+  @@map("mfg_kitchen_appliances")
+}
+
+// -----------------------------------------
+// System Masters
+// -----------------------------------------
+
+model Role {
+  id          String       @id @default(uuid())
+  roleCode    String
+  roleName    String
+  category    String       // system, hr, finance, operations, sales, it
+  description String?
+  isActive    Boolean      @default(true)
+  
+  permissions Permission[]
+  users       User[]
+  
+  companyId   String
+  company     Company      @relation(fields: [companyId], references: [id])
+  
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  @@unique([roleCode, companyId])
+  @@map("sys_roles")
+}
+
+model Permission {
+  id         String   @id @default(uuid())
+  module     String
+  canView    Boolean  @default(false)
+  canCreate  Boolean  @default(false)
+  canEdit    Boolean  @default(false)
+  canDelete  Boolean  @default(false)
+  canApprove Boolean  @default(false)
+  
+  roleId     String
+  role       Role     @relation(fields: [roleId], references: [id])
+  
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@map("sys_permissions")
+}
+
+model User {
+  id                  String    @id @default(uuid())
+  username            String    @unique
+  password            String
+  email               String?
+  fullName            String?
+  employeeCode        String?
+  employeeId          String?   @unique
+  employee            Employee? @relation(fields: [employeeId], references: [id])
+  
+  roleId              String?
+  role                Role?     @relation(fields: [roleId], references: [id])
+  
+  accessLevel         String    @default("employee") // admin, manager, employee, restricted
+  isActive            Boolean   @default(true)
+  mfaEnabled          Boolean   @default(false)
+  accountLocked       Boolean   @default(false)
+  loginAttempts       Int       @default(0)
+  lastLogin           DateTime?
+  passwordLastChanged DateTime?
+  
+  companyId           String
+  company             Company   @relation(fields: [companyId], references: [id])
+  
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+
+  @@map("sys_users")
+}
+
+model DocumentType {
+  id                     String   @id @default(uuid())
+  typeCode               String
+  typeName               String
+  category               String   // identity, address, educational, employment, financial, medical, legal, other
+  description            String?
+  
+  isMandatory            Boolean  @default(false)
+  isVerificationRequired Boolean  @default(false)
+  validityPeriod         Int?     // in months
+  renewalRequired        Boolean  @default(false)
+  
+  allowedFormats         String[]
+  maxFileSizeMB          Int      @default(2)
+  multipleFilesAllowed   Boolean  @default(false)
+  encryptionRequired     Boolean  @default(false)
+  
+  applicableFor          String   @default("all") // employee, candidate, contractor, dependent, all
+  requiredForJoining     Boolean  @default(false)
+  requiredForPayroll     Boolean  @default(false)
+  
+  isActive               Boolean  @default(true)
+  companyId              String
+  company                Company  @relation(fields: [companyId], references: [id])
+  
+  createdAt              DateTime @default(now())
+  updatedAt              DateTime @updatedAt
+
+  @@unique([typeCode, companyId])
+  @@map("sys_document_types")
+}
+
+model NumberSeries {
+  id                    String   @id @default(uuid())
+  seriesCode            String
+  seriesName            String
+  documentType          String
+  module                String   // sales, purchase, inventory, finance, hr, production, quality
+  
+  prefix                String?
+  suffix                String?
+  separator             String   @default("-")
+  paddingLength         Int      @default(5)
+  includeYear           Boolean  @default(false)
+  includeMonth          Boolean  @default(false)
+  yearFormat            String   @default("YYYY") // YYYY, YY
+  monthFormat           String   @default("MM")   // MM, MMM, MMMM
+  
+  currentNumber         Int      @default(1)
+  startingNumber        Int      @default(1)
+  endingNumber          Int      @default(99999)
+  incrementBy           Int      @default(1)
+  
+  resetFrequency        String   @default("never") // never, yearly, monthly, daily
+  lastResetDate         DateTime @default(now())
+  nextResetDate         DateTime?
+  
+  allowDuplicates       Boolean  @default(false)
+  allowManualEntry      Boolean  @default(false)
+  validateSequence      Boolean  @default(true)
+  
+  defaultSeries         Boolean  @default(false)
+  applicableLocations   String[]
+  applicableDepartments String[]
+  
+  isActive              Boolean  @default(true)
+  companyId             String
+  company               Company  @relation(fields: [companyId], references: [id])
+  
+  createdAt              DateTime @default(now())
+  updatedAt              DateTime @updatedAt
+
+  @@unique([seriesCode, companyId])
+  @@map("sys_number_series")
+}
+

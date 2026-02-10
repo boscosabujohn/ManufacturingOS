@@ -1,11 +1,12 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import {
   Layout, Plus, Search, Edit2, Trash2, CheckCircle2,
   XCircle, Ruler, Home, Grid, Maximize2, Image,
   Copy, FileText, Eye, Download
 } from 'lucide-react';
+import { manufacturingMastersService, KitchenLayout as BackendLayout } from '@/services/manufacturing-masters.service';
 
 interface KitchenLayout {
   id: string;
@@ -43,173 +44,76 @@ interface KitchenLayout {
   thumbnailUrl?: string;
   estimatedCost: number;
   popularity: number;
-  status: 'Active' | 'Inactive' | 'Draft';
-  metadata: {
+  status: string;
+  metadata?: {
     createdAt: Date;
     updatedAt: Date;
     createdBy: string;
   };
 }
 
-const mockLayouts: KitchenLayout[] = [
-  {
-    id: '1',
-    code: 'KL-001',
-    name: 'Modern L-Shape Premium',
-    layoutType: 'L-Shape',
-    style: 'Modern',
-    dimensions: {
-      length: 4200,
-      width: 3600,
-      height: 2400,
-      unit: 'mm'
-    },
-    features: [
-      'Breakfast Counter',
-      'Under-cabinet Lighting',
-      'Pull-out Drawers',
-      'Soft-close Hinges',
-      'Modular Design'
-    ],
-    cabinetUnits: {
-      baseUnits: 8,
-      wallUnits: 6,
-      tallUnits: 2,
-      cornerUnits: 1
-    },
-    workTriangle: {
-      sink: 'Main Wall (Left)',
-      stove: 'Main Wall (Center)',
-      refrigerator: 'Adjacent Wall',
-      optimized: true
-    },
-    specifications: {
-      counterHeight: 900,
-      wallCabinetHeight: 720,
-      depthBase: 600,
-      depthWall: 350
-    },
-    appliances: ['Built-in Hob', 'Chimney', 'Dishwasher', 'Microwave'],
-    estimatedCost: 250000,
-    popularity: 95,
-    status: 'Active',
-    metadata: {
-      createdAt: new Date('2024-01-15'),
-      updatedAt: new Date('2024-03-10'),
-      createdBy: 'Design Team'
-    }
-  },
-  {
-    id: '2',
-    code: 'KL-002',
-    name: 'Contemporary Island Kitchen',
-    layoutType: 'Island',
-    style: 'Contemporary',
-    dimensions: {
-      length: 5400,
-      width: 4200,
-      height: 2400,
-      unit: 'mm'
-    },
-    features: [
-      'Central Island',
-      'Breakfast Bar',
-      'Pendant Lighting',
-      'Wine Cooler Space',
-      'Integrated Appliances',
-      'Quartz Countertop'
-    ],
-    cabinetUnits: {
-      baseUnits: 12,
-      wallUnits: 8,
-      tallUnits: 3,
-      cornerUnits: 0
-    },
-    workTriangle: {
-      sink: 'Island',
-      stove: 'Main Wall',
-      refrigerator: 'Side Wall',
-      optimized: true
-    },
-    specifications: {
-      counterHeight: 900,
-      wallCabinetHeight: 720,
-      depthBase: 600,
-      depthWall: 350
-    },
-    appliances: [
-      'Built-in Hob',
-      'Chimney',
-      'Dishwasher',
-      'Wine Cooler',
-      'Built-in Oven',
-      'Microwave'
-    ],
-    estimatedCost: 450000,
-    popularity: 88,
-    status: 'Active',
-    metadata: {
-      createdAt: new Date('2024-02-01'),
-      updatedAt: new Date('2024-03-15'),
-      createdBy: 'Design Team'
-    }
-  },
-  {
-    id: '3',
-    code: 'KL-003',
-    name: 'Traditional U-Shape',
-    layoutType: 'U-Shape',
-    style: 'Traditional',
-    dimensions: {
-      length: 3900,
-      width: 3600,
-      height: 2400,
-      unit: 'mm'
-    },
-    features: [
-      'Crown Molding',
-      'Glass Display Cabinets',
-      'Decorative Hardware',
-      'Wooden Finish',
-      'Under-cabinet Valance'
-    ],
-    cabinetUnits: {
-      baseUnits: 10,
-      wallUnits: 10,
-      tallUnits: 2,
-      cornerUnits: 2
-    },
-    workTriangle: {
-      sink: 'Center Wall',
-      stove: 'Left Wall',
-      refrigerator: 'Right Wall',
-      optimized: true
-    },
-    specifications: {
-      counterHeight: 900,
-      wallCabinetHeight: 720,
-      depthBase: 600,
-      depthWall: 350
-    },
-    appliances: ['Gas Hob', 'Chimney', 'Built-in Oven'],
-    estimatedCost: 320000,
-    popularity: 75,
-    status: 'Active',
-    metadata: {
-      createdAt: new Date('2023-11-20'),
-      updatedAt: new Date('2024-02-28'),
-      createdBy: 'Design Team'
-    }
-  }
-];
-
 export default function KitchenLayoutMaster() {
-  const [layouts, setLayouts] = useState<KitchenLayout[]>(mockLayouts);
+  const [layouts, setLayouts] = useState<KitchenLayout[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [selectedLayout, setSelectedLayout] = useState<KitchenLayout | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterType, setFilterType] = useState<string>('All');
   const [filterStyle, setFilterStyle] = useState<string>('All');
+
+  useEffect(() => {
+    fetchLayouts();
+  }, []);
+
+  const fetchLayouts = async () => {
+    try {
+      setIsLoading(true);
+      const data = await manufacturingMastersService.getAllKitchenLayouts('123e4567-e89b-12d3-a456-426614174000');
+
+      const mapped: KitchenLayout[] = data.map(kl => ({
+        id: kl.id,
+        code: kl.code,
+        name: kl.name,
+        layoutType: kl.layoutType as any,
+        style: kl.style as any,
+        dimensions: {
+          length: kl.dimensions?.length || 0,
+          width: kl.dimensions?.width || 0,
+          height: kl.dimensions?.height || 0,
+          unit: kl.dimensions?.unit || 'mm'
+        },
+        features: kl.features,
+        cabinetUnits: {
+          baseUnits: kl.cabinetUnits?.baseUnits || 0,
+          wallUnits: kl.cabinetUnits?.wallUnits || 0,
+          tallUnits: kl.cabinetUnits?.tallUnits || 0,
+          cornerUnits: kl.cabinetUnits?.cornerUnits || 0
+        },
+        workTriangle: {
+          sink: kl.workTriangle?.sink || '',
+          stove: kl.workTriangle?.stove || '',
+          refrigerator: kl.workTriangle?.refrigerator || '',
+          optimized: kl.workTriangle?.optimized || false
+        },
+        specifications: {
+          counterHeight: kl.specifications?.counterHeight || 0,
+          wallCabinetHeight: kl.specifications?.wallCabinetHeight || 0,
+          depthBase: kl.specifications?.depthBase || 0,
+          depthWall: kl.specifications?.depthWall || 0
+        },
+        appliances: kl.appliances,
+        estimatedCost: kl.estimatedCost,
+        popularity: kl.popularity,
+        status: kl.status
+      }));
+
+      setLayouts(mapped);
+    } catch (error) {
+      console.error('Error fetching layout:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const handleEdit = (layout: KitchenLayout) => {
     setSelectedLayout(layout);
@@ -252,7 +156,7 @@ export default function KitchenLayoutMaster() {
   const filteredLayouts = useMemo(() => {
     return layouts.filter(layout => {
       const matchesSearch = layout.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           layout.code.toLowerCase().includes(searchTerm.toLowerCase());
+        layout.code.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesType = filterType === 'All' || layout.layoutType === filterType;
       const matchesStyle = filterStyle === 'All' || layout.style === filterStyle;
       return matchesSearch && matchesType && matchesStyle;
@@ -326,7 +230,7 @@ export default function KitchenLayoutMaster() {
               <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-3 flex items-center justify-center h-48">
                 <Layout className="h-24 w-24 text-blue-400" />
               </div>
-              
+
               <div className="p-4">
                 <div className="flex justify-between items-start mb-2">
                   <div>
@@ -342,7 +246,7 @@ export default function KitchenLayoutMaster() {
                     <span className="font-medium">{layout.layoutType}</span>
                     <span className="text-gray-500">• {layout.style}</span>
                   </div>
-                  
+
                   <div className="flex items-center gap-2 text-sm text-gray-600">
                     <Ruler className="h-4 w-4 text-gray-400" />
                     <span>{layout.dimensions.length} × {layout.dimensions.width} {layout.dimensions.unit}</span>
@@ -441,7 +345,7 @@ export default function KitchenLayoutMaster() {
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Layout Type *
                     </label>
-                    <select 
+                    <select
                       defaultValue={selectedLayout?.layoutType || 'L-Shape'}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
                     >
@@ -457,7 +361,7 @@ export default function KitchenLayoutMaster() {
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Style *
                     </label>
-                    <select 
+                    <select
                       defaultValue={selectedLayout?.style || 'Modern'}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
                     >
@@ -473,7 +377,7 @@ export default function KitchenLayoutMaster() {
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Status
                     </label>
-                    <select 
+                    <select
                       defaultValue={selectedLayout?.status || 'Active'}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
                     >

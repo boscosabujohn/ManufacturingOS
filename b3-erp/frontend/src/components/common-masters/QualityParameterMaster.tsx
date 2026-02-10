@@ -1,18 +1,17 @@
-'use client';
-
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import {
   Shield, Plus, Search, Edit2, Trash2, CheckCircle2,
   AlertCircle, Target, TrendingUp, Activity, Ruler,
   FileText, Beaker, Settings, AlertTriangle, XCircle
 } from 'lucide-react';
+import { manufacturingMastersService, QualityParameter as BackendQualityParameter } from '../../services/manufacturing-masters.service';
 
 interface QualityParameter {
   id: string;
   code: string;
   name: string;
-  category: 'Dimensional' | 'Visual' | 'Functional' | 'Material' | 'Performance' | 'Environmental';
-  measurementType: 'Variable' | 'Attribute';
+  category: string;
+  measurementType: string;
   unit?: string;
   specification: {
     nominal?: number;
@@ -22,13 +21,13 @@ interface QualityParameter {
     acceptanceCriteria: string;
   };
   inspectionMethod: string;
-  frequency: 'Every Unit' | 'Sample' | 'First/Last' | 'Periodic' | 'On Demand';
+  frequency: string;
   sampleSize?: number;
   testEquipment?: string;
   applicableItems: string[];
-  criticality: 'Critical' | 'Major' | 'Minor';
+  criticality: string;
   documentation: boolean;
-  status: 'Active' | 'Inactive' | 'Under Review';
+  status: string;
   metadata: {
     createdAt: Date;
     updatedAt: Date;
@@ -37,93 +36,53 @@ interface QualityParameter {
   };
 }
 
-const mockParameters: QualityParameter[] = [
-  {
-    id: '1',
-    code: 'QP-DIM-001',
-    name: 'Shaft Diameter',
-    category: 'Dimensional',
-    measurementType: 'Variable',
-    unit: 'mm',
-    specification: {
-      nominal: 50.0,
-      upperLimit: 50.05,
-      lowerLimit: 49.95,
-      tolerance: 0.05,
-      acceptanceCriteria: '50.0 ± 0.05 mm'
-    },
-    inspectionMethod: 'Micrometer measurement',
-    frequency: 'Every Unit',
-    testEquipment: 'Digital Micrometer (0.001mm accuracy)',
-    applicableItems: ['Precision Shaft', 'Main Shaft Assembly'],
-    criticality: 'Critical',
-    documentation: true,
-    status: 'Active',
-    metadata: {
-      createdAt: new Date('2024-01-10'),
-      updatedAt: new Date('2024-03-15'),
-      createdBy: 'Quality Engineer',
-      updatedBy: 'QA Manager'
-    }
-  },
-  {
-    id: '2',
-    code: 'QP-MAT-001',
-    name: 'Surface Hardness',
-    category: 'Material',
-    measurementType: 'Variable',
-    unit: 'HRC',
-    specification: {
-      nominal: 58,
-      upperLimit: 62,
-      lowerLimit: 55,
-      acceptanceCriteria: '55-62 HRC'
-    },
-    inspectionMethod: 'Rockwell Hardness Test',
-    frequency: 'Sample',
-    sampleSize: 5,
-    testEquipment: 'Rockwell Hardness Tester',
-    applicableItems: ['Heat Treated Components', 'Bearing Surfaces'],
-    criticality: 'Critical',
-    documentation: true,
-    status: 'Active',
-    metadata: {
-      createdAt: new Date('2024-01-15'),
-      updatedAt: new Date('2024-02-20'),
-      createdBy: 'Materials Engineer',
-      updatedBy: 'Quality Manager'
-    }
-  },
-  {
-    id: '3',
-    code: 'QP-VIS-001',
-    name: 'Surface Finish',
-    category: 'Visual',
-    measurementType: 'Attribute',
-    unit: 'Ra (μm)',
-    specification: {
-      upperLimit: 1.6,
-      acceptanceCriteria: 'Ra ≤ 1.6 μm, No visible scratches or defects'
-    },
-    inspectionMethod: 'Visual inspection + Surface roughness measurement',
-    frequency: 'Sample',
-    sampleSize: 10,
-    testEquipment: 'Surface Roughness Tester',
-    applicableItems: ['Machined Surfaces', 'Bearing Contact Areas'],
-    criticality: 'Major',
-    documentation: true,
-    status: 'Active',
-    metadata: {
-      createdAt: new Date('2024-02-01'),
-      updatedAt: new Date('2024-03-10'),
-      createdBy: 'QC Inspector',
-      updatedBy: 'QA Manager'
-    }
-  }
-];
-
 export default function QualityParameterMaster() {
-  const [parameters, setParameters] = useState<QualityParameter[]>(mockParameters);
+  const [parameters, setParameters] = useState<QualityParameter[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    fetchParameters();
+  }, []);
+
+  const fetchParameters = async () => {
+    try {
+      setIsLoading(true);
+      const data = await manufacturingMastersService.getAllQualityParameters('1');
+      const mapped: QualityParameter[] = data.map((p: BackendQualityParameter) => ({
+        id: p.id,
+        code: p.code,
+        name: p.name,
+        category: 'Dimensional',
+        measurementType: 'Variable',
+        unit: p.unit || '',
+        specification: {
+          nominal: p.targetValue || 0,
+          upperLimit: p.maxValue || 0,
+          lowerLimit: p.minValue || 0,
+          tolerance: (p.maxValue && p.minValue) ? (p.maxValue - p.minValue) / 2 : 0,
+          acceptanceCriteria: `${p.minValue || 0} - ${p.maxValue || 0} ${p.unit || ''}`
+        },
+        inspectionMethod: 'Standard Inspection',
+        frequency: 'Every Unit',
+        applicableItems: [],
+        criticality: 'Major',
+        documentation: true,
+        status: 'Active',
+        metadata: {
+          createdAt: new Date(),
+          updatedAt: new Date(),
+          createdBy: 'admin',
+          updatedBy: 'admin'
+        }
+      }));
+      setParameters(mapped);
+    } catch (error) {
+      console.error('Error fetching quality parameters:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const [selectedParameter, setSelectedParameter] = useState<QualityParameter | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
@@ -188,7 +147,7 @@ export default function QualityParameterMaster() {
   const filteredParameters = useMemo(() => {
     return parameters.filter(param => {
       const matchesSearch = param.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           param.code.toLowerCase().includes(searchTerm.toLowerCase());
+        param.code.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesCategory = filterCategory === 'All' || param.category === filterCategory;
       const matchesCriticality = filterCriticality === 'All' || param.criticality === filterCriticality;
       return matchesSearch && matchesCategory && matchesCriticality;
@@ -390,7 +349,7 @@ export default function QualityParameterMaster() {
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Category *
                     </label>
-                    <select 
+                    <select
                       defaultValue={selectedParameter?.category || 'Dimensional'}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
                     >
@@ -406,7 +365,7 @@ export default function QualityParameterMaster() {
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Measurement Type *
                     </label>
-                    <select 
+                    <select
                       defaultValue={selectedParameter?.measurementType || 'Variable'}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
                     >
@@ -432,7 +391,7 @@ export default function QualityParameterMaster() {
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Criticality *
                     </label>
-                    <select 
+                    <select
                       defaultValue={selectedParameter?.criticality || 'Major'}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
                     >
@@ -445,7 +404,7 @@ export default function QualityParameterMaster() {
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Frequency *
                     </label>
-                    <select 
+                    <select
                       defaultValue={selectedParameter?.frequency || 'Sample'}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
                     >
@@ -460,7 +419,7 @@ export default function QualityParameterMaster() {
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Status
                     </label>
-                    <select 
+                    <select
                       defaultValue={selectedParameter?.status || 'Active'}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
                     >

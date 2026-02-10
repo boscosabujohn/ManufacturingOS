@@ -1,12 +1,11 @@
-'use client';
-
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import {
   Clock, Plus, Search, Filter, Edit2, Trash2, MoreVertical,
   Calendar, Users, Sun, Moon, Sunrise, Coffee, AlertTriangle,
   TrendingUp, Activity, BarChart2, DollarSign, UserCheck,
   CheckCircle2, XCircle, AlertCircle, Zap, Shield
 } from 'lucide-react';
+import { hrMastersService } from '@/services/hr-masters.service';
 
 interface Shift {
   id: string;
@@ -222,13 +221,81 @@ const mockShifts: Shift[] = [
 ];
 
 export default function ShiftMaster() {
-  const [shifts, setShifts] = useState<Shift[]>(mockShifts);
+  const [shifts, setShifts] = useState<Shift[]>([]);
+  const [loading, setLoading] = useState(true);
   const [selectedShift, setSelectedShift] = useState<Shift | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterType, setFilterType] = useState<string>('All');
+  const [filterStatus, setFilterStatus] = useState<string>('All');
   const [filterCategory, setFilterCategory] = useState<string>('All');
   const [currentTab, setCurrentTab] = useState('basic');
+
+  useEffect(() => {
+    const fetchShifts = async () => {
+      try {
+        setLoading(true);
+        const data = await hrMastersService.getAllShifts('1');
+
+        const transformedShifts: Shift[] = data.map(item => ({
+          id: item.id,
+          code: item.code,
+          name: item.name,
+          type: 'Regular',
+          category: 'General',
+          timing: {
+            startTime: item.startTime,
+            endTime: item.endTime,
+            totalHours: 9,
+            workHours: 8,
+            breakHours: 1
+          },
+          days: {
+            monday: true,
+            tuesday: true,
+            wednesday: true,
+            thursday: true,
+            friday: true,
+            saturday: false,
+            sunday: false
+          },
+          allowances: {
+            shiftAllowance: 0,
+            nightAllowance: 0,
+            overtimeRate: 1.5,
+            weekendRate: 2.0,
+            holidayRate: 2.5
+          },
+          rules: {
+            minStaff: 1,
+            maxStaff: 100,
+            minRestHours: 11,
+            maxConsecutiveDays: 6,
+            requiresApproval: false,
+            autoAssign: true
+          },
+          departments: [],
+          locations: [],
+          effectiveFrom: new Date(),
+          status: item.isActive ? 'Active' : 'Inactive',
+          metadata: {
+            createdAt: new Date(),
+            updatedAt: new Date(),
+            createdBy: 'System',
+            updatedBy: 'System'
+          }
+        }));
+
+        setShifts(transformedShifts);
+      } catch (error) {
+        console.error('Error fetching shifts:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchShifts();
+  }, []);
 
   const handleEdit = (shift: Shift) => {
     setSelectedShift(shift);
@@ -329,7 +396,7 @@ export default function ShiftMaster() {
   const filteredShifts = useMemo(() => {
     return shifts.filter(shift => {
       const matchesSearch = shift.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           shift.code.toLowerCase().includes(searchTerm.toLowerCase());
+        shift.code.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesType = filterType === 'All' || shift.type === filterType;
       const matchesCategory = filterCategory === 'All' || shift.category === filterCategory;
       return matchesSearch && matchesType && matchesCategory;
@@ -515,11 +582,10 @@ export default function ShiftMaster() {
                 <button
                   key={tab}
                   onClick={() => setCurrentTab(tab)}
-                  className={`px-4 py-2 font-medium capitalize ${
-                    currentTab === tab
-                      ? 'text-blue-600 border-b-2 border-blue-600'
-                      : 'text-gray-500 hover:text-gray-700'
-                  }`}
+                  className={`px-4 py-2 font-medium capitalize ${currentTab === tab
+                    ? 'text-blue-600 border-b-2 border-blue-600'
+                    : 'text-gray-500 hover:text-gray-700'
+                    }`}
                 >
                   {tab === 'basic' ? 'Basic Info' : tab}
                 </button>
@@ -560,7 +626,7 @@ export default function ShiftMaster() {
                         Shift Type *
                       </label>
                       <select defaultValue={selectedShift?.type || 'Regular'}
-                              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
                         <option value="Regular">Regular</option>
                         <option value="Rotating">Rotating</option>
                         <option value="Flexible">Flexible</option>
@@ -573,7 +639,7 @@ export default function ShiftMaster() {
                         Category *
                       </label>
                       <select defaultValue={selectedShift?.category || 'Day'}
-                              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
                         <option value="Day">Day</option>
                         <option value="Evening">Evening</option>
                         <option value="Night">Night</option>
@@ -610,7 +676,7 @@ export default function ShiftMaster() {
                       Status
                     </label>
                     <select defaultValue={selectedShift?.status || 'Active'}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
                       <option value="Active">Active</option>
                       <option value="Inactive">Inactive</option>
                       <option value="Seasonal">Seasonal</option>

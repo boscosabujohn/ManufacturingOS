@@ -3,7 +3,7 @@ import { apiClient } from './api/client';
 // ============================================================================
 // Configuration
 // ============================================================================
-const USE_MOCK_DATA = process.env.NEXT_PUBLIC_USE_MOCK_DATA === 'true' || true;
+const USE_MOCK_DATA = false;
 
 // ============================================================================
 // TypeScript Interfaces
@@ -40,7 +40,7 @@ export interface CreateUOMDto {
   status?: UOMStatus;
 }
 
-export interface UpdateUOMDto extends Partial<CreateUOMDto> {}
+export interface UpdateUOMDto extends Partial<CreateUOMDto> { }
 
 // Category Types
 export enum CategoryStatus {
@@ -75,7 +75,7 @@ export interface CreateCategoryDto {
   status?: CategoryStatus;
 }
 
-export interface UpdateCategoryDto extends Partial<CreateCategoryDto> {}
+export interface UpdateCategoryDto extends Partial<CreateCategoryDto> { }
 
 // Customer Types
 export enum CustomerStatus {
@@ -150,7 +150,7 @@ export interface CreateCustomerDto {
   status?: CustomerStatus;
 }
 
-export interface UpdateCustomerDto extends Partial<CreateCustomerDto> {}
+export interface UpdateCustomerDto extends Partial<CreateCustomerDto> { }
 
 export interface CustomerFilters {
   search?: string;
@@ -250,7 +250,7 @@ export interface CreateItemDto {
   status?: ItemStatus;
 }
 
-export interface UpdateItemDto extends Partial<CreateItemDto> {}
+export interface UpdateItemDto extends Partial<CreateItemDto> { }
 
 export interface ItemFilters {
   search?: string;
@@ -905,428 +905,448 @@ const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 class CoreServiceClass {
   // ==========================================================================
   // UOM Methods
-  // ==========================================================================
-
-  async getAllUOMs(): Promise<UOM[]> {
-    if (USE_MOCK_DATA) {
-      await delay(300);
-      return [...MOCK_UOMS];
-    }
-    const response = await apiClient.get<UOM[]>('/core/uom');
-    return response.data;
+  // ==========================================================================  /**
+  * Get all UOMs
+  */
+  static async getAllUOMs(companyId ?: string): Promise < UOM[] > {
+  if(USE_MOCK_DATA) {
+    await new Promise((resolve) => setTimeout(resolve, 300));
+    return [...MOCK_UOMS];
   }
+    const params = new URLSearchParams();
+  if(companyId) params.append('companyId', companyId);
+  // Assuming 'this.request' is a static method or 'apiClient' is accessible
+  // For this change, we'll adapt to the existing 'apiClient.get' pattern
+  const queryString = params.toString();
+  const response = await apiClient.get<UOM[]>(`/core/uom${queryString ? `?${queryString}` : ''}`);
+  return response.data;
+}
 
-  async getUOMById(id: string): Promise<UOM> {
-    if (USE_MOCK_DATA) {
-      await delay(200);
-      const uom = MOCK_UOMS.find((u) => u.id === id);
-      if (!uom) throw new Error('UOM not found');
-      return uom;
-    }
+  /**
+   * Get all Currencies
+   */
+  static async getAllCurrencies(): Promise < any[] > {
+  if(USE_MOCK_DATA) {
+    await new Promise((resolve) => setTimeout(resolve, 300));
+    return []; // Add mock currencies if needed
+  }
+    // Assuming 'this.request' is a static method or 'apiClient' is accessible
+    // For this change, we'll adapt to the existing 'apiClient.get' pattern
+    const response = await apiClient.get<any[]>('/core/currencies'); // Assuming '/core/currencies' is the endpoint
+  return response.data;
+}
+
+  async getUOMById(id: string): Promise < UOM > {
+  if(USE_MOCK_DATA) {
+    await delay(200);
+    const uom = MOCK_UOMS.find((u) => u.id === id);
+    if (!uom) throw new Error('UOM not found');
+    return uom;
+  }
     const response = await apiClient.get<UOM>(`/core/uom/${id}`);
-    return response.data;
-  }
+  return response.data;
+}
 
-  async createUOM(data: CreateUOMDto): Promise<UOM> {
-    if (USE_MOCK_DATA) {
-      await delay(500);
-      const newUOM: UOM = {
-        id: `uom-${Date.now()}`,
-        ...data,
-        status: data.status || UOMStatus.ACTIVE,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      };
-      MOCK_UOMS.push(newUOM);
-      return newUOM;
-    }
+  async createUOM(data: CreateUOMDto): Promise < UOM > {
+  if(USE_MOCK_DATA) {
+    await delay(500);
+    const newUOM: UOM = {
+      id: `uom-${Date.now()}`,
+      ...data,
+      status: data.status || UOMStatus.ACTIVE,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    MOCK_UOMS.push(newUOM);
+    return newUOM;
+  }
     const response = await apiClient.post<UOM>('/core/uom', data);
-    return response.data;
-  }
+  return response.data;
+}
 
-  async updateUOM(id: string, data: UpdateUOMDto): Promise<UOM> {
-    if (USE_MOCK_DATA) {
-      await delay(500);
-      const index = MOCK_UOMS.findIndex((u) => u.id === id);
-      if (index === -1) throw new Error('UOM not found');
-      MOCK_UOMS[index] = {
-        ...MOCK_UOMS[index],
-        ...data,
-        updatedAt: new Date(),
-      };
-      return MOCK_UOMS[index];
-    }
+  async updateUOM(id: string, data: UpdateUOMDto): Promise < UOM > {
+  if(USE_MOCK_DATA) {
+    await delay(500);
+    const index = MOCK_UOMS.findIndex((u) => u.id === id);
+    if (index === -1) throw new Error('UOM not found');
+    MOCK_UOMS[index] = {
+      ...MOCK_UOMS[index],
+      ...data,
+      updatedAt: new Date(),
+    };
+    return MOCK_UOMS[index];
+  }
     const response = await apiClient.put<UOM>(`/core/uom/${id}`, data);
-    return response.data;
-  }
+  return response.data;
+}
 
-  async deleteUOM(id: string): Promise<void> {
-    if (USE_MOCK_DATA) {
-      await delay(300);
-      const index = MOCK_UOMS.findIndex((u) => u.id === id);
-      if (index === -1) throw new Error('UOM not found');
-      MOCK_UOMS.splice(index, 1);
-      return;
-    }
-    await apiClient.delete<void>(`/core/uom/${id}`);
+  async deleteUOM(id: string): Promise < void> {
+  if(USE_MOCK_DATA) {
+    await delay(300);
+    const index = MOCK_UOMS.findIndex((u) => u.id === id);
+    if (index === -1) throw new Error('UOM not found');
+    MOCK_UOMS.splice(index, 1);
+    return;
   }
+    await apiClient.delete<void>(`/core/uom/${id}`);
+}
 
   // ==========================================================================
   // Category Methods
   // ==========================================================================
 
-  async getAllCategories(): Promise<Category[]> {
-    if (USE_MOCK_DATA) {
-      await delay(300);
-      // Add parent-child relationships
-      return MOCK_CATEGORIES.map((cat) => ({
-        ...cat,
-        parent: cat.parentId
-          ? MOCK_CATEGORIES.find((c) => c.id === cat.parentId)
-          : undefined,
-        children: MOCK_CATEGORIES.filter((c) => c.parentId === cat.id),
-      }));
-    }
-    const response = await apiClient.get<Category[]>('/core/categories');
-    return response.data;
+  async getAllCategories(): Promise < Category[] > {
+  if(USE_MOCK_DATA) {
+    await delay(300);
+    // Add parent-child relationships
+    return MOCK_CATEGORIES.map((cat) => ({
+      ...cat,
+      parent: cat.parentId
+        ? MOCK_CATEGORIES.find((c) => c.id === cat.parentId)
+        : undefined,
+      children: MOCK_CATEGORIES.filter((c) => c.parentId === cat.id),
+    }));
   }
+    const response = await apiClient.get<Category[]>('/api/v1/common-masters/item-categories');
+  return response.data;
+}
 
-  async getCategoryById(id: string): Promise<Category> {
-    if (USE_MOCK_DATA) {
-      await delay(200);
-      const category = MOCK_CATEGORIES.find((c) => c.id === id);
-      if (!category) throw new Error('Category not found');
-      return {
-        ...category,
-        parent: category.parentId
-          ? MOCK_CATEGORIES.find((c) => c.id === category.parentId)
-          : undefined,
-        children: MOCK_CATEGORIES.filter((c) => c.parentId === category.id),
-      };
-    }
+  async getCategoryById(id: string): Promise < Category > {
+  if(USE_MOCK_DATA) {
+    await delay(200);
+    const category = MOCK_CATEGORIES.find((c) => c.id === id);
+    if (!category) throw new Error('Category not found');
+    return {
+      ...category,
+      parent: category.parentId
+        ? MOCK_CATEGORIES.find((c) => c.id === category.parentId)
+        : undefined,
+      children: MOCK_CATEGORIES.filter((c) => c.parentId === category.id),
+    };
+  }
     const response = await apiClient.get<Category>(`/core/categories/${id}`);
-    return response.data;
-  }
+  return response.data;
+}
 
-  async createCategory(data: CreateCategoryDto): Promise<Category> {
-    if (USE_MOCK_DATA) {
-      await delay(500);
-      const newCategory: Category = {
-        id: `cat-${Date.now()}`,
-        ...data,
-        sortOrder: data.sortOrder || MOCK_CATEGORIES.length + 1,
-        status: data.status || CategoryStatus.ACTIVE,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      };
-      MOCK_CATEGORIES.push(newCategory);
-      return newCategory;
-    }
+  async createCategory(data: CreateCategoryDto): Promise < Category > {
+  if(USE_MOCK_DATA) {
+    await delay(500);
+    const newCategory: Category = {
+      id: `cat-${Date.now()}`,
+      ...data,
+      sortOrder: data.sortOrder || MOCK_CATEGORIES.length + 1,
+      status: data.status || CategoryStatus.ACTIVE,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    MOCK_CATEGORIES.push(newCategory);
+    return newCategory;
+  }
     const response = await apiClient.post<Category>('/core/categories', data);
-    return response.data;
-  }
+  return response.data;
+}
 
-  async updateCategory(id: string, data: UpdateCategoryDto): Promise<Category> {
-    if (USE_MOCK_DATA) {
-      await delay(500);
-      const index = MOCK_CATEGORIES.findIndex((c) => c.id === id);
-      if (index === -1) throw new Error('Category not found');
-      MOCK_CATEGORIES[index] = {
-        ...MOCK_CATEGORIES[index],
-        ...data,
-        updatedAt: new Date(),
-      };
-      return MOCK_CATEGORIES[index];
-    }
+  async updateCategory(id: string, data: UpdateCategoryDto): Promise < Category > {
+  if(USE_MOCK_DATA) {
+    await delay(500);
+    const index = MOCK_CATEGORIES.findIndex((c) => c.id === id);
+    if (index === -1) throw new Error('Category not found');
+    MOCK_CATEGORIES[index] = {
+      ...MOCK_CATEGORIES[index],
+      ...data,
+      updatedAt: new Date(),
+    };
+    return MOCK_CATEGORIES[index];
+  }
     const response = await apiClient.put<Category>(`/core/categories/${id}`, data);
-    return response.data;
-  }
+  return response.data;
+}
 
-  async deleteCategory(id: string): Promise<void> {
-    if (USE_MOCK_DATA) {
-      await delay(300);
-      const index = MOCK_CATEGORIES.findIndex((c) => c.id === id);
-      if (index === -1) throw new Error('Category not found');
-      // Check for children
-      const hasChildren = MOCK_CATEGORIES.some((c) => c.parentId === id);
-      if (hasChildren) {
-        throw new Error('Cannot delete category with children');
-      }
-      MOCK_CATEGORIES.splice(index, 1);
-      return;
+  async deleteCategory(id: string): Promise < void> {
+  if(USE_MOCK_DATA) {
+    await delay(300);
+    const index = MOCK_CATEGORIES.findIndex((c) => c.id === id);
+    if (index === -1) throw new Error('Category not found');
+    // Check for children
+    const hasChildren = MOCK_CATEGORIES.some((c) => c.parentId === id);
+    if (hasChildren) {
+      throw new Error('Cannot delete category with children');
     }
-    await apiClient.delete<void>(`/core/categories/${id}`);
+    MOCK_CATEGORIES.splice(index, 1);
+    return;
   }
+    await apiClient.delete<void>(`/core/categories/${id}`);
+}
 
   // ==========================================================================
   // Customer Methods
   // ==========================================================================
 
-  async getAllCustomers(filters?: CustomerFilters): Promise<Customer[]> {
-    if (USE_MOCK_DATA) {
-      await delay(300);
-      let filteredCustomers = [...MOCK_CUSTOMERS];
+  async getAllCustomers(filters ?: CustomerFilters): Promise < Customer[] > {
+  if(USE_MOCK_DATA) {
+    await delay(300);
+    let filteredCustomers = [...MOCK_CUSTOMERS];
 
-      if (filters?.search) {
-        const searchLower = filters.search.toLowerCase();
-        filteredCustomers = filteredCustomers.filter(
-          (c) =>
-            c.name.toLowerCase().includes(searchLower) ||
-            c.code.toLowerCase().includes(searchLower) ||
-            c.email?.toLowerCase().includes(searchLower)
-        );
-      }
-
-      if (filters?.type) {
-        filteredCustomers = filteredCustomers.filter((c) => c.type === filters.type);
-      }
-
-      if (filters?.status) {
-        filteredCustomers = filteredCustomers.filter((c) => c.status === filters.status);
-      }
-
-      if (filters?.tags && filters.tags.length > 0) {
-        filteredCustomers = filteredCustomers.filter((c) =>
-          filters.tags!.some((tag) => c.tags?.includes(tag))
-        );
-      }
-
-      return filteredCustomers;
+    if (filters?.search) {
+      const searchLower = filters.search.toLowerCase();
+      filteredCustomers = filteredCustomers.filter(
+        (c) =>
+          c.name.toLowerCase().includes(searchLower) ||
+          c.code.toLowerCase().includes(searchLower) ||
+          c.email?.toLowerCase().includes(searchLower)
+      );
     }
+
+    if (filters?.type) {
+      filteredCustomers = filteredCustomers.filter((c) => c.type === filters.type);
+    }
+
+    if (filters?.status) {
+      filteredCustomers = filteredCustomers.filter((c) => c.status === filters.status);
+    }
+
+    if (filters?.tags && filters.tags.length > 0) {
+      filteredCustomers = filteredCustomers.filter((c) =>
+        filters.tags!.some((tag) => c.tags?.includes(tag))
+      );
+    }
+
+    return filteredCustomers;
+  }
 
     const params = new URLSearchParams();
-    if (filters?.search) params.append('search', filters.search);
-    if (filters?.type) params.append('type', filters.type);
-    if (filters?.status) params.append('status', filters.status);
-    if (filters?.tags) params.append('tags', filters.tags.join(','));
+  if(filters?.search) params.append('search', filters.search);
+  if(filters?.type) params.append('type', filters.type);
+  if(filters?.status) params.append('status', filters.status);
+  if(filters?.tags) params.append('tags', filters.tags.join(','));
 
-    const queryString = params.toString();
-    const response = await apiClient.get<Customer[]>(
-      `/core/customers${queryString ? `?${queryString}` : ''}`
-    );
-    return response.data;
+  const queryString = params.toString();
+  const response = await apiClient.get<Customer[]>(
+    `/core/customers${queryString ? `?${queryString}` : ''}`
+  );
+  return response.data;
+}
+
+  async getCustomerById(id: string): Promise < Customer > {
+  if(USE_MOCK_DATA) {
+    await delay(200);
+    const customer = MOCK_CUSTOMERS.find((c) => c.id === id);
+    if (!customer) throw new Error('Customer not found');
+    return customer;
   }
-
-  async getCustomerById(id: string): Promise<Customer> {
-    if (USE_MOCK_DATA) {
-      await delay(200);
-      const customer = MOCK_CUSTOMERS.find((c) => c.id === id);
-      if (!customer) throw new Error('Customer not found');
-      return customer;
-    }
     const response = await apiClient.get<Customer>(`/core/customers/${id}`);
-    return response.data;
-  }
+  return response.data;
+}
 
-  async createCustomer(data: CreateCustomerDto): Promise<Customer> {
-    if (USE_MOCK_DATA) {
-      await delay(500);
-      const newCustomer: Customer = {
-        id: `cust-${Date.now()}`,
-        ...data,
-        addresses: data.addresses || [],
-        contacts: data.contacts || [],
-        status: data.status || CustomerStatus.ACTIVE,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      };
-      MOCK_CUSTOMERS.push(newCustomer);
-      return newCustomer;
-    }
+  async createCustomer(data: CreateCustomerDto): Promise < Customer > {
+  if(USE_MOCK_DATA) {
+    await delay(500);
+    const newCustomer: Customer = {
+      id: `cust-${Date.now()}`,
+      ...data,
+      addresses: data.addresses || [],
+      contacts: data.contacts || [],
+      status: data.status || CustomerStatus.ACTIVE,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    MOCK_CUSTOMERS.push(newCustomer);
+    return newCustomer;
+  }
     const response = await apiClient.post<Customer>('/core/customers', data);
-    return response.data;
-  }
+  return response.data;
+}
 
-  async updateCustomer(id: string, data: UpdateCustomerDto): Promise<Customer> {
-    if (USE_MOCK_DATA) {
-      await delay(500);
-      const index = MOCK_CUSTOMERS.findIndex((c) => c.id === id);
-      if (index === -1) throw new Error('Customer not found');
-      MOCK_CUSTOMERS[index] = {
-        ...MOCK_CUSTOMERS[index],
-        ...data,
-        updatedAt: new Date(),
-      };
-      return MOCK_CUSTOMERS[index];
-    }
+  async updateCustomer(id: string, data: UpdateCustomerDto): Promise < Customer > {
+  if(USE_MOCK_DATA) {
+    await delay(500);
+    const index = MOCK_CUSTOMERS.findIndex((c) => c.id === id);
+    if (index === -1) throw new Error('Customer not found');
+    MOCK_CUSTOMERS[index] = {
+      ...MOCK_CUSTOMERS[index],
+      ...data,
+      updatedAt: new Date(),
+    };
+    return MOCK_CUSTOMERS[index];
+  }
     const response = await apiClient.put<Customer>(`/core/customers/${id}`, data);
-    return response.data;
-  }
+  return response.data;
+}
 
-  async deleteCustomer(id: string): Promise<void> {
-    if (USE_MOCK_DATA) {
-      await delay(300);
-      const index = MOCK_CUSTOMERS.findIndex((c) => c.id === id);
-      if (index === -1) throw new Error('Customer not found');
-      MOCK_CUSTOMERS.splice(index, 1);
-      return;
-    }
-    await apiClient.delete<void>(`/core/customers/${id}`);
+  async deleteCustomer(id: string): Promise < void> {
+  if(USE_MOCK_DATA) {
+    await delay(300);
+    const index = MOCK_CUSTOMERS.findIndex((c) => c.id === id);
+    if (index === -1) throw new Error('Customer not found');
+    MOCK_CUSTOMERS.splice(index, 1);
+    return;
   }
+    await apiClient.delete<void>(`/core/customers/${id}`);
+}
 
   // ==========================================================================
   // Item Methods
   // ==========================================================================
 
-  async getAllItems(filters?: ItemFilters): Promise<Item[]> {
-    if (USE_MOCK_DATA) {
-      await delay(300);
-      let filteredItems = [...MOCK_ITEMS];
+  async getAllItems(filters ?: ItemFilters): Promise < Item[] > {
+  if(USE_MOCK_DATA) {
+    await delay(300);
+    let filteredItems = [...MOCK_ITEMS];
 
-      if (filters?.search) {
-        const searchLower = filters.search.toLowerCase();
-        filteredItems = filteredItems.filter(
-          (i) =>
-            i.name.toLowerCase().includes(searchLower) ||
-            i.code.toLowerCase().includes(searchLower) ||
-            i.description?.toLowerCase().includes(searchLower) ||
-            i.sku?.toLowerCase().includes(searchLower)
-        );
-      }
-
-      if (filters?.itemType) {
-        filteredItems = filteredItems.filter((i) => i.itemType === filters.itemType);
-      }
-
-      if (filters?.categoryId) {
-        filteredItems = filteredItems.filter((i) => i.categoryId === filters.categoryId);
-      }
-
-      if (filters?.status) {
-        filteredItems = filteredItems.filter((i) => i.status === filters.status);
-      }
-
-      if (filters?.isStockable !== undefined) {
-        filteredItems = filteredItems.filter((i) => i.isStockable === filters.isStockable);
-      }
-
-      if (filters?.isSellable !== undefined) {
-        filteredItems = filteredItems.filter((i) => i.isSellable === filters.isSellable);
-      }
-
-      if (filters?.isPurchasable !== undefined) {
-        filteredItems = filteredItems.filter((i) => i.isPurchasable === filters.isPurchasable);
-      }
-
-      if (filters?.tags && filters.tags.length > 0) {
-        filteredItems = filteredItems.filter((i) =>
-          filters.tags!.some((tag) => i.tags?.includes(tag))
-        );
-      }
-
-      // Add category and UOM relationships
-      return filteredItems.map((item) => ({
-        ...item,
-        category: MOCK_CATEGORIES.find((c) => c.id === item.categoryId),
-        uom: MOCK_UOMS.find((u) => u.id === item.uomId),
-      }));
+    if (filters?.search) {
+      const searchLower = filters.search.toLowerCase();
+      filteredItems = filteredItems.filter(
+        (i) =>
+          i.name.toLowerCase().includes(searchLower) ||
+          i.code.toLowerCase().includes(searchLower) ||
+          i.description?.toLowerCase().includes(searchLower) ||
+          i.sku?.toLowerCase().includes(searchLower)
+      );
     }
+
+    if (filters?.itemType) {
+      filteredItems = filteredItems.filter((i) => i.itemType === filters.itemType);
+    }
+
+    if (filters?.categoryId) {
+      filteredItems = filteredItems.filter((i) => i.categoryId === filters.categoryId);
+    }
+
+    if (filters?.status) {
+      filteredItems = filteredItems.filter((i) => i.status === filters.status);
+    }
+
+    if (filters?.isStockable !== undefined) {
+      filteredItems = filteredItems.filter((i) => i.isStockable === filters.isStockable);
+    }
+
+    if (filters?.isSellable !== undefined) {
+      filteredItems = filteredItems.filter((i) => i.isSellable === filters.isSellable);
+    }
+
+    if (filters?.isPurchasable !== undefined) {
+      filteredItems = filteredItems.filter((i) => i.isPurchasable === filters.isPurchasable);
+    }
+
+    if (filters?.tags && filters.tags.length > 0) {
+      filteredItems = filteredItems.filter((i) =>
+        filters.tags!.some((tag) => i.tags?.includes(tag))
+      );
+    }
+
+    // Add category and UOM relationships
+    return filteredItems.map((item) => ({
+      ...item,
+      category: MOCK_CATEGORIES.find((c) => c.id === item.categoryId),
+      uom: MOCK_UOMS.find((u) => u.id === item.uomId),
+    }));
+  }
 
     const params = new URLSearchParams();
-    if (filters?.search) params.append('search', filters.search);
-    if (filters?.itemType) params.append('itemType', filters.itemType);
-    if (filters?.categoryId) params.append('categoryId', filters.categoryId);
-    if (filters?.status) params.append('status', filters.status);
-    if (filters?.isStockable !== undefined) params.append('isStockable', String(filters.isStockable));
-    if (filters?.isSellable !== undefined) params.append('isSellable', String(filters.isSellable));
-    if (filters?.isPurchasable !== undefined) params.append('isPurchasable', String(filters.isPurchasable));
-    if (filters?.tags) params.append('tags', filters.tags.join(','));
+  if(filters?.search) params.append('search', filters.search);
+  if(filters?.itemType) params.append('itemType', filters.itemType);
+  if(filters?.categoryId) params.append('categoryId', filters.categoryId);
+  if(filters?.status) params.append('status', filters.status);
+  if(filters?.isStockable !== undefined) params.append('isStockable', String(filters.isStockable));
+if (filters?.isSellable !== undefined) params.append('isSellable', String(filters.isSellable));
+if (filters?.isPurchasable !== undefined) params.append('isPurchasable', String(filters.isPurchasable));
+if (filters?.tags) params.append('tags', filters.tags.join(','));
 
-    const queryString = params.toString();
-    const response = await apiClient.get<Item[]>(
-      `/core/items${queryString ? `?${queryString}` : ''}`
-    );
-    return response.data;
+const queryString = params.toString();
+const response = await apiClient.get<Item[]>(
+  `/api/v1/common-masters/items${queryString ? `?${queryString}` : ''}`
+);
+return response.data;
   }
 
-  async getItemById(id: string): Promise<Item> {
-    if (USE_MOCK_DATA) {
-      await delay(200);
-      const item = MOCK_ITEMS.find((i) => i.id === id);
-      if (!item) throw new Error('Item not found');
-      return {
-        ...item,
-        category: MOCK_CATEGORIES.find((c) => c.id === item.categoryId),
-        uom: MOCK_UOMS.find((u) => u.id === item.uomId),
-      };
-    }
+  async getItemById(id: string): Promise < Item > {
+  if(USE_MOCK_DATA) {
+    await delay(200);
+    const item = MOCK_ITEMS.find((i) => i.id === id);
+    if (!item) throw new Error('Item not found');
+    return {
+      ...item,
+      category: MOCK_CATEGORIES.find((c) => c.id === item.categoryId),
+      uom: MOCK_UOMS.find((u) => u.id === item.uomId),
+    };
+  }
     const response = await apiClient.get<Item>(`/core/items/${id}`);
-    return response.data;
+  return response.data;
+}
+
+  async getItemsByCategory(categoryId: string): Promise < Item[] > {
+  if(USE_MOCK_DATA) {
+    await delay(300);
+    // Get items from this category and all child categories
+    const categoryIds = [categoryId];
+    const childCategories = MOCK_CATEGORIES.filter((c) => c.parentId === categoryId);
+    categoryIds.push(...childCategories.map((c) => c.id));
+
+    const items = MOCK_ITEMS.filter((i) => i.categoryId && categoryIds.includes(i.categoryId));
+    return items.map((item) => ({
+      ...item,
+      category: MOCK_CATEGORIES.find((c) => c.id === item.categoryId),
+      uom: MOCK_UOMS.find((u) => u.id === item.uomId),
+    }));
   }
-
-  async getItemsByCategory(categoryId: string): Promise<Item[]> {
-    if (USE_MOCK_DATA) {
-      await delay(300);
-      // Get items from this category and all child categories
-      const categoryIds = [categoryId];
-      const childCategories = MOCK_CATEGORIES.filter((c) => c.parentId === categoryId);
-      categoryIds.push(...childCategories.map((c) => c.id));
-
-      const items = MOCK_ITEMS.filter((i) => i.categoryId && categoryIds.includes(i.categoryId));
-      return items.map((item) => ({
-        ...item,
-        category: MOCK_CATEGORIES.find((c) => c.id === item.categoryId),
-        uom: MOCK_UOMS.find((u) => u.id === item.uomId),
-      }));
-    }
     const response = await apiClient.get<Item[]>(`/core/items/by-category/${categoryId}`);
-    return response.data;
-  }
+  return response.data;
+}
 
-  async createItem(data: CreateItemDto): Promise<Item> {
-    if (USE_MOCK_DATA) {
-      await delay(500);
-      const newItem: Item = {
-        id: `item-${Date.now()}`,
-        ...data,
-        isStockable: data.isStockable !== false,
-        isSellable: data.isSellable !== false,
-        isPurchasable: data.isPurchasable !== false,
-        status: data.status || ItemStatus.ACTIVE,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      };
-      MOCK_ITEMS.push(newItem);
-      return {
-        ...newItem,
-        category: MOCK_CATEGORIES.find((c) => c.id === newItem.categoryId),
-        uom: MOCK_UOMS.find((u) => u.id === newItem.uomId),
-      };
-    }
+  async createItem(data: CreateItemDto): Promise < Item > {
+  if(USE_MOCK_DATA) {
+    await delay(500);
+    const newItem: Item = {
+      id: `item-${Date.now()}`,
+      ...data,
+      isStockable: data.isStockable !== false,
+      isSellable: data.isSellable !== false,
+      isPurchasable: data.isPurchasable !== false,
+      status: data.status || ItemStatus.ACTIVE,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    MOCK_ITEMS.push(newItem);
+    return {
+      ...newItem,
+      category: MOCK_CATEGORIES.find((c) => c.id === newItem.categoryId),
+      uom: MOCK_UOMS.find((u) => u.id === newItem.uomId),
+    };
+  }
     const response = await apiClient.post<Item>('/core/items', data);
-    return response.data;
-  }
+  return response.data;
+}
 
-  async updateItem(id: string, data: UpdateItemDto): Promise<Item> {
-    if (USE_MOCK_DATA) {
-      await delay(500);
-      const index = MOCK_ITEMS.findIndex((i) => i.id === id);
-      if (index === -1) throw new Error('Item not found');
-      MOCK_ITEMS[index] = {
-        ...MOCK_ITEMS[index],
-        ...data,
-        updatedAt: new Date(),
-      };
-      return {
-        ...MOCK_ITEMS[index],
-        category: MOCK_CATEGORIES.find((c) => c.id === MOCK_ITEMS[index].categoryId),
-        uom: MOCK_UOMS.find((u) => u.id === MOCK_ITEMS[index].uomId),
-      };
-    }
+  async updateItem(id: string, data: UpdateItemDto): Promise < Item > {
+  if(USE_MOCK_DATA) {
+    await delay(500);
+    const index = MOCK_ITEMS.findIndex((i) => i.id === id);
+    if (index === -1) throw new Error('Item not found');
+    MOCK_ITEMS[index] = {
+      ...MOCK_ITEMS[index],
+      ...data,
+      updatedAt: new Date(),
+    };
+    return {
+      ...MOCK_ITEMS[index],
+      category: MOCK_CATEGORIES.find((c) => c.id === MOCK_ITEMS[index].categoryId),
+      uom: MOCK_UOMS.find((u) => u.id === MOCK_ITEMS[index].uomId),
+    };
+  }
     const response = await apiClient.put<Item>(`/core/items/${id}`, data);
-    return response.data;
-  }
+  return response.data;
+}
 
-  async deleteItem(id: string): Promise<void> {
-    if (USE_MOCK_DATA) {
-      await delay(300);
-      const index = MOCK_ITEMS.findIndex((i) => i.id === id);
-      if (index === -1) throw new Error('Item not found');
-      MOCK_ITEMS.splice(index, 1);
-      return;
-    }
-    await apiClient.delete<void>(`/core/items/${id}`);
+  async deleteItem(id: string): Promise < void> {
+  if(USE_MOCK_DATA) {
+    await delay(300);
+    const index = MOCK_ITEMS.findIndex((i) => i.id === id);
+    if (index === -1) throw new Error('Item not found');
+    MOCK_ITEMS.splice(index, 1);
+    return;
   }
+    await apiClient.delete<void>(`/core/items/${id}`);
+}
 }
 
 // Export as singleton

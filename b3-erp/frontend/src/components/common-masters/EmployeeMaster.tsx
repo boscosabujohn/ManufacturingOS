@@ -240,6 +240,8 @@ const mockEmployees: Employee[] = [
   }
 ];
 
+import { hrMastersService } from '@/services/hr-masters.service';
+
 const departments = ['Operations', 'Sales', 'Manufacturing', 'Finance', 'HR', 'IT', 'Quality', 'Purchasing'];
 const designations = ['Manager', 'Assistant Manager', 'Team Lead', 'Senior Executive', 'Executive', 'Associate', 'Intern'];
 const employmentTypes = ['full_time', 'part_time', 'contract', 'intern'];
@@ -247,7 +249,8 @@ const workLocations = ['Head Office', 'Branch Office', 'Manufacturing Plant', 'R
 const shiftPatterns = ['Regular (9 AM - 6 PM)', 'Morning (6 AM - 3 PM)', 'Evening (3 PM - 12 AM)', 'Night (12 AM - 9 AM)', 'Flexible Hours'];
 
 export default function EmployeeMaster() {
-  const [employees, setEmployees] = useState<Employee[]>(mockEmployees);
+  const [employees, setEmployees] = useState<Employee[]>([]);
+  const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterDepartment, setFilterDepartment] = useState<string>('all');
   const [filterStatus, setFilterStatus] = useState<string>('all');
@@ -257,11 +260,88 @@ export default function EmployeeMaster() {
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('list');
   const [activeTab, setActiveTab] = useState('basic');
 
+  React.useEffect(() => {
+    const fetchEmployees = async () => {
+      try {
+        setLoading(true);
+        // Using companyId '1' as default (mainCompany seeded in seed.ts)
+        const data = await hrMastersService.getAllEmployees('1');
+
+        // Transform backend data to match frontend interface
+        const transformedEmployees: Employee[] = data.map(item => ({
+          ...item,
+          fullName: `${item.firstName} ${item.lastName}`,
+          email: item.email || '',
+          phone: item.phone || '',
+          mobile: item.phone || '',
+          dateOfBirth: '1990-01-01', // Fallback as backend model for now doesn't have it
+          dateOfJoining: item.createdAt.split('T')[0],
+          status: (item.status?.toLowerCase() || 'active') as any,
+          employmentType: 'full_time',
+          designation: item.designation?.name || 'Unassigned',
+          department: item.department?.name || 'Unassigned',
+          reportingManager: 'Unassigned',
+          workLocation: item.branch?.name || 'Head Office',
+          shiftPattern: 'Regular (9 AM - 6 PM)',
+          personalInfo: {
+            gender: 'other',
+            maritalStatus: 'single',
+            nationality: '',
+            bloodGroup: '',
+            emergencyContact: {
+              name: '',
+              relationship: '',
+              phone: ''
+            }
+          },
+          address: {
+            current: { line1: '', city: '', state: '', country: '', postalCode: '' },
+            permanent: { line1: '', city: '', state: '', country: '', postalCode: '' }
+          },
+          bankDetails: {
+            bankName: '',
+            accountNumber: '',
+            routingNumber: '',
+            accountType: 'checking'
+          },
+          salaryInfo: {
+            basicSalary: 0,
+            allowances: 0,
+            currency: 'USD',
+            payFrequency: 'monthly',
+            taxBracket: ''
+          },
+          qualifications: {
+            education: '',
+            certifications: [],
+            skills: [],
+            experience: 0
+          },
+          permissions: {
+            systemAccess: item.isActive,
+            roles: [],
+            accessLevel: 'basic'
+          },
+          createdAt: item.createdAt,
+          updatedAt: item.updatedAt
+        }));
+
+        setEmployees(transformedEmployees);
+      } catch (error) {
+        console.error('Error fetching employees:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchEmployees();
+  }, []);
+
   const filteredEmployees = employees.filter(employee => {
     const matchesSearch = employee.fullName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         employee.employeeCode.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         employee.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         employee.designation.toLowerCase().includes(searchTerm.toLowerCase());
+      employee.employeeCode.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      employee.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      employee.designation.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesDepartment = filterDepartment === 'all' || employee.department === filterDepartment;
     const matchesStatus = filterStatus === 'all' || employee.status === filterStatus;
     const matchesEmploymentType = filterEmploymentType === 'all' || employee.employmentType === filterEmploymentType;
@@ -728,11 +808,10 @@ function EmployeeModal({ employee, onSave, onClose, activeTab, setActiveTab }: E
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`px-4 py-3 text-sm font-medium border-b-2 whitespace-nowrap ${
-                  activeTab === tab.id
+                className={`px-4 py-3 text-sm font-medium border-b-2 whitespace-nowrap ${activeTab === tab.id
                     ? 'border-blue-500 text-blue-600'
                     : 'border-transparent text-gray-500 hover:text-gray-700'
-                }`}
+                  }`}
               >
                 <div className="flex items-center gap-2">
                   <Icon className="w-4 h-4" />
@@ -752,7 +831,7 @@ function EmployeeModal({ employee, onSave, onClose, activeTab, setActiveTab }: E
                   <input
                     type="text"
                     value={formData.employeeCode}
-                    onChange={(e) => setFormData({...formData, employeeCode: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, employeeCode: e.target.value })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     required
                   />
@@ -762,7 +841,7 @@ function EmployeeModal({ employee, onSave, onClose, activeTab, setActiveTab }: E
                   <input
                     type="text"
                     value={formData.firstName}
-                    onChange={(e) => setFormData({...formData, firstName: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     required
                   />
@@ -772,7 +851,7 @@ function EmployeeModal({ employee, onSave, onClose, activeTab, setActiveTab }: E
                   <input
                     type="text"
                     value={formData.lastName}
-                    onChange={(e) => setFormData({...formData, lastName: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     required
                   />
@@ -782,7 +861,7 @@ function EmployeeModal({ employee, onSave, onClose, activeTab, setActiveTab }: E
                   <input
                     type="email"
                     value={formData.email}
-                    onChange={(e) => setFormData({...formData, email: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     required
                   />
@@ -792,7 +871,7 @@ function EmployeeModal({ employee, onSave, onClose, activeTab, setActiveTab }: E
                   <input
                     type="tel"
                     value={formData.phone}
-                    onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
@@ -801,7 +880,7 @@ function EmployeeModal({ employee, onSave, onClose, activeTab, setActiveTab }: E
                   <input
                     type="tel"
                     value={formData.mobile}
-                    onChange={(e) => setFormData({...formData, mobile: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
@@ -810,7 +889,7 @@ function EmployeeModal({ employee, onSave, onClose, activeTab, setActiveTab }: E
                   <input
                     type="date"
                     value={formData.dateOfBirth}
-                    onChange={(e) => setFormData({...formData, dateOfBirth: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, dateOfBirth: e.target.value })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
@@ -819,7 +898,7 @@ function EmployeeModal({ employee, onSave, onClose, activeTab, setActiveTab }: E
                   <input
                     type="date"
                     value={formData.dateOfJoining}
-                    onChange={(e) => setFormData({...formData, dateOfJoining: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, dateOfJoining: e.target.value })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
@@ -832,7 +911,7 @@ function EmployeeModal({ employee, onSave, onClose, activeTab, setActiveTab }: E
                   <label className="block text-sm font-medium text-gray-700 mb-1">Department</label>
                   <select
                     value={formData.department}
-                    onChange={(e) => setFormData({...formData, department: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, department: e.target.value })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   >
                     <option value="">Select Department</option>
@@ -846,7 +925,7 @@ function EmployeeModal({ employee, onSave, onClose, activeTab, setActiveTab }: E
                   <input
                     type="text"
                     value={formData.designation}
-                    onChange={(e) => setFormData({...formData, designation: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, designation: e.target.value })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
@@ -854,7 +933,7 @@ function EmployeeModal({ employee, onSave, onClose, activeTab, setActiveTab }: E
                   <label className="block text-sm font-medium text-gray-700 mb-1">Employment Type</label>
                   <select
                     value={formData.employmentType}
-                    onChange={(e) => setFormData({...formData, employmentType: e.target.value as any})}
+                    onChange={(e) => setFormData({ ...formData, employmentType: e.target.value as any })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   >
                     <option value="full_time">Full Time</option>
@@ -867,7 +946,7 @@ function EmployeeModal({ employee, onSave, onClose, activeTab, setActiveTab }: E
                   <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
                   <select
                     value={formData.status}
-                    onChange={(e) => setFormData({...formData, status: e.target.value as any})}
+                    onChange={(e) => setFormData({ ...formData, status: e.target.value as any })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   >
                     <option value="active">Active</option>
@@ -881,7 +960,7 @@ function EmployeeModal({ employee, onSave, onClose, activeTab, setActiveTab }: E
                   <input
                     type="text"
                     value={formData.reportingManager}
-                    onChange={(e) => setFormData({...formData, reportingManager: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, reportingManager: e.target.value })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
@@ -889,7 +968,7 @@ function EmployeeModal({ employee, onSave, onClose, activeTab, setActiveTab }: E
                   <label className="block text-sm font-medium text-gray-700 mb-1">Work Location</label>
                   <select
                     value={formData.workLocation}
-                    onChange={(e) => setFormData({...formData, workLocation: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, workLocation: e.target.value })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   >
                     <option value="">Select Location</option>
@@ -902,7 +981,7 @@ function EmployeeModal({ employee, onSave, onClose, activeTab, setActiveTab }: E
                   <label className="block text-sm font-medium text-gray-700 mb-1">Shift Pattern</label>
                   <select
                     value={formData.shiftPattern}
-                    onChange={(e) => setFormData({...formData, shiftPattern: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, shiftPattern: e.target.value })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   >
                     <option value="">Select Shift</option>
@@ -924,7 +1003,7 @@ function EmployeeModal({ employee, onSave, onClose, activeTab, setActiveTab }: E
                       <input
                         type="number"
                         value={formData.salaryInfo.basicSalary}
-                        onChange={(e) => setFormData({...formData, salaryInfo: {...formData.salaryInfo, basicSalary: Number(e.target.value)}})}
+                        onChange={(e) => setFormData({ ...formData, salaryInfo: { ...formData.salaryInfo, basicSalary: Number(e.target.value) } })}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                       />
                     </div>
@@ -933,7 +1012,7 @@ function EmployeeModal({ employee, onSave, onClose, activeTab, setActiveTab }: E
                       <input
                         type="number"
                         value={formData.salaryInfo.allowances}
-                        onChange={(e) => setFormData({...formData, salaryInfo: {...formData.salaryInfo, allowances: Number(e.target.value)}})}
+                        onChange={(e) => setFormData({ ...formData, salaryInfo: { ...formData.salaryInfo, allowances: Number(e.target.value) } })}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                       />
                     </div>
@@ -941,7 +1020,7 @@ function EmployeeModal({ employee, onSave, onClose, activeTab, setActiveTab }: E
                       <label className="block text-sm font-medium text-gray-700 mb-1">Currency</label>
                       <select
                         value={formData.salaryInfo.currency}
-                        onChange={(e) => setFormData({...formData, salaryInfo: {...formData.salaryInfo, currency: e.target.value}})}
+                        onChange={(e) => setFormData({ ...formData, salaryInfo: { ...formData.salaryInfo, currency: e.target.value } })}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                       >
                         <option value="USD">USD</option>
@@ -953,7 +1032,7 @@ function EmployeeModal({ employee, onSave, onClose, activeTab, setActiveTab }: E
                       <label className="block text-sm font-medium text-gray-700 mb-1">Pay Frequency</label>
                       <select
                         value={formData.salaryInfo.payFrequency}
-                        onChange={(e) => setFormData({...formData, salaryInfo: {...formData.salaryInfo, payFrequency: e.target.value as any}})}
+                        onChange={(e) => setFormData({ ...formData, salaryInfo: { ...formData.salaryInfo, payFrequency: e.target.value as any } })}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                       >
                         <option value="monthly">Monthly</option>
@@ -972,7 +1051,7 @@ function EmployeeModal({ employee, onSave, onClose, activeTab, setActiveTab }: E
                       <input
                         type="text"
                         value={formData.bankDetails.bankName}
-                        onChange={(e) => setFormData({...formData, bankDetails: {...formData.bankDetails, bankName: e.target.value}})}
+                        onChange={(e) => setFormData({ ...formData, bankDetails: { ...formData.bankDetails, bankName: e.target.value } })}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                       />
                     </div>
@@ -981,7 +1060,7 @@ function EmployeeModal({ employee, onSave, onClose, activeTab, setActiveTab }: E
                       <input
                         type="text"
                         value={formData.bankDetails.accountNumber}
-                        onChange={(e) => setFormData({...formData, bankDetails: {...formData.bankDetails, accountNumber: e.target.value}})}
+                        onChange={(e) => setFormData({ ...formData, bankDetails: { ...formData.bankDetails, accountNumber: e.target.value } })}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                       />
                     </div>
@@ -990,7 +1069,7 @@ function EmployeeModal({ employee, onSave, onClose, activeTab, setActiveTab }: E
                       <input
                         type="text"
                         value={formData.bankDetails.routingNumber}
-                        onChange={(e) => setFormData({...formData, bankDetails: {...formData.bankDetails, routingNumber: e.target.value}})}
+                        onChange={(e) => setFormData({ ...formData, bankDetails: { ...formData.bankDetails, routingNumber: e.target.value } })}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                       />
                     </div>
@@ -998,7 +1077,7 @@ function EmployeeModal({ employee, onSave, onClose, activeTab, setActiveTab }: E
                       <label className="block text-sm font-medium text-gray-700 mb-1">Account Type</label>
                       <select
                         value={formData.bankDetails.accountType}
-                        onChange={(e) => setFormData({...formData, bankDetails: {...formData.bankDetails, accountType: e.target.value as any}})}
+                        onChange={(e) => setFormData({ ...formData, bankDetails: { ...formData.bankDetails, accountType: e.target.value as any } })}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                       >
                         <option value="checking">Checking</option>

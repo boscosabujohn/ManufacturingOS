@@ -1,10 +1,11 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import {
   MapPin, Plus, Search, Edit2, Trash2, Download, Upload,
   CheckCircle2, XCircle, Building2, Users, Flag, Globe
 } from 'lucide-react';
+import { commonMastersService, Country } from '@/services/common-masters.service';
 
 interface State {
   id: string;
@@ -13,6 +14,7 @@ interface State {
   countryId: string;
   countryName: string;
   iso2Code?: string;
+  isActive: boolean;
 
   // Administrative
   capital?: string;
@@ -196,13 +198,60 @@ const mockStates: State[] = [
 ];
 
 export default function StateMaster() {
-  const [states, setStates] = useState<State[]>(mockStates);
+  const [states, setStates] = useState<State[]>([]);
+  const [countries, setCountries] = useState<Country[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [selectedState, setSelectedState] = useState<State | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterCountry, setFilterCountry] = useState<string>('All');
   const [filterType, setFilterType] = useState<string>('All');
   const [currentTab, setCurrentTab] = useState('basic');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setIsLoading(true);
+        const [countriesData] = await Promise.all([
+          commonMastersService.getAllCountries()
+        ]);
+        setCountries(countriesData);
+
+        // Fetch all states (initially or based on filter)
+        // For simplicity in this mock-to-live transition, we'll fetch all states for the first country or some default
+        // In a real app, we might fetch all if no country is selected, or only on country selection.
+        // Let's fetch states for all countries for now as a demo.
+        const allStates: State[] = [];
+        for (const country of countriesData) {
+          const countryStates = await commonMastersService.getStatesByCountry(country.id);
+          allStates.push(...countryStates.map(s => ({
+            id: s.id,
+            stateCode: s.name.substring(0, 2).toUpperCase(), // Placeholder
+            stateName: s.name,
+            countryId: s.countryId,
+            countryName: country.name,
+            stateType: 'State',
+            taxation: { vatApplicable: false },
+            statistics: { totalCities: 0 },
+            status: s.isActive ? 'Active' : 'Inactive',
+            isActive: s.isActive,
+            metadata: {
+              createdAt: new Date(),
+              updatedAt: new Date(),
+              createdBy: 'System',
+              updatedBy: 'System'
+            }
+          } as State)));
+        }
+        setStates(allStates);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
 
   const handleEdit = (state: State) => {
     setSelectedState(state);
@@ -250,7 +299,7 @@ export default function StateMaster() {
   const filteredStates = useMemo(() => {
     return states.filter(state => {
       const matchesSearch = state.stateName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           state.stateCode.toLowerCase().includes(searchTerm.toLowerCase());
+        state.stateCode.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesCountry = filterCountry === 'All' || state.countryName === filterCountry;
       const matchesType = filterType === 'All' || state.stateType === filterType;
       return matchesSearch && matchesCountry && matchesType;
@@ -475,11 +524,10 @@ export default function StateMaster() {
                 <button
                   key={tab}
                   onClick={() => setCurrentTab(tab)}
-                  className={`px-4 py-2 font-medium capitalize ${
-                    currentTab === tab
-                      ? 'text-blue-600 border-b-2 border-blue-600'
-                      : 'text-gray-500 hover:text-gray-700'
-                  }`}
+                  className={`px-4 py-2 font-medium capitalize ${currentTab === tab
+                    ? 'text-blue-600 border-b-2 border-blue-600'
+                    : 'text-gray-500 hover:text-gray-700'
+                    }`}
                 >
                   {tab === 'basic' ? 'Basic Info' : tab}
                 </button>
@@ -534,7 +582,7 @@ export default function StateMaster() {
                         State Type *
                       </label>
                       <select defaultValue={selectedState?.stateType || 'State'}
-                              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
                         <option value="State">State</option>
                         <option value="Province">Province</option>
                         <option value="Territory">Territory</option>
@@ -573,7 +621,7 @@ export default function StateMaster() {
                       Status
                     </label>
                     <select defaultValue={selectedState?.status || 'Active'}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
                       <option value="Active">Active</option>
                       <option value="Inactive">Inactive</option>
                     </select>

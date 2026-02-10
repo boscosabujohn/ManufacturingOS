@@ -1,166 +1,16 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Plus, Search, Filter, Edit, Trash2, Eye, Users, Phone, Mail, MapPin, Building, Star, DollarSign, CreditCard, FileText, Download, Upload, MoreHorizontal, Grid, List } from 'lucide-react';
-
-interface Customer {
-  id: string;
-  customerCode: string;
-  customerName: string;
-  customerType: 'individual' | 'business' | 'government';
-  category: string;
-  status: 'active' | 'inactive' | 'blocked';
-  contactPerson: string;
-  email: string;
-  phone: string;
-  mobile: string;
-  website?: string;
-  address: {
-    line1: string;
-    line2?: string;
-    city: string;
-    state: string;
-    country: string;
-    postalCode: string;
-  };
-  billingAddress?: {
-    line1: string;
-    line2?: string;
-    city: string;
-    state: string;
-    country: string;
-    postalCode: string;
-  };
-  taxInfo: {
-    taxId?: string;
-    vatNumber?: string;
-    taxClassification: string;
-  };
-  creditInfo: {
-    creditLimit: number;
-    paymentTerms: string;
-    creditRating: 'excellent' | 'good' | 'fair' | 'poor';
-  };
-  pricing: {
-    priceList: string;
-    discountPercentage: number;
-    currency: string;
-  };
-  salesInfo: {
-    salesRep: string;
-    territory: string;
-    totalSales: number;
-    lastOrderDate?: string;
-    averageOrderValue: number;
-  };
-  createdAt: string;
-  updatedAt: string;
-}
-
-const mockCustomers: Customer[] = [
-  {
-    id: '1',
-    customerCode: 'CUST001',
-    customerName: 'Acme Corporation',
-    customerType: 'business',
-    category: 'Enterprise',
-    status: 'active',
-    contactPerson: 'John Smith',
-    email: 'john.smith@acme.com',
-    phone: '+1-555-123-4567',
-    mobile: '+1-555-987-6543',
-    website: 'www.acme.com',
-    address: {
-      line1: '123 Business Ave',
-      line2: 'Suite 100',
-      city: 'New York',
-      state: 'NY',
-      country: 'USA',
-      postalCode: '10001'
-    },
-    billingAddress: {
-      line1: '123 Business Ave',
-      line2: 'Suite 100',
-      city: 'New York',
-      state: 'NY',
-      country: 'USA',
-      postalCode: '10001'
-    },
-    taxInfo: {
-      taxId: '12-3456789',
-      vatNumber: 'US123456789',
-      taxClassification: 'Business'
-    },
-    creditInfo: {
-      creditLimit: 50000,
-      paymentTerms: 'Net 30',
-      creditRating: 'excellent'
-    },
-    pricing: {
-      priceList: 'Enterprise',
-      discountPercentage: 15,
-      currency: 'USD'
-    },
-    salesInfo: {
-      salesRep: 'Alice Johnson',
-      territory: 'Northeast',
-      totalSales: 285000,
-      lastOrderDate: '2024-01-15',
-      averageOrderValue: 5500
-    },
-    createdAt: '2023-06-15',
-    updatedAt: '2024-01-15'
-  },
-  {
-    id: '2',
-    customerCode: 'CUST002',
-    customerName: 'Smith Family Residence',
-    customerType: 'individual',
-    category: 'Residential',
-    status: 'active',
-    contactPerson: 'Robert Smith',
-    email: 'robert.smith@email.com',
-    phone: '+1-555-234-5678',
-    mobile: '+1-555-876-5432',
-    address: {
-      line1: '456 Oak Street',
-      city: 'Chicago',
-      state: 'IL',
-      country: 'USA',
-      postalCode: '60601'
-    },
-    taxInfo: {
-      taxClassification: 'Individual'
-    },
-    creditInfo: {
-      creditLimit: 10000,
-      paymentTerms: 'Net 15',
-      creditRating: 'good'
-    },
-    pricing: {
-      priceList: 'Retail',
-      discountPercentage: 5,
-      currency: 'USD'
-    },
-    salesInfo: {
-      salesRep: 'Bob Wilson',
-      territory: 'Midwest',
-      totalSales: 45000,
-      lastOrderDate: '2024-01-10',
-      averageOrderValue: 2250
-    },
-    createdAt: '2023-08-20',
-    updatedAt: '2024-01-10'
-  }
-];
+import { commonMastersService, Customer } from '@/services/common-masters.service';
 
 const customerCategories = ['Enterprise', 'SMB', 'Residential', 'Government', 'Contractor', 'Dealer'];
 const territories = ['Northeast', 'Southeast', 'Midwest', 'Southwest', 'West', 'International'];
 const salesReps = ['Alice Johnson', 'Bob Wilson', 'Carol Davis', 'David Brown', 'Eva Garcia'];
 const priceLists = ['Enterprise', 'SMB', 'Retail', 'Contractor', 'Government'];
 
-export default function CustomerMaster() {
-  const [customers, setCustomers] = useState<Customer[]>(mockCustomers);
+const CustomerMaster: React.FC = () => {
+  const [customers, setCustomers] = useState<Customer[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterType, setFilterType] = useState<string>('all');
   const [filterCategory, setFilterCategory] = useState<string>('all');
@@ -169,11 +19,28 @@ export default function CustomerMaster() {
   const [editingCustomer, setEditingCustomer] = useState<Customer | null>(null);
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('list');
   const [activeTab, setActiveTab] = useState('basic');
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    loadCustomers();
+  }, []);
+
+  const loadCustomers = async () => {
+    try {
+      setIsLoading(true);
+      const data = await commonMastersService.getAllCustomers();
+      setCustomers(data);
+    } catch (error) {
+      console.error('Failed to load customers:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const filteredCustomers = customers.filter(customer => {
     const matchesSearch = customer.customerName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         customer.customerCode.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         customer.email.toLowerCase().includes(searchTerm.toLowerCase());
+      customer.customerCode.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      customer.email.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesType = filterType === 'all' || customer.customerType === filterType;
     const matchesCategory = filterCategory === 'all' || customer.category === filterCategory;
     const matchesStatus = filterStatus === 'all' || customer.status === filterStatus;
@@ -478,6 +345,8 @@ export default function CustomerMaster() {
   );
 }
 
+export default CustomerMaster;
+
 interface CustomerModalProps {
   customer: Customer | null;
   onSave: (customer: any) => void;
@@ -568,11 +437,10 @@ function CustomerModal({ customer, onSave, onClose, activeTab, setActiveTab }: C
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`px-4 py-3 text-sm font-medium border-b-2 ${
-                  activeTab === tab.id
-                    ? 'border-blue-500 text-blue-600'
-                    : 'border-transparent text-gray-500 hover:text-gray-700'
-                }`}
+                className={`px-4 py-3 text-sm font-medium border-b-2 ${activeTab === tab.id
+                  ? 'border-blue-500 text-blue-600'
+                  : 'border-transparent text-gray-500 hover:text-gray-700'
+                  }`}
               >
                 <div className="flex items-center gap-2">
                   <Icon className="w-4 h-4" />
@@ -592,7 +460,7 @@ function CustomerModal({ customer, onSave, onClose, activeTab, setActiveTab }: C
                   <input
                     type="text"
                     value={formData.customerCode}
-                    onChange={(e) => setFormData({...formData, customerCode: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, customerCode: e.target.value })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     required
                   />
@@ -602,7 +470,7 @@ function CustomerModal({ customer, onSave, onClose, activeTab, setActiveTab }: C
                   <input
                     type="text"
                     value={formData.customerName}
-                    onChange={(e) => setFormData({...formData, customerName: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, customerName: e.target.value })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     required
                   />
@@ -611,7 +479,7 @@ function CustomerModal({ customer, onSave, onClose, activeTab, setActiveTab }: C
                   <label className="block text-sm font-medium text-gray-700 mb-1">Customer Type</label>
                   <select
                     value={formData.customerType}
-                    onChange={(e) => setFormData({...formData, customerType: e.target.value as any})}
+                    onChange={(e) => setFormData({ ...formData, customerType: e.target.value as any })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   >
                     <option value="individual">Individual</option>
@@ -623,7 +491,7 @@ function CustomerModal({ customer, onSave, onClose, activeTab, setActiveTab }: C
                   <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
                   <select
                     value={formData.category}
-                    onChange={(e) => setFormData({...formData, category: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, category: e.target.value })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   >
                     <option value="">Select Category</option>
@@ -637,7 +505,7 @@ function CustomerModal({ customer, onSave, onClose, activeTab, setActiveTab }: C
                   <input
                     type="text"
                     value={formData.contactPerson}
-                    onChange={(e) => setFormData({...formData, contactPerson: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, contactPerson: e.target.value })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
@@ -645,7 +513,7 @@ function CustomerModal({ customer, onSave, onClose, activeTab, setActiveTab }: C
                   <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
                   <select
                     value={formData.status}
-                    onChange={(e) => setFormData({...formData, status: e.target.value as any})}
+                    onChange={(e) => setFormData({ ...formData, status: e.target.value as any })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   >
                     <option value="active">Active</option>
@@ -664,7 +532,7 @@ function CustomerModal({ customer, onSave, onClose, activeTab, setActiveTab }: C
                     <input
                       type="email"
                       value={formData.email}
-                      onChange={(e) => setFormData({...formData, email: e.target.value})}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     />
                   </div>
@@ -673,7 +541,7 @@ function CustomerModal({ customer, onSave, onClose, activeTab, setActiveTab }: C
                     <input
                       type="tel"
                       value={formData.phone}
-                      onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     />
                   </div>
@@ -682,7 +550,7 @@ function CustomerModal({ customer, onSave, onClose, activeTab, setActiveTab }: C
                     <input
                       type="tel"
                       value={formData.mobile}
-                      onChange={(e) => setFormData({...formData, mobile: e.target.value})}
+                      onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     />
                   </div>
@@ -691,7 +559,7 @@ function CustomerModal({ customer, onSave, onClose, activeTab, setActiveTab }: C
                     <input
                       type="url"
                       value={formData.website}
-                      onChange={(e) => setFormData({...formData, website: e.target.value})}
+                      onChange={(e) => setFormData({ ...formData, website: e.target.value })}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     />
                   </div>
@@ -705,7 +573,7 @@ function CustomerModal({ customer, onSave, onClose, activeTab, setActiveTab }: C
                       <input
                         type="text"
                         value={formData.address.line1}
-                        onChange={(e) => setFormData({...formData, address: {...formData.address, line1: e.target.value}})}
+                        onChange={(e) => setFormData({ ...formData, address: { ...formData.address, line1: e.target.value } })}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                       />
                     </div>
@@ -714,7 +582,7 @@ function CustomerModal({ customer, onSave, onClose, activeTab, setActiveTab }: C
                       <input
                         type="text"
                         value={formData.address.line2}
-                        onChange={(e) => setFormData({...formData, address: {...formData.address, line2: e.target.value}})}
+                        onChange={(e) => setFormData({ ...formData, address: { ...formData.address, line2: e.target.value } })}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                       />
                     </div>
@@ -723,7 +591,7 @@ function CustomerModal({ customer, onSave, onClose, activeTab, setActiveTab }: C
                       <input
                         type="text"
                         value={formData.address.city}
-                        onChange={(e) => setFormData({...formData, address: {...formData.address, city: e.target.value}})}
+                        onChange={(e) => setFormData({ ...formData, address: { ...formData.address, city: e.target.value } })}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                       />
                     </div>
@@ -732,7 +600,7 @@ function CustomerModal({ customer, onSave, onClose, activeTab, setActiveTab }: C
                       <input
                         type="text"
                         value={formData.address.state}
-                        onChange={(e) => setFormData({...formData, address: {...formData.address, state: e.target.value}})}
+                        onChange={(e) => setFormData({ ...formData, address: { ...formData.address, state: e.target.value } })}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                       />
                     </div>
@@ -741,7 +609,7 @@ function CustomerModal({ customer, onSave, onClose, activeTab, setActiveTab }: C
                       <input
                         type="text"
                         value={formData.address.country}
-                        onChange={(e) => setFormData({...formData, address: {...formData.address, country: e.target.value}})}
+                        onChange={(e) => setFormData({ ...formData, address: { ...formData.address, country: e.target.value } })}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                       />
                     </div>
@@ -750,7 +618,7 @@ function CustomerModal({ customer, onSave, onClose, activeTab, setActiveTab }: C
                       <input
                         type="text"
                         value={formData.address.postalCode}
-                        onChange={(e) => setFormData({...formData, address: {...formData.address, postalCode: e.target.value}})}
+                        onChange={(e) => setFormData({ ...formData, address: { ...formData.address, postalCode: e.target.value } })}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                       />
                     </div>
@@ -766,7 +634,7 @@ function CustomerModal({ customer, onSave, onClose, activeTab, setActiveTab }: C
                   <input
                     type="text"
                     value={formData.taxInfo.taxId}
-                    onChange={(e) => setFormData({...formData, taxInfo: {...formData.taxInfo, taxId: e.target.value}})}
+                    onChange={(e) => setFormData({ ...formData, taxInfo: { ...formData.taxInfo, taxId: e.target.value } })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
@@ -775,7 +643,7 @@ function CustomerModal({ customer, onSave, onClose, activeTab, setActiveTab }: C
                   <input
                     type="text"
                     value={formData.taxInfo.vatNumber}
-                    onChange={(e) => setFormData({...formData, taxInfo: {...formData.taxInfo, vatNumber: e.target.value}})}
+                    onChange={(e) => setFormData({ ...formData, taxInfo: { ...formData.taxInfo, vatNumber: e.target.value } })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
@@ -783,7 +651,7 @@ function CustomerModal({ customer, onSave, onClose, activeTab, setActiveTab }: C
                   <label className="block text-sm font-medium text-gray-700 mb-1">Tax Classification</label>
                   <select
                     value={formData.taxInfo.taxClassification}
-                    onChange={(e) => setFormData({...formData, taxInfo: {...formData.taxInfo, taxClassification: e.target.value}})}
+                    onChange={(e) => setFormData({ ...formData, taxInfo: { ...formData.taxInfo, taxClassification: e.target.value } })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   >
                     <option value="">Select Classification</option>
@@ -803,7 +671,7 @@ function CustomerModal({ customer, onSave, onClose, activeTab, setActiveTab }: C
                   <input
                     type="number"
                     value={formData.creditInfo.creditLimit}
-                    onChange={(e) => setFormData({...formData, creditInfo: {...formData.creditInfo, creditLimit: Number(e.target.value)}})}
+                    onChange={(e) => setFormData({ ...formData, creditInfo: { ...formData.creditInfo, creditLimit: Number(e.target.value) } })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
@@ -811,7 +679,7 @@ function CustomerModal({ customer, onSave, onClose, activeTab, setActiveTab }: C
                   <label className="block text-sm font-medium text-gray-700 mb-1">Payment Terms</label>
                   <select
                     value={formData.creditInfo.paymentTerms}
-                    onChange={(e) => setFormData({...formData, creditInfo: {...formData.creditInfo, paymentTerms: e.target.value}})}
+                    onChange={(e) => setFormData({ ...formData, creditInfo: { ...formData.creditInfo, paymentTerms: e.target.value } })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   >
                     <option value="Net 15">Net 15</option>
@@ -826,7 +694,7 @@ function CustomerModal({ customer, onSave, onClose, activeTab, setActiveTab }: C
                   <label className="block text-sm font-medium text-gray-700 mb-1">Credit Rating</label>
                   <select
                     value={formData.creditInfo.creditRating}
-                    onChange={(e) => setFormData({...formData, creditInfo: {...formData.creditInfo, creditRating: e.target.value as any}})}
+                    onChange={(e) => setFormData({ ...formData, creditInfo: { ...formData.creditInfo, creditRating: e.target.value as any } })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   >
                     <option value="excellent">Excellent</option>
@@ -844,7 +712,7 @@ function CustomerModal({ customer, onSave, onClose, activeTab, setActiveTab }: C
                   <label className="block text-sm font-medium text-gray-700 mb-1">Price List</label>
                   <select
                     value={formData.pricing.priceList}
-                    onChange={(e) => setFormData({...formData, pricing: {...formData.pricing, priceList: e.target.value}})}
+                    onChange={(e) => setFormData({ ...formData, pricing: { ...formData.pricing, priceList: e.target.value } })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   >
                     {priceLists.map(priceList => (
@@ -860,7 +728,7 @@ function CustomerModal({ customer, onSave, onClose, activeTab, setActiveTab }: C
                     max="100"
                     step="0.1"
                     value={formData.pricing.discountPercentage}
-                    onChange={(e) => setFormData({...formData, pricing: {...formData.pricing, discountPercentage: Number(e.target.value)}})}
+                    onChange={(e) => setFormData({ ...formData, pricing: { ...formData.pricing, discountPercentage: Number(e.target.value) } })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
@@ -868,7 +736,7 @@ function CustomerModal({ customer, onSave, onClose, activeTab, setActiveTab }: C
                   <label className="block text-sm font-medium text-gray-700 mb-1">Currency</label>
                   <select
                     value={formData.pricing.currency}
-                    onChange={(e) => setFormData({...formData, pricing: {...formData.pricing, currency: e.target.value}})}
+                    onChange={(e) => setFormData({ ...formData, pricing: { ...formData.pricing, currency: e.target.value } })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   >
                     <option value="USD">USD</option>
@@ -886,7 +754,7 @@ function CustomerModal({ customer, onSave, onClose, activeTab, setActiveTab }: C
                   <label className="block text-sm font-medium text-gray-700 mb-1">Sales Representative</label>
                   <select
                     value={formData.salesInfo.salesRep}
-                    onChange={(e) => setFormData({...formData, salesInfo: {...formData.salesInfo, salesRep: e.target.value}})}
+                    onChange={(e) => setFormData({ ...formData, salesInfo: { ...formData.salesInfo, salesRep: e.target.value } })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   >
                     <option value="">Select Sales Rep</option>
@@ -899,7 +767,7 @@ function CustomerModal({ customer, onSave, onClose, activeTab, setActiveTab }: C
                   <label className="block text-sm font-medium text-gray-700 mb-1">Territory</label>
                   <select
                     value={formData.salesInfo.territory}
-                    onChange={(e) => setFormData({...formData, salesInfo: {...formData.salesInfo, territory: e.target.value}})}
+                    onChange={(e) => setFormData({ ...formData, salesInfo: { ...formData.salesInfo, territory: e.target.value } })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   >
                     <option value="">Select Territory</option>
@@ -913,7 +781,7 @@ function CustomerModal({ customer, onSave, onClose, activeTab, setActiveTab }: C
                   <input
                     type="number"
                     value={formData.salesInfo.totalSales}
-                    onChange={(e) => setFormData({...formData, salesInfo: {...formData.salesInfo, totalSales: Number(e.target.value)}})}
+                    onChange={(e) => setFormData({ ...formData, salesInfo: { ...formData.salesInfo, totalSales: Number(e.target.value) } })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     readOnly
                   />
@@ -923,7 +791,7 @@ function CustomerModal({ customer, onSave, onClose, activeTab, setActiveTab }: C
                   <input
                     type="number"
                     value={formData.salesInfo.averageOrderValue}
-                    onChange={(e) => setFormData({...formData, salesInfo: {...formData.salesInfo, averageOrderValue: Number(e.target.value)}})}
+                    onChange={(e) => setFormData({ ...formData, salesInfo: { ...formData.salesInfo, averageOrderValue: Number(e.target.value) } })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     readOnly
                   />

@@ -1,11 +1,12 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import {
   Target, Plus, Search, Edit2, Trash2, Download, Upload,
   CheckCircle2, XCircle, Users, TrendingUp, DollarSign,
   AlertTriangle, MapPin, ChevronRight, ChevronDown, Award
 } from 'lucide-react';
+import { commonMastersService } from '@/services/common-masters.service';
 
 interface Territory {
   id: string;
@@ -14,6 +15,7 @@ interface Territory {
   parentTerritoryId?: string;
   parentTerritoryName?: string;
   level: number;
+  isActive: boolean;
 
   // Coverage
   coverage: {
@@ -235,7 +237,9 @@ const mockTerritories: Territory[] = [
 ];
 
 export default function TerritoryMaster() {
-  const [territories, setTerritories] = useState<Territory[]>(mockTerritories);
+  const [territories, setTerritories] = useState<Territory[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const companyId = 'MAIN_COMPANY_ID'; // Placeholder, should come from context
   const [selectedTerritory, setSelectedTerritory] = useState<Territory | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
@@ -243,6 +247,39 @@ export default function TerritoryMaster() {
   const [filterStatus, setFilterStatus] = useState<string>('All');
   const [currentTab, setCurrentTab] = useState('basic');
   const [expandedNodes, setExpandedNodes] = useState<Set<string>>(new Set());
+
+  useEffect(() => {
+    const fetchTerritories = async () => {
+      try {
+        setIsLoading(true);
+        const data = await commonMastersService.getAllTerritories(companyId);
+        setTerritories(data.map(t => ({
+          id: t.id,
+          territoryCode: t.code,
+          territoryName: t.name,
+          level: 1,
+          coverage: {},
+          assignment: { manager: 'N/A', managerId: 'N/A' },
+          targets: {},
+          performance: {},
+          settings: { territoryType: 'Sales', allowOverlap: false, priority: 'Medium' },
+          status: t.isActive ? 'Active' : 'Inactive',
+          isActive: t.isActive,
+          metadata: {
+            createdAt: new Date(),
+            updatedAt: new Date(),
+            createdBy: 'System',
+            updatedBy: 'System'
+          }
+        } as Territory)));
+      } catch (error) {
+        console.error('Error fetching territories:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchTerritories();
+  }, [companyId]);
 
   const handleEdit = (territory: Territory) => {
     setSelectedTerritory(territory);
@@ -321,8 +358,8 @@ export default function TerritoryMaster() {
   const filteredTerritories = useMemo(() => {
     return territories.filter(territory => {
       const matchesSearch = territory.territoryName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           territory.territoryCode.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           territory.assignment.manager.toLowerCase().includes(searchTerm.toLowerCase());
+        territory.territoryCode.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        territory.assignment.manager.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesType = filterType === 'All' || territory.settings.territoryType === filterType;
       const matchesStatus = filterStatus === 'All' || territory.status === filterStatus;
       return matchesSearch && matchesType && matchesStatus;
@@ -540,10 +577,9 @@ export default function TerritoryMaster() {
                         </div>
                         <div className="w-full bg-gray-200 rounded-full h-1.5 mt-1">
                           <div
-                            className={`h-1.5 rounded-full ${
-                              (territory.performance.achievement || 0) >= 100 ? 'bg-green-500' :
+                            className={`h-1.5 rounded-full ${(territory.performance.achievement || 0) >= 100 ? 'bg-green-500' :
                               (territory.performance.achievement || 0) >= 90 ? 'bg-yellow-500' : 'bg-red-500'
-                            }`}
+                              }`}
                             style={{ width: `${Math.min(100, territory.performance.achievement || 0)}%` }}
                           />
                         </div>
@@ -598,11 +634,10 @@ export default function TerritoryMaster() {
                 <button
                   key={tab}
                   onClick={() => setCurrentTab(tab)}
-                  className={`px-4 py-2 font-medium capitalize ${
-                    currentTab === tab
-                      ? 'text-blue-600 border-b-2 border-blue-600'
-                      : 'text-gray-500 hover:text-gray-700'
-                  }`}
+                  className={`px-4 py-2 font-medium capitalize ${currentTab === tab
+                    ? 'text-blue-600 border-b-2 border-blue-600'
+                    : 'text-gray-500 hover:text-gray-700'
+                    }`}
                 >
                   {tab === 'basic' ? 'Basic Info' : tab}
                 </button>
@@ -643,7 +678,7 @@ export default function TerritoryMaster() {
                         Territory Type *
                       </label>
                       <select defaultValue={selectedTerritory?.settings.territoryType || 'Sales'}
-                              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
                         <option value="Sales">Sales</option>
                         <option value="Service">Service</option>
                         <option value="Distribution">Distribution</option>
@@ -655,7 +690,7 @@ export default function TerritoryMaster() {
                         Priority
                       </label>
                       <select defaultValue={selectedTerritory?.settings.priority || 'Medium'}
-                              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
                         <option value="High">High</option>
                         <option value="Medium">Medium</option>
                         <option value="Low">Low</option>
@@ -666,7 +701,7 @@ export default function TerritoryMaster() {
                         Status
                       </label>
                       <select defaultValue={selectedTerritory?.status || 'Active'}
-                              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
                         <option value="Active">Active</option>
                         <option value="Inactive">Inactive</option>
                         <option value="Under Review">Under Review</option>

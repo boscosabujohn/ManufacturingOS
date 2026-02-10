@@ -24,6 +24,8 @@ import { QualityModule } from './modules/quality/quality.module';
 import { ProjectManagementModule } from './modules/project-management/project-management.module';
 import { ApprovalsModule } from './modules/approvals/approvals.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { PrismaModule } from './modules/prisma/prisma.module';
+import { CommonMastersModule } from './modules/common-masters/common-masters.module';
 
 
 @Module({
@@ -37,18 +39,31 @@ import { AuthModule } from './modules/auth/auth.module';
     // Database - Now enabled with comprehensive entities
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
-      useFactory: (configService: ConfigService) => ({
-        type: 'postgres',
-        host: configService.get('DB_HOST', 'localhost'),
-        port: +configService.get('DB_PORT', 5432),
-        username: configService.get('DB_USERNAME', 'postgres'),
-        password: configService.get('DB_PASSWORD', 'postgres'),
-        database: configService.get('DB_DATABASE', 'manufacturing_erp'),
-        entities: [__dirname + '/**/*.entity{.ts,.js}'],
-        synchronize: true, // Auto-create tables for now to ensure schema exists
-        logging: configService.get('DB_LOGGING') === 'true',
-        ssl: configService.get('DB_SSL') === 'true' ? { rejectUnauthorized: false } : false,
-      }),
+      useFactory: (configService: ConfigService) => {
+        const url = configService.get('DATABASE_URL');
+        if (url) {
+          return {
+            type: 'postgres',
+            url,
+            entities: [__dirname + '/**/*.entity{.ts,.js}'],
+            synchronize: configService.get('DB_SYNCHRONIZE') === 'true',
+            logging: configService.get('DB_LOGGING') === 'true',
+            ssl: { rejectUnauthorized: false }, // Neon requires SSL
+          };
+        }
+        return {
+          type: 'postgres',
+          host: configService.get('DB_HOST', 'localhost'),
+          port: +configService.get('DB_PORT', 5432),
+          username: configService.get('DB_USERNAME', 'postgres'),
+          password: configService.get('DB_PASSWORD', 'postgres'),
+          database: configService.get('DB_DATABASE', 'manufacturing_erp'),
+          entities: [__dirname + '/**/*.entity{.ts,.js}'],
+          synchronize: true,
+          logging: configService.get('DB_LOGGING') === 'true',
+          ssl: configService.get('DB_SSL') === 'true' ? { rejectUnauthorized: false } : false,
+        };
+      },
       inject: [ConfigService],
     }),
 
@@ -85,6 +100,8 @@ import { AuthModule } from './modules/auth/auth.module';
     ItAdminModule, // User, Role, Permission, Audit management
     ProjectManagementModule, // Project tracking, documents, handover
     AuthModule,
+    PrismaModule,
+    CommonMastersModule,
   ],
 })
 export class AppModule { }

@@ -3,8 +3,8 @@
  * Handles all department-related API operations for the HR module
  */
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
-const USE_MOCK_DATA = true;
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+const USE_MOCK_DATA = false;
 
 // ============================================================================
 // Interfaces
@@ -46,7 +46,7 @@ export interface CreateDepartmentDto {
   status?: DepartmentStatus;
 }
 
-export interface UpdateDepartmentDto extends Partial<CreateDepartmentDto> {}
+export interface UpdateDepartmentDto extends Partial<CreateDepartmentDto> { }
 
 export interface DepartmentFilters {
   status?: DepartmentStatus;
@@ -278,7 +278,7 @@ export class DepartmentService {
     if (filters?.parentDepartmentId) queryParams.set('parentDepartmentId', filters.parentDepartmentId);
     if (filters?.search) queryParams.set('search', filters.search);
 
-    return this.request<Department[]>(`/hr/departments?${queryParams.toString()}`);
+    return this.request<Department[]>(`/api/v1/common-masters/departments?${queryParams.toString()}`);
   }
 
   /**

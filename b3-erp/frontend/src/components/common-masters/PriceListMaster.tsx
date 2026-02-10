@@ -1,114 +1,35 @@
 'use client';
 
-import React, { useState } from 'react';
-import { Tag, Plus, Search, Eye, Edit3, TrendingDown, Percent, Calendar } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Plus, Search, Filter, Edit, Trash2, Eye, Tag, DollarSign, Calendar, CheckCircle, AlertCircle, ShoppingCart, TrendingDown, TrendingUp, Download, Upload } from 'lucide-react';
+import { commonMastersService, PriceList } from '@/services/common-masters.service';
 
-interface PriceList {
-  id: string;
-  priceListCode: string;
-  priceListName: string;
-  description: string;
-  
-  effectiveFrom: string;
-  effectiveTo?: string;
-  
-  customerCategory: 'A' | 'B' | 'C' | 'all';
-  applicableFor: 'sales' | 'purchase';
-  
-  pricingMethod: 'fixed' | 'markup' | 'markdown' | 'formula';
-  markupPercentage?: number;
-  
-  currency: string;
-  includeTax: boolean;
-  
-  items: {
-    itemCode: string;
-    itemName: string;
-    price: number;
-    minQty?: number;
-    maxQty?: number;
-  }[];
-  
-  isDefault: boolean;
-  status: 'active' | 'inactive' | 'expired';
-  
-  createdBy: string;
-  createdAt: string;
-}
+export default function PriceListMaster() {
+  const [priceLists, setPriceLists] = useState<PriceList[]>([]);
+  const [loading, setLoading] = useState(true);
 
-const PriceListMaster: React.FC = () => {
-  const [priceLists, setPriceLists] = useState<PriceList[]>([
-    {
-      id: '1',
-      priceListCode: 'RETAIL-2024',
-      priceListName: 'Retail Price List 2024',
-      description: 'Standard retail pricing for end customers',
-      effectiveFrom: '2024-01-01',
-      customerCategory: 'all',
-      applicableFor: 'sales',
-      pricingMethod: 'markup',
-      markupPercentage: 25,
-      currency: 'INR',
-      includeTax: false,
-      items: [
-        { itemCode: 'KIT-CAB-001', itemName: 'Kitchen Cabinet - Standard', price: 15000 },
-        { itemCode: 'KIT-CAB-002', itemName: 'Kitchen Cabinet - Premium', price: 25000 },
-        { itemCode: 'WOOD-OAK-001', itemName: 'Oak Wood - Premium', price: 3500, minQty: 10 }
-      ],
-      isDefault: true,
-      status: 'active',
-      createdBy: 'admin',
-      createdAt: '2024-01-01T10:00:00Z'
-    },
-    {
-      id: '2',
-      priceListCode: 'WHOLE-2024',
-      priceListName: 'Wholesale Price List 2024',
-      description: 'Discounted pricing for bulk orders',
-      effectiveFrom: '2024-01-01',
-      customerCategory: 'A',
-      applicableFor: 'sales',
-      pricingMethod: 'markdown',
-      markupPercentage: -15,
-      currency: 'INR',
-      includeTax: false,
-      items: [
-        { itemCode: 'KIT-CAB-001', itemName: 'Kitchen Cabinet - Standard', price: 12750, minQty: 50 },
-        { itemCode: 'KIT-CAB-002', itemName: 'Kitchen Cabinet - Premium', price: 21250, minQty: 30 }
-      ],
-      isDefault: false,
-      status: 'active',
-      createdBy: 'admin',
-      createdAt: '2024-01-01T10:00:00Z'
-    },
-    {
-      id: '3',
-      priceListCode: 'PURCHASE-2024',
-      priceListName: 'Standard Purchase Prices',
-      description: 'Standard pricing for raw material procurement',
-      effectiveFrom: '2024-01-01',
-      customerCategory: 'all',
-      applicableFor: 'purchase',
-      pricingMethod: 'fixed',
-      currency: 'INR',
-      includeTax: false,
-      items: [
-        { itemCode: 'WOOD-OAK-001', itemName: 'Oak Wood - Premium', price: 2800 },
-        { itemCode: 'WOOD-PINE-001', itemName: 'Pine Wood - Standard', price: 1500 }
-      ],
-      isDefault: true,
-      status: 'active',
-      createdBy: 'admin',
-      createdAt: '2024-01-01T10:00:00Z'
+  useEffect(() => {
+    fetchPriceLists();
+  }, []);
+
+  const fetchPriceLists = async () => {
+    try {
+      setLoading(true);
+      const data = await commonMastersService.getAllPriceLists();
+      setPriceLists(data);
+    } catch (error) {
+      console.error('Failed to fetch price lists:', error);
+    } finally {
+      setLoading(false);
     }
-  ]);
+  };
 
   const [searchTerm, setSearchTerm] = useState('');
   const [filterType, setFilterType] = useState<string>('all');
 
   const filteredPriceLists = priceLists.filter(pl => {
     const matchesSearch = pl.priceListName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         pl.priceListCode.toLowerCase().includes(searchTerm.toLowerCase());
+      pl.priceListCode.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesType = filterType === 'all' || pl.applicableFor === filterType;
     return matchesSearch && matchesType;
   });
@@ -213,13 +134,12 @@ const PriceListMaster: React.FC = () => {
                         Default
                       </span>
                     )}
-                    <span className={`px-2 py-1 text-xs rounded-full ${
-                      priceList.status === 'active' 
+                    <span className={`px-2 py-1 text-xs rounded-full ${priceList.status === 'active'
                         ? 'bg-green-100 text-green-800'
                         : priceList.status === 'expired'
-                        ? 'bg-red-100 text-red-800'
-                        : 'bg-gray-100 text-gray-800'
-                    }`}>
+                          ? 'bg-red-100 text-red-800'
+                          : 'bg-gray-100 text-gray-800'
+                      }`}>
                       {priceList.status}
                     </span>
                   </div>
@@ -272,9 +192,8 @@ const PriceListMaster: React.FC = () => {
                   <div className="space-y-1 text-sm">
                     <div className="flex justify-between">
                       <span className="text-gray-600">Type:</span>
-                      <span className={`font-medium capitalize ${
-                        priceList.applicableFor === 'sales' ? 'text-blue-600' : 'text-green-600'
-                      }`}>
+                      <span className={`font-medium capitalize ${priceList.applicableFor === 'sales' ? 'text-blue-600' : 'text-green-600'
+                        }`}>
                         {priceList.applicableFor}
                       </span>
                     </div>

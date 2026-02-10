@@ -1,11 +1,12 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import {
   Building2, Plus, Search, Edit2, Trash2, Download, Upload,
   CheckCircle2, XCircle, MapPin, Users, Flag, Globe, Plane,
   Anchor, Train, Navigation
 } from 'lucide-react';
+import { commonMastersService, State } from '@/services/common-masters.service';
 
 interface City {
   id: string;
@@ -15,6 +16,7 @@ interface City {
   stateName: string;
   countryId: string;
   countryName: string;
+  isActive: boolean;
 
   // Classification
   cityType: 'Metro' | 'Tier-1' | 'Tier-2' | 'Tier-3' | 'Rural';
@@ -261,13 +263,65 @@ const mockCities: City[] = [
 ];
 
 export default function CityMaster() {
-  const [cities, setCities] = useState<City[]>(mockCities);
+  const [cities, setCities] = useState<City[]>([]);
+  const [states, setStates] = useState<State[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [selectedCity, setSelectedCity] = useState<City | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterState, setFilterState] = useState<string>('All');
   const [filterType, setFilterType] = useState<string>('All');
   const [currentTab, setCurrentTab] = useState('basic');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setIsLoading(true);
+        // This is a simplification. Ideally, we'd fetch countries, then states, then cities.
+        // For the wireup, we'll fetch states for the main countries and then cities for those states.
+        const countries = await commonMastersService.getAllCountries();
+        const allStates: State[] = [];
+        const allCities: City[] = [];
+
+        for (const country of countries) {
+          const countryStates = await commonMastersService.getStatesByCountry(country.id);
+          allStates.push(...countryStates);
+
+          for (const state of countryStates) {
+            const stateCities = await commonMastersService.getCitiesByState(state.id);
+            allCities.push(...stateCities.map(c => ({
+              id: c.id,
+              cityCode: c.name.substring(0, 3).toUpperCase(),
+              cityName: c.name,
+              stateId: c.stateId,
+              stateName: state.name,
+              countryId: state.countryId,
+              countryName: country.name,
+              cityType: 'Tier-1',
+              isCapital: false,
+              statistics: { totalPinCodes: 0 },
+              infrastructure: { airport: false, seaport: false, railwayStation: false, metroRail: false },
+              status: c.isActive ? 'Active' : 'Inactive',
+              isActive: c.isActive,
+              metadata: {
+                createdAt: new Date(),
+                updatedAt: new Date(),
+                createdBy: 'System',
+                updatedBy: 'System'
+              }
+            } as City)));
+          }
+        }
+        setStates(allStates);
+        setCities(allCities);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
 
   const handleEdit = (city: City) => {
     setSelectedCity(city);
@@ -315,8 +369,8 @@ export default function CityMaster() {
   const filteredCities = useMemo(() => {
     return cities.filter(city => {
       const matchesSearch = city.cityName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           city.cityCode.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           city.stateName.toLowerCase().includes(searchTerm.toLowerCase());
+        city.cityCode.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        city.stateName.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesState = filterState === 'All' || city.stateName === filterState;
       const matchesType = filterType === 'All' || city.cityType === filterType;
       return matchesSearch && matchesState && matchesType;
@@ -573,11 +627,10 @@ export default function CityMaster() {
                 <button
                   key={tab}
                   onClick={() => setCurrentTab(tab)}
-                  className={`px-4 py-2 font-medium capitalize ${
-                    currentTab === tab
-                      ? 'text-blue-600 border-b-2 border-blue-600'
-                      : 'text-gray-500 hover:text-gray-700'
-                  }`}
+                  className={`px-4 py-2 font-medium capitalize ${currentTab === tab
+                    ? 'text-blue-600 border-b-2 border-blue-600'
+                    : 'text-gray-500 hover:text-gray-700'
+                    }`}
                 >
                   {tab === 'basic' ? 'Basic Info' : tab}
                 </button>
@@ -632,7 +685,7 @@ export default function CityMaster() {
                         City Type *
                       </label>
                       <select defaultValue={selectedCity?.cityType || 'Tier-1'}
-                              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
                         <option value="Metro">Metro</option>
                         <option value="Tier-1">Tier-1</option>
                         <option value="Tier-2">Tier-2</option>
@@ -683,7 +736,7 @@ export default function CityMaster() {
                         Status
                       </label>
                       <select defaultValue={selectedCity?.status || 'Active'}
-                              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
                         <option value="Active">Active</option>
                         <option value="Inactive">Inactive</option>
                       </select>

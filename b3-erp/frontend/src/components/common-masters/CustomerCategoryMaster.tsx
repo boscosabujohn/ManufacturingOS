@@ -1,215 +1,38 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import {
   Tag, Plus, Search, Filter, Edit2, Trash2, MoreVertical,
   Users, TrendingUp, DollarSign, Percent, Calendar, Shield,
   CheckCircle2, XCircle, AlertCircle, Award, Star, Target
 } from 'lucide-react';
-
-interface CustomerCategory {
-  id: string;
-  code: string;
-  name: string;
-  description?: string;
-  parentCategory?: string;
-  level: 'Primary' | 'Secondary' | 'Tertiary';
-  classification: 'Premium' | 'Standard' | 'Basic' | 'VIP';
-  criteria: {
-    minRevenue?: number;
-    minOrders?: number;
-    minRetention?: number;
-    creditScore?: string;
-  };
-  benefits: {
-    discountPercent: number;
-    creditDays: number;
-    creditLimit: number;
-    prioritySupport: boolean;
-    freeShipping: boolean;
-    dedicatedManager: boolean;
-  };
-  terms: {
-    paymentTerms: string;
-    deliveryPriority: 'High' | 'Medium' | 'Low';
-    returnPolicy: string;
-    warrantyExtension?: number;
-  };
-  targets: {
-    revenueTarget?: number;
-    growthTarget?: number;
-    retentionTarget?: number;
-  };
-  metrics: {
-    customerCount: number;
-    totalRevenue: number;
-    avgOrderValue: number;
-    churnRate: number;
-  };
-  color: string;
-  icon?: string;
-  status: 'Active' | 'Inactive' | 'Archived';
-  metadata: {
-    createdAt: Date;
-    updatedAt: Date;
-    createdBy: string;
-    updatedBy: string;
-  };
-}
-
-const mockCategories: CustomerCategory[] = [
-  {
-    id: '1',
-    code: 'CAT-PREM',
-    name: 'Premium',
-    description: 'High-value customers with excellent payment history',
-    level: 'Primary',
-    classification: 'Premium',
-    criteria: {
-      minRevenue: 1000000,
-      minOrders: 50,
-      minRetention: 24,
-      creditScore: 'A+'
-    },
-    benefits: {
-      discountPercent: 20,
-      creditDays: 60,
-      creditLimit: 5000000,
-      prioritySupport: true,
-      freeShipping: true,
-      dedicatedManager: true
-    },
-    terms: {
-      paymentTerms: 'Net 60',
-      deliveryPriority: 'High',
-      returnPolicy: '60 days',
-      warrantyExtension: 12
-    },
-    targets: {
-      revenueTarget: 10000000,
-      growthTarget: 25,
-      retentionTarget: 95
-    },
-    metrics: {
-      customerCount: 45,
-      totalRevenue: 125000000,
-      avgOrderValue: 55000,
-      churnRate: 2.5
-    },
-    color: '#8B5CF6',
-    status: 'Active',
-    metadata: {
-      createdAt: new Date('2023-01-01'),
-      updatedAt: new Date('2024-03-20'),
-      createdBy: 'Admin',
-      updatedBy: 'Sales Manager'
-    }
-  },
-  {
-    id: '2',
-    code: 'CAT-STD',
-    name: 'Standard',
-    description: 'Regular customers with consistent purchase patterns',
-    level: 'Primary',
-    classification: 'Standard',
-    criteria: {
-      minRevenue: 100000,
-      minOrders: 10,
-      minRetention: 6,
-      creditScore: 'B'
-    },
-    benefits: {
-      discountPercent: 10,
-      creditDays: 30,
-      creditLimit: 500000,
-      prioritySupport: false,
-      freeShipping: false,
-      dedicatedManager: false
-    },
-    terms: {
-      paymentTerms: 'Net 30',
-      deliveryPriority: 'Medium',
-      returnPolicy: '30 days'
-    },
-    targets: {
-      revenueTarget: 1000000,
-      growthTarget: 15,
-      retentionTarget: 80
-    },
-    metrics: {
-      customerCount: 250,
-      totalRevenue: 75000000,
-      avgOrderValue: 12000,
-      churnRate: 8.5
-    },
-    color: '#3B82F6',
-    status: 'Active',
-    metadata: {
-      createdAt: new Date('2023-01-01'),
-      updatedAt: new Date('2024-03-15'),
-      createdBy: 'Admin',
-      updatedBy: 'Manager'
-    }
-  },
-  {
-    id: '3',
-    code: 'CAT-VIP',
-    name: 'VIP',
-    description: 'Elite customers with exclusive privileges',
-    parentCategory: '1',
-    level: 'Secondary',
-    classification: 'VIP',
-    criteria: {
-      minRevenue: 5000000,
-      minOrders: 100,
-      minRetention: 36,
-      creditScore: 'AAA'
-    },
-    benefits: {
-      discountPercent: 30,
-      creditDays: 90,
-      creditLimit: 10000000,
-      prioritySupport: true,
-      freeShipping: true,
-      dedicatedManager: true
-    },
-    terms: {
-      paymentTerms: 'Net 90',
-      deliveryPriority: 'High',
-      returnPolicy: '90 days',
-      warrantyExtension: 24
-    },
-    targets: {
-      revenueTarget: 50000000,
-      growthTarget: 30,
-      retentionTarget: 99
-    },
-    metrics: {
-      customerCount: 8,
-      totalRevenue: 85000000,
-      avgOrderValue: 350000,
-      churnRate: 0.5
-    },
-    color: '#F59E0B',
-    icon: '👑',
-    status: 'Active',
-    metadata: {
-      createdAt: new Date('2023-06-01'),
-      updatedAt: new Date('2024-03-10'),
-      createdBy: 'CEO',
-      updatedBy: 'CEO'
-    }
-  }
-];
+import { commonMastersService, CustomerCategory } from '@/services/common-masters.service';
 
 export default function CustomerCategoryMaster() {
-  const [categories, setCategories] = useState<CustomerCategory[]>(mockCategories);
+  const [categories, setCategories] = useState<CustomerCategory[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<CustomerCategory | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterClassification, setFilterClassification] = useState<string>('All');
   const [filterStatus, setFilterStatus] = useState<string>('All');
   const [currentTab, setCurrentTab] = useState('basic');
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    loadCategories();
+  }, []);
+
+  const loadCategories = async () => {
+    try {
+      setIsLoading(true);
+      const data = await commonMastersService.getAllCustomerCategories();
+      setCategories(data);
+    } catch (error) {
+      console.error('Failed to load customer categories:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const handleEdit = (category: CustomerCategory) => {
     setSelectedCategory(category);
@@ -288,8 +111,8 @@ export default function CustomerCategoryMaster() {
   const filteredCategories = useMemo(() => {
     return categories.filter(category => {
       const matchesSearch = category.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           category.code.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           category.description?.toLowerCase().includes(searchTerm.toLowerCase());
+        category.code.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        category.description?.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesClassification = filterClassification === 'All' || category.classification === filterClassification;
       const matchesStatus = filterStatus === 'All' || category.status === filterStatus;
       return matchesSearch && matchesClassification && matchesStatus;
@@ -527,11 +350,10 @@ export default function CustomerCategoryMaster() {
                 <button
                   key={tab}
                   onClick={() => setCurrentTab(tab)}
-                  className={`px-4 py-2 font-medium capitalize ${
-                    currentTab === tab
+                  className={`px-4 py-2 font-medium capitalize ${currentTab === tab
                       ? 'text-blue-600 border-b-2 border-blue-600'
                       : 'text-gray-500 hover:text-gray-700'
-                  }`}
+                    }`}
                 >
                   {tab === 'basic' ? 'Basic Info' : tab}
                 </button>
@@ -584,7 +406,7 @@ export default function CustomerCategoryMaster() {
                         Level *
                       </label>
                       <select defaultValue={selectedCategory?.level || 'Primary'}
-                              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
                         <option value="Primary">Primary</option>
                         <option value="Secondary">Secondary</option>
                         <option value="Tertiary">Tertiary</option>
@@ -595,7 +417,7 @@ export default function CustomerCategoryMaster() {
                         Classification *
                       </label>
                       <select defaultValue={selectedCategory?.classification || 'Standard'}
-                              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
                         <option value="VIP">VIP</option>
                         <option value="Premium">Premium</option>
                         <option value="Standard">Standard</option>
@@ -607,7 +429,7 @@ export default function CustomerCategoryMaster() {
                         Status
                       </label>
                       <select defaultValue={selectedCategory?.status || 'Active'}
-                              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
                         <option value="Active">Active</option>
                         <option value="Inactive">Inactive</option>
                         <option value="Archived">Archived</option>
@@ -685,7 +507,7 @@ export default function CustomerCategoryMaster() {
                         Minimum Credit Score
                       </label>
                       <select defaultValue={selectedCategory?.criteria.creditScore}
-                              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
                         <option value="">No requirement</option>
                         <option value="AAA">AAA</option>
                         <option value="A+">A+</option>
@@ -772,7 +594,7 @@ export default function CustomerCategoryMaster() {
                         Payment Terms *
                       </label>
                       <select defaultValue={selectedCategory?.terms.paymentTerms || 'Net 30'}
-                              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
                         <option value="COD">Cash on Delivery</option>
                         <option value="Net 15">Net 15</option>
                         <option value="Net 30">Net 30</option>
@@ -786,7 +608,7 @@ export default function CustomerCategoryMaster() {
                         Delivery Priority *
                       </label>
                       <select defaultValue={selectedCategory?.terms.deliveryPriority || 'Medium'}
-                              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
                         <option value="High">High</option>
                         <option value="Medium">Medium</option>
                         <option value="Low">Low</option>

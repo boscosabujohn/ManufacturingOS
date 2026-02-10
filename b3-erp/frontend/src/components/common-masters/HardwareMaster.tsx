@@ -1,10 +1,11 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import {
   Wrench, Plus, Search, Edit2, Trash2, CheckCircle2,
   XCircle, Package, DollarSign, Palette, Box
 } from 'lucide-react';
+import { manufacturingMastersService, KitchenHardware as BackendHardware } from '@/services/manufacturing-masters.service';
 
 interface Hardware {
   id: string;
@@ -27,137 +28,70 @@ interface Hardware {
     max: number;
   };
   warranty: string;
-  installationType: 'Surface Mount' | 'Concealed' | 'Overlay' | 'Insert';
+  installationType: string;
   features: string[];
   stock: number;
   reorderLevel: number;
-  status: 'Active' | 'Inactive' | 'Discontinued';
-  metadata: {
+  status: string;
+  metadata?: {
     createdAt: Date;
     updatedAt: Date;
     createdBy: string;
   };
 }
 
-const mockHardware: Hardware[] = [
-  {
-    id: '1',
-    code: 'HW-HNG-001',
-    name: 'Soft-Close Cabinet Hinge - 110°',
-    category: 'Hinges',
-    subcategory: 'Concealed Hinge',
-    specifications: {
-      material: 'Cold Rolled Steel',
-      finish: 'Nickel Plated',
-      size: '110° Opening Angle',
-      weight: 0.12,
-      loadCapacity: 20
-    },
-    finishOptions: ['Nickel Plated', 'Chrome', 'Black'],
-    suitableFor: ['Base Cabinets', 'Wall Cabinets', 'Tall Units'],
-    brand: 'Hettich',
-    priceRange: {
-      min: 120,
-      max: 180
-    },
-    warranty: '5 Years',
-    installationType: 'Concealed',
-    features: [
-      'Soft-close mechanism',
-      '110° opening angle',
-      'Tool-free adjustment',
-      'Corrosion resistant',
-      'Silent operation'
-    ],
-    stock: 5000,
-    reorderLevel: 1000,
-    status: 'Active',
-    metadata: {
-      createdAt: new Date('2024-01-10'),
-      updatedAt: new Date('2024-03-15'),
-      createdBy: 'Procurement Manager'
-    }
-  },
-  {
-    id: '2',
-    code: 'HW-HDL-001',
-    name: 'Modern D-Handle - Stainless Steel',
-    category: 'Handles',
-    subcategory: 'Cabinet Handle',
-    specifications: {
-      material: 'Stainless Steel 304',
-      finish: 'Brushed',
-      size: '128mm C-C',
-      weight: 0.08
-    },
-    finishOptions: ['Brushed SS', 'Polished SS', 'Black Matt', 'Rose Gold'],
-    suitableFor: ['Drawers', 'Doors', 'Base Cabinets'],
-    brand: 'Hafele',
-    priceRange: {
-      min: 80,
-      max: 150
-    },
-    warranty: '2 Years',
-    installationType: 'Surface Mount',
-    features: [
-      'Ergonomic design',
-      'Anti-fingerprint coating',
-      'Modern aesthetics',
-      'Rust resistant',
-      'Easy installation'
-    ],
-    stock: 3000,
-    reorderLevel: 500,
-    status: 'Active',
-    metadata: {
-      createdAt: new Date('2024-01-12'),
-      updatedAt: new Date('2024-03-10'),
-      createdBy: 'Procurement Manager'
-    }
-  },
-  {
-    id: '3',
-    code: 'HW-SLD-001',
-    name: 'Full Extension Soft-Close Drawer Slide',
-    category: 'Drawer Slides',
-    subcategory: 'Ball Bearing Slide',
-    specifications: {
-      material: 'Cold Rolled Steel',
-      finish: 'Zinc Plated',
-      size: '450mm',
-      weight: 0.5,
-      loadCapacity: 45
-    },
-    finishOptions: ['Zinc Plated', 'White', 'Black'],
-    suitableFor: ['Kitchen Drawers', 'Wardrobe Drawers', 'Desk Drawers'],
-    brand: 'Blum',
-    priceRange: {
-      min: 350,
-      max: 500
-    },
-    warranty: '10 Years',
-    installationType: 'Concealed',
-    features: [
-      'Full extension 100%',
-      'Soft-close mechanism',
-      '45kg load capacity',
-      'Silent operation',
-      'Easy release'
-    ],
-    stock: 2000,
-    reorderLevel: 400,
-    status: 'Active',
-    metadata: {
-      createdAt: new Date('2024-01-15'),
-      updatedAt: new Date('2024-03-20'),
-      createdBy: 'Procurement Manager'
-    }
-  }
-];
-
 export default function HardwareMaster() {
-  const [hardware, setHardware] = useState<Hardware[]>(mockHardware);
+  const [hardware, setHardware] = useState<Hardware[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [selectedHardware, setSelectedHardware] = useState<Hardware | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filterCategory, setFilterCategory] = useState<string>('All');
+
+  useEffect(() => {
+    fetchHardware();
+  }, []);
+
+  const fetchHardware = async () => {
+    try {
+      setIsLoading(true);
+      const data = await manufacturingMastersService.getAllKitchenHardware('123e4567-e89b-12d3-a456-426614174000');
+
+      const mapped: Hardware[] = data.map(hw => ({
+        id: hw.id,
+        code: hw.code,
+        name: hw.name,
+        category: hw.category as any,
+        subcategory: hw.subcategory || '',
+        specifications: {
+          material: hw.specifications?.material || '',
+          finish: hw.specifications?.finish || '',
+          size: hw.specifications?.size || '',
+          weight: hw.specifications?.weight || 0,
+          loadCapacity: hw.specifications?.loadCapacity
+        },
+        finishOptions: [],
+        suitableFor: [],
+        brand: hw.brand || '',
+        priceRange: {
+          min: hw.priceMin,
+          max: hw.priceMax
+        },
+        warranty: hw.warranty || '',
+        installationType: hw.installationType || 'Concealed',
+        features: hw.features,
+        stock: hw.stock,
+        reorderLevel: hw.reorderLevel,
+        status: hw.status
+      }));
+
+      setHardware(mapped);
+    } catch (error) {
+      console.error('Error fetching hardware:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterCategory, setFilterCategory] = useState<string>('All');
@@ -198,8 +132,8 @@ export default function HardwareMaster() {
   const filteredHardware = useMemo(() => {
     return hardware.filter(item => {
       const matchesSearch = item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           item.code.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           item.brand.toLowerCase().includes(searchTerm.toLowerCase());
+        item.code.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.brand.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesCategory = filterCategory === 'All' || item.category === filterCategory;
       return matchesSearch && matchesCategory;
     });
@@ -403,7 +337,7 @@ export default function HardwareMaster() {
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Category *
                     </label>
-                    <select 
+                    <select
                       defaultValue={selectedHardware?.category || 'Hinges'}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
                     >
@@ -515,7 +449,7 @@ export default function HardwareMaster() {
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Status
                   </label>
-                  <select 
+                  <select
                     defaultValue={selectedHardware?.status || 'Active'}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
                   >

@@ -4,16 +4,60 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { Plus, Search, Download, Filter, X, Wrench, AlertCircle, Package, Calendar, CheckCircle, XCircle } from 'lucide-react';
 import { DataTable, Column } from '@/components/ui/DataTable';
 import { StatusBadge } from '@/components/ui/StatusBadge';
-import { mockTools, Tool, getToolStats, getLowStockTools } from '@/data/common-masters/tools';
+import { Tool, getToolStats, getLowStockTools } from '@/data/common-masters/tools';
+import { manufacturingMastersService, Tool as BackendTool } from '@/services/manufacturing-masters.service';
 
 export default function ToolMasterPage() {
-  const [tools, setTools] = useState<Tool[]>(mockTools);
+  const [tools, setTools] = useState<Tool[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterType, setFilterType] = useState<string>('all');
   const [filterCategory, setFilterCategory] = useState<string>('all');
   const [filterStatus, setFilterStatus] = useState<string>('all');
   const [showFilters, setShowFilters] = useState(false);
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' | 'info' } | null>(null);
+
+  useEffect(() => {
+    fetchTools();
+  }, []);
+
+  const fetchTools = async () => {
+    try {
+      setIsLoading(true);
+      const data = await manufacturingMastersService.getAllTools('1');
+      const mapped: Tool[] = data.map((t: BackendTool) => ({
+        id: t.id,
+        toolCode: t.code,
+        toolName: t.name,
+        description: t.description || '',
+        toolType: 'cutting' as any,
+        category: 'durable' as any,
+        manufacturer: 'Various',
+        modelNumber: '',
+        serialNumber: '',
+        currentStock: 10,
+        minimumStock: 2,
+        reorderLevel: 5,
+        unitOfMeasure: 'pcs',
+        purchaseDate: new Date().toISOString(),
+        unitCost: 0,
+        lifeExpectancy: 1000,
+        lifeUnit: 'hours' as any,
+        currentUsage: 0,
+        remainingLife: 100,
+        condition: 'excellent' as any,
+        status: t.status as any || 'available',
+        requiresCalibration: false,
+        storageLocation: 'Main Store',
+        isActive: true,
+      }));
+      setTools(mapped);
+    } catch (error) {
+      console.error('Error fetching tools:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   useEffect(() => {
     if (toast) {
@@ -58,6 +102,7 @@ export default function ToolMasterPage() {
       return matchesSearch && matchesType && matchesCategory && matchesStatus;
     });
   }, [tools, searchTerm, filterType, filterCategory, filterStatus]);
+
 
   const getTypeColor = (type: string) => {
     const colors = {
@@ -271,17 +316,17 @@ export default function ToolMasterPage() {
       {/* Toast Notification */}
       {toast && (
         <div className="fixed top-4 right-4 z-50 flex items-center gap-2 bg-white px-4 py-3 rounded-lg shadow-lg border-l-4 animate-slide-in"
-             style={{ 
-               borderLeftColor: toast.type === 'success' ? '#10b981' : toast.type === 'error' ? '#ef4444' : '#3b82f6',
-               minWidth: '300px'
-             }}>
+          style={{
+            borderLeftColor: toast.type === 'success' ? '#10b981' : toast.type === 'error' ? '#ef4444' : '#3b82f6',
+            minWidth: '300px'
+          }}>
           {toast.type === 'success' && <CheckCircle className="w-5 h-5 text-green-500" />}
           {toast.type === 'error' && <XCircle className="w-5 h-5 text-red-500" />}
           {toast.type === 'info' && <AlertCircle className="w-5 h-5 text-blue-500" />}
           <span className="text-sm text-gray-700">{toast.message}</span>
         </div>
       )}
-      
+
       <div className="flex-none p-3 pb-4 space-y-2">
         <div className="flex items-center justify-between">
           <div>
@@ -311,34 +356,34 @@ export default function ToolMasterPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-6 gap-2">
           <div className="bg-white rounded-lg border border-gray-200 p-3">
-          <div className="text-sm text-gray-600 mb-1">Total Tools</div>
-          <div className="text-2xl font-bold text-gray-900">{stats.total}</div>
-        </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-3">
-          <div className="text-sm text-gray-600 mb-1">Available</div>
-          <div className="text-2xl font-bold text-green-600">{stats.available}</div>
-        </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-3">
-          <div className="text-sm text-gray-600 mb-1 flex items-center gap-1">
-            <AlertCircle className="w-3 h-3 text-red-600" /> Low Stock
+            <div className="text-sm text-gray-600 mb-1">Total Tools</div>
+            <div className="text-2xl font-bold text-gray-900">{stats.total}</div>
           </div>
-          <div className="text-2xl font-bold text-red-600">{stats.lowStock}</div>
-        </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-3">
-          <div className="text-sm text-gray-600 mb-1 flex items-center gap-1">
-            <Calendar className="w-3 h-3 text-orange-600" /> Calibration
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <div className="text-sm text-gray-600 mb-1">Available</div>
+            <div className="text-2xl font-bold text-green-600">{stats.available}</div>
           </div>
-          <div className="text-2xl font-bold text-orange-600">{stats.needsCalibration}</div>
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <div className="text-sm text-gray-600 mb-1 flex items-center gap-1">
+              <AlertCircle className="w-3 h-3 text-red-600" /> Low Stock
+            </div>
+            <div className="text-2xl font-bold text-red-600">{stats.lowStock}</div>
+          </div>
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <div className="text-sm text-gray-600 mb-1 flex items-center gap-1">
+              <Calendar className="w-3 h-3 text-orange-600" /> Calibration
+            </div>
+            <div className="text-2xl font-bold text-orange-600">{stats.needsCalibration}</div>
+          </div>
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <div className="text-sm text-gray-600 mb-1">Precision Tools</div>
+            <div className="text-2xl font-bold text-purple-600">{stats.precisionInstruments}</div>
+          </div>
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <div className="text-sm text-gray-600 mb-1">Total Value</div>
+            <div className="text-2xl font-bold text-orange-600">₹{(stats.totalValue / 1000).toFixed(0)}K</div>
+          </div>
         </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-3">
-          <div className="text-sm text-gray-600 mb-1">Precision Tools</div>
-          <div className="text-2xl font-bold text-purple-600">{stats.precisionInstruments}</div>
-        </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-3">
-          <div className="text-sm text-gray-600 mb-1">Total Value</div>
-          <div className="text-2xl font-bold text-orange-600">₹{(stats.totalValue / 1000).toFixed(0)}K</div>
-        </div>
-      </div>
       </div>
 
       <div className="flex-1 overflow-hidden px-6">
@@ -350,112 +395,111 @@ export default function ToolMasterPage() {
                 <input
                   type="text"
                   placeholder="Search by tool name, code, manufacturer..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                />
+              </div>
+              <button
+                onClick={() => setShowFilters(!showFilters)}
+                className={`inline-flex items-center gap-2 px-4 py-2 border rounded-lg transition-colors ${showFilters ? 'bg-orange-50 border-orange-300 text-orange-700' : 'border-gray-300 hover:bg-gray-50'
+                  }`}
+              >
+                <Filter className="w-4 h-4" />
+                <span>Filters</span>
+                {activeFilterCount > 0 && (
+                  <span className="inline-flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-orange-600 rounded-full">
+                    {activeFilterCount}
+                  </span>
+                )}
+              </button>
+              {activeFilterCount > 0 && (
+                <button
+                  onClick={clearFilters}
+                  className="inline-flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-gray-900 transition-colors"
+                >
+                  <X className="w-4 h-4" />
+                  <span>Clear</span>
+                </button>
+              )}
+            </div>
+
+            {/* Filter Panel */}
+            {showFilters && (
+              <div className="mt-4 pt-4 border-t border-gray-200 grid grid-cols-1 md:grid-cols-3 gap-2">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Tool Type
+                  </label>
+                  <select
+                    value={filterType}
+                    onChange={(e) => setFilterType(e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                  >
+                    <option value="all">All Types</option>
+                    <option value="cutting">Cutting</option>
+                    <option value="measuring">Measuring</option>
+                    <option value="holding">Holding</option>
+                    <option value="power">Power</option>
+                    <option value="hand">Hand</option>
+                    <option value="jigs_fixtures">Jigs & Fixtures</option>
+                    <option value="safety">Safety</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Category
+                  </label>
+                  <select
+                    value={filterCategory}
+                    onChange={(e) => setFilterCategory(e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                  >
+                    <option value="all">All Categories</option>
+                    <option value="consumable">Consumable</option>
+                    <option value="durable">Durable</option>
+                    <option value="precision_instrument">Precision Instrument</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Status
+                  </label>
+                  <select
+                    value={filterStatus}
+                    onChange={(e) => setFilterStatus(e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                  >
+                    <option value="all">All Status</option>
+                    <option value="available">Available</option>
+                    <option value="in_use">In Use</option>
+                    <option value="maintenance">Maintenance</option>
+                    <option value="calibration">Calibration</option>
+                    <option value="retired">Retired</option>
+                  </select>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Data Table */}
+          <div className="flex-1 overflow-auto">
+            <DataTable
+              data={filteredData}
+              columns={columns}
+              pagination={{
+                enabled: true,
+                pageSize: 10
+              }}
+              sorting={{
+                enabled: true,
+                defaultSort: { column: 'tool', direction: 'asc' }
+              }}
+              emptyMessage="No tools found"
+              emptyDescription="Try adjusting your search or filters to find what you're looking for."
             />
           </div>
-          <button
-            onClick={() => setShowFilters(!showFilters)}
-            className={`inline-flex items-center gap-2 px-4 py-2 border rounded-lg transition-colors ${
-              showFilters ? 'bg-orange-50 border-orange-300 text-orange-700' : 'border-gray-300 hover:bg-gray-50'
-            }`}
-          >
-            <Filter className="w-4 h-4" />
-            <span>Filters</span>
-            {activeFilterCount > 0 && (
-              <span className="inline-flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-orange-600 rounded-full">
-                {activeFilterCount}
-              </span>
-            )}
-          </button>
-          {activeFilterCount > 0 && (
-            <button
-              onClick={clearFilters}
-              className="inline-flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-gray-900 transition-colors"
-            >
-              <X className="w-4 h-4" />
-              <span>Clear</span>
-            </button>
-          )}
         </div>
-
-        {/* Filter Panel */}
-        {showFilters && (
-          <div className="mt-4 pt-4 border-t border-gray-200 grid grid-cols-1 md:grid-cols-3 gap-2">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Tool Type
-              </label>
-              <select
-                value={filterType}
-                onChange={(e) => setFilterType(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-              >
-                <option value="all">All Types</option>
-                <option value="cutting">Cutting</option>
-                <option value="measuring">Measuring</option>
-                <option value="holding">Holding</option>
-                <option value="power">Power</option>
-                <option value="hand">Hand</option>
-                <option value="jigs_fixtures">Jigs & Fixtures</option>
-                <option value="safety">Safety</option>
-              </select>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Category
-              </label>
-              <select
-                value={filterCategory}
-                onChange={(e) => setFilterCategory(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-              >
-                <option value="all">All Categories</option>
-                <option value="consumable">Consumable</option>
-                <option value="durable">Durable</option>
-                <option value="precision_instrument">Precision Instrument</option>
-              </select>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Status
-              </label>
-              <select
-                value={filterStatus}
-                onChange={(e) => setFilterStatus(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-              >
-                <option value="all">All Status</option>
-                <option value="available">Available</option>
-                <option value="in_use">In Use</option>
-                <option value="maintenance">Maintenance</option>
-                <option value="calibration">Calibration</option>
-                <option value="retired">Retired</option>
-              </select>
-            </div>
-          </div>
-        )}
-        </div>
-
-        {/* Data Table */}
-        <div className="flex-1 overflow-auto">
-          <DataTable
-            data={filteredData}
-            columns={columns}
-          pagination={{
-            enabled: true,
-            pageSize: 10
-          }}
-          sorting={{
-            enabled: true,
-            defaultSort: { column: 'tool', direction: 'asc' }
-          }}
-          emptyMessage="No tools found"
-          emptyDescription="Try adjusting your search or filters to find what you're looking for."
-        />
-        </div>
-      </div>
       </div>
     </div>
   );

@@ -6,15 +6,14 @@ import {
   XCircle, Star, TrendingUp, BookOpen, Briefcase,
   GraduationCap, Wrench, Target, BarChart3, Loader2
 } from 'lucide-react';
-import { SkillService, MOCK_SKILLS } from '@/services/skill.service';
-import { Skill as ServiceSkill, SkillStatus } from '@/types/skill';
+import { manufacturingMastersService, Skill as BackendSkill } from '../../services/manufacturing-masters.service';
 
 interface Skill {
   id: string;
   code: string;
   name: string;
-  category: 'Technical' | 'Operational' | 'Quality' | 'Safety' | 'Managerial' | 'Soft Skills';
-  level: 'Beginner' | 'Intermediate' | 'Advanced' | 'Expert';
+  category: string;
+  level: string;
   description: string;
   prerequisites: string[];
   certificationRequired: boolean;
@@ -24,7 +23,7 @@ interface Skill {
   assessmentMethod: string;
   competencyIndicators: string[];
   applicableRoles: string[];
-  status: 'Active' | 'Inactive' | 'Under Development';
+  status: string;
   metadata: {
     createdAt: Date;
     updatedAt: Date;
@@ -32,46 +31,6 @@ interface Skill {
     updatedBy: string;
   };
 }
-
-// Transform service skill to component skill format
-const transformServiceSkill = (skill: ServiceSkill): Skill => {
-  const categoryMap: Record<string, Skill['category']> = {
-    'DOMAIN': 'Operational',
-    'TECHNICAL': 'Technical',
-    'SOFT': 'Soft Skills',
-    'MANAGERIAL': 'Managerial',
-  };
-
-  const statusMap: Record<SkillStatus, Skill['status']> = {
-    [SkillStatus.ACTIVE]: 'Active',
-    [SkillStatus.INACTIVE]: 'Inactive',
-    [SkillStatus.DEPRECATED]: 'Inactive',
-  };
-
-  return {
-    id: skill.id,
-    code: skill.code,
-    name: skill.name,
-    category: categoryMap[skill.skillType] || 'Technical',
-    level: 'Intermediate', // Default level - could be enhanced with proficiency level mapping
-    description: skill.description || '',
-    prerequisites: [],
-    certificationRequired: skill.requiresCertification,
-    certificationName: skill.requiresCertification ? skill.name + ' Certification' : undefined,
-    validityPeriod: 24,
-    trainingHours: 40, // Default training hours
-    assessmentMethod: 'Assessment required',
-    competencyIndicators: skill.useCases ? [skill.useCases] : [],
-    applicableRoles: skill.tags || [],
-    status: statusMap[skill.status],
-    metadata: {
-      createdAt: new Date(skill.createdAt),
-      updatedAt: new Date(skill.updatedAt),
-      createdBy: 'System',
-      updatedBy: 'System'
-    }
-  };
-};
 
 export default function SkillMaster() {
   const [skills, setSkills] = useState<Skill[]>([]);
@@ -89,8 +48,30 @@ export default function SkillMaster() {
       try {
         setLoading(true);
         setError(null);
-        const data = await SkillService.getAllSkills();
-        setSkills(data.map(transformServiceSkill));
+        const data = await manufacturingMastersService.getAllSkills('1');
+
+        const mapped: Skill[] = data.map((s: BackendSkill) => ({
+          id: s.id,
+          code: `SKL-${s.name.substring(0, 3).toUpperCase()}`,
+          name: s.name,
+          category: s.category || 'Technical',
+          level: 'Intermediate',
+          description: s.description || '',
+          prerequisites: [],
+          certificationRequired: false,
+          trainingHours: 0,
+          assessmentMethod: 'N/A',
+          competencyIndicators: [],
+          applicableRoles: [],
+          status: 'Active',
+          metadata: {
+            createdAt: new Date(),
+            updatedAt: new Date(),
+            createdBy: 'admin',
+            updatedBy: 'admin'
+          }
+        }));
+        setSkills(mapped);
       } catch (err) {
         console.error('Error loading skills:', err);
         setError('Failed to load skills. Please try again.');
@@ -101,6 +82,7 @@ export default function SkillMaster() {
 
     loadSkills();
   }, []);
+
 
   const handleEdit = (skill: Skill) => {
     setSelectedSkill(skill);
@@ -168,7 +150,7 @@ export default function SkillMaster() {
   const filteredSkills = useMemo(() => {
     return skills.filter(skill => {
       const matchesSearch = skill.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           skill.code.toLowerCase().includes(searchTerm.toLowerCase());
+        skill.code.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesCategory = filterCategory === 'All' || skill.category === filterCategory;
       const matchesLevel = filterLevel === 'All' || skill.level === filterLevel;
       return matchesSearch && matchesCategory && matchesLevel;
@@ -418,7 +400,7 @@ export default function SkillMaster() {
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Category *
                     </label>
-                    <select 
+                    <select
                       defaultValue={selectedSkill?.category || 'Technical'}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
                     >
@@ -434,7 +416,7 @@ export default function SkillMaster() {
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Level *
                     </label>
-                    <select 
+                    <select
                       defaultValue={selectedSkill?.level || 'Beginner'}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
                     >
@@ -459,8 +441,8 @@ export default function SkillMaster() {
                 </div>
 
                 <div className="flex items-center gap-2">
-                  <input 
-                    type="checkbox" 
+                  <input
+                    type="checkbox"
                     id="certificationRequired"
                     defaultChecked={selectedSkill?.certificationRequired}
                     className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
@@ -486,7 +468,7 @@ export default function SkillMaster() {
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Status
                     </label>
-                    <select 
+                    <select
                       defaultValue={selectedSkill?.status || 'Active'}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
                     >

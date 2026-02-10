@@ -1,12 +1,11 @@
-'use client';
-
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import {
   GitBranch, Plus, Search, Edit2, Trash2, Copy,
   Factory, Clock, Settings, AlertCircle, CheckCircle2,
   Users, Wrench, DollarSign, TrendingUp, ArrowRight,
   ArrowDown, Layers, FileText, Calendar
 } from 'lucide-react';
+import { manufacturingMastersService, Routing as BackendRouting, RoutingStep as BackendRoutingStep } from '../../services/manufacturing-masters.service';
 
 interface RoutingStep {
   stepNumber: number;
@@ -34,7 +33,7 @@ interface Routing {
   totalLeadTime: number;
   totalCost: number;
   defaultRouting: boolean;
-  status: 'Active' | 'Inactive' | 'Draft' | 'Obsolete';
+  status: string;
   approvedBy?: string;
   approvedDate?: Date;
   notes: string;
@@ -46,155 +45,58 @@ interface Routing {
   };
 }
 
-const mockRoutings: Routing[] = [
-  {
-    id: '1',
-    code: 'RTG-001',
-    name: 'Standard Shaft Routing',
-    item: 'Precision Shaft Assembly',
-    itemCode: 'ITEM-001',
-    version: 'V1.2',
-    effectiveFrom: new Date('2024-01-01'),
-    steps: [
-      {
-        stepNumber: 10,
-        operation: 'Raw Material Cutting',
-        workCenter: 'WC-PRD-001',
-        setupTime: 30,
-        runTime: 5,
-        machineHours: 5,
-        laborHours: 5,
-        setupCost: 50,
-        runCost: 25,
-        description: 'Cut raw material to required length'
-      },
-      {
-        stepNumber: 20,
-        operation: 'CNC Turning',
-        workCenter: 'WC-PRD-002',
-        setupTime: 45,
-        runTime: 15,
-        machineHours: 15,
-        laborHours: 15,
-        setupCost: 75,
-        runCost: 90,
-        description: 'Turn shaft to specified diameter and tolerances'
-      },
-      {
-        stepNumber: 30,
-        operation: 'Heat Treatment',
-        workCenter: 'WC-HT-001',
-        setupTime: 60,
-        runTime: 120,
-        machineHours: 120,
-        laborHours: 10,
-        setupCost: 100,
-        runCost: 200,
-        description: 'Harden shaft through heat treatment process'
-      },
-      {
-        stepNumber: 40,
-        operation: 'Grinding',
-        workCenter: 'WC-PRD-003',
-        setupTime: 40,
-        runTime: 20,
-        machineHours: 20,
-        laborHours: 20,
-        setupCost: 60,
-        runCost: 100,
-        description: 'Finish grind to final dimensions'
-      },
-      {
-        stepNumber: 50,
-        operation: 'Quality Inspection',
-        workCenter: 'WC-QC-001',
-        setupTime: 15,
-        runTime: 10,
-        machineHours: 0,
-        laborHours: 10,
-        setupCost: 25,
-        runCost: 40,
-        description: 'Final dimensional and hardness inspection'
-      }
-    ],
-    totalLeadTime: 225,
-    totalCost: 765,
-    defaultRouting: true,
-    status: 'Active',
-    approvedBy: 'Production Manager',
-    approvedDate: new Date('2024-01-05'),
-    notes: 'Standard routing for precision shaft manufacturing',
-    metadata: {
-      createdAt: new Date('2023-12-15'),
-      updatedAt: new Date('2024-01-05'),
-      createdBy: 'Process Engineer',
-      updatedBy: 'Production Manager'
-    }
-  },
-  {
-    id: '2',
-    code: 'RTG-002',
-    name: 'Express Shaft Routing',
-    item: 'Precision Shaft Assembly',
-    itemCode: 'ITEM-001',
-    version: 'V1.0',
-    effectiveFrom: new Date('2024-02-01'),
-    steps: [
-      {
-        stepNumber: 10,
-        operation: 'Raw Material Cutting',
-        workCenter: 'WC-PRD-001',
-        setupTime: 20,
-        runTime: 5,
-        machineHours: 5,
-        laborHours: 5,
-        setupCost: 50,
-        runCost: 25,
-        description: 'Quick cut setup for urgent orders'
-      },
-      {
-        stepNumber: 20,
-        operation: 'Combined CNC Operations',
-        workCenter: 'WC-PRD-004',
-        setupTime: 30,
-        runTime: 25,
-        machineHours: 25,
-        laborHours: 25,
-        setupCost: 100,
-        runCost: 150,
-        description: 'Combined turning and finishing operations'
-      },
-      {
-        stepNumber: 30,
-        operation: 'Express Quality Check',
-        workCenter: 'WC-QC-002',
-        setupTime: 10,
-        runTime: 5,
-        machineHours: 0,
-        laborHours: 5,
-        setupCost: 20,
-        runCost: 25,
-        description: 'Expedited quality verification'
-      }
-    ],
-    totalLeadTime: 120,
-    totalCost: 395,
-    defaultRouting: false,
-    status: 'Active',
-    approvedBy: 'Operations Director',
-    approvedDate: new Date('2024-02-05'),
-    notes: 'Fast-track routing for urgent production requirements',
-    metadata: {
-      createdAt: new Date('2024-01-20'),
-      updatedAt: new Date('2024-02-05'),
-      createdBy: 'Process Engineer',
-      updatedBy: 'Operations Director'
-    }
-  }
-];
-
 export default function RoutingMaster() {
-  const [routings, setRoutings] = useState<Routing[]>(mockRoutings);
+  const [routings, setRoutings] = useState<Routing[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    fetchRoutings();
+  }, []);
+
+  const fetchRoutings = async () => {
+    try {
+      setIsLoading(true);
+      const data = await manufacturingMastersService.getAllRoutings('1');
+      const mapped: Routing[] = data.map((r: BackendRouting) => ({
+        id: r.id,
+        code: r.code,
+        name: r.name,
+        item: r.item?.name || 'N/A',
+        itemCode: r.item?.code || 'N/A',
+        version: 'V1.0',
+        effectiveFrom: new Date(),
+        steps: r.steps?.map((s: BackendRoutingStep) => ({
+          stepNumber: s.stepNumber,
+          operation: s.operation?.name || 'N/A',
+          workCenter: s.workCenter?.name || 'N/A',
+          setupTime: (s as any).operation?.setupTime || 0,
+          runTime: (s as any).operation?.runTime || 0,
+          machineHours: 0,
+          laborHours: 0,
+          setupCost: 0,
+          runCost: 0,
+          description: s.description || ''
+        })) || [],
+        totalLeadTime: r.steps?.reduce((sum, s) => sum + ((s as any).operation?.runTime || 0), 0) || 0,
+        totalCost: 0,
+        defaultRouting: r.isDefault,
+        status: 'Active',
+        notes: '',
+        metadata: {
+          createdAt: new Date(),
+          updatedAt: new Date(),
+          createdBy: 'admin',
+          updatedBy: 'admin'
+        }
+      }));
+      setRoutings(mapped);
+    } catch (error) {
+      console.error('Error fetching routings:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const [selectedRouting, setSelectedRouting] = useState<Routing | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
@@ -244,8 +146,8 @@ export default function RoutingMaster() {
   const filteredRoutings = useMemo(() => {
     return routings.filter(routing => {
       const matchesSearch = routing.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           routing.code.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           routing.item.toLowerCase().includes(searchTerm.toLowerCase());
+        routing.code.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        routing.item.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesStatus = filterStatus === 'All' || routing.status === filterStatus;
       return matchesSearch && matchesStatus;
     });
@@ -300,7 +202,7 @@ export default function RoutingMaster() {
         <div className="overflow-x-auto">
           {filteredRoutings.map((routing) => (
             <div key={routing.id} className="border-b border-gray-200">
-              <div 
+              <div
                 className="p-4 hover:bg-gray-50 cursor-pointer"
                 onClick={() => setExpandedRouting(expandedRouting === routing.id ? null : routing.id)}
               >
@@ -367,10 +269,9 @@ export default function RoutingMaster() {
                     >
                       <Trash2 className="h-4 w-4" />
                     </button>
-                    <ArrowDown 
-                      className={`h-4 w-4 text-gray-400 transition-transform ${
-                        expandedRouting === routing.id ? 'transform rotate-180' : ''
-                      }`}
+                    <ArrowDown
+                      className={`h-4 w-4 text-gray-400 transition-transform ${expandedRouting === routing.id ? 'transform rotate-180' : ''
+                        }`}
                     />
                   </div>
                 </div>
@@ -498,7 +399,7 @@ export default function RoutingMaster() {
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Status
                     </label>
-                    <select 
+                    <select
                       defaultValue={selectedRouting?.status || 'Draft'}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
                     >
@@ -511,8 +412,8 @@ export default function RoutingMaster() {
                 </div>
 
                 <div className="flex items-center gap-2">
-                  <input 
-                    type="checkbox" 
+                  <input
+                    type="checkbox"
                     id="defaultRouting"
                     defaultChecked={selectedRouting?.defaultRouting}
                     className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"

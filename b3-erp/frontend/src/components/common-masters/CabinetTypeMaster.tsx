@@ -1,10 +1,11 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import {
   Box, Plus, Search, Edit2, Trash2, CheckCircle2,
   XCircle, Layers, Ruler, DollarSign, Image, Package
 } from 'lucide-react';
+import { manufacturingMastersService, CabinetType as BackendCabinetType } from '@/services/manufacturing-masters.service';
 
 interface CabinetType {
   id: string;
@@ -13,7 +14,7 @@ interface CabinetType {
   category: 'Base Cabinet' | 'Wall Cabinet' | 'Tall Cabinet' | 'Corner Cabinet' | 'Specialty';
   subcategory: string;
   dimensions: {
-    width: number[];
+    width: string[];
     depth: number;
     height: number;
     unit: string;
@@ -28,134 +29,68 @@ interface CabinetType {
   finishOptions: string[];
   hardwareIncluded: string[];
   basePrice: number;
-  installationType: 'Freestanding' | 'Built-in' | 'Modular';
+  installationType: string;
   weightCapacity: number;
-  status: 'Active' | 'Inactive' | 'Discontinued';
-  metadata: {
+  status: string;
+  metadata?: {
     createdAt: Date;
     updatedAt: Date;
     createdBy: string;
   };
 }
 
-const mockCabinetTypes: CabinetType[] = [
-  {
-    id: '1',
-    code: 'CAB-BASE-001',
-    name: 'Standard Base Cabinet - 3 Drawer',
-    category: 'Base Cabinet',
-    subcategory: 'Drawer Unit',
-    dimensions: {
-      width: [450, 600, 750, 900],
-      depth: 600,
-      height: 850,
-      unit: 'mm'
-    },
-    configuration: {
-      doors: 0,
-      drawers: 3,
-      shelves: 0
-    },
-    features: [
-      'Soft-close drawers',
-      'Full extension slides',
-      'Adjustable legs',
-      'Anti-slip mat included'
-    ],
-    materials: ['Plywood', 'MDF', 'Particle Board'],
-    finishOptions: ['Laminate', 'Acrylic', 'PU Paint', 'Membrane'],
-    hardwareIncluded: ['Drawer slides', 'Handles', 'Adjustable legs'],
-    basePrice: 18000,
-    installationType: 'Modular',
-    weightCapacity: 50,
-    status: 'Active',
-    metadata: {
-      createdAt: new Date('2024-01-10'),
-      updatedAt: new Date('2024-03-05'),
-      createdBy: 'Product Manager'
-    }
-  },
-  {
-    id: '2',
-    code: 'CAB-WALL-001',
-    name: 'Wall Cabinet - Double Door',
-    category: 'Wall Cabinet',
-    subcategory: 'Storage Unit',
-    dimensions: {
-      width: [600, 750, 900, 1200],
-      depth: 350,
-      height: 720,
-      unit: 'mm'
-    },
-    configuration: {
-      doors: 2,
-      drawers: 0,
-      shelves: 2
-    },
-    features: [
-      'Soft-close hinges',
-      'Adjustable shelves',
-      'Glass panel option',
-      'Under-cabinet lighting ready'
-    ],
-    materials: ['Plywood', 'MDF'],
-    finishOptions: ['Laminate', 'Acrylic', 'PU Paint', 'Glass'],
-    hardwareIncluded: ['Hinges', 'Handles', 'Wall brackets', 'Shelf supports'],
-    basePrice: 15000,
-    installationType: 'Modular',
-    weightCapacity: 30,
-    status: 'Active',
-    metadata: {
-      createdAt: new Date('2024-01-12'),
-      updatedAt: new Date('2024-02-28'),
-      createdBy: 'Product Manager'
-    }
-  },
-  {
-    id: '3',
-    code: 'CAB-TALL-001',
-    name: 'Tall Unit - Pantry Cabinet',
-    category: 'Tall Cabinet',
-    subcategory: 'Pantry',
-    dimensions: {
-      width: [600, 750, 900],
-      depth: 600,
-      height: 2400,
-      unit: 'mm'
-    },
-    configuration: {
-      doors: 2,
-      drawers: 0,
-      shelves: 4
-    },
-    features: [
-      'Full height storage',
-      'Wire baskets compatible',
-      'Soft-close doors',
-      'Interior organizers',
-      'Toe kick plinth'
-    ],
-    materials: ['Plywood', 'MDF'],
-    finishOptions: ['Laminate', 'Acrylic', 'PU Paint'],
-    hardwareIncluded: ['Hinges', 'Handles', 'Shelf supports', 'Plinth'],
-    basePrice: 35000,
-    installationType: 'Modular',
-    weightCapacity: 80,
-    status: 'Active',
-    metadata: {
-      createdAt: new Date('2024-01-15'),
-      updatedAt: new Date('2024-03-10'),
-      createdBy: 'Product Manager'
-    }
-  }
-];
-
 export default function CabinetTypeMaster() {
-  const [cabinetTypes, setCabinetTypes] = useState<CabinetType[]>(mockCabinetTypes);
+  const [cabinetTypes, setCabinetTypes] = useState<CabinetType[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [selectedCabinet, setSelectedCabinet] = useState<CabinetType | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterCategory, setFilterCategory] = useState<string>('All');
+
+  useEffect(() => {
+    fetchCabinetTypes();
+  }, []);
+
+  const fetchCabinetTypes = async () => {
+    try {
+      setIsLoading(true);
+      // Using seeded companyId '123e4567-e89b-12d3-a456-426614174000'
+      const data = await manufacturingMastersService.getAllCabinetTypes('123e4567-e89b-12d3-a456-426614174000');
+
+      const mapped: CabinetType[] = data.map(ct => ({
+        id: ct.id,
+        code: ct.code,
+        name: ct.name,
+        category: ct.category as any,
+        subcategory: ct.subcategory || '',
+        dimensions: {
+          width: ct.widthOptions ? ct.widthOptions.split(',').map(s => s.trim()) : [],
+          depth: ct.depth || 0,
+          height: ct.height || 0,
+          unit: ct.unit
+        },
+        configuration: {
+          doors: ct.doors,
+          drawers: ct.drawers,
+          shelves: ct.shelves
+        },
+        features: ct.features,
+        materials: ct.materials,
+        finishOptions: ct.finishOptions,
+        hardwareIncluded: ct.hardwareIncluded,
+        basePrice: ct.basePrice,
+        installationType: ct.installationType || 'Modular',
+        weightCapacity: ct.weightCapacity || 0,
+        status: ct.status
+      }));
+
+      setCabinetTypes(mapped);
+    } catch (error) {
+      console.error('Error fetching cabinet types:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const handleEdit = (cabinet: CabinetType) => {
     setSelectedCabinet(cabinet);
@@ -187,7 +122,7 @@ export default function CabinetTypeMaster() {
   const filteredCabinets = useMemo(() => {
     return cabinetTypes.filter(cabinet => {
       const matchesSearch = cabinet.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           cabinet.code.toLowerCase().includes(searchTerm.toLowerCase());
+        cabinet.code.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesCategory = filterCategory === 'All' || cabinet.category === filterCategory;
       return matchesSearch && matchesCategory;
     });
@@ -383,7 +318,7 @@ export default function CabinetTypeMaster() {
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Category *
                     </label>
-                    <select 
+                    <select
                       defaultValue={selectedCabinet?.category || 'Base Cabinet'}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
                     >
@@ -480,7 +415,7 @@ export default function CabinetTypeMaster() {
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Status
                   </label>
-                  <select 
+                  <select
                     defaultValue={selectedCabinet?.status || 'Active'}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
                   >

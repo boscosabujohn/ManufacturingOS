@@ -7,6 +7,8 @@ import {
   AlertCircle, Tag, Layers, Box, Grid, List, ChevronRight,
   ChevronDown, Move, Copy, Archive, RefreshCw, Settings
 } from 'lucide-react';
+import { commonMastersService, ItemCategory } from '@/services/common-masters.service';
+
 
 interface ItemCategory {
   id: string;
@@ -17,12 +19,12 @@ interface ItemCategory {
   description: string;
   type: 'product' | 'service' | 'asset' | 'expense';
   status: 'active' | 'inactive' | 'archived';
-  
+
   // Classification
   isLeafCategory: boolean;
   allowItems: boolean;
   hsn_sac_prefix?: string;
-  
+
   // Attributes & Controls
   attributes: {
     requireSerialNumber: boolean;
@@ -32,7 +34,7 @@ interface ItemCategory {
     requireCertification: boolean;
     requireQualityInspection: boolean;
   };
-  
+
   // Inventory Settings
   inventorySettings: {
     tracked: boolean;
@@ -40,7 +42,7 @@ interface ItemCategory {
     defaultUOM?: string;
     valuationMethod?: 'FIFO' | 'LIFO' | 'Average' | 'Standard';
   };
-  
+
   // Financial
   accountingSettings: {
     inventoryAccount?: string;
@@ -48,7 +50,7 @@ interface ItemCategory {
     revenueAccount?: string;
     expenseAccount?: string;
   };
-  
+
   // Procurement
   procurementSettings: {
     defaultLeadTime?: number;
@@ -56,13 +58,13 @@ interface ItemCategory {
     minOrderQuantity?: number;
     preferredVendors?: string[];
   };
-  
+
   // Metadata
   imagePath?: string;
   icon?: string;
   color?: string;
   sortOrder: number;
-  
+
   // Statistics
   statistics: {
     totalItems: number;
@@ -70,7 +72,7 @@ interface ItemCategory {
     subcategoriesCount: number;
     totalValue?: number;
   };
-  
+
   // System Fields
   createdBy: string;
   createdAt: string;
@@ -362,13 +364,31 @@ const ItemCategoryMaster: React.FC = () => {
   ];
 
   useEffect(() => {
-    setIsLoading(true);
-    setTimeout(() => {
-      setCategories(mockCategories);
-      setFilteredCategories(mockCategories);
+    loadCategories();
+  }, [searchTerm, filterType, filterStatus]);
+
+  const loadCategories = async () => {
+    try {
+      setIsLoading(true);
+      const data = await commonMastersService.getAllItemCategories();
+      // Map API data to component interface
+      const mappedData: any[] = data.map(c => ({
+        ...c,
+        categoryCode: c.id.substring(0, 8).toUpperCase(),
+        categoryName: c.name,
+        status: c.isActive ? 'active' : 'inactive',
+        type: 'product',
+        statistics: { totalItems: 0, activeItems: 0, subcategoriesCount: 0 }
+      }));
+      setCategories(mappedData);
+      setFilteredCategories(mappedData);
+    } catch (error) {
+      console.error('Failed to load categories:', error);
+    } finally {
       setIsLoading(false);
-    }, 800);
-  }, []);
+    }
+  };
+
 
   useEffect(() => {
     let filtered = categories;
@@ -428,9 +448,8 @@ const ItemCategoryMaster: React.FC = () => {
     return (
       <div key={category.id} className="mb-1">
         <div
-          className={`flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 border border-gray-200 bg-white transition-all ${
-            selectedCategory?.id === category.id ? 'ring-2 ring-blue-500 bg-blue-50' : ''
-          }`}
+          className={`flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 border border-gray-200 bg-white transition-all ${selectedCategory?.id === category.id ? 'ring-2 ring-blue-500 bg-blue-50' : ''
+            }`}
           style={{ marginLeft: `${depth * 24}px` }}
         >
           {hasChildren && (
@@ -637,7 +656,7 @@ const ItemCategoryMaster: React.FC = () => {
               <FolderTree className="w-12 h-12 text-blue-600 opacity-20" />
             </div>
           </div>
-          
+
           <div className="bg-white p-3 rounded-lg border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
@@ -649,7 +668,7 @@ const ItemCategoryMaster: React.FC = () => {
               <CheckCircle className="w-12 h-12 text-green-600 opacity-20" />
             </div>
           </div>
-          
+
           <div className="bg-white p-3 rounded-lg border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
@@ -661,7 +680,7 @@ const ItemCategoryMaster: React.FC = () => {
               <Box className="w-12 h-12 text-purple-600 opacity-20" />
             </div>
           </div>
-          
+
           <div className="bg-white p-3 rounded-lg border border-gray-200">
             <div className="flex items-center justify-between">
               <div>

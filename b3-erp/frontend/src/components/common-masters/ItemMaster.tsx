@@ -8,6 +8,8 @@ import {
   FileText, CheckCircle, XCircle, AlertCircle, Save, X,
   Grid, List, Package2, Layers, Boxes, Calendar
 } from 'lucide-react';
+import { coreService } from '@/services/core.service';
+
 
 interface Item {
   id: string;
@@ -230,13 +232,38 @@ const ItemMaster: React.FC = () => {
   ];
 
   useEffect(() => {
-    setIsLoading(true);
-    setTimeout(() => {
-      setItems(mockItems);
-      setFilteredItems(mockItems);
+    loadItems();
+  }, [searchTerm, filterCategory, filterType, filterStatus]);
+
+  const loadItems = async () => {
+    try {
+      setIsLoading(true);
+      const filters: any = {
+        search: searchTerm,
+        itemType: filterType !== 'all' ? filterType : undefined,
+        categoryId: filterCategory !== 'all' ? filterCategory : undefined,
+        status: filterStatus !== 'all' ? filterStatus : undefined
+      };
+      const data = await coreService.getAllItems(filters);
+      // Map API data if needed
+      const mappedData: any[] = data.map(i => ({
+        ...i,
+        itemCode: i.code,
+        itemName: i.name,
+        category: i.category?.name || 'Uncategorized',
+        primaryUOM: i.uom?.code || 'PCS',
+        status: i.isActive ? 'active' : 'inactive',
+        type: i.itemType ? i.itemType.toLowerCase() : 'raw_material'
+      }));
+      setItems(mappedData);
+      setFilteredItems(mappedData);
+    } catch (error) {
+      console.error('Failed to load items:', error);
+    } finally {
       setIsLoading(false);
-    }, 1000);
-  }, []);
+    }
+  };
+
 
   useEffect(() => {
     let filtered = items;
@@ -358,7 +385,7 @@ const ItemMaster: React.FC = () => {
                 <input
                   type="text"
                   value={formData.itemCode || ''}
-                  onChange={(e) => setFormData({...formData, itemCode: e.target.value})}
+                  onChange={(e) => setFormData({ ...formData, itemCode: e.target.value })}
                   className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
                   placeholder="AUTO-GENERATED"
                   disabled={isViewMode}
@@ -369,7 +396,7 @@ const ItemMaster: React.FC = () => {
                 <label className="block text-sm font-medium mb-1">Item Type *</label>
                 <select
                   value={formData.type || ''}
-                  onChange={(e) => setFormData({...formData, type: e.target.value as Item['type']})}
+                  onChange={(e) => setFormData({ ...formData, type: e.target.value as Item['type'] })}
                   className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
                   disabled={isViewMode}
                   required
@@ -385,7 +412,7 @@ const ItemMaster: React.FC = () => {
                 <label className="block text-sm font-medium mb-1">Status</label>
                 <select
                   value={formData.status || 'active'}
-                  onChange={(e) => setFormData({...formData, status: e.target.value as Item['status']})}
+                  onChange={(e) => setFormData({ ...formData, status: e.target.value as Item['status'] })}
                   className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
                   disabled={isViewMode}
                 >
@@ -403,7 +430,7 @@ const ItemMaster: React.FC = () => {
                 <input
                   type="text"
                   value={formData.itemName || ''}
-                  onChange={(e) => setFormData({...formData, itemName: e.target.value})}
+                  onChange={(e) => setFormData({ ...formData, itemName: e.target.value })}
                   className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
                   placeholder="Full item name"
                   disabled={isViewMode}
@@ -415,7 +442,7 @@ const ItemMaster: React.FC = () => {
                 <input
                   type="text"
                   value={formData.shortName || ''}
-                  onChange={(e) => setFormData({...formData, shortName: e.target.value})}
+                  onChange={(e) => setFormData({ ...formData, shortName: e.target.value })}
                   className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
                   placeholder="Short display name"
                   disabled={isViewMode}
@@ -427,7 +454,7 @@ const ItemMaster: React.FC = () => {
               <label className="block text-sm font-medium mb-1">Description</label>
               <textarea
                 value={formData.description || ''}
-                onChange={(e) => setFormData({...formData, description: e.target.value})}
+                onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                 className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
                 rows={3}
                 placeholder="Detailed description"
@@ -444,7 +471,7 @@ const ItemMaster: React.FC = () => {
                   <input
                     type="text"
                     value={formData.category || ''}
-                    onChange={(e) => setFormData({...formData, category: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, category: e.target.value })}
                     className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
                     disabled={isViewMode}
                   />
@@ -454,7 +481,7 @@ const ItemMaster: React.FC = () => {
                   <input
                     type="text"
                     value={formData.subCategory || ''}
-                    onChange={(e) => setFormData({...formData, subCategory: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, subCategory: e.target.value })}
                     className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
                     disabled={isViewMode}
                   />
@@ -464,7 +491,7 @@ const ItemMaster: React.FC = () => {
                   <input
                     type="text"
                     value={formData.brand || ''}
-                    onChange={(e) => setFormData({...formData, brand: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, brand: e.target.value })}
                     className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
                     disabled={isViewMode}
                   />
@@ -474,7 +501,7 @@ const ItemMaster: React.FC = () => {
                   <input
                     type="text"
                     value={formData.hsn_sac_code || ''}
-                    onChange={(e) => setFormData({...formData, hsn_sac_code: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, hsn_sac_code: e.target.value })}
                     className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
                     disabled={isViewMode}
                   />
@@ -490,7 +517,7 @@ const ItemMaster: React.FC = () => {
                   <label className="block text-sm font-medium mb-1">Primary UOM *</label>
                   <select
                     value={formData.primaryUOM || ''}
-                    onChange={(e) => setFormData({...formData, primaryUOM: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, primaryUOM: e.target.value })}
                     className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
                     disabled={isViewMode}
                     required
@@ -508,7 +535,7 @@ const ItemMaster: React.FC = () => {
                   <label className="block text-sm font-medium mb-1">Secondary UOM</label>
                   <select
                     value={formData.secondaryUOM || ''}
-                    onChange={(e) => setFormData({...formData, secondaryUOM: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, secondaryUOM: e.target.value })}
                     className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
                     disabled={isViewMode}
                   >
@@ -525,7 +552,7 @@ const ItemMaster: React.FC = () => {
                     type="number"
                     step="0.01"
                     value={formData.conversionFactor || ''}
-                    onChange={(e) => setFormData({...formData, conversionFactor: parseFloat(e.target.value)})}
+                    onChange={(e) => setFormData({ ...formData, conversionFactor: parseFloat(e.target.value) })}
                     className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
                     disabled={isViewMode}
                   />
@@ -542,7 +569,7 @@ const ItemMaster: React.FC = () => {
                     <input
                       type="checkbox"
                       checked={formData.inventoryManaged || false}
-                      onChange={(e) => setFormData({...formData, inventoryManaged: e.target.checked})}
+                      onChange={(e) => setFormData({ ...formData, inventoryManaged: e.target.checked })}
                       disabled={isViewMode}
                       className="rounded"
                     />
@@ -552,7 +579,7 @@ const ItemMaster: React.FC = () => {
                     <input
                       type="checkbox"
                       checked={formData.serialized || false}
-                      onChange={(e) => setFormData({...formData, serialized: e.target.checked})}
+                      onChange={(e) => setFormData({ ...formData, serialized: e.target.checked })}
                       disabled={isViewMode}
                       className="rounded"
                     />
@@ -564,7 +591,7 @@ const ItemMaster: React.FC = () => {
                     <input
                       type="checkbox"
                       checked={formData.batchTracked || false}
-                      onChange={(e) => setFormData({...formData, batchTracked: e.target.checked})}
+                      onChange={(e) => setFormData({ ...formData, batchTracked: e.target.checked })}
                       disabled={isViewMode}
                       className="rounded"
                     />
@@ -574,7 +601,7 @@ const ItemMaster: React.FC = () => {
                     <input
                       type="checkbox"
                       checked={formData.expiryTracked || false}
-                      onChange={(e) => setFormData({...formData, expiryTracked: e.target.checked})}
+                      onChange={(e) => setFormData({ ...formData, expiryTracked: e.target.checked })}
                       disabled={isViewMode}
                       className="rounded"
                     />
@@ -586,7 +613,7 @@ const ItemMaster: React.FC = () => {
                     <input
                       type="checkbox"
                       checked={formData.qualityInspectionRequired || false}
-                      onChange={(e) => setFormData({...formData, qualityInspectionRequired: e.target.checked})}
+                      onChange={(e) => setFormData({ ...formData, qualityInspectionRequired: e.target.checked })}
                       disabled={isViewMode}
                       className="rounded"
                     />

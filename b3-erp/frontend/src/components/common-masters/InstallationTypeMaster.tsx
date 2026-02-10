@@ -1,10 +1,11 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import {
   Hammer, Plus, Search, Edit2, Trash2, CheckCircle2,
   XCircle, Clock, Users, DollarSign, Wrench
 } from 'lucide-react';
+import { manufacturingMastersService, InstallationType as BackendInstallationType } from '@/services/manufacturing-masters.service';
 
 interface InstallationType {
   id: string;
@@ -33,182 +34,68 @@ interface InstallationType {
   warranty: string;
   safetyRequirements: string[];
   certifications: string[];
-  status: 'Active' | 'Inactive' | 'Under Review';
-  metadata: {
+  status: string;
+  metadata?: {
     createdAt: Date;
     updatedAt: Date;
     createdBy: string;
   };
 }
 
-const mockInstallationTypes: InstallationType[] = [
-  {
-    id: '1',
-    code: 'INST-WALL-001',
-    name: 'Wall-mounted Cabinet Installation',
-    category: 'Wall-mounted',
-    complexity: 'Moderate',
-    requirements: {
-      laborHours: 4,
-      skillLevel: 'Intermediate',
-      teamSize: 2,
-      specialTools: ['Level', 'Drill', 'Stud Finder', 'Wall Brackets']
-    },
-    prerequisites: [
-      'Wall structural integrity checked',
-      'Water lines and electrical identified',
-      'Cabinet dimensions verified',
-      'Wall surface prepared and leveled'
-    ],
-    steps: [
-      'Mark cabinet position on wall',
-      'Locate wall studs',
-      'Install mounting rail/brackets',
-      'Hang cabinet on mounting system',
-      'Level and secure cabinet',
-      'Install adjacent cabinets',
-      'Connect filler strips'
-    ],
-    materials: ['Wall brackets', 'Screws', 'Wall plugs', 'Filler strips', 'Shims'],
-    suitableFor: ['Kitchen Wall Cabinets', 'Bathroom Cabinets', 'Storage Units'],
-    estimatedCost: {
-      min: 1500,
-      max: 3000
-    },
-    duration: {
-      value: 4,
-      unit: 'hours per unit'
-    },
-    warranty: '1 Year on installation',
-    safetyRequirements: [
-      'Use appropriate safety gear',
-      'Ensure proper ventilation',
-      'Check for electrical wires',
-      'Use certified tools'
-    ],
-    certifications: ['Installation Safety Training', 'Carpentry Certification'],
-    status: 'Active',
-    metadata: {
-      createdAt: new Date('2024-01-10'),
-      updatedAt: new Date('2024-03-15'),
-      createdBy: 'Installation Manager'
-    }
-  },
-  {
-    id: '2',
-    code: 'INST-BASE-001',
-    name: 'Floor-standing Base Cabinet Installation',
-    category: 'Floor-standing',
-    complexity: 'Simple',
-    requirements: {
-      laborHours: 3,
-      skillLevel: 'Basic',
-      teamSize: 2,
-      specialTools: ['Level', 'Shims', 'Screwdriver', 'Measuring Tape']
-    },
-    prerequisites: [
-      'Floor leveled and cleaned',
-      'Plumbing rough-in completed',
-      'Electrical outlets positioned',
-      'Cabinet dimensions verified'
-    ],
-    steps: [
-      'Mark cabinet layout on floor',
-      'Install corner cabinet first',
-      'Level cabinet using shims',
-      'Secure to floor and wall',
-      'Install adjacent cabinets',
-      'Connect cabinets together',
-      'Install toe kick'
-    ],
-    materials: ['Shims', 'Screws', 'Toe kick boards', 'Connecting bolts'],
-    suitableFor: ['Kitchen Base Cabinets', 'Vanity Units', 'Storage Cabinets'],
-    estimatedCost: {
-      min: 1000,
-      max: 2500
-    },
-    duration: {
-      value: 3,
-      unit: 'hours per unit'
-    },
-    warranty: '1 Year on installation',
-    safetyRequirements: [
-      'Wear safety shoes',
-      'Use proper lifting techniques',
-      'Keep work area clear'
-    ],
-    certifications: ['Basic Installation Training'],
-    status: 'Active',
-    metadata: {
-      createdAt: new Date('2024-01-12'),
-      updatedAt: new Date('2024-03-10'),
-      createdBy: 'Installation Manager'
-    }
-  },
-  {
-    id: '3',
-    code: 'INST-BUILT-001',
-    name: 'Built-in Appliance Integration',
-    category: 'Built-in',
-    complexity: 'Complex',
-    requirements: {
-      laborHours: 6,
-      skillLevel: 'Advanced',
-      teamSize: 3,
-      specialTools: ['Router', 'Jigsaw', 'Template', 'Clamps', 'Electrical Tester']
-    },
-    prerequisites: [
-      'Appliance specifications confirmed',
-      'Cabinet cutouts precise',
-      'Electrical connections ready',
-      'Ventilation planned',
-      'Support structure verified'
-    ],
-    steps: [
-      'Verify appliance dimensions',
-      'Mark cutout on cabinet',
-      'Cut opening for appliance',
-      'Install support brackets',
-      'Test fit appliance',
-      'Secure appliance in place',
-      'Connect electrical/plumbing',
-      'Seal gaps and edges',
-      'Test appliance operation'
-    ],
-    materials: ['Mounting brackets', 'Trim strips', 'Sealant', 'Electrical connectors'],
-    suitableFor: ['Ovens', 'Dishwashers', 'Refrigerators', 'Microwaves', 'Cooktops'],
-    estimatedCost: {
-      min: 3000,
-      max: 6000
-    },
-    duration: {
-      value: 6,
-      unit: 'hours per appliance'
-    },
-    warranty: '2 Years on installation',
-    safetyRequirements: [
-      'Certified electrician required',
-      'Gas line work by licensed plumber',
-      'Disconnect power before work',
-      'Follow manufacturer guidelines'
-    ],
-    certifications: [
-      'Electrical Installation License',
-      'Appliance Installation Certification',
-      'Safety Training'
-    ],
-    status: 'Active',
-    metadata: {
-      createdAt: new Date('2024-01-15'),
-      updatedAt: new Date('2024-03-20'),
-      createdBy: 'Installation Manager'
-    }
-  }
-];
-
 export default function InstallationTypeMaster() {
-  const [installationTypes, setInstallationTypes] = useState<InstallationType[]>(mockInstallationTypes);
+  const [installationTypes, setInstallationTypes] = useState<InstallationType[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [selectedType, setSelectedType] = useState<InstallationType | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filterComplexity, setFilterComplexity] = useState<string>('All');
+
+  useEffect(() => {
+    fetchInstallationTypes();
+  }, []);
+
+  const fetchInstallationTypes = async () => {
+    try {
+      setIsLoading(true);
+      const data = await manufacturingMastersService.getAllInstallationTypes('123e4567-e89b-12d3-a456-426614174000');
+
+      const mapped: InstallationType[] = data.map(it => ({
+        id: it.id,
+        code: it.code,
+        name: it.name,
+        category: it.category as any,
+        complexity: it.complexity as any,
+        requirements: {
+          laborHours: it.requirements?.laborHours || 0,
+          skillLevel: it.requirements?.skillLevel as any || 'Intermediate',
+          teamSize: it.requirements?.teamSize || 1,
+          specialTools: it.requirements?.specialTools || []
+        },
+        prerequisites: it.prerequisites,
+        steps: it.steps,
+        materials: it.materials,
+        suitableFor: it.suitableFor,
+        estimatedCost: {
+          min: it.priceMin,
+          max: it.priceMax
+        },
+        duration: {
+          value: it.durationValue || 0,
+          unit: it.durationUnit || 'hours'
+        },
+        warranty: it.warranty || '',
+        safetyRequirements: it.safetyRequirements,
+        certifications: it.certifications,
+        status: it.status
+      }));
+
+      setInstallationTypes(mapped);
+    } catch (error) {
+      console.error('Error fetching installation types:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterComplexity, setFilterComplexity] = useState<string>('All');
@@ -257,8 +144,8 @@ export default function InstallationTypeMaster() {
   const filteredTypes = useMemo(() => {
     return installationTypes.filter(type => {
       const matchesSearch = type.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           type.code.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           type.category.toLowerCase().includes(searchTerm.toLowerCase());
+        type.code.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        type.category.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesComplexity = filterComplexity === 'All' || type.complexity === filterComplexity;
       return matchesSearch && matchesComplexity;
     });
@@ -447,7 +334,7 @@ export default function InstallationTypeMaster() {
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Category *
                     </label>
-                    <select 
+                    <select
                       defaultValue={selectedType?.category || 'Floor-standing'}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
                     >
@@ -463,7 +350,7 @@ export default function InstallationTypeMaster() {
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Complexity *
                     </label>
-                    <select 
+                    <select
                       defaultValue={selectedType?.complexity || 'Moderate'}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
                     >
@@ -500,7 +387,7 @@ export default function InstallationTypeMaster() {
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Skill Level *
                     </label>
-                    <select 
+                    <select
                       defaultValue={selectedType?.requirements.skillLevel || 'Intermediate'}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
                     >
@@ -539,7 +426,7 @@ export default function InstallationTypeMaster() {
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Status
                   </label>
-                  <select 
+                  <select
                     defaultValue={selectedType?.status || 'Active'}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
                   >

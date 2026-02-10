@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
+import { commonMastersService } from '@/services/common-masters.service';
 import {
   Coins, Plus, Search, Filter, Edit2, Trash2, MoreVertical,
   Building2, TrendingUp, Users, Calendar, DollarSign, Target,
@@ -257,8 +258,10 @@ const mockCostCenters: CostCenter[] = [
 ];
 
 export default function CostCenterMaster() {
-  const [costCenters, setCostCenters] = useState<CostCenter[]>(mockCostCenters);
-  const [selectedCostCenter, setSelectedCostCenter] = useState<CostCenter | null>(null);
+  const [costCenters, setCostCenters] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  // ... (keeping other states)
+  const [selectedCostCenter, setSelectedCostCenter] = useState<any | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterType, setFilterType] = useState<string>('All');
@@ -266,6 +269,22 @@ export default function CostCenterMaster() {
   const [currentTab, setCurrentTab] = useState('basic');
   const [viewMode, setViewMode] = useState<'tree' | 'list'>('list');
   const [expandedNodes, setExpandedNodes] = useState<Set<string>>(new Set());
+
+  useEffect(() => {
+    loadCostCenters();
+  }, []);
+
+  const loadCostCenters = async () => {
+    try {
+      setLoading(true);
+      const data = await commonMastersService.getAllCostCenters();
+      setCostCenters(data);
+    } catch (error) {
+      console.error('Failed to load cost centers:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleEdit = (costCenter: CostCenter) => {
     setSelectedCostCenter(costCenter);
@@ -377,7 +396,7 @@ export default function CostCenterMaster() {
   const renderTreeNode = (node: any, level: number = 0) => (
     <div key={node.id} className="border rounded-lg mb-2">
       <div className={`flex items-center justify-between p-3 hover:bg-gray-50`}
-           style={{ paddingLeft: `${level * 2 + 1}rem` }}>
+        style={{ paddingLeft: `${level * 2 + 1}rem` }}>
         <div className="flex items-center gap-3 flex-1">
           {node.children && node.children.length > 0 && (
             <button onClick={() => toggleNode(node.id)} className="p-1">
@@ -403,11 +422,11 @@ export default function CostCenterMaster() {
         </div>
         <div className="flex items-center gap-2">
           <button onClick={() => handleEdit(node)}
-                  className="p-1 hover:bg-gray-100 rounded">
+            className="p-1 hover:bg-gray-100 rounded">
             <Edit2 className="h-4 w-4 text-gray-600" />
           </button>
           <button onClick={() => handleDelete(node.id)}
-                  className="p-1 hover:bg-red-100 rounded">
+            className="p-1 hover:bg-red-100 rounded">
             <Trash2 className="h-4 w-4 text-red-600" />
           </button>
         </div>
@@ -423,8 +442,8 @@ export default function CostCenterMaster() {
   const filteredCostCenters = useMemo(() => {
     return costCenters.filter(cc => {
       const matchesSearch = cc.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           cc.code.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           cc.manager.toLowerCase().includes(searchTerm.toLowerCase());
+        cc.code.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        cc.manager.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesType = filterType === 'All' || cc.type === filterType;
       const matchesCategory = filterCategory === 'All' || cc.category === filterCategory;
       return matchesSearch && matchesType && matchesCategory;
@@ -628,11 +647,10 @@ export default function CostCenterMaster() {
                 <button
                   key={tab}
                   onClick={() => setCurrentTab(tab)}
-                  className={`px-4 py-2 font-medium capitalize ${
-                    currentTab === tab
+                  className={`px-4 py-2 font-medium capitalize ${currentTab === tab
                       ? 'text-blue-600 border-b-2 border-blue-600'
                       : 'text-gray-500 hover:text-gray-700'
-                  }`}
+                    }`}
                 >
                   {tab === 'basic' ? 'Basic Info' : tab}
                 </button>
@@ -673,7 +691,7 @@ export default function CostCenterMaster() {
                         Type *
                       </label>
                       <select defaultValue={selectedCostCenter?.type || 'Main'}
-                              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
                         <option value="Main">Main</option>
                         <option value="Support">Support</option>
                         <option value="Production">Production</option>
@@ -686,7 +704,7 @@ export default function CostCenterMaster() {
                         Category *
                       </label>
                       <select defaultValue={selectedCostCenter?.category || 'Cost'}
-                              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
                         <option value="Revenue">Revenue</option>
                         <option value="Cost">Cost</option>
                         <option value="Profit">Profit</option>
@@ -701,7 +719,7 @@ export default function CostCenterMaster() {
                         Parent Cost Center
                       </label>
                       <select defaultValue={selectedCostCenter?.parentId}
-                              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
                         <option value="">None (Top Level)</option>
                         {costCenters.map(cc => (
                           <option key={cc.id} value={cc.id}>{cc.name}</option>
@@ -749,7 +767,7 @@ export default function CostCenterMaster() {
                       Status
                     </label>
                     <select defaultValue={selectedCostCenter?.status || 'Active'}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
                       <option value="Active">Active</option>
                       <option value="Inactive">Inactive</option>
                       <option value="Blocked">Blocked</option>
@@ -777,7 +795,7 @@ export default function CostCenterMaster() {
                         Currency *
                       </label>
                       <select defaultValue={selectedCostCenter?.budget.currency || 'USD'}
-                              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
                         <option value="USD">USD</option>
                         <option value="EUR">EUR</option>
                         <option value="GBP">GBP</option>
@@ -899,7 +917,7 @@ export default function CostCenterMaster() {
                         Allocation Method *
                       </label>
                       <select defaultValue={selectedCostCenter?.allocation?.method || 'Direct'}
-                              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
                         <option value="Direct">Direct</option>
                         <option value="Step-down">Step-down</option>
                         <option value="Reciprocal">Reciprocal</option>
@@ -1050,7 +1068,7 @@ export default function CostCenterMaster() {
                         Over-budget Action
                       </label>
                       <select defaultValue={selectedCostCenter?.controls?.overbudgetAction || 'Warn'}
-                              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
                         <option value="Block">Block</option>
                         <option value="Warn">Warn</option>
                         <option value="Allow">Allow</option>
@@ -1061,7 +1079,7 @@ export default function CostCenterMaster() {
                         Review Cycle
                       </label>
                       <select defaultValue={selectedCostCenter?.controls?.reviewCycle || 'Monthly'}
-                              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
                         <option value="Monthly">Monthly</option>
                         <option value="Quarterly">Quarterly</option>
                         <option value="Annually">Annually</option>

@@ -1,11 +1,10 @@
-'use client';
-
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import {
   Package, Plus, Search, Edit2, Trash2, CheckCircle2,
   XCircle, Calendar, Hash, AlertCircle, Clock,
   MapPin, Thermometer, TrendingDown, Box, FileText
 } from 'lucide-react';
+import { manufacturingMastersService, Batch as BackendBatch } from '../../services/manufacturing-masters.service';
 
 interface BatchLot {
   id: string;
@@ -23,7 +22,7 @@ interface BatchLot {
   warehouse: string;
   location: string;
   productionOrder?: string;
-  qualityStatus: 'Approved' | 'Pending' | 'Rejected' | 'On Hold';
+  qualityStatus: string;
   attributes: {
     color?: string;
     grade?: string;
@@ -41,7 +40,7 @@ interface BatchLot {
     testResults?: string;
     certificateNumber?: string;
   };
-  status: 'Active' | 'Consumed' | 'Quarantined' | 'Expired' | 'Returned';
+  status: string;
   notes: string;
   metadata: {
     createdAt: Date;
@@ -51,124 +50,51 @@ interface BatchLot {
   };
 }
 
-const mockBatches: BatchLot[] = [
-  {
-    id: '1',
-    batchNumber: 'BATCH-2024-001',
-    lotNumber: 'LOT-A-12345',
-    item: 'Steel Sheet - Grade 304',
-    itemCode: 'RM-STL-304-001',
-    quantity: 5000,
-    uom: 'kg',
-    manufacturingDate: new Date('2024-01-15'),
-    expiryDate: new Date('2026-01-15'),
-    shelfLife: 730,
-    supplier: 'Premium Steel Corp',
-    poNumber: 'PO-2024-0123',
-    warehouse: 'Main Warehouse',
-    location: 'Zone A - Rack 12',
-    qualityStatus: 'Approved',
-    attributes: {
-      grade: '304 Stainless Steel',
-      revision: 'Rev 2',
-      serialRange: 'SS-001 to SS-100'
-    },
-    traceability: {
-      rawMaterialBatches: ['RM-BATCH-2023-458'],
-      operators: ['John Doe', 'Jane Smith']
-    },
-    testing: {
-      inspectionDate: new Date('2024-01-16'),
-      inspector: 'QC Inspector - Mike',
-      testResults: 'All parameters within specification',
-      certificateNumber: 'QC-CERT-2024-001'
-    },
-    status: 'Active',
-    notes: 'High quality batch, suitable for critical applications',
-    metadata: {
-      createdAt: new Date('2024-01-15'),
-      updatedAt: new Date('2024-01-16'),
-      createdBy: 'Warehouse Manager',
-      updatedBy: 'QC Inspector'
-    }
-  },
-  {
-    id: '2',
-    batchNumber: 'BATCH-2024-002',
-    lotNumber: 'LOT-B-45678',
-    item: 'Hydraulic Oil ISO 68',
-    itemCode: 'CONS-OIL-068',
-    quantity: 200,
-    uom: 'liters',
-    manufacturingDate: new Date('2024-02-01'),
-    expiryDate: new Date('2025-02-01'),
-    shelfLife: 365,
-    supplier: 'Lubricants International',
-    poNumber: 'PO-2024-0245',
-    warehouse: 'Chemical Storage',
-    location: 'Hazmat Zone - B3',
-    productionOrder: 'WO-2024-156',
-    qualityStatus: 'Approved',
-    attributes: {
-      grade: 'Premium Grade',
-      color: 'Amber'
-    },
-    traceability: {
-      rawMaterialBatches: ['BASE-OIL-2024-12', 'ADDITIVE-PKG-456']
-    },
-    testing: {
-      inspectionDate: new Date('2024-02-02'),
-      inspector: 'Chemical Analyst - Sarah',
-      testResults: 'Viscosity and additives within spec',
-      certificateNumber: 'LAB-CERT-2024-045'
-    },
-    status: 'Active',
-    notes: 'Store in cool, dry place away from direct sunlight',
-    metadata: {
-      createdAt: new Date('2024-02-01'),
-      updatedAt: new Date('2024-02-02'),
-      createdBy: 'Receiving Clerk',
-      updatedBy: 'Lab Technician'
-    }
-  },
-  {
-    id: '3',
-    batchNumber: 'BATCH-2024-003',
-    lotNumber: 'LOT-C-78901',
-    item: 'Electronic Component - PCB',
-    itemCode: 'COMP-PCB-2024',
-    quantity: 1000,
-    uom: 'pieces',
-    manufacturingDate: new Date('2024-03-10'),
-    supplier: 'Electronics Mfg Ltd',
-    warehouse: 'Electronics Inventory',
-    location: 'ESD Zone - Shelf 45',
-    qualityStatus: 'On Hold',
-    attributes: {
-      revision: 'Rev 3.1',
-      serialRange: 'PCB-10000 to PCB-11000'
-    },
-    traceability: {
-      rawMaterialBatches: ['SUBSTRATE-2024-08', 'SOLDER-2024-12']
-    },
-    testing: {
-      inspectionDate: new Date('2024-03-11'),
-      inspector: 'Electronics QA - Tom',
-      testResults: 'Minor discrepancies found, awaiting resolution'
-    },
-    status: 'Quarantined',
-    notes: 'On hold pending resolution of assembly issues',
-    metadata: {
-      createdAt: new Date('2024-03-10'),
-      updatedAt: new Date('2024-03-11'),
-      createdBy: 'Receiving Manager',
-      updatedBy: 'QA Manager'
-    }
-  }
-];
-
 export default function BatchLotMaster() {
-  const [batches, setBatches] = useState<BatchLot[]>(mockBatches);
+  const [batches, setBatches] = useState<BatchLot[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    fetchBatches();
+  }, []);
+
+  const fetchBatches = async () => {
+    try {
+      setIsLoading(true);
+      const data = await manufacturingMastersService.getAllBatches('1');
+      const mapped: BatchLot[] = data.map((b: BackendBatch) => ({
+        id: b.id,
+        batchNumber: b.number,
+        lotNumber: `LOT-${b.number.substring(b.number.length - 5)}`,
+        item: 'Various Items',
+        itemCode: b.itemId || 'N/A',
+        quantity: b.quantity || 0,
+        uom: 'units',
+        manufacturingDate: b.mfgDate ? new Date(b.mfgDate) : new Date(),
+        expiryDate: b.expDate ? new Date(b.expDate) : undefined,
+        warehouse: 'Main Warehouse',
+        location: 'Zone A',
+        qualityStatus: 'Approved',
+        attributes: {},
+        traceability: {},
+        testing: {},
+        status: 'Active',
+        notes: '',
+        metadata: {
+          createdAt: new Date(),
+          updatedAt: new Date(),
+          createdBy: 'admin',
+          updatedBy: 'admin'
+        }
+      }));
+      setBatches(mapped);
+    } catch (error) {
+      console.error('Error fetching batches:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const [selectedBatch, setSelectedBatch] = useState<BatchLot | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
@@ -233,8 +159,8 @@ export default function BatchLotMaster() {
   const filteredBatches = useMemo(() => {
     return batches.filter(batch => {
       const matchesSearch = batch.batchNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           batch.lotNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           batch.item.toLowerCase().includes(searchTerm.toLowerCase());
+        batch.lotNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        batch.item.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesStatus = filterStatus === 'All' || batch.status === filterStatus;
       const matchesQuality = filterQualityStatus === 'All' || batch.qualityStatus === filterQualityStatus;
       return matchesSearch && matchesStatus && matchesQuality;
@@ -514,7 +440,7 @@ export default function BatchLotMaster() {
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Quality Status
                     </label>
-                    <select 
+                    <select
                       defaultValue={selectedBatch?.qualityStatus || 'Pending'}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
                     >
@@ -528,7 +454,7 @@ export default function BatchLotMaster() {
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Status
                     </label>
-                    <select 
+                    <select
                       defaultValue={selectedBatch?.status || 'Active'}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
                     >

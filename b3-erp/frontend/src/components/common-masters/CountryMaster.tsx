@@ -1,11 +1,12 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import {
   Globe, Plus, Search, Edit2, Trash2, Eye, Download, Upload,
   CheckCircle2, XCircle, AlertCircle, MapPin, Users, DollarSign,
   Phone, Mail, Flag, Building2, TrendingUp, Activity
 } from 'lucide-react';
+import { commonMastersService } from '@/services/common-masters.service';
 
 interface Country {
   id: string;
@@ -291,13 +292,66 @@ const mockCountries: Country[] = [
 ];
 
 export default function CountryMaster() {
-  const [countries, setCountries] = useState<Country[]>(mockCountries);
+  const [countries, setCountries] = useState<Country[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [selectedCountry, setSelectedCountry] = useState<Country | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterContinent, setFilterContinent] = useState<string>('All');
   const [filterStatus, setFilterStatus] = useState<string>('All');
   const [currentTab, setCurrentTab] = useState('basic');
+
+  useEffect(() => {
+    const fetchCountries = async () => {
+      try {
+        setIsLoading(true);
+        const data = await commonMastersService.getAllCountries();
+        const mappedData: Country[] = data.map(c => ({
+          id: c.id,
+          countryCode: c.code,
+          countryName: c.name,
+          iso2Code: c.code,
+          iso3Code: c.code + 'X',
+          isoNumericCode: '000',
+          continent: 'Asia',
+          region: 'N/A',
+          subRegion: 'N/A',
+          phoneCode: c.phoneCode || '',
+          currency: 'N/A',
+          currencyCode: 'N/A',
+          currencySymbol: 'N/A',
+          capital: 'N/A',
+          language: 'N/A',
+          nationality: 'N/A',
+          businessSettings: {
+            timeZone: 'UTC',
+            dateFormat: 'DD/MM/YYYY',
+            numberFormat: '1,000'
+          },
+          statistics: {},
+          compliance: {
+            vatEnabled: false,
+            customsRequired: false,
+            tradeLicenseRequired: false
+          },
+          status: c.isActive ? 'Active' : 'Inactive',
+          isDefault: false,
+          metadata: {
+            createdAt: new Date(),
+            updatedAt: new Date(),
+            createdBy: 'System',
+            updatedBy: 'System'
+          }
+        }));
+        setCountries(mappedData);
+      } catch (error) {
+        console.error('Error fetching countries:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchCountries();
+  }, []);
 
   const handleEdit = (country: Country) => {
     setSelectedCountry(country);
@@ -348,8 +402,8 @@ export default function CountryMaster() {
   const filteredCountries = useMemo(() => {
     return countries.filter(country => {
       const matchesSearch = country.countryName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           country.countryCode.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           country.iso3Code.toLowerCase().includes(searchTerm.toLowerCase());
+        country.countryCode.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        country.iso3Code.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesContinent = filterContinent === 'All' || country.continent === filterContinent;
       const matchesStatus = filterStatus === 'All' || country.status === filterStatus;
       return matchesSearch && matchesContinent && matchesStatus;
@@ -594,11 +648,10 @@ export default function CountryMaster() {
                 <button
                   key={tab}
                   onClick={() => setCurrentTab(tab)}
-                  className={`px-4 py-2 font-medium capitalize ${
-                    currentTab === tab
-                      ? 'text-blue-600 border-b-2 border-blue-600'
-                      : 'text-gray-500 hover:text-gray-700'
-                  }`}
+                  className={`px-4 py-2 font-medium capitalize ${currentTab === tab
+                    ? 'text-blue-600 border-b-2 border-blue-600'
+                    : 'text-gray-500 hover:text-gray-700'
+                    }`}
                 >
                   {tab === 'basic' ? 'Basic Info' : tab}
                 </button>
@@ -755,7 +808,7 @@ export default function CountryMaster() {
                         Status
                       </label>
                       <select defaultValue={selectedCountry?.status || 'Active'}
-                              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
                         <option value="Active">Active</option>
                         <option value="Inactive">Inactive</option>
                         <option value="Restricted">Restricted</option>

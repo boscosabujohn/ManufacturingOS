@@ -6,6 +6,8 @@ import {
   Download, Save, X, CheckCircle, Tag, Grid, List, AlertCircle,
   TrendingUp, DollarSign, Percent, Calculator
 } from 'lucide-react';
+import { commonMastersService, HsnSac } from '@/services/common-masters.service';
+
 
 interface HSNSACCode {
   id: string;
@@ -15,7 +17,7 @@ interface HSNSACCode {
   chapterCode: string;
   chapterDescription: string;
   status: 'active' | 'inactive';
-  
+
   // Tax Information
   taxDetails: {
     defaultGSTRate: number;
@@ -26,28 +28,28 @@ interface HSNSACCode {
     applicableFrom: string;
     applicableTo?: string;
   };
-  
+
   // Classification
   classification: {
     section?: string;
     heading?: string;
     subHeading?: string;
   };
-  
+
   // Usage
   usage: {
     domestic: boolean;
     import: boolean;
     export: boolean;
   };
-  
+
   // Statistics
   statistics: {
     itemsLinked: number;
     transactionsCount: number;
     totalValue?: number;
   };
-  
+
   // Compliance
   compliance: {
     eWayBillRequired: boolean;
@@ -55,7 +57,7 @@ interface HSNSACCode {
     exempted: boolean;
     exemptionReason?: string;
   };
-  
+
   notes?: string;
   createdBy: string;
   createdAt: string;
@@ -189,9 +191,29 @@ const HSNSACCodeMaster: React.FC = () => {
   ];
 
   useEffect(() => {
-    setCodes(mockCodes);
-    setFilteredCodes(mockCodes);
+    loadHsnSacs();
   }, []);
+
+  const loadHsnSacs = async () => {
+    try {
+      const data = await commonMastersService.getAllHsnSacs();
+      // Map API data to component interface if needed, or use any
+      const mappedData: any[] = data.map(h => ({
+        id: h.id,
+        code: h.code,
+        description: h.description || '',
+        type: h.code.startsWith('99') ? 'SAC' : 'HSN',
+        status: h.isActive ? 'active' : 'inactive',
+        taxDetails: { defaultGSTRate: h.gstPercentage, cgst: h.gstPercentage / 2, sgst: h.gstPercentage / 2, igst: h.gstPercentage },
+        statistics: { itemsLinked: 0, transactionsCount: 0 }
+      }));
+      setCodes(mappedData);
+      setFilteredCodes(mappedData);
+    } catch (error) {
+      console.error('Failed to load HSN/SAC codes:', error);
+    }
+  };
+
 
   useEffect(() => {
     let filtered = codes;
@@ -334,9 +356,8 @@ const HSNSACCodeMaster: React.FC = () => {
                     <div className="text-xs text-gray-500">Chapter: {code.chapterCode}</div>
                   </td>
                   <td className="px-3 py-2">
-                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                      code.type === 'HSN' ? 'bg-blue-100 text-blue-800' : 'bg-purple-100 text-purple-800'
-                    }`}>
+                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${code.type === 'HSN' ? 'bg-blue-100 text-blue-800' : 'bg-purple-100 text-purple-800'
+                      }`}>
                       {code.type}
                     </span>
                   </td>
@@ -351,9 +372,8 @@ const HSNSACCodeMaster: React.FC = () => {
                   </td>
                   <td className="px-3 py-2 text-sm text-gray-900">{code.statistics.itemsLinked}</td>
                   <td className="px-3 py-2">
-                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                      code.status === 'active' ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'
-                    }`}>
+                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${code.status === 'active' ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'
+                      }`}>
                       {code.status}
                     </span>
                   </td>

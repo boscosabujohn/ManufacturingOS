@@ -1,11 +1,12 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import {
   Sparkles, Plus, Search, Edit2, Trash2, CheckCircle2,
   XCircle, Palette, Droplet, Shield, DollarSign, X, Eye,
   BarChart3, Package, Clock, AlertCircle, TrendingUp, Info
 } from 'lucide-react';
+import { manufacturingMastersService, KitchenFinish as BackendFinish } from '@/services/manufacturing-masters.service';
 
 interface Finish {
   id: string;
@@ -36,127 +37,17 @@ interface Finish {
   maintenance: string;
   warranty: string;
   certifications: string[];
-  status: 'Active' | 'Inactive' | 'Discontinued';
-  metadata: {
+  status: string;
+  metadata?: {
     createdAt: Date;
     updatedAt: Date;
     createdBy: string;
   };
 }
 
-const mockFinishes: Finish[] = [
-  {
-    id: '1',
-    code: 'FIN-LAM-001',
-    name: 'High Gloss Acrylic Laminate',
-    category: 'Laminate',
-    subcategory: 'Acrylic Finish',
-    properties: {
-      texture: 'Glossy',
-      sheen: '90-95%',
-      durability: 'High',
-      waterResistance: 'Excellent',
-      scratchResistance: 'Good'
-    },
-    colors: ['White', 'Black', 'Red', 'Blue', 'Grey', 'Custom'],
-    applicationMethod: ['Press Bonding', 'Contact Adhesive'],
-    suitableFor: ['Kitchen Cabinets', 'Wardrobes', 'Furniture'],
-    coverage: {
-      value: 1,
-      unit: 'sqm per sheet'
-    },
-    dryingTime: {
-      touch: 'N/A',
-      recoat: 'N/A',
-      fullCure: 'Immediate'
-    },
-    pricePerUnit: 850,
-    maintenance: 'Wipe with damp cloth. Avoid abrasive cleaners.',
-    warranty: '10 Years against delamination',
-    certifications: ['IS 14276', 'Greenguard'],
-    status: 'Active',
-    metadata: {
-      createdAt: new Date('2024-01-10'),
-      updatedAt: new Date('2024-03-15'),
-      createdBy: 'Product Manager'
-    }
-  },
-  {
-    id: '2',
-    code: 'FIN-PU-001',
-    name: 'Premium PU Paint - Matt Finish',
-    category: 'PU Finish',
-    subcategory: 'Polyurethane Coating',
-    properties: {
-      texture: 'Matt',
-      sheen: '5-10%',
-      durability: 'High',
-      waterResistance: 'Excellent',
-      scratchResistance: 'Excellent'
-    },
-    colors: ['White', 'Cream', 'Grey', 'Custom RAL/Pantone'],
-    applicationMethod: ['Spray Gun', 'HVLP'],
-    suitableFor: ['High-end Kitchens', 'Premium Furniture', 'Doors'],
-    coverage: {
-      value: 10,
-      unit: 'sqm per liter'
-    },
-    dryingTime: {
-      touch: '2 hours',
-      recoat: '6 hours',
-      fullCure: '7 days'
-    },
-    pricePerUnit: 450,
-    maintenance: 'Clean with mild soap solution. Highly resistant to stains.',
-    warranty: '15 Years against yellowing and peeling',
-    certifications: ['IS 15489', 'Low VOC'],
-    status: 'Active',
-    metadata: {
-      createdAt: new Date('2024-01-12'),
-      updatedAt: new Date('2024-03-10'),
-      createdBy: 'Product Manager'
-    }
-  },
-  {
-    id: '3',
-    code: 'FIN-VEN-001',
-    name: 'Natural Wood Veneer - Oak',
-    category: 'Veneer',
-    subcategory: 'Natural Wood',
-    properties: {
-      texture: 'Textured',
-      sheen: 'Natural',
-      durability: 'Medium',
-      waterResistance: 'Fair',
-      scratchResistance: 'Fair'
-    },
-    colors: ['Natural Oak', 'Light Oak', 'Dark Oak'],
-    applicationMethod: ['Contact Adhesive', 'Hot Press'],
-    suitableFor: ['Premium Furniture', 'Wall Panels', 'Doors'],
-    coverage: {
-      value: 1,
-      unit: 'sqm per sheet'
-    },
-    dryingTime: {
-      touch: 'N/A',
-      recoat: 'N/A',
-      fullCure: '24 hours'
-    },
-    pricePerUnit: 1200,
-    maintenance: 'Requires periodic polishing. Avoid water exposure.',
-    warranty: '5 Years with proper maintenance',
-    certifications: ['FSC Certified', 'CARB P2'],
-    status: 'Active',
-    metadata: {
-      createdAt: new Date('2024-01-15'),
-      updatedAt: new Date('2024-03-20'),
-      createdBy: 'Product Manager'
-    }
-  }
-];
-
 export default function FinishMaster() {
-  const [finishes, setFinishes] = useState<Finish[]>(mockFinishes);
+  const [finishes, setFinishes] = useState<Finish[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [selectedFinish, setSelectedFinish] = useState<Finish | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
@@ -165,6 +56,55 @@ export default function FinishMaster() {
   const [showAnalyticsModal, setShowAnalyticsModal] = useState(false);
   const [selectedFinishForDetails, setSelectedFinishForDetails] = useState<Finish | null>(null);
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'info' | 'error' } | null>(null);
+
+  useEffect(() => {
+    fetchFinishes();
+  }, []);
+
+  const fetchFinishes = async () => {
+    try {
+      setIsLoading(true);
+      const data = await manufacturingMastersService.getAllKitchenFinishes('123e4567-e89b-12d3-a456-426614174000');
+
+      const mapped: Finish[] = data.map(f => ({
+        id: f.id,
+        code: f.code,
+        name: f.name,
+        category: f.category as any,
+        subcategory: f.subcategory || '',
+        properties: {
+          texture: f.properties?.texture || 'Matt',
+          sheen: f.properties?.sheen || '',
+          durability: f.properties?.durability || 'High',
+          waterResistance: f.properties?.waterResistance || 'Good',
+          scratchResistance: f.properties?.scratchResistance || 'Good'
+        },
+        colors: f.colors,
+        applicationMethod: f.applicationMethod,
+        suitableFor: f.suitableFor,
+        coverage: {
+          value: f.coverageValue || 0,
+          unit: f.coverageUnit || 'sqm'
+        },
+        dryingTime: {
+          touch: '2 hours',
+          recoat: '6 hours',
+          fullCure: '7 days'
+        },
+        pricePerUnit: f.pricePerUnit,
+        maintenance: f.maintenance || '',
+        warranty: f.warranty || '',
+        certifications: f.certifications,
+        status: f.status
+      }));
+
+      setFinishes(mapped);
+    } catch (error) {
+      console.error('Error fetching finishes:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const showToast = (message: string, type: 'success' | 'info' | 'error' = 'info') => {
     setToast({ message, type });
@@ -219,7 +159,7 @@ export default function FinishMaster() {
   const filteredFinishes = useMemo(() => {
     return finishes.filter(finish => {
       const matchesSearch = finish.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           finish.code.toLowerCase().includes(searchTerm.toLowerCase());
+        finish.code.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesCategory = filterCategory === 'All' || finish.category === filterCategory;
       return matchesSearch && matchesCategory;
     });
@@ -237,11 +177,10 @@ export default function FinishMaster() {
     <div className="p-6 ">
       {/* Toast Notification */}
       {toast && (
-        <div className={`fixed top-4 right-4 z-50 flex items-center gap-2 px-4 py-3 rounded-lg shadow-lg ${
-          toast.type === 'success' ? 'bg-green-50 text-green-800 border border-green-200' :
-          toast.type === 'error' ? 'bg-red-50 text-red-800 border border-red-200' :
-          'bg-blue-50 text-blue-800 border border-blue-200'
-        }`}>
+        <div className={`fixed top-4 right-4 z-50 flex items-center gap-2 px-4 py-3 rounded-lg shadow-lg ${toast.type === 'success' ? 'bg-green-50 text-green-800 border border-green-200' :
+            toast.type === 'error' ? 'bg-red-50 text-red-800 border border-red-200' :
+              'bg-blue-50 text-blue-800 border border-blue-200'
+          }`}>
           {toast.type === 'success' && <CheckCircle2 className="w-5 h-5" />}
           {toast.type === 'error' && <X className="w-5 h-5" />}
           {toast.type === 'info' && <AlertCircle className="w-5 h-5" />}
@@ -526,7 +465,7 @@ export default function FinishMaster() {
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Category *
                     </label>
-                    <select 
+                    <select
                       defaultValue={selectedFinish?.category || 'Laminate'}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
                     >
@@ -543,7 +482,7 @@ export default function FinishMaster() {
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Texture *
                     </label>
-                    <select 
+                    <select
                       defaultValue={selectedFinish?.properties.texture || 'Matt'}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
                     >
@@ -561,7 +500,7 @@ export default function FinishMaster() {
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Durability
                     </label>
-                    <select 
+                    <select
                       defaultValue={selectedFinish?.properties.durability || 'High'}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
                     >
@@ -574,7 +513,7 @@ export default function FinishMaster() {
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Water Resistance
                     </label>
-                    <select 
+                    <select
                       defaultValue={selectedFinish?.properties.waterResistance || 'Good'}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
                     >
@@ -588,7 +527,7 @@ export default function FinishMaster() {
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Scratch Resistance
                     </label>
-                    <select 
+                    <select
                       defaultValue={selectedFinish?.properties.scratchResistance || 'Good'}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
                     >
@@ -628,7 +567,7 @@ export default function FinishMaster() {
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Status
                   </label>
-                  <select 
+                  <select
                     defaultValue={selectedFinish?.status || 'Active'}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
                   >

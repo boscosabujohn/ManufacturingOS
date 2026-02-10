@@ -1,16 +1,32 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Plus, Search, Download, Filter, X, FileText, AlertCircle } from 'lucide-react';
 import { DataTable, Column } from '@/components/ui/DataTable';
 import { StatusBadge } from '@/components/ui/StatusBadge';
-import { mockDocumentTypes, DocumentType, getDocumentTypeStats } from '@/data/common-masters/document-types';
+import { systemMastersService, DocumentType } from '@/services/system-masters.service';
 
 export default function DocumentTypeMasterPage() {
-  const [documentTypes, setDocumentTypes] = useState<DocumentType[]>(mockDocumentTypes);
+  const [documentTypes, setDocumentTypes] = useState<DocumentType[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterCategory, setFilterCategory] = useState<string>('all');
   const [showFilters, setShowFilters] = useState(false);
+
+  useEffect(() => {
+    const fetchDocTypes = async () => {
+      setIsLoading(true);
+      try {
+        const data = await systemMastersService.getAllDocumentTypes('123e4567-e89b-12d3-a456-426614174000');
+        setDocumentTypes(data);
+      } catch (error) {
+        console.error('Failed to fetch document types', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchDocTypes();
+  }, []);
 
   const filteredData = useMemo(() => {
     return documentTypes.filter(doc => {
@@ -43,7 +59,7 @@ export default function DocumentTypeMasterPage() {
         <div>
           <div className="font-medium text-gray-900 flex items-center gap-2">
             {row.isMandatory && <FileText className="w-4 h-4 text-red-600" />}
-            {value}
+            {String(value)}
           </div>
           <div className="text-xs"><span className="font-mono text-blue-600">{row.typeCode}</span></div>
           <div className="text-xs text-gray-500">{row.description}</div>
@@ -56,8 +72,8 @@ export default function DocumentTypeMasterPage() {
       accessor: 'category',
       sortable: true,
       render: (value) => (
-        <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium capitalize ${getCategoryColor(value)}`}>
-          {value}
+        <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium capitalize ${getCategoryColor(String(value))}`}>
+          {String(value)}
         </span>
       )
     },
@@ -84,14 +100,8 @@ export default function DocumentTypeMasterPage() {
         <div className="text-xs">
           {value ? (
             <>
-              <div className="text-gray-900">{value} months</div>
+              <div className="text-gray-900">{String(value)} months</div>
               {row.renewalRequired && <div className="text-orange-600">Renewal req.</div>}
-              {row.expiringIn30Days > 0 && (
-                <div className="text-red-600 flex items-center gap-1">
-                  <AlertCircle className="w-3 h-3" />
-                  {row.expiringIn30Days} expiring
-                </div>
-              )}
             </>
           ) : (
             <div className="text-green-600">No expiry</div>
@@ -107,7 +117,7 @@ export default function DocumentTypeMasterPage() {
       render: (value, row) => (
         <div className="text-xs">
           <div className="text-gray-900">{row.allowedFormats.join(', ')}</div>
-          <div className="text-gray-500">Max: {value}MB</div>
+          <div className="text-gray-500">Max: {String(value)}MB</div>
           {row.encryptionRequired && <div className="text-red-600">🔒 Encrypted</div>}
         </div>
       )
@@ -115,14 +125,12 @@ export default function DocumentTypeMasterPage() {
     {
       id: 'usage',
       header: 'Usage',
-      accessor: 'documentsCount',
+      accessor: 'id',
       sortable: true,
-      render: (value, row) => (
+      render: () => (
         <div className="text-xs">
-          <div className="font-medium text-gray-900">{value} docs</div>
-          {row.pendingVerification > 0 && (
-            <div className="text-orange-600">Pending: {row.pendingVerification}</div>
-          )}
+          <div className="font-medium text-gray-900">0 docs</div>
+          <div className="text-gray-500 italic">Integration pending</div>
         </div>
       )
     },
@@ -137,7 +145,16 @@ export default function DocumentTypeMasterPage() {
 
   const clearFilters = () => { setSearchTerm(''); setFilterCategory('all'); };
   const activeFilterCount = [filterCategory !== 'all', searchTerm !== ''].filter(Boolean).length;
-  const stats = useMemo(() => getDocumentTypeStats(), [documentTypes]);
+
+  // Basic stats for now
+  const stats = useMemo(() => ({
+    total: documentTypes.length,
+    mandatory: documentTypes.filter(d => d.isMandatory).length,
+    totalDocuments: 0,
+    pendingVerification: 0,
+    expiringIn30Days: 0,
+    requiredForJoining: documentTypes.filter(d => d.requiredForJoining).length
+  }), [documentTypes]);
 
   return (
     <div className="p-6 space-y-3">

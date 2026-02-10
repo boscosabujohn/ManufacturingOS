@@ -1,129 +1,35 @@
 'use client';
 
-import React, { useState } from 'react';
-import { Calendar, Plus, Search, Eye, Edit3, Clock, CreditCard, AlertTriangle } from 'lucide-react';
-
-interface PaymentTerm {
-  id: string;
-  termCode: string;
-  termName: string;
-  description: string;
-  
-  paymentType: 'immediate' | 'days' | 'date' | 'installment';
-  dueDays?: number;
-  dueDate?: number; // Day of month
-  
-  installments?: {
-    installmentNumber: number;
-    percentage: number;
-    daysAfter: number;
-  }[];
-  
-  discountTerms?: {
-    discountPercentage: number;
-    discountDays: number;
-  };
-  
-  penaltyTerms?: {
-    penaltyPercentage: number;
-    gracePeriodDays: number;
-  };
-  
-  applicableTo: 'purchase' | 'sales' | 'both';
-  isDefault: boolean;
-  status: 'active' | 'inactive';
-  
-  createdBy: string;
-  createdAt: string;
-}
+import React, { useState, useEffect } from 'react';
+import { Plus, Search, Filter, Edit, Trash2, Eye, Clock, CreditCard, Calendar, CheckCircle, AlertCircle, TrendingUp, Download, Upload } from 'lucide-react';
+import { commonMastersService, PaymentTerm } from '@/services/common-masters.service';
 
 const PaymentTermsMaster: React.FC = () => {
-  const [terms, setTerms] = useState<PaymentTerm[]>([
-    {
-      id: '1',
-      termCode: 'NET30',
-      termName: 'Net 30 Days',
-      description: 'Payment due within 30 days of invoice date',
-      paymentType: 'days',
-      dueDays: 30,
-      discountTerms: {
-        discountPercentage: 2,
-        discountDays: 10
-      },
-      applicableTo: 'both',
-      isDefault: true,
-      status: 'active',
-      createdBy: 'admin',
-      createdAt: '2024-01-01T10:00:00Z'
-    },
-    {
-      id: '2',
-      termCode: 'NET45',
-      termName: 'Net 45 Days',
-      description: 'Payment due within 45 days of invoice date',
-      paymentType: 'days',
-      dueDays: 45,
-      penaltyTerms: {
-        penaltyPercentage: 1.5,
-        gracePeriodDays: 5
-      },
-      applicableTo: 'purchase',
-      isDefault: false,
-      status: 'active',
-      createdBy: 'admin',
-      createdAt: '2024-01-01T10:00:00Z'
-    },
-    {
-      id: '3',
-      termCode: 'IMMEDIATE',
-      termName: 'Immediate Payment',
-      description: 'Payment due immediately upon delivery',
-      paymentType: 'immediate',
-      dueDays: 0,
-      applicableTo: 'sales',
-      isDefault: false,
-      status: 'active',
-      createdBy: 'admin',
-      createdAt: '2024-01-01T10:00:00Z'
-    },
-    {
-      id: '4',
-      termCode: 'EOM',
-      termName: 'End of Month',
-      description: 'Payment due by end of current month',
-      paymentType: 'date',
-      dueDate: 31,
-      applicableTo: 'both',
-      isDefault: false,
-      status: 'active',
-      createdBy: 'admin',
-      createdAt: '2024-01-01T10:00:00Z'
-    },
-    {
-      id: '5',
-      termCode: '3INST',
-      termName: '3 Installments',
-      description: 'Payment in 3 equal installments',
-      paymentType: 'installment',
-      installments: [
-        { installmentNumber: 1, percentage: 40, daysAfter: 0 },
-        { installmentNumber: 2, percentage: 30, daysAfter: 30 },
-        { installmentNumber: 3, percentage: 30, daysAfter: 60 }
-      ],
-      applicableTo: 'sales',
-      isDefault: false,
-      status: 'active',
-      createdBy: 'admin',
-      createdAt: '2024-01-15T10:00:00Z'
+  const [terms, setTerms] = useState<PaymentTerm[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchTerms();
+  }, []);
+
+  const fetchTerms = async () => {
+    try {
+      setLoading(true);
+      const data = await commonMastersService.getAllPaymentTerms();
+      setTerms(data);
+    } catch (error) {
+      console.error('Failed to fetch payment terms:', error);
+    } finally {
+      setLoading(false);
     }
-  ]);
+  };
 
   const [searchTerm, setSearchTerm] = useState('');
   const [filterType, setFilterType] = useState<string>('all');
 
   const filteredTerms = terms.filter(t => {
     const matchesSearch = t.termName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         t.termCode.toLowerCase().includes(searchTerm.toLowerCase());
+      t.termCode.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesType = filterType === 'all' || t.applicableTo === filterType || t.applicableTo === 'both';
     return matchesSearch && matchesType;
   });
@@ -289,20 +195,18 @@ const PaymentTermsMaster: React.FC = () => {
                 )}
 
                 <div className="flex items-center justify-between pt-2 border-t border-gray-200">
-                  <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                    term.applicableTo === 'both' 
+                  <span className={`px-3 py-1 rounded-full text-xs font-medium ${term.applicableTo === 'both'
                       ? 'bg-purple-100 text-purple-800'
                       : term.applicableTo === 'purchase'
-                      ? 'bg-blue-100 text-blue-800'
-                      : 'bg-indigo-100 text-indigo-800'
-                  }`}>
+                        ? 'bg-blue-100 text-blue-800'
+                        : 'bg-indigo-100 text-indigo-800'
+                    }`}>
                     {term.applicableTo === 'both' ? 'Purchase & Sales' : term.applicableTo}
                   </span>
-                  <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                    term.status === 'active' 
+                  <span className={`px-3 py-1 rounded-full text-xs font-medium ${term.status === 'active'
                       ? 'bg-green-100 text-green-800'
                       : 'bg-gray-100 text-gray-800'
-                  }`}>
+                    }`}>
                     {term.status}
                   </span>
                 </div>

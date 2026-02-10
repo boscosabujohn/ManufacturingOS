@@ -1,277 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Plus, Search, Filter, Edit, Trash2, Eye, Calculator, TrendingUp, DollarSign, BookOpen, ChevronRight, ChevronDown, Building, Download, Upload, Grid, List } from 'lucide-react';
-
-interface Account {
-  id: string;
-  accountCode: string;
-  accountName: string;
-  parentId?: string;
-  level: number;
-  accountType: 'asset' | 'liability' | 'equity' | 'revenue' | 'expense';
-  accountSubType: string;
-  status: 'active' | 'inactive';
-  description: string;
-  isControlAccount: boolean;
-  allowPosting: boolean;
-  currency: string;
-  taxConfiguration: {
-    taxable?: boolean;
-    defaultTaxCode?: string;
-    taxCategory?: string;
-  };
-  reportingSettings: {
-    includeInBalanceSheet?: boolean;
-    includeInPL?: boolean;
-    includeInCashFlow?: boolean;
-    reportingGroup?: string;
-  };
-  balanceInfo: {
-    openingBalance?: number;
-    currentBalance?: number;
-    debitBalance?: number;
-    creditBalance?: number;
-    lastActivity?: string;
-  };
-  restrictions: {
-    department?: string[];
-    costCenter?: string[];
-    project?: string[];
-  };
-  integration: {
-    bankAccount?: {
-      bankName: string;
-      accountNumber: string;
-      routingNumber: string;
-    };
-    externalCode?: string;
-    mappingCode?: string;
-  };
-  createdAt: string;
-  updatedAt: string;
-}
-
-const mockAccounts: Account[] = [
-  {
-    id: '1',
-    accountCode: '1000',
-    accountName: 'Assets',
-    level: 1,
-    accountType: 'asset',
-    accountSubType: 'Current Assets',
-    status: 'active',
-    description: 'All company assets',
-    isControlAccount: true,
-    allowPosting: false,
-    currency: 'USD',
-    taxConfiguration: {
-      taxable: false,
-      taxCategory: 'Non-taxable'
-    },
-    reportingSettings: {
-      includeInBalanceSheet: true,
-      includeInPL: false,
-      includeInCashFlow: true,
-      reportingGroup: 'Assets'
-    },
-    balanceInfo: {
-      openingBalance: 500000,
-      currentBalance: 750000,
-      debitBalance: 750000,
-      creditBalance: 0,
-      lastActivity: '2024-01-15'
-    },
-    restrictions: {},
-    integration: {},
-    createdAt: '2023-01-01',
-    updatedAt: '2024-01-15'
-  },
-  {
-    id: '2',
-    accountCode: '1001',
-    accountName: 'Cash and Cash Equivalents',
-    parentId: '1',
-    level: 2,
-    accountType: 'asset',
-    accountSubType: 'Current Assets',
-    status: 'active',
-    description: 'Cash in hand and bank accounts',
-    isControlAccount: true,
-    allowPosting: false,
-    currency: 'USD',
-    taxConfiguration: {
-      taxable: false,
-      taxCategory: 'Non-taxable'
-    },
-    reportingSettings: {
-      includeInBalanceSheet: true,
-      includeInPL: false,
-      includeInCashFlow: true,
-      reportingGroup: 'Current Assets'
-    },
-    balanceInfo: {
-      openingBalance: 100000,
-      currentBalance: 150000,
-      debitBalance: 150000,
-      creditBalance: 0,
-      lastActivity: '2024-01-15'
-    },
-    restrictions: {},
-    integration: {},
-    createdAt: '2023-01-01',
-    updatedAt: '2024-01-15'
-  },
-  {
-    id: '3',
-    accountCode: '1001-001',
-    accountName: 'Petty Cash',
-    parentId: '2',
-    level: 3,
-    accountType: 'asset',
-    accountSubType: 'Current Assets',
-    status: 'active',
-    description: 'Small cash amounts for day-to-day expenses',
-    isControlAccount: false,
-    allowPosting: true,
-    currency: 'USD',
-    taxConfiguration: {
-      taxable: false,
-      taxCategory: 'Non-taxable'
-    },
-    reportingSettings: {
-      includeInBalanceSheet: true,
-      includeInPL: false,
-      includeInCashFlow: true,
-      reportingGroup: 'Current Assets'
-    },
-    balanceInfo: {
-      openingBalance: 5000,
-      currentBalance: 3500,
-      debitBalance: 3500,
-      creditBalance: 0,
-      lastActivity: '2024-01-12'
-    },
-    restrictions: {
-      department: ['Administration']
-    },
-    integration: {},
-    createdAt: '2023-01-01',
-    updatedAt: '2024-01-12'
-  },
-  {
-    id: '4',
-    accountCode: '1001-002',
-    accountName: 'Operating Bank Account',
-    parentId: '2',
-    level: 3,
-    accountType: 'asset',
-    accountSubType: 'Current Assets',
-    status: 'active',
-    description: 'Main operating bank account',
-    isControlAccount: false,
-    allowPosting: true,
-    currency: 'USD',
-    taxConfiguration: {
-      taxable: false,
-      taxCategory: 'Non-taxable'
-    },
-    reportingSettings: {
-      includeInBalanceSheet: true,
-      includeInPL: false,
-      includeInCashFlow: true,
-      reportingGroup: 'Current Assets'
-    },
-    balanceInfo: {
-      openingBalance: 95000,
-      currentBalance: 146500,
-      debitBalance: 146500,
-      creditBalance: 0,
-      lastActivity: '2024-01-15'
-    },
-    restrictions: {},
-    integration: {
-      bankAccount: {
-        bankName: 'First National Bank',
-        accountNumber: '****5678',
-        routingNumber: '021000021'
-      }
-    },
-    createdAt: '2023-01-01',
-    updatedAt: '2024-01-15'
-  },
-  {
-    id: '5',
-    accountCode: '4000',
-    accountName: 'Revenue',
-    level: 1,
-    accountType: 'revenue',
-    accountSubType: 'Operating Revenue',
-    status: 'active',
-    description: 'All company revenue accounts',
-    isControlAccount: true,
-    allowPosting: false,
-    currency: 'USD',
-    taxConfiguration: {
-      taxable: true,
-      defaultTaxCode: 'STD-TAX',
-      taxCategory: 'Standard Rate'
-    },
-    reportingSettings: {
-      includeInBalanceSheet: false,
-      includeInPL: true,
-      includeInCashFlow: false,
-      reportingGroup: 'Revenue'
-    },
-    balanceInfo: {
-      openingBalance: 0,
-      currentBalance: 285000,
-      debitBalance: 0,
-      creditBalance: 285000,
-      lastActivity: '2024-01-14'
-    },
-    restrictions: {},
-    integration: {},
-    createdAt: '2023-01-01',
-    updatedAt: '2024-01-14'
-  },
-  {
-    id: '6',
-    accountCode: '4001',
-    accountName: 'Sales Revenue',
-    parentId: '5',
-    level: 2,
-    accountType: 'revenue',
-    accountSubType: 'Operating Revenue',
-    status: 'active',
-    description: 'Revenue from product and service sales',
-    isControlAccount: false,
-    allowPosting: true,
-    currency: 'USD',
-    taxConfiguration: {
-      taxable: true,
-      defaultTaxCode: 'STD-TAX',
-      taxCategory: 'Standard Rate'
-    },
-    reportingSettings: {
-      includeInBalanceSheet: false,
-      includeInPL: true,
-      includeInCashFlow: false,
-      reportingGroup: 'Operating Revenue'
-    },
-    balanceInfo: {
-      openingBalance: 0,
-      currentBalance: 285000,
-      debitBalance: 0,
-      creditBalance: 285000,
-      lastActivity: '2024-01-14'
-    },
-    restrictions: {},
-    integration: {},
-    createdAt: '2023-01-01',
-    updatedAt: '2024-01-14'
-  }
-];
+import { commonMastersService, Account } from '@/services/common-masters.service';
 
 const accountTypes = ['asset', 'liability', 'equity', 'revenue', 'expense'];
 const accountSubTypes = {
@@ -285,7 +16,24 @@ const currencies = ['USD', 'EUR', 'GBP', 'CAD'];
 const taxCategories = ['Standard Rate', 'Reduced Rate', 'Zero Rate', 'Exempt', 'Non-taxable'];
 
 export default function ChartOfAccountsMaster() {
-  const [accounts, setAccounts] = useState<Account[]>(mockAccounts);
+  const [accounts, setAccounts] = useState<Account[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchAccounts();
+  }, []);
+
+  const fetchAccounts = async () => {
+    try {
+      setLoading(true);
+      const data = await commonMastersService.getAllAccounts();
+      setAccounts(data);
+    } catch (error) {
+      console.error('Failed to fetch accounts:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
   const [searchTerm, setSearchTerm] = useState('');
   const [filterType, setFilterType] = useState<string>('all');
   const [filterStatus, setFilterStatus] = useState<string>('all');
@@ -298,8 +46,8 @@ export default function ChartOfAccountsMaster() {
 
   const filteredAccounts = accounts.filter(account => {
     const matchesSearch = account.accountName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         account.accountCode.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         account.description.toLowerCase().includes(searchTerm.toLowerCase());
+      account.accountCode.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      account.description.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesType = filterType === 'all' || account.accountType === filterType;
     const matchesStatus = filterStatus === 'all' || account.status === filterStatus;
     const matchesLevel = filterLevel === 'all' || account.level.toString() === filterLevel;
@@ -834,11 +582,10 @@ function AccountModal({ account, accounts, onSave, onClose, activeTab, setActive
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`px-4 py-3 text-sm font-medium border-b-2 ${
-                  activeTab === tab.id
+                className={`px-4 py-3 text-sm font-medium border-b-2 ${activeTab === tab.id
                     ? 'border-blue-500 text-blue-600'
                     : 'border-transparent text-gray-500 hover:text-gray-700'
-                }`}
+                  }`}
               >
                 <div className="flex items-center gap-2">
                   <Icon className="w-4 h-4" />
@@ -858,7 +605,7 @@ function AccountModal({ account, accounts, onSave, onClose, activeTab, setActive
                   <input
                     type="text"
                     value={formData.accountCode}
-                    onChange={(e) => setFormData({...formData, accountCode: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, accountCode: e.target.value })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     required
                   />
@@ -868,7 +615,7 @@ function AccountModal({ account, accounts, onSave, onClose, activeTab, setActive
                   <input
                     type="text"
                     value={formData.accountName}
-                    onChange={(e) => setFormData({...formData, accountName: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, accountName: e.target.value })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     required
                   />
@@ -877,7 +624,7 @@ function AccountModal({ account, accounts, onSave, onClose, activeTab, setActive
                   <label className="block text-sm font-medium text-gray-700 mb-1">Parent Account</label>
                   <select
                     value={formData.parentId}
-                    onChange={(e) => setFormData({...formData, parentId: e.target.value, level: e.target.value ? 2 : 1})}
+                    onChange={(e) => setFormData({ ...formData, parentId: e.target.value, level: e.target.value ? 2 : 1 })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   >
                     <option value="">None (Root Level)</option>
@@ -892,7 +639,7 @@ function AccountModal({ account, accounts, onSave, onClose, activeTab, setActive
                   <label className="block text-sm font-medium text-gray-700 mb-1">Account Type</label>
                   <select
                     value={formData.accountType}
-                    onChange={(e) => setFormData({...formData, accountType: e.target.value as any, accountSubType: ''})}
+                    onChange={(e) => setFormData({ ...formData, accountType: e.target.value as any, accountSubType: '' })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   >
                     {accountTypes.map(type => (
@@ -904,7 +651,7 @@ function AccountModal({ account, accounts, onSave, onClose, activeTab, setActive
                   <label className="block text-sm font-medium text-gray-700 mb-1">Account Sub-Type</label>
                   <select
                     value={formData.accountSubType}
-                    onChange={(e) => setFormData({...formData, accountSubType: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, accountSubType: e.target.value })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   >
                     <option value="">Select Sub-Type</option>
@@ -917,7 +664,7 @@ function AccountModal({ account, accounts, onSave, onClose, activeTab, setActive
                   <label className="block text-sm font-medium text-gray-700 mb-1">Currency</label>
                   <select
                     value={formData.currency}
-                    onChange={(e) => setFormData({...formData, currency: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, currency: e.target.value })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   >
                     {currencies.map(currency => (
@@ -929,7 +676,7 @@ function AccountModal({ account, accounts, onSave, onClose, activeTab, setActive
                   <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
                   <select
                     value={formData.status}
-                    onChange={(e) => setFormData({...formData, status: e.target.value as any})}
+                    onChange={(e) => setFormData({ ...formData, status: e.target.value as any })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   >
                     <option value="active">Active</option>
@@ -940,7 +687,7 @@ function AccountModal({ account, accounts, onSave, onClose, activeTab, setActive
                   <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
                   <textarea
                     value={formData.description}
-                    onChange={(e) => setFormData({...formData, description: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                     rows={3}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
@@ -952,7 +699,7 @@ function AccountModal({ account, accounts, onSave, onClose, activeTab, setActive
                       <input
                         type="checkbox"
                         checked={formData.isControlAccount}
-                        onChange={(e) => setFormData({...formData, isControlAccount: e.target.checked})}
+                        onChange={(e) => setFormData({ ...formData, isControlAccount: e.target.checked })}
                         className="mr-2"
                       />
                       Control Account
@@ -961,7 +708,7 @@ function AccountModal({ account, accounts, onSave, onClose, activeTab, setActive
                       <input
                         type="checkbox"
                         checked={formData.allowPosting}
-                        onChange={(e) => setFormData({...formData, allowPosting: e.target.checked})}
+                        onChange={(e) => setFormData({ ...formData, allowPosting: e.target.checked })}
                         className="mr-2"
                       />
                       Allow Posting
@@ -978,7 +725,7 @@ function AccountModal({ account, accounts, onSave, onClose, activeTab, setActive
                     <input
                       type="checkbox"
                       checked={formData.taxConfiguration?.taxable}
-                      onChange={(e) => setFormData({...formData, taxConfiguration: {...formData.taxConfiguration, taxable: e.target.checked}})}
+                      onChange={(e) => setFormData({ ...formData, taxConfiguration: { ...formData.taxConfiguration, taxable: e.target.checked } })}
                       className="mr-2"
                     />
                     Taxable Account
@@ -991,7 +738,7 @@ function AccountModal({ account, accounts, onSave, onClose, activeTab, setActive
                       <input
                         type="text"
                         value={formData.taxConfiguration?.defaultTaxCode}
-                        onChange={(e) => setFormData({...formData, taxConfiguration: {...formData.taxConfiguration, defaultTaxCode: e.target.value}})}
+                        onChange={(e) => setFormData({ ...formData, taxConfiguration: { ...formData.taxConfiguration, defaultTaxCode: e.target.value } })}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                       />
                     </div>
@@ -999,7 +746,7 @@ function AccountModal({ account, accounts, onSave, onClose, activeTab, setActive
                       <label className="block text-sm font-medium text-gray-700 mb-1">Tax Category</label>
                       <select
                         value={formData.taxConfiguration?.taxCategory}
-                        onChange={(e) => setFormData({...formData, taxConfiguration: {...formData.taxConfiguration, taxCategory: e.target.value}})}
+                        onChange={(e) => setFormData({ ...formData, taxConfiguration: { ...formData.taxConfiguration, taxCategory: e.target.value } })}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                       >
                         {taxCategories.map(category => (
@@ -1019,7 +766,7 @@ function AccountModal({ account, accounts, onSave, onClose, activeTab, setActive
                   <input
                     type="text"
                     value={formData.reportingSettings?.reportingGroup}
-                    onChange={(e) => setFormData({...formData, reportingSettings: {...formData.reportingSettings, reportingGroup: e.target.value}})}
+                    onChange={(e) => setFormData({ ...formData, reportingSettings: { ...formData.reportingSettings, reportingGroup: e.target.value } })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
@@ -1030,7 +777,7 @@ function AccountModal({ account, accounts, onSave, onClose, activeTab, setActive
                       <input
                         type="checkbox"
                         checked={formData.reportingSettings?.includeInBalanceSheet}
-                        onChange={(e) => setFormData({...formData, reportingSettings: {...formData.reportingSettings, includeInBalanceSheet: e.target.checked}})}
+                        onChange={(e) => setFormData({ ...formData, reportingSettings: { ...formData.reportingSettings, includeInBalanceSheet: e.target.checked } })}
                         className="mr-2"
                       />
                       Balance Sheet
@@ -1039,7 +786,7 @@ function AccountModal({ account, accounts, onSave, onClose, activeTab, setActive
                       <input
                         type="checkbox"
                         checked={formData.reportingSettings?.includeInPL}
-                        onChange={(e) => setFormData({...formData, reportingSettings: {...formData.reportingSettings, includeInPL: e.target.checked}})}
+                        onChange={(e) => setFormData({ ...formData, reportingSettings: { ...formData.reportingSettings, includeInPL: e.target.checked } })}
                         className="mr-2"
                       />
                       Profit & Loss
@@ -1048,7 +795,7 @@ function AccountModal({ account, accounts, onSave, onClose, activeTab, setActive
                       <input
                         type="checkbox"
                         checked={formData.reportingSettings?.includeInCashFlow}
-                        onChange={(e) => setFormData({...formData, reportingSettings: {...formData.reportingSettings, includeInCashFlow: e.target.checked}})}
+                        onChange={(e) => setFormData({ ...formData, reportingSettings: { ...formData.reportingSettings, includeInCashFlow: e.target.checked } })}
                         className="mr-2"
                       />
                       Cash Flow Statement
@@ -1066,7 +813,7 @@ function AccountModal({ account, accounts, onSave, onClose, activeTab, setActive
                     type="number"
                     step="0.01"
                     value={formData.balanceInfo?.openingBalance}
-                    onChange={(e) => setFormData({...formData, balanceInfo: {...formData.balanceInfo, openingBalance: Number(e.target.value)}})}
+                    onChange={(e) => setFormData({ ...formData, balanceInfo: { ...formData.balanceInfo, openingBalance: Number(e.target.value) } })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
@@ -1076,7 +823,7 @@ function AccountModal({ account, accounts, onSave, onClose, activeTab, setActive
                     type="number"
                     step="0.01"
                     value={formData.balanceInfo?.currentBalance}
-                    onChange={(e) => setFormData({...formData, balanceInfo: {...formData.balanceInfo, currentBalance: Number(e.target.value)}})}
+                    onChange={(e) => setFormData({ ...formData, balanceInfo: { ...formData.balanceInfo, currentBalance: Number(e.target.value) } })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     readOnly
                   />
@@ -1087,7 +834,7 @@ function AccountModal({ account, accounts, onSave, onClose, activeTab, setActive
                     type="number"
                     step="0.01"
                     value={formData.balanceInfo?.debitBalance}
-                    onChange={(e) => setFormData({...formData, balanceInfo: {...formData.balanceInfo, debitBalance: Number(e.target.value)}})}
+                    onChange={(e) => setFormData({ ...formData, balanceInfo: { ...formData.balanceInfo, debitBalance: Number(e.target.value) } })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     readOnly
                   />
@@ -1098,7 +845,7 @@ function AccountModal({ account, accounts, onSave, onClose, activeTab, setActive
                     type="number"
                     step="0.01"
                     value={formData.balanceInfo?.creditBalance}
-                    onChange={(e) => setFormData({...formData, balanceInfo: {...formData.balanceInfo, creditBalance: Number(e.target.value)}})}
+                    onChange={(e) => setFormData({ ...formData, balanceInfo: { ...formData.balanceInfo, creditBalance: Number(e.target.value) } })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     readOnly
                   />

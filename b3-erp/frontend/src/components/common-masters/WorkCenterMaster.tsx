@@ -1,18 +1,17 @@
-'use client';
-
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import {
   Cpu, Plus, Search, Filter, Edit2, Trash2, MoreVertical,
   Factory, Gauge, Clock, Users, Wrench, Zap, Activity,
   TrendingUp, AlertTriangle, CheckCircle2, XCircle, AlertCircle,
   Calendar, DollarSign, Package, Settings, Shield, BarChart2
 } from 'lucide-react';
+import { manufacturingMastersService, WorkCenter as BackendWorkCenter } from '../../services/manufacturing-masters.service';
 
 interface WorkCenter {
   id: string;
   code: string;
   name: string;
-  type: 'Production' | 'Assembly' | 'Quality' | 'Packaging' | 'Maintenance';
+  type: string;
   department: string;
   location: string;
   capacity: {
@@ -57,7 +56,7 @@ interface WorkCenter {
     environmentControl?: string;
     certifications?: string[];
   };
-  status: 'Active' | 'Inactive' | 'Maintenance' | 'Breakdown';
+  status: string;
   metadata: {
     createdAt: Date;
     updatedAt: Date;
@@ -66,178 +65,78 @@ interface WorkCenter {
   };
 }
 
-const mockWorkCenters: WorkCenter[] = [
-  {
-    id: '1',
-    code: 'WC-PRD-001',
-    name: 'CNC Machining Center',
-    type: 'Production',
-    department: 'Manufacturing',
-    location: 'Factory Floor - Zone A',
-    capacity: {
-      dailyCapacity: 500,
-      unitOfMeasure: 'pieces',
-      shiftCapacity: 250,
-      efficiency: 85,
-      utilization: 78
-    },
-    operations: ['Milling', 'Drilling', 'Boring', 'Tapping'],
-    resources: {
-      machines: 3,
-      operators: 6,
-      helpers: 3,
-      supervisors: 1
-    },
-    performance: {
-      oee: 72,
-      availability: 90,
-      performance: 85,
-      quality: 94,
-      mtbf: 120,
-      mttr: 2
-    },
-    costs: {
-      hourlyRate: 150,
-      setupCost: 500,
-      maintenanceCost: 2000,
-      overheadRate: 25,
-      currency: 'USD'
-    },
-    schedule: {
-      workingHours: '24/7',
-      shifts: ['Morning', 'Evening', 'Night'],
-      maintenanceWindow: 'Sunday 06:00-12:00',
-      plannedDowntime: 4
-    },
-    specifications: {
-      maxWeight: 1000,
-      maxSize: '2000x1000x800mm',
-      powerRequirement: '415V, 3-phase, 50Hz',
-      environmentControl: 'Temperature controlled',
-      certifications: ['ISO 9001', 'ISO 14001']
-    },
-    status: 'Active',
-    metadata: {
-      createdAt: new Date('2023-01-15'),
-      updatedAt: new Date('2024-03-20'),
-      createdBy: 'Admin',
-      updatedBy: 'Production Manager'
-    }
-  },
-  {
-    id: '2',
-    code: 'WC-ASM-001',
-    name: 'Assembly Line 1',
-    type: 'Assembly',
-    department: 'Assembly',
-    location: 'Factory Floor - Zone B',
-    capacity: {
-      dailyCapacity: 1000,
-      unitOfMeasure: 'units',
-      shiftCapacity: 350,
-      efficiency: 92,
-      utilization: 85
-    },
-    operations: ['Component Assembly', 'Testing', 'Calibration'],
-    resources: {
-      machines: 1,
-      operators: 12,
-      helpers: 6,
-      supervisors: 2
-    },
-    performance: {
-      oee: 78,
-      availability: 93,
-      performance: 88,
-      quality: 95,
-      mtbf: 200,
-      mttr: 1.5
-    },
-    costs: {
-      hourlyRate: 100,
-      setupCost: 300,
-      maintenanceCost: 1500,
-      overheadRate: 20,
-      currency: 'USD'
-    },
-    schedule: {
-      workingHours: '16 hours',
-      shifts: ['Morning', 'Evening'],
-      maintenanceWindow: 'Daily 22:00-06:00',
-      plannedDowntime: 2
-    },
-    specifications: {
-      maxWeight: 50,
-      maxSize: '500x500x300mm',
-      powerRequirement: '240V, single-phase',
-      certifications: ['ISO 9001', 'Six Sigma']
-    },
-    status: 'Active',
-    metadata: {
-      createdAt: new Date('2023-02-20'),
-      updatedAt: new Date('2024-03-15'),
-      createdBy: 'Admin',
-      updatedBy: 'Assembly Manager'
-    }
-  },
-  {
-    id: '3',
-    code: 'WC-QC-001',
-    name: 'Quality Control Station',
-    type: 'Quality',
-    department: 'Quality Assurance',
-    location: 'QC Lab',
-    capacity: {
-      dailyCapacity: 200,
-      unitOfMeasure: 'samples',
-      shiftCapacity: 100,
-      efficiency: 95,
-      utilization: 70
-    },
-    operations: ['Inspection', 'Testing', 'Measurement', 'Documentation'],
-    resources: {
-      machines: 5,
-      operators: 4,
-      helpers: 2,
-      supervisors: 1
-    },
-    performance: {
-      oee: 85,
-      availability: 98,
-      performance: 90,
-      quality: 97,
-      mtbf: 500,
-      mttr: 0.5
-    },
-    costs: {
-      hourlyRate: 80,
-      setupCost: 200,
-      maintenanceCost: 1000,
-      overheadRate: 15,
-      currency: 'USD'
-    },
-    schedule: {
-      workingHours: '8 hours',
-      shifts: ['Morning'],
-      maintenanceWindow: 'Weekly maintenance',
-      plannedDowntime: 1
-    },
-    specifications: {
-      environmentControl: 'Clean room, Class 10000',
-      certifications: ['ISO 9001', 'ISO/IEC 17025', 'NADCAP']
-    },
-    status: 'Active',
-    metadata: {
-      createdAt: new Date('2023-03-10'),
-      updatedAt: new Date('2024-02-28'),
-      createdBy: 'Admin',
-      updatedBy: 'Quality Manager'
-    }
-  }
-];
-
 export default function WorkCenterMaster() {
-  const [workCenters, setWorkCenters] = useState<WorkCenter[]>(mockWorkCenters);
+  const [workCenters, setWorkCenters] = useState<WorkCenter[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    fetchWorkCenters();
+  }, []);
+
+  const fetchWorkCenters = async () => {
+    try {
+      setIsLoading(true);
+      const data = await manufacturingMastersService.getAllWorkCenters('1');
+
+      const mapped: WorkCenter[] = data.map((wc: BackendWorkCenter) => ({
+        id: wc.id,
+        code: wc.code,
+        name: wc.name,
+        type: wc.type || 'Production',
+        department: wc.department?.name || 'Manufacturing',
+        location: wc.location || 'N/A',
+        capacity: {
+          dailyCapacity: wc.dailyCapacity || 0,
+          unitOfMeasure: wc.uom?.code || 'pcs',
+          shiftCapacity: (wc.dailyCapacity || 0) / 2,
+          efficiency: wc.efficiency || 0,
+          utilization: 0
+        },
+        operations: (wc as any).operations?.map((op: any) => op.name) || [],
+        resources: {
+          machines: (wc as any).machines?.length || 0,
+          operators: 0,
+          helpers: 0,
+          supervisors: 0
+        },
+        performance: {
+          oee: 0,
+          availability: 0,
+          performance: 0,
+          quality: 0,
+          mtbf: 0,
+          mttr: 0
+        },
+        costs: {
+          hourlyRate: 0,
+          setupCost: 0,
+          maintenanceCost: 0,
+          overheadRate: 0,
+          currency: 'INR'
+        },
+        schedule: {
+          workingHours: '09:00 - 18:00',
+          shifts: ['Standard'],
+          maintenanceWindow: 'Sunday',
+          plannedDowntime: 0
+        },
+        specifications: {},
+        status: wc.status || 'Active',
+        metadata: {
+          createdAt: new Date(),
+          updatedAt: new Date(),
+          createdBy: 'admin',
+          updatedBy: 'admin'
+        }
+      }));
+      setWorkCenters(mapped);
+    } catch (error) {
+      console.error('Error fetching work centers:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const [selectedWorkCenter, setSelectedWorkCenter] = useState<WorkCenter | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
@@ -310,8 +209,8 @@ export default function WorkCenterMaster() {
   const filteredWorkCenters = useMemo(() => {
     return workCenters.filter(wc => {
       const matchesSearch = wc.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           wc.code.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           wc.department.toLowerCase().includes(searchTerm.toLowerCase());
+        wc.code.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        wc.department.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesType = filterType === 'All' || wc.type === filterType;
       const matchesStatus = filterStatus === 'All' || wc.status === filterStatus;
       return matchesSearch && matchesType && matchesStatus;
@@ -496,11 +395,10 @@ export default function WorkCenterMaster() {
                 <button
                   key={tab}
                   onClick={() => setCurrentTab(tab)}
-                  className={`px-4 py-2 font-medium capitalize ${
-                    currentTab === tab
+                  className={`px-4 py-2 font-medium capitalize ${currentTab === tab
                       ? 'text-blue-600 border-b-2 border-blue-600'
                       : 'text-gray-500 hover:text-gray-700'
-                  }`}
+                    }`}
                 >
                   {tab === 'basic' ? 'Basic Info' : tab}
                 </button>
@@ -541,7 +439,7 @@ export default function WorkCenterMaster() {
                         Type *
                       </label>
                       <select defaultValue={selectedWorkCenter?.type || 'Production'}
-                              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
                         <option value="Production">Production</option>
                         <option value="Assembly">Assembly</option>
                         <option value="Quality">Quality</option>
@@ -554,7 +452,7 @@ export default function WorkCenterMaster() {
                         Status
                       </label>
                       <select defaultValue={selectedWorkCenter?.status || 'Active'}
-                              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
                         <option value="Active">Active</option>
                         <option value="Inactive">Inactive</option>
                         <option value="Maintenance">Maintenance</option>
@@ -821,7 +719,7 @@ export default function WorkCenterMaster() {
                         Currency
                       </label>
                       <select defaultValue={selectedWorkCenter?.costs.currency || 'USD'}
-                              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
                         <option value="USD">USD</option>
                         <option value="EUR">EUR</option>
                         <option value="GBP">GBP</option>

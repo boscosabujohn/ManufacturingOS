@@ -1,7 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Plus, Search, Filter, Edit, Trash2, Eye, Tag, Star, DollarSign, Package, Download, Upload, Grid, List, Building2 } from 'lucide-react';
+import { commonMastersService, Brand } from '@/services/common-masters.service';
 
 interface Brand {
   id: string;
@@ -165,20 +166,38 @@ const marketSegments = ['luxury', 'mid-range', 'budget', 'commercial'];
 const origins = ['USA', 'Germany', 'Italy', 'Austria', 'Sweden', 'China', 'Canada', 'Other'];
 
 export default function BrandMaster() {
-  const [brands, setBrands] = useState<Brand[]>(mockBrands);
+  const [brands, setBrands] = useState<Brand[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    loadBrands();
+  }, []);
+
+  const loadBrands = async () => {
+    try {
+      setLoading(true);
+      const data = await commonMastersService.getAllBrands();
+      setBrands(data);
+    } catch (error) {
+      console.error('Failed to load brands:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const [searchTerm, setSearchTerm] = useState('');
   const [filterCategory, setFilterCategory] = useState<string>('all');
   const [filterQuality, setFilterQuality] = useState<string>('all');
   const [filterStatus, setFilterStatus] = useState<string>('all');
   const [showModal, setShowModal] = useState(false);
-  const [editingBrand, setEditingBrand] = useState<Brand | null>(null);
+  const [editingBrand, setEditingBrand] = useState<any | null>(null);
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('list');
   const [activeTab, setActiveTab] = useState('basic');
 
   const filteredBrands = brands.filter(brand => {
     const matchesSearch = brand.brandName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         brand.brandCode.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         brand.manufacturer.toLowerCase().includes(searchTerm.toLowerCase());
+      brand.brandCode.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      brand.manufacturer.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = filterCategory === 'all' || brand.category === filterCategory;
     const matchesQuality = filterQuality === 'all' || brand.qualityRating === filterQuality;
     const matchesStatus = filterStatus === 'all' || brand.status === filterStatus;
@@ -566,11 +585,10 @@ function BrandModal({ brand, onSave, onClose, activeTab, setActiveTab }: BrandMo
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`px-4 py-3 text-sm font-medium border-b-2 ${
-                  activeTab === tab.id
-                    ? 'border-blue-500 text-blue-600'
-                    : 'border-transparent text-gray-500 hover:text-gray-700'
-                }`}
+                className={`px-4 py-3 text-sm font-medium border-b-2 ${activeTab === tab.id
+                  ? 'border-blue-500 text-blue-600'
+                  : 'border-transparent text-gray-500 hover:text-gray-700'
+                  }`}
               >
                 <div className="flex items-center gap-2">
                   <Icon className="w-4 h-4" />
@@ -590,7 +608,7 @@ function BrandModal({ brand, onSave, onClose, activeTab, setActiveTab }: BrandMo
                   <input
                     type="text"
                     value={formData.brandCode}
-                    onChange={(e) => setFormData({...formData, brandCode: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, brandCode: e.target.value })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     required
                   />
@@ -600,7 +618,7 @@ function BrandModal({ brand, onSave, onClose, activeTab, setActiveTab }: BrandMo
                   <input
                     type="text"
                     value={formData.brandName}
-                    onChange={(e) => setFormData({...formData, brandName: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, brandName: e.target.value })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     required
                   />
@@ -609,7 +627,7 @@ function BrandModal({ brand, onSave, onClose, activeTab, setActiveTab }: BrandMo
                   <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
                   <select
                     value={formData.category}
-                    onChange={(e) => setFormData({...formData, category: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, category: e.target.value })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   >
                     <option value="">Select Category</option>
@@ -622,7 +640,7 @@ function BrandModal({ brand, onSave, onClose, activeTab, setActiveTab }: BrandMo
                   <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
                   <select
                     value={formData.status}
-                    onChange={(e) => setFormData({...formData, status: e.target.value as any})}
+                    onChange={(e) => setFormData({ ...formData, status: e.target.value as any })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   >
                     <option value="active">Active</option>
@@ -634,7 +652,7 @@ function BrandModal({ brand, onSave, onClose, activeTab, setActiveTab }: BrandMo
                   <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
                   <textarea
                     value={formData.description}
-                    onChange={(e) => setFormData({...formData, description: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                     rows={3}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
@@ -649,7 +667,7 @@ function BrandModal({ brand, onSave, onClose, activeTab, setActiveTab }: BrandMo
                   <input
                     type="text"
                     value={formData.manufacturer}
-                    onChange={(e) => setFormData({...formData, manufacturer: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, manufacturer: e.target.value })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
@@ -657,7 +675,7 @@ function BrandModal({ brand, onSave, onClose, activeTab, setActiveTab }: BrandMo
                   <label className="block text-sm font-medium text-gray-700 mb-1">Origin</label>
                   <select
                     value={formData.origin}
-                    onChange={(e) => setFormData({...formData, origin: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, origin: e.target.value })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   >
                     <option value="">Select Origin</option>
@@ -671,7 +689,7 @@ function BrandModal({ brand, onSave, onClose, activeTab, setActiveTab }: BrandMo
                   <input
                     type="url"
                     value={formData.website}
-                    onChange={(e) => setFormData({...formData, website: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, website: e.target.value })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
@@ -679,7 +697,7 @@ function BrandModal({ brand, onSave, onClose, activeTab, setActiveTab }: BrandMo
                   <label className="block text-sm font-medium text-gray-700 mb-1">Quality Rating</label>
                   <select
                     value={formData.qualityRating}
-                    onChange={(e) => setFormData({...formData, qualityRating: e.target.value as any})}
+                    onChange={(e) => setFormData({ ...formData, qualityRating: e.target.value as any })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   >
                     {qualityRatings.map(rating => (
@@ -694,12 +712,12 @@ function BrandModal({ brand, onSave, onClose, activeTab, setActiveTab }: BrandMo
                       type="number"
                       placeholder="Period"
                       value={formData.warranty.period}
-                      onChange={(e) => setFormData({...formData, warranty: {...formData.warranty, period: Number(e.target.value)}})}
+                      onChange={(e) => setFormData({ ...formData, warranty: { ...formData.warranty, period: Number(e.target.value) } })}
                       className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     />
                     <select
                       value={formData.warranty.unit}
-                      onChange={(e) => setFormData({...formData, warranty: {...formData.warranty, unit: e.target.value as any}})}
+                      onChange={(e) => setFormData({ ...formData, warranty: { ...formData.warranty, unit: e.target.value as any } })}
                       className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     >
                       <option value="months">Months</option>
@@ -709,7 +727,7 @@ function BrandModal({ brand, onSave, onClose, activeTab, setActiveTab }: BrandMo
                       type="text"
                       placeholder="Terms"
                       value={formData.warranty.terms}
-                      onChange={(e) => setFormData({...formData, warranty: {...formData.warranty, terms: e.target.value}})}
+                      onChange={(e) => setFormData({ ...formData, warranty: { ...formData.warranty, terms: e.target.value } })}
                       className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     />
                   </div>
@@ -724,7 +742,7 @@ function BrandModal({ brand, onSave, onClose, activeTab, setActiveTab }: BrandMo
                   <input
                     type="number"
                     value={formData.priceRange.min}
-                    onChange={(e) => setFormData({...formData, priceRange: {...formData.priceRange, min: Number(e.target.value)}})}
+                    onChange={(e) => setFormData({ ...formData, priceRange: { ...formData.priceRange, min: Number(e.target.value) } })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
@@ -733,7 +751,7 @@ function BrandModal({ brand, onSave, onClose, activeTab, setActiveTab }: BrandMo
                   <input
                     type="number"
                     value={formData.priceRange.max}
-                    onChange={(e) => setFormData({...formData, priceRange: {...formData.priceRange, max: Number(e.target.value)}})}
+                    onChange={(e) => setFormData({ ...formData, priceRange: { ...formData.priceRange, max: Number(e.target.value) } })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
@@ -741,7 +759,7 @@ function BrandModal({ brand, onSave, onClose, activeTab, setActiveTab }: BrandMo
                   <label className="block text-sm font-medium text-gray-700 mb-1">Currency</label>
                   <select
                     value={formData.priceRange.currency}
-                    onChange={(e) => setFormData({...formData, priceRange: {...formData.priceRange, currency: e.target.value}})}
+                    onChange={(e) => setFormData({ ...formData, priceRange: { ...formData.priceRange, currency: e.target.value } })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   >
                     <option value="USD">USD</option>
@@ -754,7 +772,7 @@ function BrandModal({ brand, onSave, onClose, activeTab, setActiveTab }: BrandMo
                   <label className="block text-sm font-medium text-gray-700 mb-1">Market Segment</label>
                   <select
                     value={formData.marketSegment}
-                    onChange={(e) => setFormData({...formData, marketSegment: e.target.value as any})}
+                    onChange={(e) => setFormData({ ...formData, marketSegment: e.target.value as any })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   >
                     {marketSegments.map(segment => (
@@ -772,7 +790,7 @@ function BrandModal({ brand, onSave, onClose, activeTab, setActiveTab }: BrandMo
                   <input
                     type="text"
                     value={formData.contactInfo.salesRep}
-                    onChange={(e) => setFormData({...formData, contactInfo: {...formData.contactInfo, salesRep: e.target.value}})}
+                    onChange={(e) => setFormData({ ...formData, contactInfo: { ...formData.contactInfo, salesRep: e.target.value } })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
@@ -781,7 +799,7 @@ function BrandModal({ brand, onSave, onClose, activeTab, setActiveTab }: BrandMo
                   <input
                     type="tel"
                     value={formData.contactInfo.phone}
-                    onChange={(e) => setFormData({...formData, contactInfo: {...formData.contactInfo, phone: e.target.value}})}
+                    onChange={(e) => setFormData({ ...formData, contactInfo: { ...formData.contactInfo, phone: e.target.value } })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
@@ -790,7 +808,7 @@ function BrandModal({ brand, onSave, onClose, activeTab, setActiveTab }: BrandMo
                   <input
                     type="email"
                     value={formData.contactInfo.email}
-                    onChange={(e) => setFormData({...formData, contactInfo: {...formData.contactInfo, email: e.target.value}})}
+                    onChange={(e) => setFormData({ ...formData, contactInfo: { ...formData.contactInfo, email: e.target.value } })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
@@ -799,7 +817,7 @@ function BrandModal({ brand, onSave, onClose, activeTab, setActiveTab }: BrandMo
                   <input
                     type="number"
                     value={formData.salesInfo.popularityRank}
-                    onChange={(e) => setFormData({...formData, salesInfo: {...formData.salesInfo, popularityRank: Number(e.target.value)}})}
+                    onChange={(e) => setFormData({ ...formData, salesInfo: { ...formData.salesInfo, popularityRank: Number(e.target.value) } })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>

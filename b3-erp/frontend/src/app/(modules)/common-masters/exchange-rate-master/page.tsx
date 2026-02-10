@@ -4,10 +4,28 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { Plus, Search, Download, Filter, X, DollarSign, TrendingUp, RefreshCw, Clock, AlertTriangle, CheckCircle, XCircle, AlertCircle } from 'lucide-react';
 import { DataTable, Column } from '@/components/ui/DataTable';
 import { StatusBadge } from '@/components/ui/StatusBadge';
-import { mockExchangeRates, ExchangeRate, getExchangeRateStats } from '@/data/common-masters/exchange-rates';
+import { commonMastersService } from '@/services/common-masters.service';
+import { ExchangeRate, getExchangeRateStats } from '@/data/common-masters/exchange-rates';
 
 export default function ExchangeRateMasterPage() {
-  const [exchangeRates, setExchangeRates] = useState<ExchangeRate[]>(mockExchangeRates);
+  const [exchangeRates, setExchangeRates] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    loadExchangeRates();
+  }, []);
+
+  const loadExchangeRates = async () => {
+    try {
+      setLoading(true);
+      const data = await commonMastersService.getAllExchangeRates();
+      setExchangeRates(data);
+    } catch (error) {
+      console.error('Failed to load exchange rates:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
   const [searchTerm, setSearchTerm] = useState('');
   const [filterSource, setFilterSource] = useState<string>('all');
   const [filterCurrency, setFilterCurrency] = useState<string>('all');
@@ -353,17 +371,17 @@ export default function ExchangeRateMasterPage() {
       {/* Toast Notification */}
       {toast && (
         <div className="fixed top-4 right-4 z-50 flex items-center gap-2 bg-white px-4 py-3 rounded-lg shadow-lg border-l-4 animate-slide-in"
-             style={{ 
-               borderLeftColor: toast.type === 'success' ? '#10b981' : toast.type === 'error' ? '#ef4444' : '#3b82f6',
-               minWidth: '300px'
-             }}>
+          style={{
+            borderLeftColor: toast.type === 'success' ? '#10b981' : toast.type === 'error' ? '#ef4444' : '#3b82f6',
+            minWidth: '300px'
+          }}>
           {toast.type === 'success' && <CheckCircle className="w-5 h-5 text-green-500" />}
           {toast.type === 'error' && <XCircle className="w-5 h-5 text-red-500" />}
           {toast.type === 'info' && <AlertCircle className="w-5 h-5 text-blue-500" />}
           <span className="text-sm text-gray-700">{toast.message}</span>
         </div>
       )}
-      
+
       <div className="flex-none p-3 pb-4 space-y-2">
         <div className="flex items-center justify-between">
           <div>
@@ -373,30 +391,30 @@ export default function ExchangeRateMasterPage() {
             </h1>
             <p className="text-gray-600 mt-1">Manage currency exchange rates and conversions</p>
           </div>
-        <div className="flex items-center gap-3">
-          <button
-            onClick={handleRefreshAll}
-            className="inline-flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-          >
-            <RefreshCw className="w-4 h-4" />
-            <span>Refresh All</span>
-          </button>
-          <button
-            onClick={handleExport}
-            className="inline-flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-          >
-            <Download className="w-4 h-4" />
-            <span>Export</span>
-          </button>
-          <button
-            onClick={handleAddRate}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors"
-          >
-            <Plus className="w-4 h-4" />
-            <span>Add Rate</span>
-          </button>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={handleRefreshAll}
+              className="inline-flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+            >
+              <RefreshCw className="w-4 h-4" />
+              <span>Refresh All</span>
+            </button>
+            <button
+              onClick={handleExport}
+              className="inline-flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+            >
+              <Download className="w-4 h-4" />
+              <span>Export</span>
+            </button>
+            <button
+              onClick={handleAddRate}
+              className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors"
+            >
+              <Plus className="w-4 h-4" />
+              <span>Add Rate</span>
+            </button>
+          </div>
         </div>
-      </div>
 
         <div className="grid grid-cols-1 md:grid-cols-6 gap-2">
           <div className="bg-white rounded-lg border border-gray-200 p-3">
@@ -407,27 +425,27 @@ export default function ExchangeRateMasterPage() {
             <div className="text-sm text-gray-600 mb-1">Active Rates</div>
             <div className="text-2xl font-bold text-green-600">{stats.active}</div>
           </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-3">
-          <div className="text-sm text-gray-600 mb-1">Currency Pairs</div>
-          <div className="text-2xl font-bold text-blue-600">{stats.currencyPairs}</div>
-        </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-3">
-          <div className="text-sm text-gray-600 mb-1 flex items-center gap-1">
-            <RefreshCw className="w-3 h-3" /> Auto Update
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <div className="text-sm text-gray-600 mb-1">Currency Pairs</div>
+            <div className="text-2xl font-bold text-blue-600">{stats.currencyPairs}</div>
           </div>
-          <div className="text-2xl font-bold text-purple-600">{stats.autoUpdate}</div>
-        </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-3">
-          <div className="text-sm text-gray-600 mb-1">Total Transactions</div>
-          <div className="text-2xl font-bold text-orange-600">{stats.totalTransactions}</div>
-        </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-3">
-          <div className="text-sm text-gray-600 mb-1 flex items-center gap-1">
-            <TrendingUp className="w-3 h-3" /> Amount Converted
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <div className="text-sm text-gray-600 mb-1 flex items-center gap-1">
+              <RefreshCw className="w-3 h-3" /> Auto Update
+            </div>
+            <div className="text-2xl font-bold text-purple-600">{stats.autoUpdate}</div>
           </div>
-          <div className="text-2xl font-bold text-emerald-600">₹{(stats.totalAmountConverted / 1000000).toFixed(1)}M</div>
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <div className="text-sm text-gray-600 mb-1">Total Transactions</div>
+            <div className="text-2xl font-bold text-orange-600">{stats.totalTransactions}</div>
+          </div>
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <div className="text-sm text-gray-600 mb-1 flex items-center gap-1">
+              <TrendingUp className="w-3 h-3" /> Amount Converted
+            </div>
+            <div className="text-2xl font-bold text-emerald-600">₹{(stats.totalAmountConverted / 1000000).toFixed(1)}M</div>
+          </div>
         </div>
-      </div>
       </div>
 
       <div className="flex-1 overflow-hidden px-6">
@@ -446,9 +464,8 @@ export default function ExchangeRateMasterPage() {
               </div>
               <button
                 onClick={() => setShowFilters(!showFilters)}
-                className={`inline-flex items-center gap-2 px-4 py-2 border rounded-lg transition-colors ${
-                  showFilters ? 'bg-emerald-50 border-emerald-300 text-emerald-700' : 'border-gray-300 hover:bg-gray-50'
-                }`}
+                className={`inline-flex items-center gap-2 px-4 py-2 border rounded-lg transition-colors ${showFilters ? 'bg-emerald-50 border-emerald-300 text-emerald-700' : 'border-gray-300 hover:bg-gray-50'
+                  }`}
               >
                 <Filter className="w-4 h-4" />
                 <span>Filters</span>
@@ -468,60 +485,60 @@ export default function ExchangeRateMasterPage() {
                 </button>
               )}
             </div>
-        {showFilters && (
-          <div className="mt-4 pt-4 border-t border-gray-200 grid grid-cols-1 md:grid-cols-2 gap-2">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Source
-              </label>
-              <select
-                value={filterSource}
-                onChange={(e) => setFilterSource(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
-              >
-                <option value="all">All Sources</option>
-                <option value="rbi">RBI</option>
-                <option value="forex_api">Forex API</option>
-                <option value="bank">Bank</option>
-                <option value="manual">Manual</option>
-                <option value="system">System</option>
-              </select>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Currency
-              </label>
-              <select
-                value={filterCurrency}
-                onChange={(e) => setFilterCurrency(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
-              >
-                <option value="all">All Currencies</option>
-                <option value="USD">USD - US Dollar</option>
-                <option value="EUR">EUR - Euro</option>
-                <option value="GBP">GBP - British Pound</option>
-                <option value="SGD">SGD - Singapore Dollar</option>
-                <option value="AED">AED - UAE Dirham</option>
-                <option value="JPY">JPY - Japanese Yen</option>
-                <option value="CNY">CNY - Chinese Yuan</option>
-                <option value="INR">INR - Indian Rupee</option>
-              </select>
-            </div>
-          </div>
-        )}
+            {showFilters && (
+              <div className="mt-4 pt-4 border-t border-gray-200 grid grid-cols-1 md:grid-cols-2 gap-2">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Source
+                  </label>
+                  <select
+                    value={filterSource}
+                    onChange={(e) => setFilterSource(e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                  >
+                    <option value="all">All Sources</option>
+                    <option value="rbi">RBI</option>
+                    <option value="forex_api">Forex API</option>
+                    <option value="bank">Bank</option>
+                    <option value="manual">Manual</option>
+                    <option value="system">System</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Currency
+                  </label>
+                  <select
+                    value={filterCurrency}
+                    onChange={(e) => setFilterCurrency(e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                  >
+                    <option value="all">All Currencies</option>
+                    <option value="USD">USD - US Dollar</option>
+                    <option value="EUR">EUR - Euro</option>
+                    <option value="GBP">GBP - British Pound</option>
+                    <option value="SGD">SGD - Singapore Dollar</option>
+                    <option value="AED">AED - UAE Dirham</option>
+                    <option value="JPY">JPY - Japanese Yen</option>
+                    <option value="CNY">CNY - Chinese Yuan</option>
+                    <option value="INR">INR - Indian Rupee</option>
+                  </select>
+                </div>
+              </div>
+            )}
           </div>
 
           <div className="flex-1 overflow-auto">
             <DataTable
               data={filteredData}
               columns={columns}
-          pagination={{
-            enabled: true,
-            pageSize: 10
-          }}
-          sorting={{
-            enabled: true,
-            defaultSort: { column: 'pair', direction: 'asc' }
+              pagination={{
+                enabled: true,
+                pageSize: 10
+              }}
+              sorting={{
+                enabled: true,
+                defaultSort: { column: 'pair', direction: 'asc' }
               }}
               emptyMessage="No exchange rates found"
               emptyDescription="Try adjusting your search or filters to find what you're looking for."

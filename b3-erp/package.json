@@ -1,0 +1,15 @@
+{
+  "name": "manufacturing-os-erp",
+  "version": "1.0.0",
+  "description": "Manufacturing OS ERP Root",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently -n \"BACKEND,FRONTEND\" -c \"blue,green\" \"cd backend && npm run start:dev\" \"cd frontend && npm run dev\"",
+    "start": "npm run dev",
+    "docker:up": "docker-compose up -d postgres redis",
+    "setup": "make setup"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

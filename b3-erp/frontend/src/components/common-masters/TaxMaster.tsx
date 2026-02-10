@@ -1,219 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Plus, Search, Filter, Edit, Trash2, Eye, Calculator, Percent, FileText, Globe, TrendingUp, Download, Upload, Grid, List } from 'lucide-react';
-
-interface Tax {
-  id: string;
-  taxCode: string;
-  taxName: string;
-  taxType: 'sales' | 'purchase' | 'service' | 'vat' | 'gst' | 'excise' | 'custom' | 'withholding';
-  status: 'active' | 'inactive';
-  description: string;
-  rate: number;
-  rateType: 'percentage' | 'fixed';
-  taxComponents: {
-    componentName: string;
-    rate: number;
-    account: string;
-  }[];
-  applicability: {
-    applicableOn: 'goods' | 'services' | 'both';
-    territory: string[];
-    customerType: string[];
-    itemCategory: string[];
-    minAmount?: number;
-    maxAmount?: number;
-  };
-  calculation: {
-    method: 'exclusive' | 'inclusive';
-    roundingMethod: 'round' | 'round_up' | 'round_down';
-    decimalPlaces: number;
-    taxOnTax: boolean;
-    sequence: number;
-  };
-  compliance: {
-    taxRegistrationNumber?: string;
-    hsnCode?: string;
-    sacCode?: string;
-    reportingRequired: boolean;
-    filingFrequency: 'monthly' | 'quarterly' | 'yearly' | 'none';
-  };
-  validity: {
-    effectiveFrom: string;
-    effectiveTo?: string;
-    isDefault: boolean;
-  };
-  accounting: {
-    salesTaxAccount: string;
-    purchaseTaxAccount: string;
-    taxPayableAccount: string;
-    taxReceivableAccount: string;
-  };
-  statistics: {
-    totalTransactions: number;
-    totalTaxCollected: number;
-    totalTaxPaid: number;
-    lastApplied: string;
-  };
-  createdAt: string;
-  updatedAt: string;
-}
-
-const mockTaxes: Tax[] = [
-  {
-    id: '1',
-    taxCode: 'GST-18',
-    taxName: 'Goods and Services Tax 18%',
-    taxType: 'gst',
-    status: 'active',
-    description: 'Standard GST rate for most goods and services',
-    rate: 18,
-    rateType: 'percentage',
-    taxComponents: [
-      { componentName: 'CGST', rate: 9, account: '2001-001' },
-      { componentName: 'SGST', rate: 9, account: '2001-002' }
-    ],
-    applicability: {
-      applicableOn: 'both',
-      territory: ['All States'],
-      customerType: ['B2B', 'B2C'],
-      itemCategory: ['General'],
-      minAmount: 0
-    },
-    calculation: {
-      method: 'exclusive',
-      roundingMethod: 'round',
-      decimalPlaces: 2,
-      taxOnTax: false,
-      sequence: 1
-    },
-    compliance: {
-      taxRegistrationNumber: 'GSTIN123456789',
-      reportingRequired: true,
-      filingFrequency: 'monthly'
-    },
-    validity: {
-      effectiveFrom: '2023-04-01',
-      isDefault: true
-    },
-    accounting: {
-      salesTaxAccount: '2001-001',
-      purchaseTaxAccount: '2001-002',
-      taxPayableAccount: '2001-003',
-      taxReceivableAccount: '1002-001'
-    },
-    statistics: {
-      totalTransactions: 1250,
-      totalTaxCollected: 450000,
-      totalTaxPaid: 280000,
-      lastApplied: '2024-01-15'
-    },
-    createdAt: '2023-04-01',
-    updatedAt: '2024-01-15'
-  },
-  {
-    id: '2',
-    taxCode: 'GST-5',
-    taxName: 'Goods and Services Tax 5%',
-    taxType: 'gst',
-    status: 'active',
-    description: 'Reduced GST rate for essential items',
-    rate: 5,
-    rateType: 'percentage',
-    taxComponents: [
-      { componentName: 'CGST', rate: 2.5, account: '2001-004' },
-      { componentName: 'SGST', rate: 2.5, account: '2001-005' }
-    ],
-    applicability: {
-      applicableOn: 'goods',
-      territory: ['All States'],
-      customerType: ['B2B', 'B2C'],
-      itemCategory: ['Essential', 'Food'],
-      minAmount: 0
-    },
-    calculation: {
-      method: 'exclusive',
-      roundingMethod: 'round',
-      decimalPlaces: 2,
-      taxOnTax: false,
-      sequence: 1
-    },
-    compliance: {
-      taxRegistrationNumber: 'GSTIN123456789',
-      reportingRequired: true,
-      filingFrequency: 'monthly'
-    },
-    validity: {
-      effectiveFrom: '2023-04-01',
-      isDefault: false
-    },
-    accounting: {
-      salesTaxAccount: '2001-004',
-      purchaseTaxAccount: '2001-005',
-      taxPayableAccount: '2001-006',
-      taxReceivableAccount: '1002-002'
-    },
-    statistics: {
-      totalTransactions: 850,
-      totalTaxCollected: 125000,
-      totalTaxPaid: 95000,
-      lastApplied: '2024-01-14'
-    },
-    createdAt: '2023-04-01',
-    updatedAt: '2024-01-14'
-  },
-  {
-    id: '3',
-    taxCode: 'IGST-18',
-    taxName: 'Integrated GST 18%',
-    taxType: 'gst',
-    status: 'active',
-    description: 'Inter-state GST for goods and services',
-    rate: 18,
-    rateType: 'percentage',
-    taxComponents: [
-      { componentName: 'IGST', rate: 18, account: '2001-007' }
-    ],
-    applicability: {
-      applicableOn: 'both',
-      territory: ['Inter-State'],
-      customerType: ['B2B', 'B2C'],
-      itemCategory: ['General'],
-      minAmount: 0
-    },
-    calculation: {
-      method: 'exclusive',
-      roundingMethod: 'round',
-      decimalPlaces: 2,
-      taxOnTax: false,
-      sequence: 1
-    },
-    compliance: {
-      taxRegistrationNumber: 'GSTIN123456789',
-      reportingRequired: true,
-      filingFrequency: 'monthly'
-    },
-    validity: {
-      effectiveFrom: '2023-04-01',
-      isDefault: false
-    },
-    accounting: {
-      salesTaxAccount: '2001-007',
-      purchaseTaxAccount: '2001-008',
-      taxPayableAccount: '2001-009',
-      taxReceivableAccount: '1002-003'
-    },
-    statistics: {
-      totalTransactions: 450,
-      totalTaxCollected: 180000,
-      totalTaxPaid: 120000,
-      lastApplied: '2024-01-13'
-    },
-    createdAt: '2023-04-01',
-    updatedAt: '2024-01-13'
-  }
-];
+import { commonMastersService, Tax } from '@/services/common-masters.service';
 
 const taxTypes = ['sales', 'purchase', 'service', 'vat', 'gst', 'excise', 'custom', 'withholding'];
 const rateTypes = ['percentage', 'fixed'];
@@ -224,7 +13,24 @@ const territories = ['All States', 'Inter-State', 'Local', 'International'];
 const customerTypes = ['B2B', 'B2C', 'Government', 'Export'];
 
 export default function TaxMaster() {
-  const [taxes, setTaxes] = useState<Tax[]>(mockTaxes);
+  const [taxes, setTaxes] = useState<Tax[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchTaxes();
+  }, []);
+
+  const fetchTaxes = async () => {
+    try {
+      setLoading(true);
+      const data = await commonMastersService.getAllTaxes();
+      setTaxes(data);
+    } catch (error) {
+      console.error('Failed to fetch taxes:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
   const [searchTerm, setSearchTerm] = useState('');
   const [filterType, setFilterType] = useState<string>('all');
   const [filterStatus, setFilterStatus] = useState<string>('all');
@@ -235,8 +41,8 @@ export default function TaxMaster() {
 
   const filteredTaxes = taxes.filter(tax => {
     const matchesSearch = tax.taxName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         tax.taxCode.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         tax.description.toLowerCase().includes(searchTerm.toLowerCase());
+      tax.taxCode.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      tax.description.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesType = filterType === 'all' || tax.taxType === filterType;
     const matchesStatus = filterStatus === 'all' || tax.status === filterStatus;
 
@@ -678,11 +484,10 @@ function TaxModal({ tax, onSave, onClose, activeTab, setActiveTab }: TaxModalPro
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`px-4 py-3 text-sm font-medium border-b-2 whitespace-nowrap ${
-                  activeTab === tab.id
+                className={`px-4 py-3 text-sm font-medium border-b-2 whitespace-nowrap ${activeTab === tab.id
                     ? 'border-blue-500 text-blue-600'
                     : 'border-transparent text-gray-500 hover:text-gray-700'
-                }`}
+                  }`}
               >
                 <div className="flex items-center gap-2">
                   <Icon className="w-4 h-4" />
@@ -702,7 +507,7 @@ function TaxModal({ tax, onSave, onClose, activeTab, setActiveTab }: TaxModalPro
                   <input
                     type="text"
                     value={formData.taxCode}
-                    onChange={(e) => setFormData({...formData, taxCode: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, taxCode: e.target.value })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     required
                   />
@@ -712,7 +517,7 @@ function TaxModal({ tax, onSave, onClose, activeTab, setActiveTab }: TaxModalPro
                   <input
                     type="text"
                     value={formData.taxName}
-                    onChange={(e) => setFormData({...formData, taxName: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, taxName: e.target.value })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     required
                   />
@@ -721,7 +526,7 @@ function TaxModal({ tax, onSave, onClose, activeTab, setActiveTab }: TaxModalPro
                   <label className="block text-sm font-medium text-gray-700 mb-1">Tax Type</label>
                   <select
                     value={formData.taxType}
-                    onChange={(e) => setFormData({...formData, taxType: e.target.value as any})}
+                    onChange={(e) => setFormData({ ...formData, taxType: e.target.value as any })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   >
                     {taxTypes.map(type => (
@@ -733,7 +538,7 @@ function TaxModal({ tax, onSave, onClose, activeTab, setActiveTab }: TaxModalPro
                   <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
                   <select
                     value={formData.status}
-                    onChange={(e) => setFormData({...formData, status: e.target.value as any})}
+                    onChange={(e) => setFormData({ ...formData, status: e.target.value as any })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   >
                     <option value="active">Active</option>
@@ -746,7 +551,7 @@ function TaxModal({ tax, onSave, onClose, activeTab, setActiveTab }: TaxModalPro
                     type="number"
                     step="0.01"
                     value={formData.rate}
-                    onChange={(e) => setFormData({...formData, rate: Number(e.target.value)})}
+                    onChange={(e) => setFormData({ ...formData, rate: Number(e.target.value) })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     required
                   />
@@ -755,7 +560,7 @@ function TaxModal({ tax, onSave, onClose, activeTab, setActiveTab }: TaxModalPro
                   <label className="block text-sm font-medium text-gray-700 mb-1">Rate Type</label>
                   <select
                     value={formData.rateType}
-                    onChange={(e) => setFormData({...formData, rateType: e.target.value as any})}
+                    onChange={(e) => setFormData({ ...formData, rateType: e.target.value as any })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   >
                     {rateTypes.map(type => (
@@ -768,7 +573,7 @@ function TaxModal({ tax, onSave, onClose, activeTab, setActiveTab }: TaxModalPro
                   <input
                     type="date"
                     value={formData.validity.effectiveFrom}
-                    onChange={(e) => setFormData({...formData, validity: {...formData.validity, effectiveFrom: e.target.value}})}
+                    onChange={(e) => setFormData({ ...formData, validity: { ...formData.validity, effectiveFrom: e.target.value } })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     required
                   />
@@ -778,7 +583,7 @@ function TaxModal({ tax, onSave, onClose, activeTab, setActiveTab }: TaxModalPro
                   <input
                     type="date"
                     value={formData.validity.effectiveTo}
-                    onChange={(e) => setFormData({...formData, validity: {...formData.validity, effectiveTo: e.target.value}})}
+                    onChange={(e) => setFormData({ ...formData, validity: { ...formData.validity, effectiveTo: e.target.value } })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
@@ -786,7 +591,7 @@ function TaxModal({ tax, onSave, onClose, activeTab, setActiveTab }: TaxModalPro
                   <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
                   <textarea
                     value={formData.description}
-                    onChange={(e) => setFormData({...formData, description: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                     rows={3}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
@@ -796,7 +601,7 @@ function TaxModal({ tax, onSave, onClose, activeTab, setActiveTab }: TaxModalPro
                     <input
                       type="checkbox"
                       checked={formData.validity.isDefault}
-                      onChange={(e) => setFormData({...formData, validity: {...formData.validity, isDefault: e.target.checked}})}
+                      onChange={(e) => setFormData({ ...formData, validity: { ...formData.validity, isDefault: e.target.checked } })}
                       className="mr-2"
                     />
                     Set as Default Tax
@@ -832,7 +637,7 @@ function TaxModal({ tax, onSave, onClose, activeTab, setActiveTab }: TaxModalPro
                     type="text"
                     placeholder="Component Name"
                     value={newComponent.componentName}
-                    onChange={(e) => setNewComponent({...newComponent, componentName: e.target.value})}
+                    onChange={(e) => setNewComponent({ ...newComponent, componentName: e.target.value })}
                     className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                   <input
@@ -840,7 +645,7 @@ function TaxModal({ tax, onSave, onClose, activeTab, setActiveTab }: TaxModalPro
                     placeholder="Rate (%)"
                     step="0.01"
                     value={newComponent.rate}
-                    onChange={(e) => setNewComponent({...newComponent, rate: Number(e.target.value)})}
+                    onChange={(e) => setNewComponent({ ...newComponent, rate: Number(e.target.value) })}
                     className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                   <div className="flex gap-2">
@@ -848,7 +653,7 @@ function TaxModal({ tax, onSave, onClose, activeTab, setActiveTab }: TaxModalPro
                       type="text"
                       placeholder="Account Code"
                       value={newComponent.account}
-                      onChange={(e) => setNewComponent({...newComponent, account: e.target.value})}
+                      onChange={(e) => setNewComponent({ ...newComponent, account: e.target.value })}
                       className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     />
                     <button
@@ -869,7 +674,7 @@ function TaxModal({ tax, onSave, onClose, activeTab, setActiveTab }: TaxModalPro
                   <label className="block text-sm font-medium text-gray-700 mb-1">Applicable On</label>
                   <select
                     value={formData.applicability.applicableOn}
-                    onChange={(e) => setFormData({...formData, applicability: {...formData.applicability, applicableOn: e.target.value as any}})}
+                    onChange={(e) => setFormData({ ...formData, applicability: { ...formData.applicability, applicableOn: e.target.value as any } })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   >
                     <option value="goods">Goods</option>
@@ -890,7 +695,7 @@ function TaxModal({ tax, onSave, onClose, activeTab, setActiveTab }: TaxModalPro
                             const terr = e.target.checked
                               ? [...formData.applicability.territory, territory]
                               : formData.applicability.territory.filter(t => t !== territory);
-                            setFormData({...formData, applicability: {...formData.applicability, territory: terr}});
+                            setFormData({ ...formData, applicability: { ...formData.applicability, territory: terr } });
                           }}
                           className="mr-2"
                         />
@@ -912,7 +717,7 @@ function TaxModal({ tax, onSave, onClose, activeTab, setActiveTab }: TaxModalPro
                             const types = e.target.checked
                               ? [...formData.applicability.customerType, type]
                               : formData.applicability.customerType.filter(t => t !== type);
-                            setFormData({...formData, applicability: {...formData.applicability, customerType: types}});
+                            setFormData({ ...formData, applicability: { ...formData.applicability, customerType: types } });
                           }}
                           className="mr-2"
                         />
@@ -928,7 +733,7 @@ function TaxModal({ tax, onSave, onClose, activeTab, setActiveTab }: TaxModalPro
                     <input
                       type="number"
                       value={formData.applicability.minAmount}
-                      onChange={(e) => setFormData({...formData, applicability: {...formData.applicability, minAmount: Number(e.target.value)}})}
+                      onChange={(e) => setFormData({ ...formData, applicability: { ...formData.applicability, minAmount: Number(e.target.value) } })}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     />
                   </div>
@@ -937,7 +742,7 @@ function TaxModal({ tax, onSave, onClose, activeTab, setActiveTab }: TaxModalPro
                     <input
                       type="number"
                       value={formData.applicability.maxAmount || ''}
-                      onChange={(e) => setFormData({...formData, applicability: {...formData.applicability, maxAmount: e.target.value ? Number(e.target.value) : undefined}})}
+                      onChange={(e) => setFormData({ ...formData, applicability: { ...formData.applicability, maxAmount: e.target.value ? Number(e.target.value) : undefined } })}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     />
                   </div>
@@ -951,7 +756,7 @@ function TaxModal({ tax, onSave, onClose, activeTab, setActiveTab }: TaxModalPro
                   <label className="block text-sm font-medium text-gray-700 mb-1">Calculation Method</label>
                   <select
                     value={formData.calculation.method}
-                    onChange={(e) => setFormData({...formData, calculation: {...formData.calculation, method: e.target.value as any}})}
+                    onChange={(e) => setFormData({ ...formData, calculation: { ...formData.calculation, method: e.target.value as any } })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   >
                     {calculationMethods.map(method => (
@@ -963,7 +768,7 @@ function TaxModal({ tax, onSave, onClose, activeTab, setActiveTab }: TaxModalPro
                   <label className="block text-sm font-medium text-gray-700 mb-1">Rounding Method</label>
                   <select
                     value={formData.calculation.roundingMethod}
-                    onChange={(e) => setFormData({...formData, calculation: {...formData.calculation, roundingMethod: e.target.value as any}})}
+                    onChange={(e) => setFormData({ ...formData, calculation: { ...formData.calculation, roundingMethod: e.target.value as any } })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   >
                     {roundingMethods.map(method => (
@@ -978,7 +783,7 @@ function TaxModal({ tax, onSave, onClose, activeTab, setActiveTab }: TaxModalPro
                     min="0"
                     max="4"
                     value={formData.calculation.decimalPlaces}
-                    onChange={(e) => setFormData({...formData, calculation: {...formData.calculation, decimalPlaces: Number(e.target.value)}})}
+                    onChange={(e) => setFormData({ ...formData, calculation: { ...formData.calculation, decimalPlaces: Number(e.target.value) } })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
@@ -988,7 +793,7 @@ function TaxModal({ tax, onSave, onClose, activeTab, setActiveTab }: TaxModalPro
                     type="number"
                     min="1"
                     value={formData.calculation.sequence}
-                    onChange={(e) => setFormData({...formData, calculation: {...formData.calculation, sequence: Number(e.target.value)}})}
+                    onChange={(e) => setFormData({ ...formData, calculation: { ...formData.calculation, sequence: Number(e.target.value) } })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
@@ -997,7 +802,7 @@ function TaxModal({ tax, onSave, onClose, activeTab, setActiveTab }: TaxModalPro
                     <input
                       type="checkbox"
                       checked={formData.calculation.taxOnTax}
-                      onChange={(e) => setFormData({...formData, calculation: {...formData.calculation, taxOnTax: e.target.checked}})}
+                      onChange={(e) => setFormData({ ...formData, calculation: { ...formData.calculation, taxOnTax: e.target.checked } })}
                       className="mr-2"
                     />
                     Calculate Tax on Tax
@@ -1013,7 +818,7 @@ function TaxModal({ tax, onSave, onClose, activeTab, setActiveTab }: TaxModalPro
                   <input
                     type="text"
                     value={formData.compliance.taxRegistrationNumber}
-                    onChange={(e) => setFormData({...formData, compliance: {...formData.compliance, taxRegistrationNumber: e.target.value}})}
+                    onChange={(e) => setFormData({ ...formData, compliance: { ...formData.compliance, taxRegistrationNumber: e.target.value } })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
@@ -1022,7 +827,7 @@ function TaxModal({ tax, onSave, onClose, activeTab, setActiveTab }: TaxModalPro
                   <input
                     type="text"
                     value={formData.compliance.hsnCode}
-                    onChange={(e) => setFormData({...formData, compliance: {...formData.compliance, hsnCode: e.target.value}})}
+                    onChange={(e) => setFormData({ ...formData, compliance: { ...formData.compliance, hsnCode: e.target.value } })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
@@ -1031,7 +836,7 @@ function TaxModal({ tax, onSave, onClose, activeTab, setActiveTab }: TaxModalPro
                   <input
                     type="text"
                     value={formData.compliance.sacCode}
-                    onChange={(e) => setFormData({...formData, compliance: {...formData.compliance, sacCode: e.target.value}})}
+                    onChange={(e) => setFormData({ ...formData, compliance: { ...formData.compliance, sacCode: e.target.value } })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
@@ -1039,7 +844,7 @@ function TaxModal({ tax, onSave, onClose, activeTab, setActiveTab }: TaxModalPro
                   <label className="block text-sm font-medium text-gray-700 mb-1">Filing Frequency</label>
                   <select
                     value={formData.compliance.filingFrequency}
-                    onChange={(e) => setFormData({...formData, compliance: {...formData.compliance, filingFrequency: e.target.value as any}})}
+                    onChange={(e) => setFormData({ ...formData, compliance: { ...formData.compliance, filingFrequency: e.target.value as any } })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   >
                     {filingFrequencies.map(freq => (
@@ -1052,7 +857,7 @@ function TaxModal({ tax, onSave, onClose, activeTab, setActiveTab }: TaxModalPro
                     <input
                       type="checkbox"
                       checked={formData.compliance.reportingRequired}
-                      onChange={(e) => setFormData({...formData, compliance: {...formData.compliance, reportingRequired: e.target.checked}})}
+                      onChange={(e) => setFormData({ ...formData, compliance: { ...formData.compliance, reportingRequired: e.target.checked } })}
                       className="mr-2"
                     />
                     Reporting Required

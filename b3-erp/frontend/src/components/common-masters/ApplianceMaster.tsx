@@ -1,10 +1,11 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import {
   Zap, Plus, Search, Edit2, Trash2, CheckCircle2,
   XCircle, Package, Ruler, DollarSign, Star, TrendingUp
 } from 'lucide-react';
+import { manufacturingMastersService, KitchenAppliance as BackendAppliance } from '@/services/manufacturing-masters.service';
 
 interface Appliance {
   id: string;
@@ -40,163 +41,75 @@ interface Appliance {
   leadTime: string;
   rating: number;
   reviews: number;
-  status: 'Active' | 'Inactive' | 'Discontinued';
-  metadata: {
+  status: string;
+  metadata?: {
     createdAt: Date;
     updatedAt: Date;
     createdBy: string;
   };
 }
 
-const mockAppliances: Appliance[] = [
-  {
-    id: '1',
-    code: 'APP-HOB-001',
-    name: 'Gas Hob - 4 Burner Stainless Steel',
-    category: 'Hob',
-    subcategory: 'Built-in Gas Hob',
-    brand: 'Faber',
-    model: 'HT604CRS',
-    specifications: {
-      dimensions: {
-        width: 600,
-        depth: 520,
-        height: 100,
-        unit: 'mm'
-      },
-      power: {
-        voltage: '230V',
-        wattage: 0,
-        frequency: '50Hz'
-      },
-      capacity: '4 Burners',
-      features: [
-        'Auto ignition',
-        'Toughened glass top',
-        'Brass burners',
-        'High efficiency',
-        'Spill-proof design'
-      ]
-    },
-    energyRating: 'N/A',
-    color: ['Stainless Steel', 'Black'],
-    warranty: '2 Years comprehensive',
-    price: 12500,
-    installationRequired: true,
-    installationCost: 1500,
-    certification: ['ISI Certified', 'BIS'],
-    availability: 'In Stock',
-    leadTime: '3-5 days',
-    rating: 4.5,
-    reviews: 245,
-    status: 'Active',
-    metadata: {
-      createdAt: new Date('2024-01-10'),
-      updatedAt: new Date('2024-03-15'),
-      createdBy: 'Product Manager'
-    }
-  },
-  {
-    id: '2',
-    code: 'APP-CHI-001',
-    name: 'Auto Clean Chimney - 90cm',
-    category: 'Chimney',
-    subcategory: 'Wall Mount Chimney',
-    brand: 'Elica',
-    model: 'WD TBF HAC 90 MS',
-    specifications: {
-      dimensions: {
-        width: 900,
-        depth: 500,
-        height: 650,
-        unit: 'mm'
-      },
-      power: {
-        voltage: '230V',
-        wattage: 180,
-        frequency: '50Hz'
-      },
-      capacity: '1200 m³/hr suction',
-      features: [
-        'Auto clean technology',
-        'Filterless design',
-        'Touch control',
-        'LED lamps',
-        'Motion sensor',
-        'Quiet operation'
-      ]
-    },
-    energyRating: '3 Star',
-    color: ['Silver', 'Black'],
-    warranty: '5 Years on motor, 1 Year comprehensive',
-    price: 18900,
-    installationRequired: true,
-    installationCost: 2500,
-    certification: ['ISI Certified', 'BEE'],
-    availability: 'In Stock',
-    leadTime: '5-7 days',
-    rating: 4.7,
-    reviews: 312,
-    status: 'Active',
-    metadata: {
-      createdAt: new Date('2024-01-12'),
-      updatedAt: new Date('2024-03-10'),
-      createdBy: 'Product Manager'
-    }
-  },
-  {
-    id: '3',
-    code: 'APP-OVN-001',
-    name: 'Built-in Electric Oven - 60L',
-    category: 'Oven',
-    subcategory: 'Built-in OTG',
-    brand: 'Bosch',
-    model: 'HBN531E0J',
-    specifications: {
-      dimensions: {
-        width: 595,
-        depth: 548,
-        height: 595,
-        unit: 'mm'
-      },
-      power: {
-        voltage: '230V',
-        wattage: 2800,
-        frequency: '50Hz'
-      },
-      capacity: '60 Liters',
-      features: [
-        '3D hot air distribution',
-        'Multi-function cooking',
-        'Digital display',
-        'Telescopic rails',
-        'Interior light',
-        'Safety lock'
-      ]
-    },
-    energyRating: '4 Star',
-    color: ['Stainless Steel', 'Black'],
-    warranty: '2 Years comprehensive',
-    price: 32500,
-    installationRequired: true,
-    installationCost: 3000,
-    certification: ['ISI Certified', 'CE', 'BEE'],
-    availability: 'In Stock',
-    leadTime: '7-10 days',
-    rating: 4.8,
-    reviews: 189,
-    status: 'Active',
-    metadata: {
-      createdAt: new Date('2024-01-15'),
-      updatedAt: new Date('2024-03-20'),
-      createdBy: 'Product Manager'
-    }
-  }
-];
-
 export default function ApplianceMaster() {
-  const [appliances, setAppliances] = useState<Appliance[]>(mockAppliances);
+  const [appliances, setAppliances] = useState<Appliance[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [selectedAppliance, setSelectedAppliance] = useState<Appliance | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filterCategory, setFilterCategory] = useState<string>('All');
+
+  useEffect(() => {
+    fetchAppliances();
+  }, []);
+
+  const fetchAppliances = async () => {
+    try {
+      setIsLoading(true);
+      const data = await manufacturingMastersService.getAllKitchenAppliances('123e4567-e89b-12d3-a456-426614174000');
+
+      const mapped: Appliance[] = data.map(app => ({
+        id: app.id,
+        code: app.code,
+        name: app.name,
+        category: app.category as any,
+        subcategory: app.subcategory || '',
+        brand: app.brand || '',
+        model: app.model || '',
+        specifications: {
+          dimensions: {
+            width: app.specifications?.dimensions?.width || 0,
+            depth: app.specifications?.dimensions?.depth || 0,
+            height: app.specifications?.dimensions?.height || 0,
+            unit: app.specifications?.dimensions?.unit || 'mm'
+          },
+          power: {
+            voltage: app.specifications?.power?.voltage || '230V',
+            wattage: app.specifications?.power?.wattage || 0,
+            frequency: app.specifications?.power?.frequency || '50Hz'
+          },
+          capacity: app.specifications?.capacity,
+          features: app.specifications?.features || []
+        },
+        energyRating: app.energyRating || 'N/A',
+        color: app.color,
+        warranty: app.warranty || '',
+        price: app.price,
+        installationRequired: app.installationRequired,
+        installationCost: app.installationCost,
+        certification: app.certification,
+        availability: app.availability as any || 'In Stock',
+        leadTime: app.leadTime || '',
+        rating: app.rating,
+        reviews: app.reviews,
+        status: app.status
+      }));
+
+      setAppliances(mapped);
+    } catch (error) {
+      console.error('Error fetching appliances:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterCategory, setFilterCategory] = useState<string>('All');
@@ -244,8 +157,8 @@ export default function ApplianceMaster() {
   const filteredAppliances = useMemo(() => {
     return appliances.filter(appliance => {
       const matchesSearch = appliance.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           appliance.code.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           appliance.brand.toLowerCase().includes(searchTerm.toLowerCase());
+        appliance.code.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        appliance.brand.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesCategory = filterCategory === 'All' || appliance.category === filterCategory;
       return matchesSearch && matchesCategory;
     });
@@ -455,7 +368,7 @@ export default function ApplianceMaster() {
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Category *
                     </label>
-                    <select 
+                    <select
                       defaultValue={selectedAppliance?.category || 'Hob'}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
                     >
@@ -553,7 +466,7 @@ export default function ApplianceMaster() {
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Availability
                     </label>
-                    <select 
+                    <select
                       defaultValue={selectedAppliance?.availability || 'In Stock'}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
                     >
@@ -566,7 +479,7 @@ export default function ApplianceMaster() {
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Status
                     </label>
-                    <select 
+                    <select
                       defaultValue={selectedAppliance?.status || 'Active'}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
                     >
