@@ -80,13 +80,13 @@ export class BatchNumber {
   daysToExpiry: number; // Calculated days remaining
 
   // Procurement details
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   purchaseOrderId: string;
 
   @Column({ length: 100, nullable: true })
   purchaseOrderNumber: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   supplierId: string;
 
   @Column({ length: 255, nullable: true })
@@ -102,7 +102,7 @@ export class BatchNumber {
   @Column({ type: 'date', nullable: true })
   receiptDate: Date;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   receiptStockEntryId: string;
 
   @Column({ length: 100, nullable: true })
@@ -112,7 +112,7 @@ export class BatchNumber {
   @Column({ default: false })
   requiresQualityInspection: boolean;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   qualityInspectionId: string;
 
   @Column({ length: 50, nullable: true })
@@ -121,7 +121,7 @@ export class BatchNumber {
   @Column({ type: 'date', nullable: true })
   qualityInspectionDate: Date;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   qualityInspectorId: string;
 
   @Column({ length: 100, nullable: true })

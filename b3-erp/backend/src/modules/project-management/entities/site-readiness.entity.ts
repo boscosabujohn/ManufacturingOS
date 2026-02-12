@@ -29,7 +29,7 @@ export class SiteReadiness {
     })
     status: ReadinessStatus;
 
-    @Column({ name: 'verified_by', nullable: true })
+    @Column({ name: 'verified_by', type: 'varchar', nullable: true })
     verifiedBy: string;
 
     @Column({ type: 'jsonb', nullable: true })

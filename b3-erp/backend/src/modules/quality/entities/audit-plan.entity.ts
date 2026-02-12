@@ -105,7 +105,7 @@ export class AuditPlan {
   locations: string[];
 
   // Auditee (for external audits)
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   auditeeId: string;
 
   @Column({ length: 255, nullable: true })
@@ -127,7 +127,7 @@ export class AuditPlan {
   auditeeContactEmail: string;
 
   // Audit team
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   leadAuditorId: string;
 
   @Column({ length: 255, nullable: true })

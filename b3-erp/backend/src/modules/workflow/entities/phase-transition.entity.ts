@@ -10,22 +10,22 @@ export class PhaseTransition {
     @Index()
     projectId: string;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     fromPhase: number;
 
     @Column()
     toPhase: number;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     fromStep: string;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     toStep: string;
 
     @Column()
     transitionType: string;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     triggeredBy: string;
 
     @Column('jsonb', { nullable: true })

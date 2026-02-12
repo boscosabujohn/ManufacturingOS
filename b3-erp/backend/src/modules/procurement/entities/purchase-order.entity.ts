@@ -81,19 +81,19 @@ export class PurchaseOrder {
   @Column({ length: 50, nullable: true })
   prNumber: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   prId: string;
 
   @Column({ length: 50, nullable: true })
   rfqNumber: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   rfqId: string;
 
   @Column({ length: 50, nullable: true })
   quotationNumber: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   quotationId: string;
 
   // Vendor Information

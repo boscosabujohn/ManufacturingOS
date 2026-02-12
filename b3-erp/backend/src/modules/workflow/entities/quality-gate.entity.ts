@@ -25,10 +25,10 @@ export class QualityGate {
     @Column()
     gateType: 'material_qa' | 'production_qc' | 'final_qc' | 'installation_review';
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     checklistTemplateId: string;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     inspectorId: string;
 
     @Column({ default: 'pending' })
@@ -38,7 +38,7 @@ export class QualityGate {
     @Column({ type: 'timestamp', nullable: true })
     inspectionDate: Date;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     passed: boolean;
 
     @Column({ type: 'text', nullable: true })

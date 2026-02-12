@@ -57,19 +57,19 @@ export class CAPA {
   capaType: CAPAType;
 
   // Source reference
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   ncrId: string;
 
   @Column({ length: 100, nullable: true })
   ncrNumber: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   auditId: string;
 
   @Column({ length: 100, nullable: true })
   auditNumber: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   inspectionId: string;
 
   @Column({ length: 100, nullable: true })
@@ -78,7 +78,7 @@ export class CAPA {
   @Column({ length: 255, nullable: true })
   sourceType: string; // NCR, Audit, Inspection, Customer Complaint, Risk Assessment
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   sourceId: string;
 
   @Column({ length: 100, nullable: true })
@@ -124,7 +124,7 @@ export class CAPA {
   isContained: boolean;
 
   // Corrective Action
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   correctiveActionId: string;
 
   @Column({ length: 100, nullable: true })
@@ -137,7 +137,7 @@ export class CAPA {
   correctiveActionDetails: string;
 
   // Preventive Action
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   preventiveActionId: string;
 
   @Column({ length: 100, nullable: true })
@@ -168,13 +168,13 @@ export class CAPA {
   }[];
 
   // Assignment
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   ownerId: string;
 
   @Column({ length: 255, nullable: true })
   ownerName: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   departmentId: string;
 
   @Column({ length: 255, nullable: true })

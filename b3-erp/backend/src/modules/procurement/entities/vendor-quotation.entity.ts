@@ -202,7 +202,7 @@ export class VendorQuotation {
   @Column({ type: 'date', nullable: true })
   awardedDate: Date;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   purchaseOrderId: string;
 
   @Column({ length: 50, nullable: true })

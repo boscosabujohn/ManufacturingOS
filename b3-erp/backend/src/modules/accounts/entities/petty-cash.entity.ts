@@ -20,16 +20,16 @@ export class PettyCash {
     @Column()
     category: string;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     receiptNumber: string;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     approvedBy: string;
 
     @Column({ type: 'enum', enum: ['pending', 'approved', 'rejected'], default: 'pending' })
     status: string;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     remarks: string;
 
     @CreateDateColumn()

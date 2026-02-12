@@ -81,7 +81,7 @@ export class ChartOfAccounts {
   @Column({ type: 'text', nullable: true })
   description: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   parentAccountId: string;
 
   @ManyToOne(() => ChartOfAccounts, (account) => account.children, {

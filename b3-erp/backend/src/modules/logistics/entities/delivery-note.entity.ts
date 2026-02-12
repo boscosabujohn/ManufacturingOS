@@ -31,7 +31,7 @@ export class DeliveryNote {
   @Column({ nullable: true, length: 100 })
   referenceNumber: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   shipmentId: string;
 
   @ManyToOne(() => Shipment, (shipment) => shipment.deliveryNotes, {
@@ -40,13 +40,13 @@ export class DeliveryNote {
   @JoinColumn({ name: 'shipmentId' })
   shipment: Shipment;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   salesOrderId: string;
 
   @Column({ nullable: true, length: 100 })
   salesOrderNumber: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   invoiceId: string;
 
   @Column({ nullable: true, length: 100 })
@@ -60,7 +60,7 @@ export class DeliveryNote {
   status: DeliveryNoteStatus;
 
   // Customer Information
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   customerId: string;
 
   @Column({ length: 200 })
@@ -94,25 +94,25 @@ export class DeliveryNote {
   @Column({ type: 'date' })
   deliveryDate: Date;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   warehouseId: string;
 
   @Column({ nullable: true, length: 200 })
   warehouseName: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   transportCompanyId: string;
 
   @Column({ nullable: true, length: 200 })
   transportCompanyName: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   vehicleId: string;
 
   @Column({ nullable: true, length: 100 })
   vehicleNumber: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   driverId: string;
 
   @Column({ nullable: true, length: 100 })

@@ -68,7 +68,7 @@ export class BankAccount {
   status: AccountStatus;
 
   // Chart of Accounts linkage
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   glAccountId: string; // Link to Chart of Accounts
 
   // Balance tracking

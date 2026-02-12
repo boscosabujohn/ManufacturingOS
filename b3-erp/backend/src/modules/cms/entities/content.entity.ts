@@ -57,19 +57,19 @@ export class Content {
   })
   status: ContentStatus;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   featuredImage: string;
 
   @Column({ type: 'simple-array', nullable: true })
   tags: string[];
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   categoryId: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   authorId: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   authorName: string;
 
   // SEO Fields
@@ -82,7 +82,7 @@ export class Content {
   @Column({ type: 'simple-array', nullable: true })
   metaKeywords: string[];
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   canonicalUrl: string;
 
   @Column({ default: true })
@@ -106,7 +106,7 @@ export class Content {
   @Column({ default: 1 })
   version: number;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   parentVersionId: string;
 
   @CreateDateColumn()

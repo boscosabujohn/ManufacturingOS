@@ -14,19 +14,19 @@ export class SalesTerritory {
     @Column()
     name: string;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     country: string;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     state: string;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     city: string;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     assignedUserId: string;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     assignedTeamId: string;
 
     @Column({ default: 0 })

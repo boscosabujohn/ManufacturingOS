@@ -50,13 +50,13 @@ export class ShipmentItem {
   itemCategory: string;
 
   // Source Reference
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   sourceDocumentType: string; // Sales Order, Purchase Order, Stock Transfer
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   sourceDocumentId: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   sourceDocumentLineId: string;
 
   // Quantities
@@ -127,13 +127,13 @@ export class ShipmentItem {
   currency: string;
 
   // Warehouse/Location
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   warehouseId: string;
 
   @Column({ nullable: true, length: 200 })
   warehouseName: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   locationId: string;
 
   @Column({ nullable: true, length: 200 })

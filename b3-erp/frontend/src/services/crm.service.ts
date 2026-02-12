@@ -1,0 +1,617 @@
+/**
+ * CRM Service
+ * Comprehensive service for all CRM module API operations
+ */
+
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+
+// ============================================================================
+// Helper Functions
+// ============================================================================
+
+async function request<T>(endpoint: string, options?: RequestInit): Promise<T> {
+  const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+    ...options,
+    headers: {
+      'Content-Type': 'application/json',
+      ...options?.headers,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(`API Error: ${response.statusText}`);
+  }
+
+  // Handle 204 No Content
+  if (response.status === 204) {
+    return undefined as T;
+  }
+
+  return response.json();
+}
+
+function buildQueryParams(params: Record<string, any>): string {
+  const queryParams = new URLSearchParams();
+  Object.entries(params).forEach(([key, value]) => {
+    if (value !== undefined && value !== null && value !== '') {
+      queryParams.set(key, String(value));
+    }
+  });
+  const queryString = queryParams.toString();
+  return queryString ? `?${queryString}` : '';
+}
+
+// ============================================================================
+// Interfaces
+// ============================================================================
+
+export interface CrmContact {
+  id: string;
+  firstName: string;
+  lastName: string;
+  email?: string;
+  phone?: string;
+  mobile?: string;
+  position?: string;
+  department?: string;
+  contactType: string;
+  status: string;
+  customerId?: string;
+  customerName?: string;
+  street?: string;
+  city?: string;
+  state?: string;
+  postalCode?: string;
+  country?: string;
+  linkedIn?: string;
+  twitter?: string;
+  value: number;
+  lastContactDate?: string;
+  notes?: string;
+  tags: string[];
+  companyId: string;
+  isActive: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CrmOpportunity {
+  id: string;
+  opportunityNumber: string;
+  name: string;
+  description?: string;
+  customerId?: string;
+  customerName?: string;
+  contactId?: string;
+  stage: string;
+  probability: number;
+  amount: number;
+  currency: string;
+  expectedCloseDate?: string;
+  actualCloseDate?: string;
+  leadSource?: string;
+  campaignId?: string;
+  ownerId?: string;
+  ownerName?: string;
+  teamId?: string;
+  winReason?: string;
+  lossReason?: string;
+  competitor?: string;
+  products?: any[];
+  tags: string[];
+  customFields?: Record<string, any>;
+  notes?: string;
+  companyId: string;
+  isActive: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CrmActivity {
+  id: string;
+  activityNumber?: string;
+  type: string;
+  subject: string;
+  description?: string;
+  status: string;
+  priority: string;
+  startDate?: string;
+  endDate?: string;
+  dueDate?: string;
+  completedDate?: string;
+  duration?: number;
+  leadId?: string;
+  contactId?: string;
+  opportunityId?: string;
+  customerId?: string;
+  assignedToId?: string;
+  assignedToName?: string;
+  performedById?: string;
+  performedByName?: string;
+  outcome?: string;
+  nextSteps?: string;
+  location?: string;
+  isVirtual: boolean;
+  meetingLink?: string;
+  followUpRequired: boolean;
+  followUpDate?: string;
+  tags: string[];
+  attachments?: any[];
+  companyId: string;
+  isActive: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CrmCampaign {
+  id: string;
+  campaignNumber: string;
+  name: string;
+  type: string;
+  status: string;
+  startDate: string;
+  endDate: string;
+  description?: string;
+  objective?: string;
+  targetAudience?: string;
+  budget: number;
+  actualCost: number;
+  expectedRevenue: number;
+  actualRevenue: number;
+  currency: string;
+  totalLeads: number;
+  convertedLeads: number;
+  totalOpportunities: number;
+  wonOpportunities: number;
+  assignedToId?: string;
+  assignedToName?: string;
+  parentCampaignId?: string;
+  tags: string[];
+  notes?: string;
+  companyId: string;
+  isActive: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CrmQuote {
+  id: string;
+  quoteNumber: string;
+  title: string;
+  description?: string;
+  status: string;
+  validUntil?: string;
+  customerId?: string;
+  customerName?: string;
+  contactName?: string;
+  contactEmail?: string;
+  opportunityId?: string;
+  billingAddress?: any;
+  shippingAddress?: any;
+  items?: any[];
+  subtotal: number;
+  discountAmount: number;
+  discountPercent: number;
+  taxAmount: number;
+  totalAmount: number;
+  currency: string;
+  paymentTerms?: string;
+  paymentTermDays?: number;
+  preparedById?: string;
+  preparedByName?: string;
+  approvedById?: string;
+  approvedByName?: string;
+  sentDate?: string;
+  acceptedDate?: string;
+  rejectedDate?: string;
+  notes?: string;
+  termsConditions?: string;
+  attachments?: any[];
+  companyId: string;
+  isActive: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CrmContract {
+  id: string;
+  contractNumber: string;
+  title: string;
+  description?: string;
+  type: string;
+  status: string;
+  customerId?: string;
+  customerName?: string;
+  contactName?: string;
+  contactEmail?: string;
+  opportunityId?: string;
+  quoteId?: string;
+  startDate: string;
+  endDate: string;
+  signedDate?: string;
+  renewalDate?: string;
+  contractValue: number;
+  currency: string;
+  billingCycle?: string;
+  autoRenew: boolean;
+  renewalTerms?: string;
+  renewalNoticeDays?: number;
+  ownerId?: string;
+  ownerName?: string;
+  terms?: string;
+  termsAndConditions?: any;
+  attachments?: any[];
+  notes?: string;
+  companyId: string;
+  isActive: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CrmSupportTicket {
+  id: string;
+  ticketNumber: string;
+  subject: string;
+  description: string;
+  type: string;
+  status: string;
+  priority: string;
+  customerId?: string;
+  customerName?: string;
+  contactName?: string;
+  contactEmail?: string;
+  contactPhone?: string;
+  category?: string;
+  subcategory?: string;
+  assignedToId?: string;
+  assignedToName?: string;
+  teamId?: string;
+  slaId?: string;
+  responseDeadline?: string;
+  resolutionDeadline?: string;
+  firstResponseAt?: string;
+  resolvedAt?: string;
+  closedAt?: string;
+  resolution?: string;
+  resolutionNotes?: string;
+  customerSatisfaction?: number;
+  feedbackNotes?: string;
+  relatedTicketId?: string;
+  source?: string;
+  attachments?: any[];
+  tags: string[];
+  companyId: string;
+  isActive: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CrmSla {
+  id: string;
+  slaCode: string;
+  name: string;
+  description?: string;
+  responseTimeHours: number;
+  resolutionTimeHours: number;
+  priorityTimes?: any;
+  businessHoursOnly: boolean;
+  businessHoursStart?: string;
+  businessHoursEnd?: string;
+  excludeWeekends: boolean;
+  excludeHolidays: boolean;
+  escalationEnabled: boolean;
+  escalationRules?: any[];
+  customerCategories: string[];
+  ticketCategories: string[];
+  status: string;
+  isDefault: boolean;
+  companyId: string;
+  isActive: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CrmKnowledgeArticle {
+  id: string;
+  articleNumber: string;
+  title: string;
+  content: string;
+  summary?: string;
+  category: string;
+  subcategory?: string;
+  tags: string[];
+  status: string;
+  publishedDate?: string;
+  isPublic: boolean;
+  isInternal: boolean;
+  authorId?: string;
+  authorName?: string;
+  viewCount: number;
+  helpfulCount: number;
+  notHelpfulCount: number;
+  relatedArticles: string[];
+  relatedTickets: string[];
+  attachments?: any[];
+  companyId: string;
+  isActive: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+// ============================================================================
+// CRM Service
+// ============================================================================
+
+export const crmService = {
+  // ===========================
+  // CONTACTS
+  // ===========================
+  contacts: {
+    getAll: (filters?: { search?: string; status?: string; department?: string; customerId?: string }) =>
+      request<CrmContact[]>(`/crm/contacts${buildQueryParams(filters || {})}`),
+
+    getById: (id: string) => request<CrmContact>(`/crm/contacts/${id}`),
+
+    create: (data: Partial<CrmContact>) =>
+      request<CrmContact>('/crm/contacts', { method: 'POST', body: JSON.stringify(data) }),
+
+    update: (id: string, data: Partial<CrmContact>) =>
+      request<CrmContact>(`/crm/contacts/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
+
+    delete: (id: string) => request<void>(`/crm/contacts/${id}`, { method: 'DELETE' }),
+
+    getStats: () => request<any>('/crm/contacts/stats'),
+  },
+
+  // ===========================
+  // OPPORTUNITIES
+  // ===========================
+  opportunities: {
+    getAll: (filters?: { search?: string; stage?: string; ownerId?: string; customerId?: string; campaignId?: string }) =>
+      request<CrmOpportunity[]>(`/crm/opportunities${buildQueryParams(filters || {})}`),
+
+    getById: (id: string) => request<CrmOpportunity>(`/crm/opportunities/${id}`),
+
+    create: (data: Partial<CrmOpportunity>) =>
+      request<CrmOpportunity>('/crm/opportunities', { method: 'POST', body: JSON.stringify(data) }),
+
+    update: (id: string, data: Partial<CrmOpportunity>) =>
+      request<CrmOpportunity>(`/crm/opportunities/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
+
+    delete: (id: string) => request<void>(`/crm/opportunities/${id}`, { method: 'DELETE' }),
+
+    getStats: () => request<any>('/crm/opportunities/stats'),
+
+    getForecast: () => request<any>('/crm/opportunities/forecast'),
+  },
+
+  // ===========================
+  // ACTIVITIES
+  // ===========================
+  activities: {
+    getAll: (filters?: { search?: string; type?: string; status?: string; assignedToId?: string; leadId?: string; contactId?: string; opportunityId?: string }) =>
+      request<CrmActivity[]>(`/crm/activities${buildQueryParams(filters || {})}`),
+
+    getById: (id: string) => request<CrmActivity>(`/crm/activities/${id}`),
+
+    create: (data: Partial<CrmActivity>) =>
+      request<CrmActivity>('/crm/activities', { method: 'POST', body: JSON.stringify(data) }),
+
+    update: (id: string, data: Partial<CrmActivity>) =>
+      request<CrmActivity>(`/crm/activities/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
+
+    complete: (id: string) => request<CrmActivity>(`/crm/activities/${id}/complete`, { method: 'POST' }),
+
+    delete: (id: string) => request<void>(`/crm/activities/${id}`, { method: 'DELETE' }),
+
+    getStats: () => request<any>('/crm/activities/stats'),
+  },
+
+  // ===========================
+  // CAMPAIGNS
+  // ===========================
+  campaigns: {
+    getAll: (filters?: { search?: string; type?: string; status?: string; assignedToId?: string }) =>
+      request<CrmCampaign[]>(`/crm/campaigns${buildQueryParams(filters || {})}`),
+
+    getById: (id: string) => request<CrmCampaign>(`/crm/campaigns/${id}`),
+
+    create: (data: Partial<CrmCampaign>) =>
+      request<CrmCampaign>('/crm/campaigns', { method: 'POST', body: JSON.stringify(data) }),
+
+    update: (id: string, data: Partial<CrmCampaign>) =>
+      request<CrmCampaign>(`/crm/campaigns/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
+
+    delete: (id: string) => request<void>(`/crm/campaigns/${id}`, { method: 'DELETE' }),
+
+    getStats: () => request<any>('/crm/campaigns/stats'),
+  },
+
+  // ===========================
+  // QUOTES
+  // ===========================
+  quotes: {
+    getAll: (filters?: { search?: string; status?: string; customerId?: string; opportunityId?: string }) =>
+      request<CrmQuote[]>(`/crm/quotes${buildQueryParams(filters || {})}`),
+
+    getById: (id: string) => request<CrmQuote>(`/crm/quotes/${id}`),
+
+    create: (data: Partial<CrmQuote>) =>
+      request<CrmQuote>('/crm/quotes', { method: 'POST', body: JSON.stringify(data) }),
+
+    update: (id: string, data: Partial<CrmQuote>) =>
+      request<CrmQuote>(`/crm/quotes/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
+
+    send: (id: string) => request<CrmQuote>(`/crm/quotes/${id}/send`, { method: 'POST' }),
+
+    accept: (id: string) => request<CrmQuote>(`/crm/quotes/${id}/accept`, { method: 'POST' }),
+
+    reject: (id: string) => request<CrmQuote>(`/crm/quotes/${id}/reject`, { method: 'POST' }),
+
+    delete: (id: string) => request<void>(`/crm/quotes/${id}`, { method: 'DELETE' }),
+  },
+
+  // ===========================
+  // CONTRACTS
+  // ===========================
+  contracts: {
+    getAll: (filters?: { search?: string; status?: string; type?: string; customerId?: string }) =>
+      request<CrmContract[]>(`/crm/contracts${buildQueryParams(filters || {})}`),
+
+    getById: (id: string) => request<CrmContract>(`/crm/contracts/${id}`),
+
+    create: (data: Partial<CrmContract>) =>
+      request<CrmContract>('/crm/contracts', { method: 'POST', body: JSON.stringify(data) }),
+
+    update: (id: string, data: Partial<CrmContract>) =>
+      request<CrmContract>(`/crm/contracts/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
+
+    activate: (id: string) => request<CrmContract>(`/crm/contracts/${id}/activate`, { method: 'POST' }),
+
+    delete: (id: string) => request<void>(`/crm/contracts/${id}`, { method: 'DELETE' }),
+  },
+
+  // ===========================
+  // SUPPORT TICKETS
+  // ===========================
+  tickets: {
+    getAll: (filters?: { search?: string; status?: string; priority?: string; type?: string; assignedToId?: string; customerId?: string }) =>
+      request<CrmSupportTicket[]>(`/crm/tickets${buildQueryParams(filters || {})}`),
+
+    getById: (id: string) => request<CrmSupportTicket>(`/crm/tickets/${id}`),
+
+    create: (data: Partial<CrmSupportTicket>) =>
+      request<CrmSupportTicket>('/crm/tickets', { method: 'POST', body: JSON.stringify(data) }),
+
+    update: (id: string, data: Partial<CrmSupportTicket>) =>
+      request<CrmSupportTicket>(`/crm/tickets/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
+
+    resolve: (id: string, resolution: string) =>
+      request<CrmSupportTicket>(`/crm/tickets/${id}/resolve`, { method: 'POST', body: JSON.stringify({ resolution }) }),
+
+    close: (id: string) => request<CrmSupportTicket>(`/crm/tickets/${id}/close`, { method: 'POST' }),
+
+    getStats: () => request<any>('/crm/tickets/stats'),
+  },
+
+  // ===========================
+  // SLA
+  // ===========================
+  slas: {
+    getAll: () => request<CrmSla[]>('/crm/slas'),
+
+    getById: (id: string) => request<CrmSla>(`/crm/slas/${id}`),
+
+    create: (data: Partial<CrmSla>) =>
+      request<CrmSla>('/crm/slas', { method: 'POST', body: JSON.stringify(data) }),
+
+    update: (id: string, data: Partial<CrmSla>) =>
+      request<CrmSla>(`/crm/slas/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
+
+    delete: (id: string) => request<void>(`/crm/slas/${id}`, { method: 'DELETE' }),
+  },
+
+  // ===========================
+  // KNOWLEDGE ARTICLES
+  // ===========================
+  knowledgeArticles: {
+    getAll: (filters?: { search?: string; status?: string; category?: string; isPublic?: boolean }) =>
+      request<CrmKnowledgeArticle[]>(`/crm/knowledge-articles${buildQueryParams(filters || {})}`),
+
+    getById: (id: string) => request<CrmKnowledgeArticle>(`/crm/knowledge-articles/${id}`),
+
+    create: (data: Partial<CrmKnowledgeArticle>) =>
+      request<CrmKnowledgeArticle>('/crm/knowledge-articles', { method: 'POST', body: JSON.stringify(data) }),
+
+    update: (id: string, data: Partial<CrmKnowledgeArticle>) =>
+      request<CrmKnowledgeArticle>(`/crm/knowledge-articles/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
+
+    publish: (id: string) => request<CrmKnowledgeArticle>(`/crm/knowledge-articles/${id}/publish`, { method: 'POST' }),
+
+    markHelpful: (id: string, helpful: boolean) =>
+      request<CrmKnowledgeArticle>(`/crm/knowledge-articles/${id}/helpful`, { method: 'POST', body: JSON.stringify({ helpful }) }),
+  },
+
+  // ===========================
+  // INTERACTIONS (v2 - Prisma-based)
+  // ===========================
+  interactions: {
+    getAll: (filters?: { type?: string; leadId?: string; contactId?: string; customerId?: string; opportunityId?: string }) =>
+      request<any[]>(`/crm/interactions-v2${buildQueryParams(filters || {})}`),
+
+    create: (data: any) =>
+      request<any>('/crm/interactions-v2', { method: 'POST', body: JSON.stringify(data) }),
+
+    update: (id: string, data: any) =>
+      request<any>(`/crm/interactions-v2/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
+
+    delete: (id: string) => request<void>(`/crm/interactions-v2/${id}`, { method: 'DELETE' }),
+
+    getStats: () => request<any>('/crm/interactions-v2/stats'),
+  },
+
+  // ===========================
+  // SALES TERRITORIES
+  // ===========================
+  salesTerritories: {
+    getAll: () => request<any[]>('/crm/sales-territories'),
+
+    getById: (id: string) => request<any>(`/crm/sales-territories/${id}`),
+
+    create: (data: any) =>
+      request<any>('/crm/sales-territories', { method: 'POST', body: JSON.stringify(data) }),
+
+    update: (id: string, data: any) =>
+      request<any>(`/crm/sales-territories/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
+
+    delete: (id: string) => request<void>(`/crm/sales-territories/${id}`, { method: 'DELETE' }),
+  },
+
+  // ===========================
+  // PIPELINE STAGES
+  // ===========================
+  pipelineStages: {
+    getAll: (stageType?: string) =>
+      request<any[]>(`/crm/pipeline-stages${buildQueryParams({ stageType })}`),
+
+    create: (data: any) =>
+      request<any>('/crm/pipeline-stages', { method: 'POST', body: JSON.stringify(data) }),
+
+    update: (id: string, data: any) =>
+      request<any>(`/crm/pipeline-stages/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
+
+    delete: (id: string) => request<void>(`/crm/pipeline-stages/${id}`, { method: 'DELETE' }),
+  },
+
+  // ===========================
+  // LEAD STATUSES
+  // ===========================
+  leadStatuses: {
+    getAll: () => request<any[]>('/crm/lead-statuses'),
+
+    create: (data: any) =>
+      request<any>('/crm/lead-statuses', { method: 'POST', body: JSON.stringify(data) }),
+
+    update: (id: string, data: any) =>
+      request<any>(`/crm/lead-statuses/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
+
+    delete: (id: string) => request<void>(`/crm/lead-statuses/${id}`, { method: 'DELETE' }),
+  },
+
+  // ===========================
+  // LEAD SOURCES
+  // ===========================
+  leadSources: {
+    getAll: () => request<any[]>('/crm/lead-sources'),
+
+    create: (data: any) =>
+      request<any>('/crm/lead-sources', { method: 'POST', body: JSON.stringify(data) }),
+
+    update: (id: string, data: any) =>
+      request<any>(`/crm/lead-sources/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
+
+    delete: (id: string) => request<void>(`/crm/lead-sources/${id}`, { method: 'DELETE' }),
+  },
+};
+
+export default crmService;

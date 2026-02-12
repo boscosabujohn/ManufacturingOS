@@ -48,19 +48,19 @@ export class CorrectiveAction {
   priority: CorrectiveActionPriority;
 
   // Source reference
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   ncrId: string;
 
   @Column({ length: 100, nullable: true })
   ncrNumber: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   capaId: string;
 
   @Column({ length: 100, nullable: true })
   capaNumber: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   auditId: string;
 
   @Column({ length: 100, nullable: true })
@@ -69,7 +69,7 @@ export class CorrectiveAction {
   @Column({ length: 255, nullable: true })
   sourceType: string; // NCR, CAPA, Audit, Customer Complaint, etc.
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   sourceId: string;
 
   @Column({ length: 100, nullable: true })
@@ -119,13 +119,13 @@ export class CorrectiveAction {
   }[];
 
   // Assignment
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   assignedToId: string;
 
   @Column({ length: 255, nullable: true })
   assignedToName: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   departmentId: string;
 
   @Column({ length: 255, nullable: true })

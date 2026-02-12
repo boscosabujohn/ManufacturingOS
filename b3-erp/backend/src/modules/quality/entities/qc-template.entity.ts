@@ -48,7 +48,7 @@ export class QCTemplate {
   version: number;
 
   // Item/Product associations
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   itemId: string;
 
   @Column({ length: 100, nullable: true })
@@ -57,18 +57,18 @@ export class QCTemplate {
   @Column({ length: 255, nullable: true })
   itemName: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   itemCategory: string;
 
   // Supplier association
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   supplierId: string;
 
   @Column({ length: 255, nullable: true })
   supplierName: string;
 
   // Process/Operation association
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   processId: string;
 
   @Column({ length: 100, nullable: true })

@@ -110,9 +110,6 @@ export default function ApplianceMaster() {
       setIsLoading(false);
     }
   };
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [filterCategory, setFilterCategory] = useState<string>('All');
 
   const handleEdit = (appliance: Appliance) => {
     setSelectedAppliance(appliance);

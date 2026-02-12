@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { PrismaModule } from '../prisma/prisma.module';
 
 // Entities
 import {
@@ -48,9 +49,11 @@ import { ReturnManagementService } from './services/return-management.service';
 import { GPSTrackingService } from './services/gps-tracking.service';
 import { CustomerNotificationService } from './services/customer-notification.service';
 import { GatePassService } from './services/gate-pass.service';
+import { LogisticsManagementService } from './services/logistics-management.service';
 
 @Module({
   imports: [
+    PrismaModule,
     TypeOrmModule.forFeature([
       Shipment,
       ShipmentItem,
@@ -93,6 +96,7 @@ import { GatePassService } from './services/gate-pass.service';
     GatePassService,
     TransportCompanySeederService,
     VehicleTypeSeederService,
+    LogisticsManagementService,
   ],
   exports: [
     ShipmentService,
@@ -111,6 +115,7 @@ import { GatePassService } from './services/gate-pass.service';
     GatePassService,
     TransportCompanySeederService,
     VehicleTypeSeederService,
+    LogisticsManagementService,
   ],
 })
 export class LogisticsModule { }

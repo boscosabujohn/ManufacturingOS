@@ -62,19 +62,19 @@ export class PreventiveAction {
   actionType: PreventiveActionType;
 
   // Source reference
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   capaId: string;
 
   @Column({ length: 100, nullable: true })
   capaNumber: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   auditId: string;
 
   @Column({ length: 100, nullable: true })
   auditNumber: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   ncrId: string;
 
   @Column({ length: 100, nullable: true })
@@ -83,7 +83,7 @@ export class PreventiveAction {
   @Column({ length: 255, nullable: true })
   sourceType: string; // CAPA, Audit, Trend Analysis, Risk Assessment, etc.
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   sourceId: string;
 
   @Column({ length: 100, nullable: true })
@@ -126,13 +126,13 @@ export class PreventiveAction {
   }[];
 
   // Assignment
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   assignedToId: string;
 
   @Column({ length: 255, nullable: true })
   assignedToName: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   departmentId: string;
 
   @Column({ length: 255, nullable: true })

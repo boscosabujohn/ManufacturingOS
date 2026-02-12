@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState, useMemo, useEffect } from 'react';
 import {
   Clock, Plus, Search, Filter, Edit2, Trash2, MoreVertical,

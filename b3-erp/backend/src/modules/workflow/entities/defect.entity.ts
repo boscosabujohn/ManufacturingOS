@@ -17,7 +17,7 @@ export class Defect {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     qualityGateId: string;
 
     @Column()
@@ -30,10 +30,10 @@ export class Defect {
     @Column({ type: 'text' })
     description: string;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     location: string;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     assignedTo: string; // user ID
 
     @Column({ default: 'open' })
@@ -49,7 +49,7 @@ export class Defect {
     @Column({ type: 'timestamp', nullable: true })
     resolvedAt: Date;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     resolvedBy: string;
 
     @Column({ type: 'jsonb', nullable: true })

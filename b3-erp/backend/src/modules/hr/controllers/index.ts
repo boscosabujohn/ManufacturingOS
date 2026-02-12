@@ -18,3 +18,8 @@ export * from './skill.controller';
 export * from './proficiency-level.controller';
 export * from './user-skill.controller';
 export * from './skill-gap.controller';
+
+// Payroll Management (Prisma-based)
+export * from './bonus.controller';
+export * from './loan.controller';
+export * from './advance.controller';

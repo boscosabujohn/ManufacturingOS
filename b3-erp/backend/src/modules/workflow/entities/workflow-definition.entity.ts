@@ -53,7 +53,7 @@ export class WorkflowDefinition {
   @Column({ unique: true })
   name: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   description: string;
 
   @Column({
@@ -80,10 +80,10 @@ export class WorkflowDefinition {
   @Column({ type: 'jsonb', nullable: true })
   metadata: Record<string, any>;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   createdBy: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   updatedBy: string;
 
   @CreateDateColumn()

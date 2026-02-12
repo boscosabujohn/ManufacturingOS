@@ -40,7 +40,7 @@ export class PaymentTerms {
   @Column({ type: 'decimal', precision: 5, scale: 2, default: 100 })
   balancePercent: number;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   balanceCondition: string;
 
   @Column({ type: 'int', default: 0 })

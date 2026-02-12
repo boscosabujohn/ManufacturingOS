@@ -180,7 +180,7 @@ export class SalarySlip {
   @Column({ type: 'timestamp', nullable: true })
   paidAt: Date;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   paymentReferenceNumber: string;
 
   @Column({ length: 50, nullable: true })

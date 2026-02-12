@@ -14,7 +14,7 @@ export class TimeLog {
     @JoinColumn({ name: 'project_id' })
     project: Project;
 
-    @Column({ name: 'task_id', nullable: true })
+    @Column({ name: 'task_id', type: 'varchar', nullable: true })
     taskId: string;
 
     @ManyToOne(() => ProjectTask)

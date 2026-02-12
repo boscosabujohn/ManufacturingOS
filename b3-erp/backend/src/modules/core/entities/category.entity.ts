@@ -34,7 +34,7 @@ export class Category {
   })
   categoryType: CategoryType;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   parentCategoryId: string;
 
   @ManyToOne(() => Category, (category) => category.children, {

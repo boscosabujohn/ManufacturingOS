@@ -75,33 +75,33 @@ export class StockEntry {
   @Column({ nullable: true, length: 100 })
   referenceType: string; // Purchase Order, Sales Order, Work Order, etc.
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   referenceId: string;
 
   @Column({ nullable: true, length: 100 })
   referenceNumber: string;
 
   // Source and target
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   fromWarehouseId: string;
 
   @Column({ length: 255, nullable: true })
   fromWarehouseName: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   toWarehouseId: string;
 
   @Column({ length: 255, nullable: true })
   toWarehouseName: string;
 
   // Supplier/Customer for receipts and issues
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   supplierId: string;
 
   @Column({ length: 255, nullable: true })
   supplierName: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   customerId: string;
 
   @Column({ length: 255, nullable: true })
@@ -114,10 +114,10 @@ export class StockEntry {
   @Column({ type: 'timestamp', nullable: true })
   postedAt: Date;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   postedBy: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   journalEntryId: string;
 
   // Valuation
@@ -142,7 +142,7 @@ export class StockEntry {
   @Column({ default: false })
   requiresApproval: boolean;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   approvedBy: string;
 
   @Column({ type: 'timestamp', nullable: true })
@@ -152,20 +152,20 @@ export class StockEntry {
   @Column({ default: false })
   requiresInspection: boolean;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   inspectionId: string;
 
   @Column({ nullable: true, length: 50 })
   inspectionStatus: string;
 
   // Project/Cost Center allocation
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   projectId: string;
 
   @Column({ length: 255, nullable: true })
   projectName: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   costCenterId: string;
 
   @Column({ length: 255, nullable: true })
@@ -261,26 +261,26 @@ export class StockEntryLine {
   stockQuantity: number; // Quantity in stock UOM
 
   // Location details
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   fromLocationId: string;
 
   @Column({ length: 255, nullable: true })
   fromLocationName: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   toLocationId: string;
 
   @Column({ length: 255, nullable: true })
   toLocationName: string;
 
   // Batch and Serial tracking
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   batchId: string;
 
   @Column({ length: 100, nullable: true })
   batchNumber: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   serialNumberId: string;
 
   @Column({ length: 100, nullable: true })
@@ -307,14 +307,14 @@ export class StockEntryLine {
   qualityStatus: string;
 
   // GL Account for posting
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   glAccountId: string;
 
   @Column({ length: 255, nullable: true })
   glAccountName: string;
 
   // Reference to source document line
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   sourceDocumentLineId: string;
 
   @Column({ type: 'text', nullable: true })

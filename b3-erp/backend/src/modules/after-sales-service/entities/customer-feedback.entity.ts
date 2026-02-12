@@ -23,17 +23,17 @@ export class CustomerFeedback {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   feedbackNumber: string;
 
   // Related Records
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   serviceTicketId?: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   fieldServiceJobId?: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   installationId?: string;
 
   // Customer Information
@@ -43,13 +43,13 @@ export class CustomerFeedback {
   @Column()
   customerName: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   contactPerson?: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   contactPhone?: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   contactEmail?: string;
 
   // Feedback Collection
@@ -63,7 +63,7 @@ export class CustomerFeedback {
   @Column()
   feedbackDate: Date;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   collectedBy?: string;
 
   // Service Details
@@ -73,10 +73,10 @@ export class CustomerFeedback {
   @Column()
   serviceType: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   engineerId?: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   engineerName?: string;
 
   // Rating Questions
@@ -102,7 +102,7 @@ export class CustomerFeedback {
   @Column({ type: 'int', nullable: true })
   npsRating?: number; // 0-10
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   npsCategory?: string; // promoter/passive/detractor
 
   // Open-ended Feedback
@@ -119,22 +119,22 @@ export class CustomerFeedback {
   suggestions?: string;
 
   // Specific Aspects
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   engineerKnowledge?: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   engineerCourtesy?: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   workQuality?: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   timeliness?: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   cleanliness?: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   valueForMoney?: string;
 
   // Sentiment Analysis
@@ -155,7 +155,7 @@ export class CustomerFeedback {
   @Column('simple-array', { nullable: true })
   issuesReported?: string[];
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   severity?: string; // low/medium/high
 
   @Column({ default: false })
@@ -165,13 +165,13 @@ export class CustomerFeedback {
   @Column({ default: false })
   followUpRequired: boolean;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   followUpReason?: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   followUpDate?: Date;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   followUpCompletedBy?: string;
 
   @Column({ type: 'text', nullable: true })
@@ -184,7 +184,7 @@ export class CustomerFeedback {
   @Column({ type: 'text', nullable: true })
   resolutionNotes?: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   resolutionDate?: Date;
 
   // Rewards & Recognition
@@ -208,16 +208,16 @@ export class CustomerFeedback {
   contractRenewalIntent?: string; // yes/no/maybe
 
   // Metadata
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   surveyLink?: string;
 
   @Column({ type: 'int', nullable: true })
   surveyDuration?: number; // in seconds
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   deviceType?: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   ipAddress?: string;
 
   // Audit
@@ -280,20 +280,20 @@ export class Complaint {
   @Column()
   contactPhone: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   contactEmail?: string;
 
   // Related Service
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   serviceTicketId?: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   fieldServiceJobId?: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   serviceDate?: Date;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   engineerId?: string;
 
   // Complaint Details
@@ -320,23 +320,23 @@ export class Complaint {
   @Column()
   customerImpact: string; // low/medium/high
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   businessImpact?: string;
 
   @Column({ type: 'decimal', precision: 15, scale: 2, nullable: true })
   financialImpact?: number;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   reputationImpact?: string;
 
   // Acknowledgment
   @Column({ default: false })
   acknowledged: boolean;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   acknowledgedDate?: Date;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   acknowledgedBy?: string;
 
   @Column({ default: false })
@@ -346,10 +346,10 @@ export class Complaint {
   @Column({ default: false })
   investigationStarted: boolean;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   investigationStartDate?: Date;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   investigatedBy?: string;
 
   @Column({ type: 'text', nullable: true })
@@ -365,36 +365,36 @@ export class Complaint {
   @Column('simple-array', { nullable: true })
   contributingFactors?: string[];
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   responsibleParty?: string;
 
   // Action Plan
   @Column({ type: 'text', nullable: true })
   actionPlan?: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   actionOwner?: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   actionTargetDate?: Date;
 
   @Column({ default: false })
   actionCompleted: boolean;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   actionCompletionDate?: Date;
 
   // Resolution
   @Column({ type: 'text', nullable: true })
   resolutionNotes?: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   resolutionDate?: Date;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   resolvedBy?: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   resolutionMethod?: string; // refund/replacement/repair/compensation/apology
 
   // Customer Communication
@@ -414,13 +414,13 @@ export class Complaint {
   @Column({ type: 'int', nullable: true })
   escalationLevel?: number; // 1: Manager, 2: Senior Management, 3: CEO
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   escalatedTo?: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   escalationDate?: Date;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   escalationReason?: string;
 
   // Customer Satisfaction
@@ -450,26 +450,26 @@ export class Complaint {
   @Column({ default: false })
   compensationOffered: boolean;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   compensationType?: string; // refund/discount/free_service/credit_note
 
   @Column({ type: 'decimal', precision: 15, scale: 2, nullable: true })
   compensationAmount?: number;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   compensationApprovedBy?: string;
 
   // Closure
   @Column({ type: 'text', nullable: true })
   closureNotes?: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   closedDate?: Date;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   closedBy?: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   closureApprovedBy?: string;
 
   // Recurrence
@@ -496,7 +496,7 @@ export class Complaint {
   @Column()
   createdBy: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   updatedBy?: string;
 
   @CreateDateColumn()
@@ -531,7 +531,7 @@ export class FeedbackAnalytics {
   @Column({ type: 'decimal', precision: 3, scale: 2, default: 0 })
   averageOverallSatisfaction: number; // 1-5
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   satisfactionTrend: string; // improving/stable/declining
 
   // Category Scores
@@ -566,14 +566,14 @@ export class FeedbackAnalytics {
   @Column({ type: 'int', default: 0 })
   npsScore: number; // -100 to +100
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   npsTrend: string;
 
   // CSAT (Customer Satisfaction Score)
   @Column({ type: 'decimal', precision: 5, scale: 2, default: 0 })
   csatScore: number; // percentage of satisfied customers
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   csatTrend: string;
 
   // Sentiment Distribution

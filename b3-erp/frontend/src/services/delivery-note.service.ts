@@ -399,7 +399,7 @@ class DeliveryNoteService {
             if (filters?.search) params.append('search', filters.search);
 
             const response = await apiClient.get<{ data: DeliveryNote[]; total: number }>(
-                `/logistics/delivery-notes?${params.toString()}`
+                `/sales-masters/delivery-notes?${params.toString()}`
             );
             return response.data;
         } catch (error) {
@@ -441,7 +441,7 @@ class DeliveryNoteService {
      */
     async getDeliveryNoteById(id: string): Promise<DeliveryNote> {
         try {
-            const response = await apiClient.get<DeliveryNote>(`/logistics/delivery-notes/${id}`);
+            const response = await apiClient.get<DeliveryNote>(`/sales-masters/delivery-notes/${id}`);
             return response.data;
         } catch (error) {
             console.error(`API Error fetching delivery note ${id}, using mock data:`, error);
@@ -456,7 +456,7 @@ class DeliveryNoteService {
      */
     async createDeliveryNote(data: CreateDeliveryNoteDto): Promise<DeliveryNote> {
         try {
-            const response = await apiClient.post<DeliveryNote>('/logistics/delivery-notes', data);
+            const response = await apiClient.post<DeliveryNote>('/sales-masters/delivery-notes', data);
             return response.data;
         } catch (error) {
             console.error('API Error creating delivery note, using mock:', error);
@@ -491,7 +491,7 @@ class DeliveryNoteService {
      */
     async updateDeliveryNote(id: string, data: UpdateDeliveryNoteDto): Promise<DeliveryNote> {
         try {
-            const response = await apiClient.put<DeliveryNote>(`/logistics/delivery-notes/${id}`, data);
+            const response = await apiClient.put<DeliveryNote>(`/sales-masters/delivery-notes/${id}`, data);
             return response.data;
         } catch (error) {
             console.error(`API Error updating delivery note ${id}, using mock:`, error);

@@ -43,7 +43,7 @@ export class GoodsReceiptItem {
   status: GRNItemStatus;
 
   // PO Reference
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   purchaseOrderItemId: string;
 
   @Column({ type: 'int', nullable: true })
@@ -186,7 +186,7 @@ export class GoodsReceiptItem {
   @Column({ default: false })
   isReturnedToVendor: boolean;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   purchaseReturnId: string;
 
   @Column({ length: 50, nullable: true })
@@ -196,7 +196,7 @@ export class GoodsReceiptItem {
   @Column({ default: false })
   isPostedToInventory: boolean;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   inventoryTransactionId: string;
 
   @Column({ type: 'timestamp', nullable: true })

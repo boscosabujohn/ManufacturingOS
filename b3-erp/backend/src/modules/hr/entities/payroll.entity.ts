@@ -96,13 +96,13 @@ export class Payroll {
   @Column({ default: false })
   isPosted: boolean;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   journalEntryId: string;
 
   @Column({ type: 'timestamp', nullable: true })
   postedAt: Date;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   postedBy: string;
 
   @Column({ default: false })
@@ -111,22 +111,22 @@ export class Payroll {
   @Column({ type: 'timestamp', nullable: true })
   paidAt: Date;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   paidBy: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   paymentReferenceNumber: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   bankTransactionId: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   processedBy: string;
 
   @Column({ type: 'timestamp', nullable: true })
   processedAt: Date;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   approvedBy: string;
 
   @Column({ type: 'timestamp', nullable: true })

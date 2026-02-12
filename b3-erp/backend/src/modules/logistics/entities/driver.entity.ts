@@ -35,7 +35,7 @@ export class Driver {
   @Column({ unique: true, length: 50 })
   driverCode: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   employeeId: string;
 
   @Column({ length: 100 })
@@ -130,7 +130,7 @@ export class Driver {
   @Column({ type: 'date' })
   joiningDate: Date;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   transportCompanyId: string;
 
   @Column({ nullable: true, length: 200 })
@@ -139,13 +139,13 @@ export class Driver {
   @Column({ nullable: true, length: 100 })
   employmentType: string; // Full-time, Part-time, Contract
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   assignedWarehouseId: string;
 
   @Column({ nullable: true, length: 200 })
   assignedWarehouseName: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   currentVehicleId: string;
 
   @Column({ nullable: true, length: 100 })
@@ -262,7 +262,7 @@ export class Driver {
   @Column({ default: true })
   isAvailable: boolean;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   currentTripId: string;
 
   @Column({ type: 'json', nullable: true })

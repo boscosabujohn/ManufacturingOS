@@ -130,7 +130,7 @@ export interface SalesOrderFilters {
 
 // ============== Mock Data ==============
 
-const USE_MOCK_DATA = true;
+const USE_MOCK_DATA = false;
 
 export const MOCK_SALES_ORDERS: SalesOrder[] = [
   {
@@ -522,7 +522,7 @@ class SalesOrderService {
 
     const queryString = this.buildQueryParams(filters);
     const response = await apiClient.get<{ data: SalesOrder[]; total: number }>(
-      `/api/v1/sales/orders${queryString ? `?${queryString}` : ''}`
+      `/sales-masters/orders-v2${queryString ? `?${queryString}` : ''}`
     );
     return response.data;
   }
@@ -535,7 +535,7 @@ class SalesOrderService {
       return order;
     }
 
-    const response = await apiClient.get<SalesOrder>(`/api/v1/sales/orders/${id}`);
+    const response = await apiClient.get<SalesOrder>(`/sales-masters/orders-v2/${id}`);
     return response.data;
   }
 
@@ -545,7 +545,7 @@ class SalesOrderService {
       return MOCK_STATISTICS;
     }
 
-    const response = await apiClient.get<SalesOrderStatistics>('/api/v1/sales/orders/statistics');
+    const response = await apiClient.get<SalesOrderStatistics>('/sales-masters/orders-v2/statistics');
     return response.data;
   }
 
@@ -587,7 +587,7 @@ class SalesOrderService {
       return newOrder;
     }
 
-    const response = await apiClient.post<SalesOrder>('/api/v1/sales/orders', data);
+    const response = await apiClient.post<SalesOrder>('/sales-masters/orders-v2', data);
     return response.data;
   }
 
@@ -605,7 +605,7 @@ class SalesOrderService {
       return MOCK_SALES_ORDERS[index];
     }
 
-    const response = await apiClient.put<SalesOrder>(`/api/v1/sales/orders/${id}`, data);
+    const response = await apiClient.put<SalesOrder>(`/sales-masters/orders-v2/${id}`, data);
     return response.data;
   }
 
@@ -623,7 +623,7 @@ class SalesOrderService {
       return MOCK_SALES_ORDERS[index];
     }
 
-    const response = await apiClient.post<SalesOrder>(`/api/v1/sales/orders/${id}/confirm`, {});
+    const response = await apiClient.post<SalesOrder>(`/sales-masters/orders-v2/${id}/confirm`, {});
     return response.data;
   }
 
@@ -643,7 +643,7 @@ class SalesOrderService {
       return MOCK_SALES_ORDERS[index];
     }
 
-    const response = await apiClient.post<SalesOrder>(`/api/v1/sales/orders/${id}/approve`, {});
+    const response = await apiClient.post<SalesOrder>(`/sales-masters/orders-v2/${id}/approve`, {});
     return response.data;
   }
 
@@ -678,7 +678,7 @@ class SalesOrderService {
     }
 
     const response = await apiClient.post<PricingCalculationResult>(
-      '/api/v1/sales/orders/pricing/calculate',
+      '/sales-masters/orders-v2/pricing/calculate',
       data
     );
     return response.data;

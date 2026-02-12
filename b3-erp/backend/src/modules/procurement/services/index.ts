@@ -7,3 +7,6 @@ export * from './purchase-return.service';
 export * from './purchase-invoice.service';
 export * from './vendor-evaluation.service';
 export * from './approval-threshold-seeder.service';
+export * from './audit-trail.service';
+export * from './vendor-collaboration.service';
+export * from './sourcing-integration.service';

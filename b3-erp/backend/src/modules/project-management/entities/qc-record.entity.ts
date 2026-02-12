@@ -37,10 +37,10 @@ export class QCRecord {
     })
     result: QCResult;
 
-    @Column({ name: 'defect_category', nullable: true })
+    @Column({ name: 'defect_category', type: 'varchar', nullable: true })
     defectCategory: string;
 
-    @Column({ name: 'rework_operation', nullable: true })
+    @Column({ name: 'rework_operation', type: 'varchar', nullable: true })
     reworkOperation: string;
 
     @Column({ type: 'text', nullable: true })

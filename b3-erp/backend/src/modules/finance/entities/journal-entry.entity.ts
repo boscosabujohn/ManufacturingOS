@@ -96,7 +96,7 @@ export class JournalEntry {
   @Column({ type: 'int', nullable: true })
   recurrenceCount: number;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   nextRecurrenceDate: Date;
 
   // Template
@@ -107,19 +107,19 @@ export class JournalEntry {
   templateName: string;
 
   // Approval workflow
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   submittedBy: string;
 
   @Column({ type: 'timestamp', nullable: true })
   submittedAt: Date;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   approvedBy: string;
 
   @Column({ type: 'timestamp', nullable: true })
   approvedAt: Date;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   rejectedBy: string;
 
   @Column({ type: 'timestamp', nullable: true })
@@ -129,7 +129,7 @@ export class JournalEntry {
   rejectionReason: string;
 
   // Posting
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   postedBy: string;
 
   @Column({ type: 'timestamp', nullable: true })
@@ -139,13 +139,13 @@ export class JournalEntry {
   @Column({ default: false })
   isReversed: boolean;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   reversedBy: string;
 
   @Column({ type: 'timestamp', nullable: true })
   reversedAt: Date;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   reversalJournalId: string;
 
   // Attachments
@@ -223,7 +223,7 @@ export class JournalEntryLine {
   location: string;
 
   // Party information
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   partyId: string;
 
   @Column({ nullable: true, length: 255 })
@@ -233,7 +233,7 @@ export class JournalEntryLine {
   partyType: string;
 
   // Tax information
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   taxId: string;
 
   @Column({ type: 'decimal', precision: 5, scale: 2, nullable: true })
@@ -243,7 +243,7 @@ export class JournalEntryLine {
   taxAmount: number;
 
   // Reference to General Ledger entry
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   generalLedgerId: string;
 
   @CreateDateColumn()

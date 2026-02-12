@@ -73,14 +73,14 @@ export class Trip {
   @JoinColumn({ name: 'driverId' })
   driver: Driver;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   coDriverId: string;
 
   @Column({ nullable: true, length: 100 })
   coDriverName: string;
 
   // Route
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   routeId: string;
 
   @ManyToOne(() => Route, (route) => route.trips, { nullable: true })

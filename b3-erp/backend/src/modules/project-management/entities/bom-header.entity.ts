@@ -36,7 +36,7 @@ export class BOMHeader {
     @Column({ name: 'is_latest', default: true })
     isLatest: boolean;
 
-    @Column({ name: 'verified_by', nullable: true })
+    @Column({ name: 'verified_by', type: 'varchar', nullable: true })
     verifiedBy: string;
 
     @Column({ name: 'verified_at', type: 'timestamp', nullable: true })

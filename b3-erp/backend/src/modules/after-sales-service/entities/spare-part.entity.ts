@@ -29,7 +29,7 @@ export class SparePart {
     @Column({ type: 'int', default: 0 })
     stockLevel: number;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     imageUrl: string;
 
     @Column({ type: 'simple-array', nullable: true })

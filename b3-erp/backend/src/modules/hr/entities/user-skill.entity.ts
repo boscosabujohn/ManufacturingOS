@@ -37,7 +37,7 @@ export class UserSkill {
   @JoinColumn({ name: 'skillId' })
   skill: Skill;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   proficiencyLevelId: string;
 
   @Column({ type: 'int', default: 1 })
@@ -61,7 +61,7 @@ export class UserSkill {
   @Column({ type: 'text', nullable: true })
   certificateNumber: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   verifiedById: string;
 
   @Column({ type: 'varchar', length: 100, nullable: true })

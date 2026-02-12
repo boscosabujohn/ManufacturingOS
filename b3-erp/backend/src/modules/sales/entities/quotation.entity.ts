@@ -33,13 +33,13 @@ export class Quotation {
     @Column({ unique: true })
     quotationNumber: string;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     customerId: string;
 
     @Column()
     customerName: string;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     contactPerson: string;
 
     @Column({ type: 'date' })
@@ -86,19 +86,19 @@ export class Quotation {
     @Column({ type: 'decimal', precision: 5, scale: 2, default: 0 })
     overallMarginPercentage: number;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     paymentTerms: string;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     deliveryTerms: string;
 
     @Column({ type: 'text', nullable: true })
     notes: string;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     assignedUserId: string;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     convertedToOrderId: string;
 
     @CreateDateColumn()

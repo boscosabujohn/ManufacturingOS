@@ -4,7 +4,7 @@
  */
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
-const USE_MOCK_DATA = true;
+const USE_MOCK_DATA = false;
 
 // ============================================================================
 // Type Definitions
@@ -588,7 +588,7 @@ export class InvoiceService {
     if (filters?.page) queryParams.set('page', filters.page.toString());
     if (filters?.limit) queryParams.set('limit', filters.limit.toString());
 
-    return this.request(`/finance/invoices?${queryParams.toString()}`);
+    return this.request(`/sales-masters/invoices?${queryParams.toString()}`);
   }
 
   // Get Invoice by ID
@@ -599,7 +599,7 @@ export class InvoiceService {
       if (!invoice) throw new Error('Invoice not found');
       return invoice;
     }
-    return this.request<Invoice>(`/finance/invoices/${id}`);
+    return this.request<Invoice>(`/sales-masters/invoices/${id}`);
   }
 
   // Get Overdue Invoices
@@ -608,7 +608,7 @@ export class InvoiceService {
       await new Promise((resolve) => setTimeout(resolve, 200));
       return MOCK_INVOICES.filter((i) => i.status === InvoiceStatus.OVERDUE);
     }
-    return this.request<Invoice[]>('/finance/invoices/overdue');
+    return this.request<Invoice[]>('/sales-masters/invoices/overdue');
   }
 
   // Get Aging Report
@@ -692,7 +692,7 @@ export class InvoiceService {
 
     const queryParams = new URLSearchParams();
     if (asOfDate) queryParams.set('asOfDate', asOfDate.toISOString());
-    return this.request<AgingReport>(`/finance/invoices/aging-report?${queryParams.toString()}`);
+    return this.request<AgingReport>(`/sales-masters/invoices/aging-report?${queryParams.toString()}`);
   }
 
   // Create Invoice
@@ -782,7 +782,7 @@ export class InvoiceService {
       return newInvoice;
     }
 
-    return this.request<Invoice>('/finance/invoices', {
+    return this.request<Invoice>('/sales-masters/invoices', {
       method: 'POST',
       body: JSON.stringify(data),
     });
@@ -844,7 +844,7 @@ export class InvoiceService {
       return MOCK_INVOICES[index];
     }
 
-    return this.request<Invoice>(`/finance/invoices/${id}`, {
+    return this.request<Invoice>(`/sales-masters/invoices/${id}`, {
       method: 'PUT',
       body: JSON.stringify(data),
     });
@@ -872,7 +872,7 @@ export class InvoiceService {
       return MOCK_INVOICES[index];
     }
 
-    return this.request<Invoice>(`/finance/invoices/${id}/submit`, {
+    return this.request<Invoice>(`/sales-masters/invoices/${id}/submit`, {
       method: 'POST',
     });
   }
@@ -899,7 +899,7 @@ export class InvoiceService {
       return MOCK_INVOICES[index];
     }
 
-    return this.request<Invoice>(`/finance/invoices/${id}/approve`, {
+    return this.request<Invoice>(`/sales-masters/invoices/${id}/approve`, {
       method: 'POST',
     });
   }
@@ -926,7 +926,7 @@ export class InvoiceService {
       return MOCK_INVOICES[index];
     }
 
-    return this.request<Invoice>(`/finance/invoices/${id}/post`, {
+    return this.request<Invoice>(`/sales-masters/invoices/${id}/post`, {
       method: 'POST',
     });
   }
@@ -957,7 +957,7 @@ export class InvoiceService {
       return MOCK_INVOICES[index];
     }
 
-    return this.request<Invoice>(`/finance/invoices/${id}/cancel`, {
+    return this.request<Invoice>(`/sales-masters/invoices/${id}/cancel`, {
       method: 'POST',
       body: JSON.stringify({ reason }),
     });
@@ -984,7 +984,7 @@ export class InvoiceService {
       return MOCK_INVOICES[index];
     }
 
-    return this.request<Invoice>(`/finance/invoices/${id}/void`, {
+    return this.request<Invoice>(`/sales-masters/invoices/${id}/void`, {
       method: 'POST',
       body: JSON.stringify({ reason }),
     });
@@ -1005,7 +1005,7 @@ export class InvoiceService {
       return;
     }
 
-    await this.request<void>(`/finance/invoices/${id}`, {
+    await this.request<void>(`/sales-masters/invoices/${id}`, {
       method: 'DELETE',
     });
   }
@@ -1048,7 +1048,7 @@ export class InvoiceService {
       };
     }
 
-    return this.request('/finance/invoices/statistics');
+    return this.request('/sales-masters/invoices/statistics');
   }
 }
 

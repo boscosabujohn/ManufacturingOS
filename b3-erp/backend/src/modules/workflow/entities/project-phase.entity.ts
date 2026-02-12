@@ -13,7 +13,7 @@ export class ProjectPhase {
     @Column({ default: 1 })
     currentPhase: number;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     currentStep: string;
 
     @Column({ default: 'active' })
@@ -31,7 +31,7 @@ export class ProjectPhase {
     @Column({ type: 'date', nullable: true })
     actualCompletionDate: Date;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     createdBy: string;
 
     @CreateDateColumn()

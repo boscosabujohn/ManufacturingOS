@@ -23,7 +23,7 @@ export class ContentCategory {
   @Column({ type: 'text', nullable: true })
   description: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   parentId: string;
 
   @ManyToOne(() => ContentCategory, (category) => category.children, {
@@ -41,10 +41,10 @@ export class ContentCategory {
   @Column({ default: true })
   isActive: boolean;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   icon: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   color: string;
 
   // SEO

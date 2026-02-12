@@ -163,7 +163,7 @@ export class Customer {
   @Column({ length: 100, nullable: true })
   salesPerson: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   salesPersonId: string;
 
   @Column({ length: 100, nullable: true })

@@ -38,18 +38,7 @@ const VendorMaster: React.FC = () => {
     'Appliances', 'Countertops', 'Tile', 'Hardwood Flooring', 'Electrical Components', 'Plumbing Fixtures'
   ];
 
-  export default function VendorMaster() {
-    const [vendors, setVendors] = useState<Vendor[]>(mockVendors);
-    const [searchTerm, setSearchTerm] = useState('');
-    const [filterType, setFilterType] = useState<string>('all');
-    const [filterCategory, setFilterCategory] = useState<string>('all');
-    const [filterStatus, setFilterStatus] = useState<string>('all');
-    const [showModal, setShowModal] = useState(false);
-    const [editingVendor, setEditingVendor] = useState<Vendor | null>(null);
-    const [viewMode, setViewMode] = useState<'grid' | 'list'>('list');
-    const [activeTab, setActiveTab] = useState('basic');
-
-    const filteredVendors = vendors.filter(vendor => {
+  const filteredVendors = vendors.filter(vendor => {
       const matchesSearch = vendor.vendorName.toLowerCase().includes(searchTerm.toLowerCase()) ||
         vendor.vendorCode.toLowerCase().includes(searchTerm.toLowerCase()) ||
         vendor.email.toLowerCase().includes(searchTerm.toLowerCase());
@@ -358,7 +347,6 @@ const VendorMaster: React.FC = () => {
         )}
       </div>
     );
-  }
 
   interface VendorModalProps {
     vendor: Vendor | null;
@@ -692,3 +680,6 @@ const VendorMaster: React.FC = () => {
       </div>
     );
   }
+};
+
+export default VendorMaster;

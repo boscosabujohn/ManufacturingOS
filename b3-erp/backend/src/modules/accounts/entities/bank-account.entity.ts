@@ -17,10 +17,10 @@ export class BankAccount {
     @Column()
     branch: string;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     ifscCode: string;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     swiftCode: string;
 
     @Column({ default: 'USD' })
@@ -41,7 +41,7 @@ export class BankAccount {
     @Column({ type: 'enum', enum: ['active', 'inactive', 'closed'], default: 'active' })
     status: string;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     companyId: string;
 
     @CreateDateColumn()
@@ -50,6 +50,6 @@ export class BankAccount {
     @UpdateDateColumn()
     updatedAt: Date;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     createdBy: string;
 }

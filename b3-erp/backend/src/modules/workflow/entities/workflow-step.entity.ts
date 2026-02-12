@@ -45,7 +45,7 @@ export class WorkflowStep {
   @Column()
   stepName: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   description: string;
 
   @Column({
@@ -64,10 +64,10 @@ export class WorkflowStep {
   order: number;
 
   // Execution details
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   jobId: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   queueName: string;
 
   // Input/Output data
@@ -78,7 +78,7 @@ export class WorkflowStep {
   output: Record<string, any>;
 
   // Error handling
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   errorMessage: string;
 
   @Column({ type: 'jsonb', nullable: true })
@@ -101,7 +101,7 @@ export class WorkflowStep {
   durationMs: number;
 
   // Audit
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   executedBy: string;
 
   @CreateDateColumn()

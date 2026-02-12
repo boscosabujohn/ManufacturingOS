@@ -25,7 +25,7 @@ export class ApprovalStep {
     @Column()
     approverId: string; // user ID
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     approverRole: string; // 'manager', 'director', 'qc_lead', etc.
 
     @Column({ default: 'pending' })

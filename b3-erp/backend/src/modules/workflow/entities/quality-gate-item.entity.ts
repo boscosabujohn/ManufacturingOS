@@ -18,7 +18,7 @@ export class QualityGateItem {
     @Column({ type: 'text' })
     itemDescription: string;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     passed: boolean;
 
     @Column({ type: 'text', nullable: true })

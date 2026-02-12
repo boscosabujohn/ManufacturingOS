@@ -1,127 +1,127 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { WorkflowModule } from '../workflow/workflow.module';
-
-// Entities
 import {
-  PurchaseRequisition,
-  PurchaseOrder,
-  PurchaseOrderItem,
-  RFQ,
-  VendorQuotation,
+  AuditTrailController,
+  GoodsReceiptController,
+  PurchaseInvoiceController,
+  PurchaseOrderController,
+  PurchaseRequisitionController,
+  PurchaseReturnController,
+  RFQController,
+  SourcingIntegrationController,
+  VendorCollaborationController,
+  VendorContractController,
+  VendorEvaluationController,
+  VendorQuotationController,
+} from './controllers';
+import {
+  AuditTrail,
   GoodsReceipt,
   GoodsReceiptItem,
-  PurchaseReturn,
   PurchaseInvoice,
-  VendorEvaluation,
+  PurchaseOrder,
+  PurchaseOrderItem,
+  PurchaseRequisition,
+  PurchaseReturn,
+  RFQ,
+  SourcingRule,
   VendorContract,
+  VendorEvaluation,
+  VendorMessage,
+  VendorQuotation,
 } from './entities';
-
-// Controllers
 import {
-  PurchaseRequisitionController,
-  PurchaseOrderController,
-  RFQController,
-  VendorQuotationController,
-  GoodsReceiptController,
-  PurchaseReturnController,
-  PurchaseInvoiceController,
-  VendorEvaluationController,
-  VendorContractController,
-} from './controllers';
-
-// Services
-import {
-  PurchaseRequisitionService,
-  PurchaseOrderService,
-  RFQService,
-  VendorQuotationService,
-  GoodsReceiptService,
-  PurchaseReturnService,
-  PurchaseInvoiceService,
-  VendorEvaluationService,
   ApprovalThresholdSeederService,
+  GoodsReceiptService,
+  PurchaseInvoiceService,
+  PurchaseOrderService,
+  PurchaseRequisitionService,
+  PurchaseReturnService,
+  RFQService,
+  VendorEvaluationService,
+  VendorQuotationService,
 } from './services';
-import { ThreeWayMatchingService } from './services/three-way-matching.service';
-import { ContractService } from './services/contract.service';
 import { ApprovalMatrixService } from './services/approval-matrix.service';
+import { AuditTrailService } from './services/audit-trail.service';
+import { ContractService } from './services/contract.service';
 import { RFQPolicyService } from './services/rfq-policy.service';
+import { SourcingIntegrationService } from './services/sourcing-integration.service';
 import { SpendAnalysisService } from './services/spend-analysis.service';
+import { ThreeWayMatchingService } from './services/three-way-matching.service';
+import { VendorCollaborationService } from './services/vendor-collaboration.service';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([
-      // Purchase Requisitions
-      PurchaseRequisition,
-
-      // Purchase Orders
-      PurchaseOrder,
-      PurchaseOrderItem,
-
-      // RFQ & Quotations
-      RFQ,
-      VendorQuotation,
-
-      // Goods Receipts
+      AuditTrail,
       GoodsReceipt,
       GoodsReceiptItem,
-
-      // Purchase Returns
-      PurchaseReturn,
-
-      // Purchase Invoices
       PurchaseInvoice,
-
-      // Vendor Evaluations
-      VendorEvaluation,
-
-      // Vendor Contracts
+      PurchaseOrder,
+      PurchaseOrderItem,
+      PurchaseRequisition,
+      PurchaseReturn,
+      RFQ,
+      SourcingRule,
       VendorContract,
+      VendorEvaluation,
+      VendorMessage,
+      VendorQuotation,
     ]),
     WorkflowModule,
   ],
   controllers: [
-    PurchaseRequisitionController,
-    PurchaseOrderController,
-    RFQController,
-    VendorQuotationController,
+    AuditTrailController,
     GoodsReceiptController,
-    PurchaseReturnController,
     PurchaseInvoiceController,
-    VendorEvaluationController,
+    PurchaseOrderController,
+    PurchaseRequisitionController,
+    PurchaseReturnController,
+    RFQController,
+    SourcingIntegrationController,
+    VendorCollaborationController,
     VendorContractController,
+    VendorEvaluationController,
+    VendorQuotationController,
   ],
   providers: [
-    PurchaseRequisitionService,
-    PurchaseOrderService,
-    RFQService,
-    VendorQuotationService,
-    GoodsReceiptService,
-    PurchaseReturnService,
-    PurchaseInvoiceService,
-    VendorEvaluationService,
-    ThreeWayMatchingService,
-    ContractService,
     ApprovalMatrixService,
-    RFQPolicyService,
-    SpendAnalysisService,
     ApprovalThresholdSeederService,
+    AuditTrailService,
+    ContractService,
+    GoodsReceiptService,
+    PurchaseInvoiceService,
+    PurchaseOrderService,
+    PurchaseRequisitionService,
+    PurchaseReturnService,
+    RFQPolicyService,
+    RFQService,
+    SourcingIntegrationService,
+    SpendAnalysisService,
+    ThreeWayMatchingService,
+    VendorCollaborationService,
+    VendorEvaluationService,
+    VendorQuotationService,
   ],
   exports: [
-    PurchaseRequisitionService,
-    PurchaseOrderService,
-    RFQService,
-    VendorQuotationService,
-    GoodsReceiptService,
-    PurchaseReturnService,
-    PurchaseInvoiceService,
-    VendorEvaluationService,
-    ThreeWayMatchingService,
-    ContractService,
     ApprovalMatrixService,
-    RFQPolicyService,
-    SpendAnalysisService,
     ApprovalThresholdSeederService,
+    AuditTrailService,
+    ContractService,
+    GoodsReceiptService,
+    PurchaseInvoiceService,
+    PurchaseOrderService,
+    PurchaseRequisitionService,
+    PurchaseReturnService,
+    RFQPolicyService,
+    RFQService,
+    SourcingIntegrationService,
+    SpendAnalysisService,
+    ThreeWayMatchingService,
+    VendorCollaborationService,
+    VendorEvaluationService,
+    VendorQuotationService,
   ],
 })
-export class ProcurementModule { }
+export class ProcurementModule {}

@@ -35,7 +35,7 @@ export class CostCenter {
   @Column({ type: 'text', nullable: true })
   description: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   parentCostCenterId: string;
 
   @ManyToOne(() => CostCenter, { nullable: true })
@@ -48,7 +48,7 @@ export class CostCenter {
   @Column({ nullable: true, length: 100 })
   location: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   managerId: string;
 
   @Column({ nullable: true, length: 255 })
@@ -166,13 +166,13 @@ export class VarianceAnalysis {
   @Column()
   periodId: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   productId: string;
 
   @Column({ nullable: true, length: 255 })
   productName: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   jobId: string;
 
   @Column({ nullable: true, length: 255 })
@@ -278,7 +278,7 @@ export class WIPAccounting {
   @Column({ type: 'date' })
   valuationDate: Date;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   productId: string;
 
   @Column({ nullable: true, length: 255 })
@@ -312,7 +312,7 @@ export class WIPAccounting {
   @Column({ default: 'In Progress', length: 50 })
   status: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   costCenterId: string;
 
   @Column({ nullable: true, length: 100 })

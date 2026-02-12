@@ -7,3 +7,6 @@ export * from './purchase-return.controller';
 export * from './purchase-invoice.controller';
 export * from './vendor-evaluation.controller';
 export * from './vendor-contract.controller';
+export * from './audit-trail.controller';
+export * from './vendor-collaboration.controller';
+export * from './sourcing-integration.controller';

@@ -19,10 +19,10 @@ export class HandoverCertificate {
     @JoinColumn({ name: 'project_id' })
     project: Project;
 
-    @Column({ name: 'client_signatory', nullable: true })
+    @Column({ name: 'client_signatory', type: 'varchar', nullable: true })
     clientSignatory: string;
 
-    @Column({ name: 'signatory_title', nullable: true })
+    @Column({ name: 'signatory_title', type: 'varchar', nullable: true })
     signatoryTitle: string;
 
     @Column({ name: 'signed_at', type: 'timestamp', nullable: true })
@@ -35,7 +35,7 @@ export class HandoverCertificate {
     })
     status: HandoverStatus;
 
-    @Column({ name: 'certificate_url', nullable: true })
+    @Column({ name: 'certificate_url', type: 'varchar', nullable: true })
     certificateUrl: string;
 
     @CreateDateColumn({ name: 'created_at' })

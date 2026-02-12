@@ -55,7 +55,7 @@ export class ProposalTemplate {
   @Column({ default: false })
   isDefault: boolean;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   createdById: string;
 
   @CreateDateColumn()

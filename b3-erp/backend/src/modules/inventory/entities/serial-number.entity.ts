@@ -44,13 +44,13 @@ export class SerialNumber {
   itemName: string;
 
   // Current location
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   warehouseId: string;
 
   @Column({ length: 255, nullable: true })
   warehouseName: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   locationId: string;
 
   @Column({ length: 255, nullable: true })
@@ -65,20 +65,20 @@ export class SerialNumber {
   status: SerialNumberStatus;
 
   // Batch association (optional)
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   batchId: string;
 
   @Column({ length: 100, nullable: true })
   batchNumber: string;
 
   // Procurement details
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   purchaseOrderId: string;
 
   @Column({ length: 100, nullable: true })
   purchaseOrderNumber: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   supplierId: string;
 
   @Column({ length: 255, nullable: true })
@@ -110,7 +110,7 @@ export class SerialNumber {
   @Column({ type: 'date', nullable: true })
   receiptDate: Date;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   receiptStockEntryId: string;
 
   @Column({ length: 100, nullable: true })
@@ -137,13 +137,13 @@ export class SerialNumber {
   isExpired: boolean;
 
   // Sales/Issue details
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   customerId: string;
 
   @Column({ length: 255, nullable: true })
   customerName: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   salesOrderId: string;
 
   @Column({ length: 100, nullable: true })
@@ -155,7 +155,7 @@ export class SerialNumber {
   @Column({ type: 'decimal', precision: 15, scale: 2, nullable: true })
   salesPrice: number;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   issueStockEntryId: string;
 
   @Column({ length: 100, nullable: true })
@@ -171,7 +171,7 @@ export class SerialNumber {
   @Column({ type: 'text', nullable: true })
   installationLocation: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   installedBy: string;
 
   @Column({ length: 100, nullable: true })
@@ -200,7 +200,7 @@ export class SerialNumber {
   @Column({ default: false })
   isFixedAsset: boolean;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   assetId: string;
 
   @Column({ length: 100, nullable: true })
@@ -210,7 +210,7 @@ export class SerialNumber {
   @Column({ default: 'Own' })
   ownershipType: string; // Own, Leased, Rented, Consignment
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   ownerId: string;
 
   @Column({ length: 255, nullable: true })
@@ -220,20 +220,20 @@ export class SerialNumber {
   @Column({ length: 50, nullable: true })
   qualityStatus: string; // Passed, Failed, Pending Inspection
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   qualityInspectionId: string;
 
   @Column({ type: 'date', nullable: true })
   qualityInspectionDate: Date;
 
   // Project/Cost Center allocation
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   projectId: string;
 
   @Column({ length: 255, nullable: true })
   projectName: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   costCenterId: string;
 
   @Column({ length: 255, nullable: true })
@@ -254,13 +254,13 @@ export class SerialNumber {
   qrCode: string; // QR code data
 
   // Tracking
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   currentHolderId: string; // Employee/customer holding the item
 
   @Column({ length: 255, nullable: true })
   currentHolderName: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   lastMovementId: string; // Last stock entry ID
 
   @Column({ type: 'timestamp', nullable: true })

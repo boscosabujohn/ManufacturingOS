@@ -22,10 +22,10 @@ export class ProductionLog {
     @JoinColumn({ name: 'project_id' })
     project: Project;
 
-    @Column({ name: 'machine_id', nullable: true })
+    @Column({ name: 'machine_id', type: 'varchar', nullable: true })
     machineId: string;
 
-    @Column({ name: 'operator_id', nullable: true })
+    @Column({ name: 'operator_id', type: 'varchar', nullable: true })
     operatorId: string;
 
     @Column({
@@ -46,7 +46,7 @@ export class ProductionLog {
     @Column({ name: 'reject_count', default: 0 })
     rejectCount: number;
 
-    @Column({ name: 'idle_reason', nullable: true })
+    @Column({ name: 'idle_reason', type: 'varchar', nullable: true })
     idleReason: string;
 
     @CreateDateColumn({ name: 'created_at' })

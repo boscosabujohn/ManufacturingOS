@@ -180,7 +180,7 @@ export class Vendor {
   @Column({ length: 100, nullable: true })
   category: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   buyerId: string;
 
   @Column({ length: 255, nullable: true })

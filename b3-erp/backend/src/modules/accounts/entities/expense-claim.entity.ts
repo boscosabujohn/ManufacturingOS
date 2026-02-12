@@ -32,7 +32,7 @@ export class ExpenseClaim {
     @Column({ type: 'enum', enum: ['draft', 'pending', 'approved', 'rejected', 'paid'], default: 'draft' })
     status: string;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     approvedBy: string;
 
     @Column({ type: 'date', nullable: true })
@@ -41,13 +41,13 @@ export class ExpenseClaim {
     @Column({ type: 'date', nullable: true })
     paidDate: Date;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     paidBy: string;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     paymentReference: string;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     rejectionReason: string;
 
     @CreateDateColumn()

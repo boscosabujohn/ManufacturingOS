@@ -23,8 +23,8 @@ export class Company {
     @Column({ default: 'INR', length: 3 })
     baseCurrency: string;
 
-    @Column({ type: 'date' })
-    fiscalYearStart: Date;
+    @Column({ type: 'date', nullable: true })
+    fiscalYearStart: Date | null;
 
     @Column({ length: 255, nullable: true })
     logoUrl: string;

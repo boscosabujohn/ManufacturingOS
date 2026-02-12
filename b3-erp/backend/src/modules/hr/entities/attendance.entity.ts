@@ -45,7 +45,7 @@ export class Attendance {
   @Column({ type: 'date' })
   date: Date;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   shiftId: string;
 
   @Column({ type: 'time', nullable: true })
@@ -98,7 +98,7 @@ export class Attendance {
   @Column({ nullable: true, length: 100 })
   holidayName: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   leaveApplicationId: string;
 
   @Column({ nullable: true, length: 100 })
@@ -110,7 +110,7 @@ export class Attendance {
   @Column({ type: 'text', nullable: true })
   regularizationReason: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   regularizedBy: string;
 
   @Column({ type: 'timestamp', nullable: true })
@@ -119,7 +119,7 @@ export class Attendance {
   @Column({ default: false })
   isManualEntry: boolean;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   enteredBy: string;
 
   @Column({ type: 'text', nullable: true })

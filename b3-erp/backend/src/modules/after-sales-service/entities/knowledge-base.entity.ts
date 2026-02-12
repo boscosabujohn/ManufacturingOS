@@ -35,13 +35,13 @@ export class KnowledgeBase {
     @Column({ type: 'simple-array', nullable: true })
     tags: string[];
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     productModel: string;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     fileUrl: string;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     author: string;
 
     @Column({ type: 'int', default: 0 })

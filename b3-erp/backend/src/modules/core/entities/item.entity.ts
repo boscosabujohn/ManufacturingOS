@@ -192,7 +192,7 @@ export class Item {
   @Column({ default: false })
   requiresQualityInspection: boolean;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   qcTemplateId: string;
 
   @Column({ type: 'int', default: 0 })
@@ -202,7 +202,7 @@ export class Item {
   warrantyDays: number;
 
   // Suppliers
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   preferredVendorId: string;
 
   @Column({ length: 255, nullable: true })
@@ -228,23 +228,23 @@ export class Item {
   @Column({ default: false })
   isSold: boolean;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   defaultBOMId: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   defaultRoutingId: string;
 
   // GL Account Mapping
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   inventoryAccountId: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   cogsAccountId: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   salesAccountId: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   purchaseAccountId: string;
 
   // Images and Documents

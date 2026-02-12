@@ -269,7 +269,7 @@ export class TransportCompany {
   lastShipmentDate: Date;
 
   // Contract Details
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   contractId: string;
 
   @Column({ nullable: true, length: 100 })

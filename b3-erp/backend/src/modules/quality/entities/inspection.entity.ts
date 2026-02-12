@@ -74,7 +74,7 @@ export class Inspection {
   priority: InspectionPriority;
 
   // QC Template
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   qcTemplateId: string;
 
   @Column({ length: 100, nullable: true })
@@ -127,45 +127,45 @@ export class Inspection {
   @Column({ type: 'decimal', precision: 15, scale: 4, default: 0 })
   scrapQuantity: number;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   referenceType: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   referenceId: string;
 
   // Source references
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   workOrderId: string;
 
   @Column({ length: 100, nullable: true })
   workOrderNumber: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   purchaseOrderId: string;
 
   @Column({ length: 100, nullable: true })
   purchaseOrderNumber: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   grnId: string;
 
   @Column({ length: 100, nullable: true })
   grnNumber: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   productionEntryId: string;
 
   @Column({ length: 100, nullable: true })
   productionEntryNumber: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   salesOrderId: string;
 
   @Column({ length: 100, nullable: true })
   salesOrderNumber: string;
 
   // Supplier (for incoming inspection)
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   supplierId: string;
 
   @Column({ length: 255, nullable: true })
@@ -178,7 +178,7 @@ export class Inspection {
   supplierInvoiceDate: Date;
 
   // Customer (for final inspection)
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   customerId: string;
 
   @Column({ length: 255, nullable: true })
@@ -188,13 +188,13 @@ export class Inspection {
   customerPO: string;
 
   // Location
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   warehouseId: string;
 
   @Column({ length: 100, nullable: true })
   warehouseName: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   workCenterId: string;
 
   @Column({ length: 100, nullable: true })
@@ -226,13 +226,13 @@ export class Inspection {
   durationMinutes: number;
 
   // Inspector
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   assignedToId: string;
 
   @Column({ length: 255, nullable: true })
   assignedToName: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   inspectedById: string;
 
   @Column({ length: 255, nullable: true })
@@ -280,7 +280,7 @@ export class Inspection {
   @Column({ default: false })
   ncrGenerated: boolean;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   ncrId: string;
 
   @Column({ length: 100, nullable: true })
@@ -289,7 +289,7 @@ export class Inspection {
   @Column({ default: false })
   capaGenerated: boolean;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   capaId: string;
 
   @Column({ length: 100, nullable: true })

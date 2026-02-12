@@ -4,28 +4,29 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { BullModule } from '@nestjs/bull';
 
 // Modules
-import { CoreModule } from './modules/core/core.module';
 import { AccountsModule } from './modules/accounts/accounts.module';
-import { CrmModule } from './modules/crm/crm.module';
-import { SalesModule } from './modules/sales/sales.module';
-import { EstimationModule } from './modules/estimation/estimation.module';
-import { InventoryModule } from './modules/inventory/inventory.module';
-import { ProductionModule } from './modules/production/production.module';
-import { ProcurementModule } from './modules/procurement/procurement.module';
-import { FinanceModule } from './modules/finance/finance.module';
-import { HrModule } from './modules/hr/hr.module';
-import { WorkflowModule } from './modules/workflow/workflow.module';
-import { ReportsModule } from './modules/reports/reports.module';
-import { LogisticsModule } from './modules/logistics/logistics.module';
-import { SupportModule } from './modules/support/support.module';
-import { ItAdminModule } from './modules/it-admin/it-admin.module';
 import { AfterSalesServiceModule } from './modules/after-sales-service/after-sales-service.module';
-import { QualityModule } from './modules/quality/quality.module';
-import { ProjectManagementModule } from './modules/project-management/project-management.module';
 import { ApprovalsModule } from './modules/approvals/approvals.module';
 import { AuthModule } from './modules/auth/auth.module';
-import { PrismaModule } from './modules/prisma/prisma.module';
 import { CommonMastersModule } from './modules/common-masters/common-masters.module';
+import { CoreModule } from './modules/core/core.module';
+import { CPQModule } from './modules/cpq/cpq.module';
+import { CrmModule } from './modules/crm/crm.module';
+import { EstimationModule } from './modules/estimation/estimation.module';
+import { FinanceModule } from './modules/finance/finance.module';
+import { HrModule } from './modules/hr/hr.module';
+import { InventoryModule } from './modules/inventory/inventory.module';
+import { ItAdminModule } from './modules/it-admin/it-admin.module';
+import { LogisticsModule } from './modules/logistics/logistics.module';
+import { PrismaModule } from './modules/prisma/prisma.module';
+import { ProcurementModule } from './modules/procurement/procurement.module';
+import { ProductionModule } from './modules/production/production.module';
+import { ProjectManagementModule } from './modules/project-management/project-management.module';
+import { QualityModule } from './modules/quality/quality.module';
+import { ReportsModule } from './modules/reports/reports.module';
+import { SalesModule } from './modules/sales/sales.module';
+import { SupportModule } from './modules/support/support.module';
+import { WorkflowModule } from './modules/workflow/workflow.module';
 
 
 @Module({
@@ -83,6 +84,7 @@ import { CommonMastersModule } from './modules/common-masters/common-masters.mod
     CoreModule, // Customer, Vendor, Item, UOM, Category masters
     AccountsModule,
     CrmModule, // Lead & Interaction management
+    CPQModule, // Configure, Price, Quote
     SalesModule, // RFP, Quotes, Orders
     AfterSalesServiceModule, // Service requests, contracts, warranties
     EstimationModule, // Cost estimation & quotations

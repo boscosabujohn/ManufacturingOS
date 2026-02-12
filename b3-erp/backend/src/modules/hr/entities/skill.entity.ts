@@ -43,7 +43,7 @@ export class Skill {
   @Column({ type: 'text', nullable: true })
   useCases: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   categoryId: string;
 
   @ManyToOne(() => SkillCategory, (category) => category.skills)

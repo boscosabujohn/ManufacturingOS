@@ -9,7 +9,7 @@ export class WorkflowRule {
     @Column()
     name: string;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     description: string;
 
     @Column('jsonb')
@@ -24,7 +24,7 @@ export class WorkflowRule {
     @Column({ default: true })
     enabled: boolean;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     triggerEvent: string; // Event that triggers this rule evaluation
 
     @CreateDateColumn()

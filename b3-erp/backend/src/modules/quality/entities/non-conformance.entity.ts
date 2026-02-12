@@ -72,38 +72,38 @@ export class NonConformance {
   priority: NCRPriority;
 
   // Source reference
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   inspectionId: string;
 
   @Column({ length: 100, nullable: true })
   inspectionNumber: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   auditId: string;
 
   @Column({ length: 100, nullable: true })
   auditNumber: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   workOrderId: string;
 
   @Column({ length: 100, nullable: true })
   workOrderNumber: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   purchaseOrderId: string;
 
   @Column({ length: 100, nullable: true })
   purchaseOrderNumber: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   salesOrderId: string;
 
   @Column({ length: 100, nullable: true })
   salesOrderNumber: string;
 
   // Item/Product
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   itemId: string;
 
   @Column({ length: 100, nullable: true })
@@ -138,19 +138,19 @@ export class NonConformance {
   reworkQuantity: number;
 
   // Parties involved
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   supplierId: string;
 
   @Column({ length: 255, nullable: true })
   supplierName: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   customerId: string;
 
   @Column({ length: 255, nullable: true })
   customerName: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   reportedById: string;
 
   @Column({ length: 255, nullable: true })
@@ -166,13 +166,13 @@ export class NonConformance {
   occurrenceDate: Date;
 
   // Location
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   departmentId: string;
 
   @Column({ length: 255, nullable: true })
   departmentName: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   workCenterId: string;
 
   @Column({ length: 100, nullable: true })
@@ -271,19 +271,19 @@ export class NonConformance {
   @Column({ default: false })
   requiresCAPA: boolean;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   capaId: string;
 
   @Column({ length: 100, nullable: true })
   capaNumber: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   correctiveActionId: string;
 
   @Column({ length: 100, nullable: true })
   correctiveActionNumber: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   preventiveActionId: string;
 
   @Column({ length: 100, nullable: true })

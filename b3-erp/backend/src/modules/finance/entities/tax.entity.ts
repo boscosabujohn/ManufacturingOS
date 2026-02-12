@@ -62,13 +62,13 @@ export class TaxMaster {
   description: string;
 
   // GL Account mapping
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   taxPayableAccountId: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   taxReceivableAccountId: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   taxExpenseAccountId: string;
 
   @Column({ default: true })
@@ -115,7 +115,7 @@ export class GSTTransaction {
   partyState: string;
 
   // Invoice details
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   invoiceId: string;
 
   @Column({ nullable: true, length: 50 })
@@ -162,7 +162,7 @@ export class GSTTransaction {
   hsnSacCode: string;
 
   // Filing details
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   gstrPeriodId: string;
 
   @Column({ default: false })
@@ -212,7 +212,7 @@ export class TDSTransaction {
   partyType: string; // Vendor, Contractor, Professional, etc.
 
   // Payment details
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   paymentId: string;
 
   @Column({ nullable: true, length: 50 })

@@ -96,9 +96,6 @@ export default function InstallationTypeMaster() {
       setIsLoading(false);
     }
   };
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [filterComplexity, setFilterComplexity] = useState<string>('All');
 
   const handleEdit = (type: InstallationType) => {
     setSelectedType(type);

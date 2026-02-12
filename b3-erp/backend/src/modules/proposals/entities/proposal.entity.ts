@@ -53,26 +53,26 @@ export class Proposal {
   status: ProposalStatus;
 
   // Client Information
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   customerId: string;
 
   @Column({ length: 255 })
   customerName: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   customerContact: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   customerEmail: string;
 
   // Reference
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   rfpNumber: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   rfpId: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   opportunityId: string;
 
   // Content
@@ -128,13 +128,13 @@ export class Proposal {
   }>;
 
   // Metadata
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   templateId: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   createdById: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   assignedToId: string;
 
   @Column({ type: 'timestamp', nullable: true })
@@ -150,11 +150,11 @@ export class Proposal {
   @Column({ default: 1 })
   version: number;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   parentVersionId: string;
 
   // Document
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   pdfUrl: string;
 
   @Column({ type: 'simple-array', nullable: true })

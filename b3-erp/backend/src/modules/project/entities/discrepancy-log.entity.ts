@@ -54,7 +54,7 @@ export class DiscrepancyLog {
     })
     severity: DiscrepancySeverity;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     resolvedBy: string;
 
     @Column({ type: 'timestamp', nullable: true })

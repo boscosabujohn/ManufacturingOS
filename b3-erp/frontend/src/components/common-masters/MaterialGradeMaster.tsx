@@ -90,9 +90,6 @@ export default function MaterialGradeMaster() {
       setIsLoading(false);
     }
   };
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [filterGrade, setFilterGrade] = useState<string>('All');
 
   const handleEdit = (grade: MaterialGrade) => {
     setSelectedGrade(grade);

@@ -96,10 +96,10 @@ export class Shipment {
   shipmentMode: ShipmentMode;
 
   // Origin Information
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   originType: string; // Warehouse, Customer, Supplier
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   originId: string;
 
   @Column({ nullable: true, length: 200 })
@@ -127,10 +127,10 @@ export class Shipment {
   originContactPhone: string;
 
   // Destination Information
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   destinationType: string; // Warehouse, Customer, Supplier
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   destinationId: string;
 
   @Column({ nullable: true, length: 200 })
@@ -158,35 +158,35 @@ export class Shipment {
   destinationContactPhone: string;
 
   // Shipment Details
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   salesOrderId: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   purchaseOrderId: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   deliveryNoteId: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   tripId: string;
 
   @ManyToOne(() => Trip, (trip) => trip.shipments, { nullable: true })
   @JoinColumn({ name: 'tripId' })
   trip: Trip;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   transportCompanyId: string;
 
   @Column({ nullable: true, length: 200 })
   transportCompanyName: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   vehicleId: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   driverId: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   routeId: string;
 
   // Package Details

@@ -27,7 +27,7 @@ export class WorkflowEdge {
     @Column()
     target: string; // Node ID
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     label: string;
 
     @Column({ type: 'jsonb', nullable: true })

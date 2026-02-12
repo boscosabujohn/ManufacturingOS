@@ -24,7 +24,7 @@ export class BOQ {
     @Column()
     projectLocation: string;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     projectDuration: string;
 
     @Column({ default: 'USD' })

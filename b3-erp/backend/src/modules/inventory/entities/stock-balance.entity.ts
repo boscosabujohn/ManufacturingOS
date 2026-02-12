@@ -38,20 +38,20 @@ export class StockBalance {
   @Column({ length: 255 })
   warehouseName: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   locationId: string;
 
   @Column({ length: 255, nullable: true })
   locationName: string;
 
   // Batch/Serial tracking
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   batchId: string;
 
   @Column({ length: 100, nullable: true })
   batchNumber: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   serialNumberId: string;
 
   @Column({ length: 100, nullable: true })
@@ -161,30 +161,30 @@ export class StockBalance {
   velocityClassification: string; // Fast, Medium, Slow
 
   // Cycle count
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   lastCycleCountDate: Date;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   nextCycleCountDate: Date;
 
   @Column({ type: 'int', default: 0 })
   cycleCountFrequency: number; // Days
 
   // Project/Cost Center allocation
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   projectId: string;
 
   @Column({ length: 255, nullable: true })
   projectName: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   costCenterId: string;
 
   @Column({ length: 255, nullable: true })
   costCenterName: string;
 
   // Ownership
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   ownerId: string; // For consignment stock
 
   @Column({ length: 255, nullable: true })
@@ -194,10 +194,10 @@ export class StockBalance {
   ownershipType: string; // Own Stock, Consignment, Customer Owned
 
   // Additional tracking
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   lastStockEntryId: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   lastStockEntryNumber: string;
 
   @Column({ type: 'timestamp', nullable: true })

@@ -431,7 +431,7 @@ class ShipmentService {
             if (filters?.search) params.append('search', filters.search);
 
             const response = await apiClient.get<{ data: Shipment[]; total: number }>(
-                `/logistics/shipments?${params.toString()}`
+                `/sales-masters/shipments?${params.toString()}`
             );
             return response.data;
         } catch (error) {
@@ -473,7 +473,7 @@ class ShipmentService {
      */
     async getShipmentById(id: string): Promise<Shipment> {
         try {
-            const response = await apiClient.get<Shipment>(`/logistics/shipments/${id}`);
+            const response = await apiClient.get<Shipment>(`/sales-masters/shipments/${id}`);
             return response.data;
         } catch (error) {
             console.error(`API Error fetching shipment ${id}, using mock data:`, error);
@@ -488,7 +488,7 @@ class ShipmentService {
      */
     async getOutstandingShipments(): Promise<Shipment[]> {
         try {
-            const response = await apiClient.get<Shipment[]>('/logistics/shipments/outstanding');
+            const response = await apiClient.get<Shipment[]>('/sales-masters/shipments/outstanding');
             return response.data;
         } catch (error) {
             console.error('API Error fetching outstanding shipments, using mock data:', error);
@@ -503,7 +503,7 @@ class ShipmentService {
      */
     async createShipment(data: CreateShipmentDto): Promise<Shipment> {
         try {
-            const response = await apiClient.post<Shipment>('/logistics/shipments', data);
+            const response = await apiClient.post<Shipment>('/sales-masters/shipments', data);
             return response.data;
         } catch (error) {
             console.error('API Error creating shipment, using mock:', error);
@@ -535,7 +535,7 @@ class ShipmentService {
      */
     async updateShipment(id: string, data: UpdateShipmentDto): Promise<Shipment> {
         try {
-            const response = await apiClient.put<Shipment>(`/logistics/shipments/${id}`, data);
+            const response = await apiClient.put<Shipment>(`/sales-masters/shipments/${id}`, data);
             return response.data;
         } catch (error) {
             console.error(`API Error updating shipment ${id}, using mock:`, error);
@@ -561,7 +561,7 @@ class ShipmentService {
      */
     async dispatchShipment(id: string): Promise<Shipment> {
         try {
-            const response = await apiClient.post<Shipment>(`/logistics/shipments/${id}/dispatch`, {});
+            const response = await apiClient.post<Shipment>(`/sales-masters/shipments/${id}/dispatch`, {});
             return response.data;
         } catch (error) {
             console.error(`API Error dispatching shipment ${id}, using mock:`, error);
@@ -585,7 +585,7 @@ class ShipmentService {
      */
     async deliverShipment(id: string): Promise<Shipment> {
         try {
-            const response = await apiClient.post<Shipment>(`/logistics/shipments/${id}/deliver`, {});
+            const response = await apiClient.post<Shipment>(`/sales-masters/shipments/${id}/deliver`, {});
             return response.data;
         } catch (error) {
             console.error(`API Error delivering shipment ${id}, using mock:`, error);

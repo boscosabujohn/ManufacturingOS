@@ -46,13 +46,13 @@ export class AdjustmentReason {
   status: AdjustmentReasonStatus;
 
   // GL Account for financial posting
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   expenseAccountId: string;
 
   @Column({ length: 255, nullable: true })
   expenseAccountName: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   incomeAccountId: string;
 
   @Column({ length: 255, nullable: true })

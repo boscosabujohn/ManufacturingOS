@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import {
   Palette,
   Layout,
@@ -71,8 +72,27 @@ const tabs: Tab[] = [
   },
 ];
 
+const validTabs: TabId[] = ['tokens', 'components', 'icons', 'colors', 'theme', 'branding'];
+
 export default function DesignSystemPage() {
   const [activeTab, setActiveTab] = useState<TabId>('tokens');
+
+  // Handle hash-based routing for deep links from sidebar
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.replace('#', '') as TabId;
+      if (validTabs.includes(hash)) {
+        setActiveTab(hash);
+      }
+    };
+
+    // Check initial hash on mount
+    handleHashChange();
+
+    // Listen for hash changes
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -103,7 +123,10 @@ export default function DesignSystemPage() {
             {tabs.map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
+                onClick={() => {
+                  setActiveTab(tab.id);
+                  window.history.pushState(null, '', `#${tab.id}`);
+                }}
                 className={`flex items-center gap-2 px-4 py-3 text-sm font-medium border-b-2 transition-colors whitespace-nowrap ${activeTab === tab.id
                   ? 'border-blue-500 text-blue-600 dark:text-blue-400'
                   : 'border-transparent text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300'

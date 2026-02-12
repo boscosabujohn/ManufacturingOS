@@ -60,7 +60,7 @@ export class TrackingEvent {
   severity: EventSeverity;
 
   // Associations
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   shipmentId: string;
 
   @ManyToOne(() => Shipment, (shipment) => shipment.trackingEvents, {
@@ -69,7 +69,7 @@ export class TrackingEvent {
   @JoinColumn({ name: 'shipmentId' })
   shipment: Shipment;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   tripId: string;
 
   @ManyToOne(() => Trip, (trip) => trip.trackingEvents, { nullable: true })
@@ -122,13 +122,13 @@ export class TrackingEvent {
   previousStatus: string;
 
   // Vehicle and Driver
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   vehicleId: string;
 
   @Column({ nullable: true, length: 100 })
   vehicleNumber: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   driverId: string;
 
   @Column({ nullable: true, length: 100 })
@@ -216,7 +216,7 @@ export class TrackingEvent {
   @Column({ nullable: true, length: 100 })
   recordedBy: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   recordedById: string;
 
   // Notifications

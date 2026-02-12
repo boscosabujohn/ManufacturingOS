@@ -50,19 +50,19 @@ export class SkillGap {
   })
   category: SkillGapCategory;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   roleId: string;
 
   @Column({ length: 100, nullable: true })
   roleName: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   departmentId: string;
 
   @Column({ length: 100, nullable: true })
   departmentName: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   skillId: string;
 
   @ManyToOne(() => Skill)

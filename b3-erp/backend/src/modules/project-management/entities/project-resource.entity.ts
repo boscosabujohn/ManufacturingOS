@@ -16,7 +16,7 @@ export class ProjectResource {
     @Column({ name: 'user_id' })
     userId: string;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     role: string;
 
     @Column({ name: 'allocation_percentage', default: 100 })

@@ -34,51 +34,51 @@ export class Lead {
   @Column()
   lastName: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   title: string;
 
   @Column()
   company: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   website: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   industry: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   employeeCount: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   annualRevenue: string;
 
   // Contact Information
   @Column()
   email: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   phone: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   mobile: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   fax: string;
 
   // Address Information
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   street: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   city: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   state: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   postalCode: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   country: string;
 
   // Lead Details
@@ -99,13 +99,13 @@ export class Lead {
   @Column()
   leadSource: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   leadSubSource: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   referredBy: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   campaign: string;
 
   // Opportunity Information
@@ -125,10 +125,10 @@ export class Lead {
   customProducts: string[];
 
   // Assignment & Ownership
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   assignedTo: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   teamAssignment: string;
 
   // Additional Details
@@ -142,13 +142,13 @@ export class Lead {
   customFields: Record<string, any>;
 
   // Social Media
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   linkedIn: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   twitter: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   facebook: string;
 
   // Compliance & Privacy

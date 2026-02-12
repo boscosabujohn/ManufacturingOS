@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState, useMemo, useEffect } from 'react';
 import {
   Shield, Plus, Search, Edit2, Trash2, CheckCircle2,

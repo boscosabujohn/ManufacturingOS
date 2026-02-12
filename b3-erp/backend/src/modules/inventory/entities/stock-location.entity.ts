@@ -66,7 +66,7 @@ export class StockLocation {
   status: LocationStatus;
 
   // Hierarchical location structure
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   parentLocationId: string;
 
   @Column({ length: 50, nullable: true })
@@ -136,7 +136,7 @@ export class StockLocation {
   @Column({ default: false })
   isFixedLocation: boolean; // Dedicated for specific item
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   fixedItemId: string;
 
   @Column({ length: 255, nullable: true })
@@ -174,7 +174,7 @@ export class StockLocation {
   @Column({ type: 'text', nullable: true })
   remarks: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   lastStockTakeDate: Date;
 
   @Column({ default: false })

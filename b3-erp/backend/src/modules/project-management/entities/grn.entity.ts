@@ -17,7 +17,7 @@ export class GRN {
     @Column({ name: 'received_by' })
     receivedBy: string;
 
-    @Column({ name: 'delivery_note_ref', nullable: true })
+    @Column({ name: 'delivery_note_ref', type: 'varchar', nullable: true })
     deliveryNoteRef: string;
 
     @Column({

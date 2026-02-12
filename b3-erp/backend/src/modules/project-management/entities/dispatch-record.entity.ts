@@ -26,7 +26,7 @@ export class DispatchRecord {
     @Column({ name: 'driver_name' })
     driverName: string;
 
-    @Column({ name: 'driver_phone', nullable: true })
+    @Column({ name: 'driver_phone', type: 'varchar', nullable: true })
     driverPhone: string;
 
     @Column({

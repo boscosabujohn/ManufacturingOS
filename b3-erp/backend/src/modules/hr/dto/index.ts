@@ -87,3 +87,8 @@ export * from './user-skill-response.dto';
 export * from './create-skill-gap.dto';
 export * from './update-skill-gap.dto';
 export * from './skill-gap-response.dto';
+
+// Payroll Management DTOs (Prisma-based)
+export * from './create-bonus.dto';
+export * from './create-loan.dto';
+export * from './create-advance.dto';

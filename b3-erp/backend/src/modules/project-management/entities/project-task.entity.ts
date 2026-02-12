@@ -16,7 +16,7 @@ export class ProjectTask {
     @Column()
     name: string;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     description: string;
 
     @Column({ name: 'start_date', type: 'date', nullable: true })
@@ -25,10 +25,10 @@ export class ProjectTask {
     @Column({ name: 'end_date', type: 'date', nullable: true })
     endDate: Date;
 
-    @Column({ name: 'planned_duration', nullable: true })
+    @Column({ name: 'planned_duration', type: 'varchar', nullable: true })
     plannedDuration: number;
 
-    @Column({ name: 'actual_duration', nullable: true })
+    @Column({ name: 'actual_duration', type: 'varchar', nullable: true })
     actualDuration: number;
 
     @Column({ type: 'decimal', precision: 5, scale: 2, default: 0 })
@@ -43,7 +43,7 @@ export class ProjectTask {
     @Column('uuid', { array: true, nullable: true, name: 'assigned_to' })
     assignedTo: string[];
 
-    @Column({ name: 'parent_task_id', nullable: true })
+    @Column({ name: 'parent_task_id', type: 'varchar', nullable: true })
     parentTaskId: string;
 
     @ManyToOne(() => ProjectTask, task => task.subtasks)

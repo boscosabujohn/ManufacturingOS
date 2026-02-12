@@ -65,13 +65,13 @@ export class Employee {
   @Column({ unique: true, length: 50 })
   employeeCode: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   userId: string; // Link to system user
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   biometricId: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   rfidCardNumber: string;
 
   // Personal Information
@@ -84,8 +84,8 @@ export class Employee {
   @Column({ length: 50 })
   lastName: string;
 
-  @Column({ length: 150 })
-  fullName: string;
+  @Column({ type: 'varchar', length: 150, nullable: true })
+  fullName: string | null;
 
   @Column({ type: 'date' })
   dateOfBirth: Date;
@@ -178,13 +178,13 @@ export class Employee {
   @Column({ type: 'date', nullable: true })
   probationEndDate: Date;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   reportingManagerId: string;
 
   @Column({ nullable: true, length: 100 })
   reportingManagerName: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   shiftId: string;
 
   @Column({ length: 100, nullable: true })
@@ -216,7 +216,7 @@ export class Employee {
   @Column({ length: 50, default: 'Monthly' })
   salaryFrequency: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   salaryStructureId: string;
 
   @Column({ length: 50, nullable: true })

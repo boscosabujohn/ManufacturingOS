@@ -71,7 +71,7 @@ export class ShopFloorControl {
   itemName: string;
 
   // Operation details
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   operationId: string;
 
   @Column({ length: 100, nullable: true })
@@ -84,7 +84,7 @@ export class ShopFloorControl {
   operationSequence: number;
 
   // Work center
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   workCenterId: string;
 
   @Column({ length: 100, nullable: true })
@@ -94,7 +94,7 @@ export class ShopFloorControl {
   workCenterName: string;
 
   // Worker/Operator
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   operatorId: string;
 
   @Column({ length: 255, nullable: true })
@@ -212,7 +212,7 @@ export class ShopFloorControl {
   @Column({ length: 50, nullable: true })
   qualityStatus: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   qcReportId: string;
 
   // Tools and equipment

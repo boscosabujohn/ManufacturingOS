@@ -93,19 +93,19 @@ export class Budget {
   description: string;
 
   // Approval workflow
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   submittedBy: string;
 
   @Column({ type: 'timestamp', nullable: true })
   submittedAt: Date;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   approvedBy: string;
 
   @Column({ type: 'timestamp', nullable: true })
   approvedAt: Date;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   rejectedBy: string;
 
   @Column({ type: 'timestamp', nullable: true })
@@ -118,7 +118,7 @@ export class Budget {
   @Column({ type: 'int', default: 1 })
   version: number;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   previousVersionId: string;
 
   @Column({ type: 'text', nullable: true })

@@ -59,7 +59,7 @@ export class RFQ {
   @Column({ length: 50, nullable: true })
   prNumber: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   prId: string;
 
   // RFQ Details
@@ -174,7 +174,7 @@ export class RFQ {
   }[];
 
   // Award Information
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   awardedVendorId: string;
 
   @Column({ length: 255, nullable: true })
@@ -189,7 +189,7 @@ export class RFQ {
   @Column({ type: 'text', nullable: true })
   awardJustification: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   awardedPOId: string;
 
   @Column({ length: 50, nullable: true })

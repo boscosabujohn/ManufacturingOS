@@ -40,7 +40,7 @@ export class UnitOfMeasure {
   isActive: boolean;
 
   // Conversion
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   baseUOMId: string;
 
   @Column({ type: 'decimal', precision: 15, scale: 6, default: 1 })

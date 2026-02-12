@@ -394,6 +394,84 @@ async function main() {
             purchasePrice: 12.5,
             sellingPrice: 0,
             costPrice: 12.5,
+        },
+        {
+            code: 'ITM-PLY-001',
+            name: 'BWP Marine Plywood 18mm',
+            itemType: 'RAW_MATERIAL',
+            categoryId: categoryIds['Raw Materials'],
+            groupId: groupIds['Steel Sheets'],
+            uomId: pcsUom!.id,
+            brandId: brandIds['OptiForge'],
+            hsnSacId: hsnIds['HSN-7208'],
+            purchasePrice: 2400.0,
+            sellingPrice: 0,
+            costPrice: 2400.0,
+        },
+        {
+            code: 'ITM-HNG-001',
+            name: 'Blum Soft-Close Hinge',
+            itemType: 'RAW_MATERIAL',
+            categoryId: categoryIds['Mechanical'],
+            groupId: groupIds['Assembly Parts'],
+            uomId: pcsUom!.id,
+            brandId: brandIds['OptiForge'],
+            hsnSacId: hsnIds['HSN-8542'],
+            purchasePrice: 180.0,
+            sellingPrice: 250.0,
+            costPrice: 180.0,
+        },
+        {
+            code: 'ITM-DRW-001',
+            name: 'Tandembox Drawer System 500mm',
+            itemType: 'RAW_MATERIAL',
+            categoryId: categoryIds['Mechanical'],
+            groupId: groupIds['Assembly Parts'],
+            uomId: pcsUom!.id,
+            brandId: brandIds['OptiForge'],
+            hsnSacId: hsnIds['HSN-8542'],
+            purchasePrice: 2800.0,
+            sellingPrice: 3500.0,
+            costPrice: 2800.0,
+        },
+        {
+            code: 'ITM-LAM-001',
+            name: 'High Gloss Laminate Sheet 8x4',
+            itemType: 'RAW_MATERIAL',
+            categoryId: categoryIds['Raw Materials'],
+            groupId: groupIds['Steel Sheets'],
+            uomId: pcsUom!.id,
+            brandId: brandIds['OptiForge'],
+            hsnSacId: hsnIds['HSN-7208'],
+            purchasePrice: 1800.0,
+            sellingPrice: 0,
+            costPrice: 1800.0,
+        },
+        {
+            code: 'ITM-CAB-001',
+            name: 'Base Cabinet 600mm Complete',
+            itemType: 'FINISHED_GOODS',
+            categoryId: categoryIds['Finished Goods'],
+            groupId: groupIds['Assembly Parts'],
+            uomId: pcsUom!.id,
+            brandId: brandIds['OptiForge'],
+            hsnSacId: hsnIds['HSN-8542'],
+            purchasePrice: 0,
+            sellingPrice: 8500.0,
+            costPrice: 5200.0,
+        },
+        {
+            code: 'ITM-CAB-002',
+            name: 'Wall Cabinet 900mm Double Door',
+            itemType: 'FINISHED_GOODS',
+            categoryId: categoryIds['Finished Goods'],
+            groupId: groupIds['Assembly Parts'],
+            uomId: pcsUom!.id,
+            brandId: brandIds['OptiForge'],
+            hsnSacId: hsnIds['HSN-8542'],
+            purchasePrice: 0,
+            sellingPrice: 9500.0,
+            costPrice: 5800.0,
         }
     ];
 
@@ -469,6 +547,66 @@ async function main() {
             creditInfo: { creditLimit: 50000, paymentTerms: 'Net 30', creditRating: 'excellent' },
             pricing: { priceList: 'Enterprise', discountPercentage: 15, currency: 'USD' },
             salesInfo: { salesRep: 'Alice Johnson', territory: 'Northeast', totalSales: 285000, averageOrderValue: 5500 }
+        },
+        {
+            customerCode: 'CUST002',
+            customerName: 'GlobalTech Industries',
+            customerType: 'business',
+            status: 'active',
+            categoryId: custCatIds['Premium'],
+            contactPerson: 'Sarah Williams',
+            email: 'sarah.w@globaltech.com',
+            phone: '+1-555-234-5678',
+            address: { line1: '456 Tech Park', city: 'San Francisco', state: 'CA', country: 'USA', postalCode: '94102' },
+            taxInfo: { taxId: '45-6789012', vatNumber: 'US456789012', taxClassification: 'Business' },
+            creditInfo: { creditLimit: 75000, paymentTerms: 'Net 45', creditRating: 'excellent' },
+            pricing: { priceList: 'Enterprise', discountPercentage: 20, currency: 'USD' },
+            salesInfo: { salesRep: 'Bob Chen', territory: 'West', totalSales: 420000, averageOrderValue: 8500 }
+        },
+        {
+            customerCode: 'CUST003',
+            customerName: 'Metro Kitchen Solutions',
+            customerType: 'business',
+            status: 'active',
+            categoryId: custCatIds['Standard'],
+            contactPerson: 'Rajesh Kumar',
+            email: 'rajesh@metrokitchen.in',
+            phone: '+91-9876543210',
+            address: { line1: 'Plot 12, MIDC', city: 'Mumbai', state: 'Maharashtra', country: 'India', postalCode: '400093' },
+            taxInfo: { taxId: 'GSTIN12345', vatNumber: 'IN123456789', taxClassification: 'Business' },
+            creditInfo: { creditLimit: 2500000, paymentTerms: 'Net 30', creditRating: 'good' },
+            pricing: { priceList: 'Standard', discountPercentage: 10, currency: 'INR' },
+            salesInfo: { salesRep: 'Priya Sharma', territory: 'West', totalSales: 5200000, averageOrderValue: 125000 }
+        },
+        {
+            customerCode: 'CUST004',
+            customerName: 'Dubai Interiors LLC',
+            customerType: 'business',
+            status: 'active',
+            categoryId: custCatIds['Premium'],
+            contactPerson: 'Ahmed Hassan',
+            email: 'ahmed@dubaiinteriors.ae',
+            phone: '+971-50-1234567',
+            address: { line1: 'Business Bay Tower', city: 'Dubai', state: 'Dubai', country: 'UAE', postalCode: '00000' },
+            taxInfo: { taxId: 'TRN100123456', vatNumber: 'AE100123456', taxClassification: 'Business' },
+            creditInfo: { creditLimit: 200000, paymentTerms: 'Net 60', creditRating: 'excellent' },
+            pricing: { priceList: 'Premium', discountPercentage: 15, currency: 'AED' },
+            salesInfo: { salesRep: 'Fatima Ali', territory: 'Middle East', totalSales: 850000, averageOrderValue: 35000 }
+        },
+        {
+            customerCode: 'CUST005',
+            customerName: 'Home Decor Bangalore',
+            customerType: 'business',
+            status: 'active',
+            categoryId: custCatIds['Standard'],
+            contactPerson: 'Venkat Rao',
+            email: 'venkat@homedecorblr.com',
+            phone: '+91-9845123456',
+            address: { line1: '45 Commercial Street', city: 'Bangalore', state: 'Karnataka', country: 'India', postalCode: '560001' },
+            taxInfo: { taxId: 'GSTIN67890', vatNumber: 'IN678901234', taxClassification: 'Business' },
+            creditInfo: { creditLimit: 1500000, paymentTerms: 'Net 30', creditRating: 'good' },
+            pricing: { priceList: 'Standard', discountPercentage: 8, currency: 'INR' },
+            salesInfo: { salesRep: 'Amit Verma', territory: 'South', totalSales: 3800000, averageOrderValue: 95000 }
         }
     ];
 
@@ -509,6 +647,70 @@ async function main() {
             qualifications: { certifications: ['ISO 9001'], licenses: ['General Contractor'], qualityRating: 'excellent' },
             supplierInfo: { leadTime: 5, minimumOrderValue: 500, currency: 'USD' },
             performance: { onTimeDelivery: 95, qualityScore: 4.8, totalOrders: 127, totalValue: 485000 }
+        },
+        {
+            vendorCode: 'VEND002',
+            vendorName: 'Blum India Pvt Ltd',
+            vendorType: 'supplier',
+            status: 'active',
+            categoryId: vendCatIds['Hardware'],
+            contactPerson: 'Suresh Menon',
+            email: 'suresh.menon@blum.in',
+            phone: '+91-22-12345678',
+            address: { line1: 'Andheri Industrial Estate', city: 'Mumbai', state: 'Maharashtra', country: 'India', postalCode: '400059' },
+            taxInfo: { taxId: 'GSTIN11111', vatNumber: 'IN111111111', taxClassification: 'Corporation' },
+            paymentInfo: { paymentTerms: 'Net 45', preferredPaymentMethod: 'NEFT' },
+            qualifications: { certifications: ['ISO 9001', 'ISO 14001'], licenses: ['Authorized Distributor'], qualityRating: 'excellent' },
+            supplierInfo: { leadTime: 7, minimumOrderValue: 25000, currency: 'INR' },
+            performance: { onTimeDelivery: 98, qualityScore: 4.9, totalOrders: 245, totalValue: 12500000 }
+        },
+        {
+            vendorCode: 'VEND003',
+            vendorName: 'Century Plyboards Ltd',
+            vendorType: 'supplier',
+            status: 'active',
+            categoryId: vendCatIds['Wood Materials'],
+            contactPerson: 'Ramesh Agarwal',
+            email: 'ramesh@centuryply.com',
+            phone: '+91-33-22334455',
+            address: { line1: 'Century House, Park Street', city: 'Kolkata', state: 'West Bengal', country: 'India', postalCode: '700016' },
+            taxInfo: { taxId: 'GSTIN22222', vatNumber: 'IN222222222', taxClassification: 'Corporation' },
+            paymentInfo: { paymentTerms: 'Net 30', preferredPaymentMethod: 'RTGS' },
+            qualifications: { certifications: ['IS 710', 'IS 303', 'CARB'], licenses: ['BIS Certified'], qualityRating: 'excellent' },
+            supplierInfo: { leadTime: 3, minimumOrderValue: 50000, currency: 'INR' },
+            performance: { onTimeDelivery: 92, qualityScore: 4.7, totalOrders: 189, totalValue: 28000000 }
+        },
+        {
+            vendorCode: 'VEND004',
+            vendorName: 'Hettich India Pvt Ltd',
+            vendorType: 'supplier',
+            status: 'active',
+            categoryId: vendCatIds['Hardware'],
+            contactPerson: 'Vinod Sharma',
+            email: 'vinod.sharma@hettich.in',
+            phone: '+91-11-45678901',
+            address: { line1: 'DLF Cyber City', city: 'Gurgaon', state: 'Haryana', country: 'India', postalCode: '122002' },
+            taxInfo: { taxId: 'GSTIN33333', vatNumber: 'IN333333333', taxClassification: 'Corporation' },
+            paymentInfo: { paymentTerms: 'Net 30', preferredPaymentMethod: 'NEFT' },
+            qualifications: { certifications: ['ISO 9001', 'TUV'], licenses: ['Authorized Importer'], qualityRating: 'excellent' },
+            supplierInfo: { leadTime: 10, minimumOrderValue: 20000, currency: 'INR' },
+            performance: { onTimeDelivery: 94, qualityScore: 4.8, totalOrders: 312, totalValue: 18500000 }
+        },
+        {
+            vendorCode: 'VEND005',
+            vendorName: 'Elica PB India Pvt Ltd',
+            vendorType: 'supplier',
+            status: 'active',
+            categoryId: vendCatIds['Appliances'],
+            contactPerson: 'Deepak Patel',
+            email: 'deepak.patel@elica.in',
+            phone: '+91-79-23456789',
+            address: { line1: 'GIDC Industrial Area', city: 'Ahmedabad', state: 'Gujarat', country: 'India', postalCode: '382445' },
+            taxInfo: { taxId: 'GSTIN44444', vatNumber: 'IN444444444', taxClassification: 'Corporation' },
+            paymentInfo: { paymentTerms: 'Net 45', preferredPaymentMethod: 'RTGS' },
+            qualifications: { certifications: ['ISO 9001', 'BIS'], licenses: ['Manufacturer'], qualityRating: 'good' },
+            supplierInfo: { leadTime: 14, minimumOrderValue: 100000, currency: 'INR' },
+            performance: { onTimeDelivery: 88, qualityScore: 4.5, totalOrders: 156, totalValue: 22000000 }
         }
     ];
 
@@ -1244,6 +1446,1213 @@ async function main() {
             create: { ...ns, companyId: mainCompany.id }
         });
     }
+
+    // 22. CRM Masters
+    console.log('Seeding CRM Masters...');
+
+    // Lead Sources
+    const leadSources = [
+        { code: 'LS-WEB', name: 'Website', description: 'Leads from company website', channel: 'Digital', isActive: true },
+        { code: 'LS-REF', name: 'Referral', description: 'Customer referrals', channel: 'Direct', isActive: true },
+        { code: 'LS-TRADE', name: 'Trade Show', description: 'Trade show and exhibition leads', channel: 'Events', isActive: true },
+        { code: 'LS-SM', name: 'Social Media', description: 'Leads from social media campaigns', channel: 'Digital', isActive: true },
+        { code: 'LS-COLD', name: 'Cold Call', description: 'Outbound sales calls', channel: 'Direct', isActive: true },
+    ];
+
+    for (const ls of leadSources) {
+        await prisma.crmLeadSource.upsert({
+            where: { code_companyId: { code: ls.code, companyId: mainCompany.id } },
+            update: ls,
+            create: { ...ls, companyId: mainCompany.id }
+        });
+    }
+
+    // Lead Statuses
+    const leadStatuses = [
+        { code: 'NEW', name: 'New', description: 'Newly created lead', sortOrder: 1, color: '#3B82F6', isActive: true, isDefault: true },
+        { code: 'CONTACTED', name: 'Contacted', description: 'Initial contact made', sortOrder: 2, color: '#8B5CF6', isActive: true },
+        { code: 'QUALIFIED', name: 'Qualified', description: 'Lead qualified for opportunity', sortOrder: 3, color: '#10B981', isActive: true },
+        { code: 'UNQUALIFIED', name: 'Unqualified', description: 'Lead does not meet criteria', sortOrder: 4, color: '#6B7280', isActive: true },
+        { code: 'CONVERTED', name: 'Converted', description: 'Converted to opportunity', sortOrder: 5, color: '#059669', isActive: true, isClosed: true },
+        { code: 'LOST', name: 'Lost', description: 'Lead lost to competitor or declined', sortOrder: 6, color: '#EF4444', isActive: true, isClosed: true },
+    ];
+
+    for (const status of leadStatuses) {
+        await prisma.crmLeadStatus.upsert({
+            where: { code_companyId: { code: status.code, companyId: mainCompany.id } },
+            update: status,
+            create: { ...status, companyId: mainCompany.id }
+        });
+    }
+
+    // Pipeline Stages
+    const pipelineStages = [
+        { code: 'PROSPECT', name: 'Prospecting', description: 'Initial prospecting stage', sortOrder: 1, probability: 10, color: '#3B82F6', isActive: true },
+        { code: 'QUALIFY', name: 'Qualification', description: 'Qualifying the opportunity', sortOrder: 2, probability: 25, color: '#8B5CF6', isActive: true },
+        { code: 'PROPOSAL', name: 'Proposal', description: 'Proposal sent to customer', sortOrder: 3, probability: 50, color: '#F59E0B', isActive: true },
+        { code: 'NEGOTIATE', name: 'Negotiation', description: 'Price and terms negotiation', sortOrder: 4, probability: 75, color: '#10B981', isActive: true },
+        { code: 'WON', name: 'Closed Won', description: 'Deal won', sortOrder: 5, probability: 100, color: '#059669', isActive: true, isClosed: true, isWon: true },
+        { code: 'LOST', name: 'Closed Lost', description: 'Deal lost', sortOrder: 6, probability: 0, color: '#EF4444', isActive: true, isClosed: true },
+    ];
+
+    for (const stage of pipelineStages) {
+        await prisma.crmPipelineStage.upsert({
+            where: { code_companyId: { code: stage.code, companyId: mainCompany.id } },
+            update: stage,
+            create: { ...stage, companyId: mainCompany.id }
+        });
+    }
+
+    // CRM Sales Territories
+    const crmTerritories = [
+        { code: 'TER-WEST', name: 'Western Region', description: 'Maharashtra, Gujarat, Goa', region: 'West', manager: 'Rahul Sharma', targetRevenue: 50000000, isActive: true },
+        { code: 'TER-SOUTH', name: 'Southern Region', description: 'Karnataka, Tamil Nadu, Kerala, AP, Telangana', region: 'South', manager: 'Priya Patel', targetRevenue: 45000000, isActive: true },
+        { code: 'TER-NORTH', name: 'Northern Region', description: 'Delhi NCR, Punjab, Haryana, UP', region: 'North', manager: 'Amit Kumar', targetRevenue: 40000000, isActive: true },
+        { code: 'TER-EAST', name: 'Eastern Region', description: 'West Bengal, Odisha, Bihar, Jharkhand', region: 'East', manager: 'Sneha Das', targetRevenue: 25000000, isActive: true },
+    ];
+
+    for (const territory of crmTerritories) {
+        await prisma.crmSalesTerritory.upsert({
+            where: { code_companyId: { code: territory.code, companyId: mainCompany.id } },
+            update: territory,
+            create: { ...territory, companyId: mainCompany.id }
+        });
+    }
+
+    // CRM Contacts
+    const customer1 = await prisma.customer.findFirst({ where: { customerCode: 'CUST001', companyId: mainCompany.id } });
+    const customer2 = await prisma.customer.findFirst({ where: { customerCode: 'CUST003', companyId: mainCompany.id } });
+
+    const crmContacts = [
+        {
+            firstName: 'Sarah',
+            lastName: 'Williams',
+            email: 'sarah.williams@premierkitchen.com',
+            phone: '+1 234-567-1001',
+            mobile: '+1 234-567-1002',
+            position: 'Head of Procurement',
+            department: 'Executive',
+            contactType: 'primary',
+            status: 'active',
+            customerId: customer1?.id,
+            linkedIn: 'https://linkedin.com/in/sarahwilliams',
+            notes: 'Key decision maker for kitchen projects',
+            companyId: mainCompany.id
+        },
+        {
+            firstName: 'Michael',
+            lastName: 'Chen',
+            email: 'm.chen@urbankitchen.com',
+            phone: '+1 234-567-2001',
+            position: 'Operations Manager',
+            department: 'Operations',
+            contactType: 'primary',
+            status: 'active',
+            notes: 'Influencer in purchasing decisions',
+            companyId: mainCompany.id
+        },
+        {
+            firstName: 'Rajesh',
+            lastName: 'Kumar',
+            email: 'rajesh.kumar@metrokitchen.in',
+            phone: '+91-9876543210',
+            mobile: '+91-9876543211',
+            position: 'Managing Director',
+            department: 'Executive',
+            contactType: 'primary',
+            status: 'active',
+            customerId: customer2?.id,
+            notes: 'Primary contact for Metro Kitchen Solutions',
+            companyId: mainCompany.id
+        },
+        {
+            firstName: 'Priya',
+            lastName: 'Sharma',
+            email: 'priya.sharma@metrokitchen.in',
+            phone: '+91-9876543220',
+            position: 'Finance Manager',
+            department: 'Finance',
+            contactType: 'billing',
+            status: 'active',
+            customerId: customer2?.id,
+            notes: 'Handles all billing and payment queries',
+            companyId: mainCompany.id
+        },
+        {
+            firstName: 'Ahmed',
+            lastName: 'Hassan',
+            email: 'ahmed@dubaiinteriors.ae',
+            phone: '+971-50-1234567',
+            position: 'CEO',
+            department: 'Executive',
+            contactType: 'primary',
+            status: 'active',
+            notes: 'VIP customer - Dubai market',
+            companyId: mainCompany.id
+        },
+    ];
+
+    const contactIds: Record<string, string> = {};
+    for (let i = 0; i < crmContacts.length; i++) {
+        const contact = await prisma.crmContact.upsert({
+            where: { email_companyId: { email: crmContacts[i].email!, companyId: mainCompany.id } },
+            update: crmContacts[i],
+            create: crmContacts[i]
+        });
+        contactIds[`contact${i + 1}`] = contact.id;
+    }
+
+    // CRM Opportunities
+    const currentYear = new Date().getFullYear();
+    const crmOpportunities = [
+        {
+            opportunityNumber: `OPP-${currentYear}-00001`,
+            name: 'Premium Kitchen Installation - Luxury Apartments',
+            description: 'Full modular kitchen installation for 50 luxury apartment units',
+            stage: 'proposal',
+            probability: 70,
+            amount: 3500000,
+            expectedCloseDate: new Date(`${currentYear}-03-15`),
+            source: 'Website',
+            owner: 'Sarah Johnson',
+            nextStep: 'Send revised proposal with updated pricing',
+            contactId: contactIds['contact1'],
+            customerId: customer1?.id,
+            companyId: mainCompany.id
+        },
+        {
+            opportunityNumber: `OPP-${currentYear}-00002`,
+            name: 'Commercial Kitchen Equipment - Restaurant Chain',
+            description: 'Kitchen equipment supply for new restaurant locations',
+            stage: 'negotiation',
+            probability: 85,
+            amount: 5800000,
+            expectedCloseDate: new Date(`${currentYear}-02-28`),
+            source: 'Referral',
+            owner: 'Michael Chen',
+            nextStep: 'Final contract review with legal team',
+            contactId: contactIds['contact2'],
+            companyId: mainCompany.id
+        },
+        {
+            opportunityNumber: `OPP-${currentYear}-00003`,
+            name: 'Modular Kitchen Solutions - Corporate Office',
+            description: 'Pantry and cafeteria kitchen setup for tech company',
+            stage: 'qualification',
+            probability: 50,
+            amount: 1250000,
+            expectedCloseDate: new Date(`${currentYear}-04-20`),
+            source: 'Trade Show',
+            owner: 'Sarah Johnson',
+            nextStep: 'Schedule site visit for measurements',
+            contactId: contactIds['contact3'],
+            customerId: customer2?.id,
+            companyId: mainCompany.id
+        },
+        {
+            opportunityNumber: `OPP-${currentYear}-00004`,
+            name: 'Dubai Luxury Villa Kitchens',
+            description: 'High-end custom kitchen installations for 10 villas',
+            stage: 'prospecting',
+            probability: 30,
+            amount: 8500000,
+            expectedCloseDate: new Date(`${currentYear}-06-30`),
+            source: 'Social Media',
+            owner: 'Ahmed Ali',
+            nextStep: 'Initial discovery call scheduled',
+            contactId: contactIds['contact5'],
+            companyId: mainCompany.id
+        },
+        {
+            opportunityNumber: `OPP-${currentYear}-00005`,
+            name: 'Hotel Chain Kitchen Renovation',
+            description: 'Complete kitchen renovation for 5 hotel properties',
+            stage: 'closed_won',
+            probability: 100,
+            amount: 12500000,
+            expectedCloseDate: new Date(`${currentYear}-01-15`),
+            source: 'Referral',
+            owner: 'Priya Sharma',
+            winReason: 'Competitive pricing and superior design quality',
+            companyId: mainCompany.id
+        },
+    ];
+
+    const opportunityIds: Record<string, string> = {};
+    for (let i = 0; i < crmOpportunities.length; i++) {
+        const opp = await prisma.crmOpportunity.upsert({
+            where: { opportunityNumber_companyId: { opportunityNumber: crmOpportunities[i].opportunityNumber, companyId: mainCompany.id } },
+            update: crmOpportunities[i],
+            create: crmOpportunities[i]
+        });
+        opportunityIds[`opp${i + 1}`] = opp.id;
+    }
+
+    // CRM Activities
+    const crmActivities = [
+        {
+            type: 'call',
+            subject: 'Discovery Call - Premium Kitchen Project',
+            description: 'Initial call to understand requirements for luxury apartment project',
+            status: 'completed',
+            priority: 'high',
+            dueDate: new Date(`${currentYear}-01-10`),
+            completedDate: new Date(`${currentYear}-01-10`),
+            outcome: 'Customer interested, requested proposal',
+            contactId: contactIds['contact1'],
+            opportunityId: opportunityIds['opp1'],
+            assignedTo: 'Sarah Johnson',
+            companyId: mainCompany.id
+        },
+        {
+            type: 'meeting',
+            subject: 'Site Visit - Metro Kitchen Office',
+            description: 'On-site measurements and design consultation',
+            status: 'scheduled',
+            priority: 'medium',
+            dueDate: new Date(`${currentYear}-02-15`),
+            location: 'Metro Kitchen Solutions Office, Mumbai',
+            contactId: contactIds['contact3'],
+            opportunityId: opportunityIds['opp3'],
+            assignedTo: 'Rahul Sharma',
+            companyId: mainCompany.id
+        },
+        {
+            type: 'email',
+            subject: 'Follow-up on Proposal - Restaurant Chain',
+            description: 'Sent detailed proposal with itemized pricing',
+            status: 'completed',
+            priority: 'high',
+            dueDate: new Date(`${currentYear}-01-20`),
+            completedDate: new Date(`${currentYear}-01-20`),
+            outcome: 'Customer reviewing with finance team',
+            contactId: contactIds['contact2'],
+            opportunityId: opportunityIds['opp2'],
+            assignedTo: 'Michael Chen',
+            companyId: mainCompany.id
+        },
+        {
+            type: 'task',
+            subject: 'Prepare Custom Design Proposal',
+            description: 'Create 3D renderings for Dubai villa project',
+            status: 'in_progress',
+            priority: 'high',
+            dueDate: new Date(`${currentYear}-02-25`),
+            contactId: contactIds['contact5'],
+            opportunityId: opportunityIds['opp4'],
+            assignedTo: 'Design Team',
+            companyId: mainCompany.id
+        },
+        {
+            type: 'note',
+            subject: 'Customer Preferences Noted',
+            description: 'Customer prefers modern minimalist design with handleless cabinets. Budget flexible for premium finishes.',
+            status: 'completed',
+            priority: 'low',
+            dueDate: new Date(`${currentYear}-01-15`),
+            completedDate: new Date(`${currentYear}-01-15`),
+            contactId: contactIds['contact1'],
+            assignedTo: 'Sarah Johnson',
+            companyId: mainCompany.id
+        },
+    ];
+
+    for (const activity of crmActivities) {
+        await prisma.crmActivity.create({
+            data: activity
+        });
+    }
+
+    // CRM Campaigns
+    const crmCampaigns = [
+        {
+            campaignNumber: `CMP-${currentYear}-00001`,
+            name: 'Kitchen Design Masterclass 2025',
+            type: 'Event',
+            status: 'Active',
+            description: 'Virtual masterclass showcasing latest kitchen design trends',
+            startDate: new Date(`${currentYear}-02-01`),
+            endDate: new Date(`${currentYear}-02-28`),
+            budget: 500000,
+            expectedRevenue: 5000000,
+            targetAudience: 'Architects, Interior Designers, Home Owners',
+            channel: 'Digital',
+            owner: 'Marketing Team',
+            companyId: mainCompany.id
+        },
+        {
+            campaignNumber: `CMP-${currentYear}-00002`,
+            name: 'Trade Show - Kitchen Expo 2025',
+            type: 'Trade Show',
+            status: 'Planned',
+            description: 'Participation in annual Kitchen & Bath Industry Expo',
+            startDate: new Date(`${currentYear}-04-15`),
+            endDate: new Date(`${currentYear}-04-18`),
+            budget: 1500000,
+            expectedRevenue: 15000000,
+            targetAudience: 'B2B Customers, Dealers, Distributors',
+            channel: 'Events',
+            owner: 'Sales Team',
+            companyId: mainCompany.id
+        },
+        {
+            campaignNumber: `CMP-${currentYear}-00003`,
+            name: 'Modular Kitchen Upgrade Offer',
+            type: 'Promotion',
+            status: 'Active',
+            description: '20% off on kitchen upgrades for existing customers',
+            startDate: new Date(`${currentYear}-01-01`),
+            endDate: new Date(`${currentYear}-03-31`),
+            budget: 200000,
+            actualCost: 85000,
+            expectedRevenue: 3000000,
+            actualRevenue: 1200000,
+            targetAudience: 'Existing Customers',
+            channel: 'Email',
+            owner: 'CRM Team',
+            companyId: mainCompany.id
+        },
+    ];
+
+    const campaignIds: Record<string, string> = {};
+    for (let i = 0; i < crmCampaigns.length; i++) {
+        const campaign = await prisma.crmCampaign.upsert({
+            where: { campaignNumber_companyId: { campaignNumber: crmCampaigns[i].campaignNumber, companyId: mainCompany.id } },
+            update: crmCampaigns[i],
+            create: crmCampaigns[i]
+        });
+        campaignIds[`campaign${i + 1}`] = campaign.id;
+    }
+
+    // CRM Quotes
+    const crmQuotes = [
+        {
+            quoteNumber: `QT-${currentYear}-00001`,
+            name: 'Quote - Luxury Apartment Kitchens',
+            status: 'sent',
+            validUntil: new Date(`${currentYear}-03-01`),
+            subtotal: 3200000,
+            discount: 320000,
+            tax: 518400,
+            total: 3398400,
+            terms: 'Net 30 days from invoice date',
+            notes: 'Includes installation and 2-year warranty',
+            opportunityId: opportunityIds['opp1'],
+            contactId: contactIds['contact1'],
+            customerId: customer1?.id,
+            companyId: mainCompany.id
+        },
+        {
+            quoteNumber: `QT-${currentYear}-00002`,
+            name: 'Quote - Restaurant Chain Equipment',
+            status: 'negotiating',
+            validUntil: new Date(`${currentYear}-02-15`),
+            subtotal: 5500000,
+            discount: 550000,
+            tax: 891000,
+            total: 5841000,
+            terms: 'Payment milestones: 30% advance, 40% on delivery, 30% post-installation',
+            notes: 'Bulk discount applied for 15+ locations',
+            opportunityId: opportunityIds['opp2'],
+            contactId: contactIds['contact2'],
+            companyId: mainCompany.id
+        },
+        {
+            quoteNumber: `QT-${currentYear}-00003`,
+            name: 'Quote - Corporate Office Pantry',
+            status: 'draft',
+            validUntil: new Date(`${currentYear}-04-30`),
+            subtotal: 1100000,
+            discount: 0,
+            tax: 198000,
+            total: 1298000,
+            notes: 'Preliminary quote pending site visit',
+            opportunityId: opportunityIds['opp3'],
+            contactId: contactIds['contact3'],
+            customerId: customer2?.id,
+            companyId: mainCompany.id
+        },
+    ];
+
+    const quoteIds: Record<string, string> = {};
+    for (let i = 0; i < crmQuotes.length; i++) {
+        const quote = await prisma.crmQuote.upsert({
+            where: { quoteNumber_companyId: { quoteNumber: crmQuotes[i].quoteNumber, companyId: mainCompany.id } },
+            update: crmQuotes[i],
+            create: crmQuotes[i]
+        });
+        quoteIds[`quote${i + 1}`] = quote.id;
+    }
+
+    // CRM Contracts
+    const crmContracts = [
+        {
+            contractNumber: `CON-${currentYear}-00001`,
+            name: 'Hotel Chain Kitchen Renovation Contract',
+            type: 'service',
+            status: 'active',
+            startDate: new Date(`${currentYear}-01-15`),
+            endDate: new Date(`${currentYear + 1}-01-14`),
+            value: 12500000,
+            terms: 'Comprehensive service and maintenance contract for 12 months',
+            renewalType: 'auto',
+            paymentTerms: 'Monthly invoicing - Net 15',
+            opportunityId: opportunityIds['opp5'],
+            customerId: customer1?.id,
+            companyId: mainCompany.id
+        },
+        {
+            contractNumber: `CON-${currentYear}-00002`,
+            name: 'Annual Maintenance Contract - Metro Kitchen',
+            type: 'maintenance',
+            status: 'active',
+            startDate: new Date(`${currentYear}-01-01`),
+            endDate: new Date(`${currentYear}-12-31`),
+            value: 240000,
+            terms: 'Quarterly preventive maintenance and emergency support',
+            renewalType: 'manual',
+            paymentTerms: 'Quarterly advance payment',
+            customerId: customer2?.id,
+            companyId: mainCompany.id
+        },
+    ];
+
+    for (const contract of crmContracts) {
+        await prisma.crmContract.upsert({
+            where: { contractNumber_companyId: { contractNumber: contract.contractNumber, companyId: mainCompany.id } },
+            update: contract,
+            create: contract
+        });
+    }
+
+    // CRM SLAs
+    const crmSlas = [
+        {
+            name: 'Premium Support SLA',
+            description: 'SLA for premium/VIP customers',
+            priority: 'critical',
+            responseTime: 1,
+            resolutionTime: 4,
+            escalationTime: 2,
+            businessHoursOnly: false,
+            isActive: true,
+            companyId: mainCompany.id
+        },
+        {
+            name: 'Standard Support SLA',
+            description: 'SLA for standard customers',
+            priority: 'high',
+            responseTime: 4,
+            resolutionTime: 24,
+            escalationTime: 8,
+            businessHoursOnly: true,
+            isActive: true,
+            companyId: mainCompany.id
+        },
+        {
+            name: 'Basic Support SLA',
+            description: 'SLA for basic support tier',
+            priority: 'medium',
+            responseTime: 8,
+            resolutionTime: 48,
+            escalationTime: 24,
+            businessHoursOnly: true,
+            isActive: true,
+            companyId: mainCompany.id
+        },
+    ];
+
+    const slaIds: Record<string, string> = {};
+    for (let i = 0; i < crmSlas.length; i++) {
+        const sla = await prisma.crmSla.upsert({
+            where: { name_companyId: { name: crmSlas[i].name, companyId: mainCompany.id } },
+            update: crmSlas[i],
+            create: crmSlas[i]
+        });
+        slaIds[`sla${i + 1}`] = sla.id;
+    }
+
+    // CRM Support Tickets
+    const crmTickets = [
+        {
+            ticketNumber: `TKT-${currentYear}-00001`,
+            subject: 'Soft-close hinge not working properly',
+            description: 'Customer reports that one of the soft-close hinges on the base cabinet is not functioning correctly',
+            type: 'complaint',
+            status: 'in_progress',
+            priority: 'high',
+            category: 'Hardware Issue',
+            contactId: contactIds['contact1'],
+            customerId: customer1?.id,
+            slaId: slaIds['sla1'],
+            assignedTo: 'Support Team',
+            companyId: mainCompany.id
+        },
+        {
+            ticketNumber: `TKT-${currentYear}-00002`,
+            subject: 'Request for additional drawer units',
+            description: 'Customer wants to add 2 more drawer units to existing kitchen setup',
+            type: 'request',
+            status: 'open',
+            priority: 'medium',
+            category: 'Product Inquiry',
+            contactId: contactIds['contact3'],
+            customerId: customer2?.id,
+            slaId: slaIds['sla2'],
+            assignedTo: 'Sales Team',
+            companyId: mainCompany.id
+        },
+        {
+            ticketNumber: `TKT-${currentYear}-00003`,
+            subject: 'Installation scheduling query',
+            description: 'Customer inquiring about available installation dates for next month',
+            type: 'inquiry',
+            status: 'resolved',
+            priority: 'low',
+            category: 'Installation',
+            resolution: 'Provided available dates and customer confirmed for Feb 15',
+            resolvedAt: new Date(`${currentYear}-01-20`),
+            contactId: contactIds['contact2'],
+            slaId: slaIds['sla3'],
+            assignedTo: 'Operations Team',
+            companyId: mainCompany.id
+        },
+    ];
+
+    for (const ticket of crmTickets) {
+        await prisma.crmSupportTicket.upsert({
+            where: { ticketNumber_companyId: { ticketNumber: ticket.ticketNumber, companyId: mainCompany.id } },
+            update: ticket,
+            create: ticket
+        });
+    }
+
+    // CRM Knowledge Articles
+    const crmArticles = [
+        {
+            title: 'How to Maintain Modular Kitchen Cabinets',
+            slug: 'maintain-modular-kitchen-cabinets',
+            content: 'Comprehensive guide on maintaining modular kitchen cabinets for longevity...',
+            category: 'Maintenance',
+            status: 'published',
+            author: 'Support Team',
+            viewCount: 1250,
+            helpfulCount: 890,
+            tags: ['maintenance', 'cabinets', 'cleaning', 'tips'],
+            companyId: mainCompany.id
+        },
+        {
+            title: 'Soft-Close Hinge Adjustment Guide',
+            slug: 'soft-close-hinge-adjustment',
+            content: 'Step-by-step guide to adjust soft-close hinges for optimal performance...',
+            category: 'Troubleshooting',
+            status: 'published',
+            author: 'Technical Team',
+            viewCount: 2100,
+            helpfulCount: 1650,
+            tags: ['hinges', 'adjustment', 'troubleshooting', 'hardware'],
+            companyId: mainCompany.id
+        },
+        {
+            title: 'Understanding Kitchen Layout Options',
+            slug: 'kitchen-layout-options',
+            content: 'Detailed comparison of L-shape, U-shape, Island, and Parallel kitchen layouts...',
+            category: 'Product Guide',
+            status: 'published',
+            author: 'Design Team',
+            viewCount: 3500,
+            helpfulCount: 2800,
+            tags: ['layout', 'design', 'planning', 'kitchen types'],
+            companyId: mainCompany.id
+        },
+        {
+            title: 'Warranty Terms and Conditions',
+            slug: 'warranty-terms-conditions',
+            content: 'Complete warranty information for modular kitchen products and services...',
+            category: 'Policies',
+            status: 'published',
+            author: 'Legal Team',
+            viewCount: 850,
+            helpfulCount: 420,
+            tags: ['warranty', 'terms', 'policy', 'coverage'],
+            companyId: mainCompany.id
+        },
+    ];
+
+    for (const article of crmArticles) {
+        await prisma.crmKnowledgeArticle.upsert({
+            where: { slug_companyId: { slug: article.slug, companyId: mainCompany.id } },
+            update: article,
+            create: article
+        });
+    }
+
+    // CRM Interactions
+    const crmInteractions = [
+        {
+            type: 'phone_call',
+            direction: 'outbound',
+            subject: 'Follow-up on quotation status',
+            notes: 'Customer confirmed they are reviewing the proposal with their finance team',
+            duration: 15,
+            status: 'completed',
+            outcome: 'positive',
+            contactId: contactIds['contact1'],
+            opportunityId: opportunityIds['opp1'],
+            performedBy: 'Sarah Johnson',
+            companyId: mainCompany.id
+        },
+        {
+            type: 'email',
+            direction: 'inbound',
+            subject: 'RE: Quote Request - Restaurant Equipment',
+            notes: 'Customer requested itemized breakdown of equipment costs',
+            status: 'completed',
+            outcome: 'neutral',
+            contactId: contactIds['contact2'],
+            opportunityId: opportunityIds['opp2'],
+            performedBy: 'Michael Chen',
+            companyId: mainCompany.id
+        },
+        {
+            type: 'meeting',
+            direction: 'outbound',
+            subject: 'Design Consultation - Metro Kitchen',
+            notes: 'Presented 3D designs, customer loved the modern minimalist approach',
+            duration: 90,
+            status: 'completed',
+            outcome: 'positive',
+            nextAction: 'Send revised quote with selected options',
+            contactId: contactIds['contact3'],
+            opportunityId: opportunityIds['opp3'],
+            performedBy: 'Rahul Sharma',
+            companyId: mainCompany.id
+        },
+        {
+            type: 'chat',
+            direction: 'inbound',
+            subject: 'Website chat inquiry',
+            notes: 'Prospect inquiring about custom kitchen solutions for new villa project',
+            duration: 25,
+            status: 'completed',
+            outcome: 'positive',
+            nextAction: 'Schedule discovery call',
+            contactId: contactIds['contact5'],
+            performedBy: 'Support Bot / Ahmed Ali',
+            companyId: mainCompany.id
+        },
+    ];
+
+    for (const interaction of crmInteractions) {
+        await prisma.crmInteraction.create({
+            data: interaction
+        });
+    }
+
+    console.log('CRM Masters seeded successfully!');
+
+    // 23. Sales Masters
+    console.log('Seeding Sales Masters...');
+
+    // Sales Invoices
+    const salesInvoices = [
+        {
+            invoiceNumber: 'INV-2025-00001',
+            invoiceType: 'sales',
+            customerId: customer1?.id,
+            customerName: 'Premier Kitchen Designs Ltd',
+            customerEmail: 'accounts@premierkitchen.com',
+            customerAddress: '123 Industrial Park, Mumbai 400001',
+            invoiceDate: new Date('2025-01-15'),
+            dueDate: new Date('2025-02-14'),
+            paymentTerms: 'NET_30',
+            currency: 'INR',
+            subtotal: 450000,
+            totalDiscount: 22500,
+            totalTax: 76950,
+            shippingAmount: 5000,
+            totalAmount: 509450,
+            amountPaid: 509450,
+            amountDue: 0,
+            status: 'paid',
+            notes: 'Thank you for your business!',
+            poNumber: 'PO-PKD-2025-001',
+            submittedAt: new Date('2025-01-15'),
+            submittedBy: 'user1',
+            approvedAt: new Date('2025-01-16'),
+            approvedBy: 'manager1',
+            postedAt: new Date('2025-01-16'),
+            postedBy: 'accountant1',
+            paidAt: new Date('2025-02-10'),
+            companyId: mainCompany.id
+        },
+        {
+            invoiceNumber: 'INV-2025-00002',
+            invoiceType: 'sales',
+            customerId: customer2?.id,
+            customerName: 'Urban Kitchen Solutions',
+            customerEmail: 'billing@urbankitchen.com',
+            customerAddress: '456 Commercial Complex, Bangalore 560001',
+            invoiceDate: new Date('2025-01-20'),
+            dueDate: new Date('2025-02-19'),
+            paymentTerms: 'NET_30',
+            currency: 'INR',
+            subtotal: 280000,
+            totalDiscount: 14000,
+            totalTax: 47880,
+            shippingAmount: 3500,
+            totalAmount: 317380,
+            amountPaid: 100000,
+            amountDue: 217380,
+            status: 'partially_paid',
+            notes: 'First payment received',
+            poNumber: 'PO-UKS-2025-012',
+            submittedAt: new Date('2025-01-20'),
+            approvedAt: new Date('2025-01-21'),
+            postedAt: new Date('2025-01-21'),
+            companyId: mainCompany.id
+        },
+        {
+            invoiceNumber: 'INV-2025-00003',
+            invoiceType: 'sales',
+            customerName: 'Metro Manufacturing Inc',
+            customerEmail: 'ap@metromfg.com',
+            customerAddress: '789 Industrial Zone, Chennai 600001',
+            invoiceDate: new Date('2025-01-25'),
+            dueDate: new Date('2025-02-24'),
+            paymentTerms: 'NET_30',
+            currency: 'INR',
+            subtotal: 185000,
+            totalDiscount: 0,
+            totalTax: 33300,
+            shippingAmount: 2500,
+            totalAmount: 220800,
+            amountPaid: 0,
+            amountDue: 220800,
+            status: 'posted',
+            notes: 'Awaiting payment',
+            submittedAt: new Date('2025-01-25'),
+            approvedAt: new Date('2025-01-25'),
+            postedAt: new Date('2025-01-26'),
+            companyId: mainCompany.id
+        },
+        {
+            invoiceNumber: 'INV-2025-00004',
+            invoiceType: 'sales',
+            customerName: 'Precision Engineering Inc.',
+            customerEmail: 'finance@precisioneng.com',
+            invoiceDate: new Date('2025-01-28'),
+            dueDate: new Date('2025-02-27'),
+            paymentTerms: 'NET_30',
+            currency: 'INR',
+            subtotal: 125000,
+            totalDiscount: 6250,
+            totalTax: 21375,
+            totalAmount: 140125,
+            amountPaid: 0,
+            amountDue: 140125,
+            status: 'pending_approval',
+            notes: 'Awaiting approval',
+            submittedAt: new Date('2025-01-28'),
+            companyId: mainCompany.id
+        },
+        {
+            invoiceNumber: 'INV-2025-00005',
+            invoiceType: 'sales',
+            customerName: 'Summit Manufacturing',
+            customerEmail: 'orders@summitmfg.com',
+            invoiceDate: new Date('2025-01-30'),
+            dueDate: new Date('2025-03-01'),
+            paymentTerms: 'NET_30',
+            currency: 'INR',
+            subtotal: 95000,
+            totalDiscount: 0,
+            totalTax: 17100,
+            totalAmount: 112100,
+            amountPaid: 0,
+            amountDue: 112100,
+            status: 'draft',
+            notes: 'Draft - pending line item verification',
+            companyId: mainCompany.id
+        }
+    ];
+
+    for (const invoice of salesInvoices) {
+        await prisma.salesInvoice.upsert({
+            where: { invoiceNumber_companyId: { invoiceNumber: invoice.invoiceNumber, companyId: mainCompany.id } },
+            update: invoice,
+            create: invoice
+        });
+    }
+
+    // Delivery Notes
+    const deliveryNotes = [
+        {
+            deliveryNoteNumber: 'DN-2025-00001',
+            orderId: 'order1',
+            orderNumber: 'SO-2025-0001',
+            customerId: customer1?.id,
+            customerName: 'Premier Kitchen Designs Ltd',
+            deliveryAddress: '123 Industrial Park, Mumbai 400001',
+            city: 'Mumbai',
+            state: 'Maharashtra',
+            postalCode: '400001',
+            country: 'India',
+            deliveryDate: new Date('2025-01-20'),
+            status: 'acknowledged',
+            totalItems: 3,
+            totalDeliveredQty: 15,
+            receivedBy: 'Rajesh Kumar',
+            receivedDate: new Date('2025-01-20'),
+            signatureUrl: '/signatures/dn-001.png',
+            notes: 'All items received in good condition',
+            companyId: mainCompany.id
+        },
+        {
+            deliveryNoteNumber: 'DN-2025-00002',
+            orderId: 'order2',
+            orderNumber: 'SO-2025-0002',
+            customerName: 'Urban Kitchen Solutions',
+            deliveryAddress: '456 Commercial Complex, Bangalore 560001',
+            city: 'Bangalore',
+            state: 'Karnataka',
+            postalCode: '560001',
+            country: 'India',
+            deliveryDate: new Date('2025-01-25'),
+            status: 'issued',
+            totalItems: 2,
+            totalDeliveredQty: 8,
+            notes: 'Handle with care - fragile equipment',
+            companyId: mainCompany.id
+        },
+        {
+            deliveryNoteNumber: 'DN-2025-00003',
+            customerName: 'Metro Manufacturing Inc',
+            deliveryAddress: '789 Industrial Zone, Chennai 600001',
+            city: 'Chennai',
+            state: 'Tamil Nadu',
+            postalCode: '600001',
+            country: 'India',
+            deliveryDate: new Date('2025-01-28'),
+            status: 'draft',
+            totalItems: 5,
+            totalDeliveredQty: 20,
+            companyId: mainCompany.id
+        }
+    ];
+
+    for (const note of deliveryNotes) {
+        await prisma.deliveryNote.upsert({
+            where: { deliveryNoteNumber_companyId: { deliveryNoteNumber: note.deliveryNoteNumber, companyId: mainCompany.id } },
+            update: note,
+            create: note
+        });
+    }
+
+    // Shipments
+    const shipments = [
+        {
+            shipmentNumber: 'SHP-2025-00001',
+            orderId: 'order1',
+            orderNumber: 'SO-2025-0001',
+            customerId: customer1?.id,
+            customerName: 'Premier Kitchen Designs Ltd',
+            deliveryAddress: '123 Industrial Park, Mumbai 400001',
+            city: 'Mumbai',
+            state: 'Maharashtra',
+            postalCode: '400001',
+            country: 'India',
+            shipmentDate: new Date('2025-01-18'),
+            expectedDeliveryDate: new Date('2025-01-20'),
+            actualDeliveryDate: new Date('2025-01-20'),
+            dispatchDate: new Date('2025-01-18'),
+            status: 'delivered',
+            priority: 'high',
+            carrier: 'Blue Dart Express',
+            vehicleNumber: 'MH-01-AB-1234',
+            driverName: 'Rajesh Kumar',
+            driverPhone: '+91 98765 43210',
+            trackingNumber: 'BD2025011801',
+            totalWeight: 450,
+            totalVolume: 8.5,
+            totalItems: 15,
+            shippingCost: 15000,
+            companyId: mainCompany.id
+        },
+        {
+            shipmentNumber: 'SHP-2025-00002',
+            customerName: 'Urban Kitchen Solutions',
+            deliveryAddress: '456 Commercial Complex, Bangalore 560001',
+            city: 'Bangalore',
+            state: 'Karnataka',
+            postalCode: '560001',
+            country: 'India',
+            shipmentDate: new Date('2025-01-23'),
+            expectedDeliveryDate: new Date('2025-01-26'),
+            dispatchDate: new Date('2025-01-23'),
+            status: 'in_transit',
+            priority: 'normal',
+            carrier: 'Delhivery',
+            trackingNumber: 'DEL2025012301',
+            totalWeight: 280,
+            totalItems: 8,
+            shippingCost: 8500,
+            companyId: mainCompany.id
+        },
+        {
+            shipmentNumber: 'SHP-2025-00003',
+            customerName: 'Metro Manufacturing Inc',
+            deliveryAddress: '789 Industrial Zone, Chennai 600001',
+            city: 'Chennai',
+            state: 'Tamil Nadu',
+            postalCode: '600001',
+            country: 'India',
+            expectedDeliveryDate: new Date('2025-02-01'),
+            status: 'pending',
+            priority: 'normal',
+            totalItems: 20,
+            companyId: mainCompany.id
+        }
+    ];
+
+    for (const shipment of shipments) {
+        await prisma.shipment.upsert({
+            where: { shipmentNumber_companyId: { shipmentNumber: shipment.shipmentNumber, companyId: mainCompany.id } },
+            update: shipment,
+            create: shipment
+        });
+    }
+
+    // Sales Returns
+    const salesReturns = [
+        {
+            returnNumber: 'RET-2025-00001',
+            raNumber: 'RA-2025-00001',
+            raExpiryDate: new Date('2025-02-15'),
+            returnType: 'return',
+            orderId: 'order1',
+            orderNumber: 'SO-2025-0001',
+            invoiceId: 'inv1',
+            invoiceNumber: 'INV-2025-00001',
+            customerId: customer1?.id,
+            customerName: 'Premier Kitchen Designs Ltd',
+            returnReason: 'Defective item',
+            reasonCategory: 'quality',
+            status: 'completed',
+            subtotal: 25000,
+            restockingFee: 1250,
+            shippingRefund: 500,
+            totalRefundAmount: 24250,
+            refundMethod: 'credit_note',
+            refundStatus: 'completed',
+            approvedAt: new Date('2025-01-22'),
+            approvedBy: 'manager1',
+            receivedAt: new Date('2025-01-25'),
+            receivedBy: 'warehouse1',
+            completedAt: new Date('2025-01-26'),
+            refundedAt: new Date('2025-01-26'),
+            companyId: mainCompany.id
+        },
+        {
+            returnNumber: 'RET-2025-00002',
+            raNumber: 'RA-2025-00002',
+            raExpiryDate: new Date('2025-02-20'),
+            returnType: 'exchange',
+            customerName: 'Urban Kitchen Solutions',
+            returnReason: 'Wrong size ordered',
+            reasonCategory: 'order_error',
+            status: 'approved',
+            subtotal: 15000,
+            totalRefundAmount: 0,
+            approvedAt: new Date('2025-01-28'),
+            approvedBy: 'manager1',
+            companyId: mainCompany.id
+        },
+        {
+            returnNumber: 'RET-2025-00003',
+            raNumber: 'RA-2025-00003',
+            raExpiryDate: new Date('2025-02-28'),
+            returnType: 'return',
+            customerName: 'Metro Manufacturing Inc',
+            returnReason: 'Item not as described',
+            reasonCategory: 'quality',
+            status: 'pending',
+            subtotal: 35000,
+            totalRefundAmount: 35000,
+            companyId: mainCompany.id
+        }
+    ];
+
+    for (const ret of salesReturns) {
+        await prisma.salesReturn.upsert({
+            where: { returnNumber_companyId: { returnNumber: ret.returnNumber, companyId: mainCompany.id } },
+            update: ret,
+            create: ret
+        });
+    }
+
+    // Sales Pricing
+    const salesPricing = [
+        {
+            pricingType: 'standard',
+            itemId: 'item1',
+            itemName: 'Commercial Range Hood',
+            basePrice: 85000,
+            discountType: 'percentage',
+            discountValue: 5,
+            finalPrice: 80750,
+            validFrom: new Date('2025-01-01'),
+            validTo: new Date('2025-12-31'),
+            minQuantity: 1,
+            maxQuantity: 100,
+            priority: 1,
+            isActive: true,
+            companyId: mainCompany.id
+        },
+        {
+            pricingType: 'customer',
+            customerId: customer1?.id,
+            customerName: 'Premier Kitchen Designs Ltd',
+            itemId: 'item2',
+            itemName: 'Industrial Refrigerator',
+            basePrice: 150000,
+            discountType: 'percentage',
+            discountValue: 10,
+            finalPrice: 135000,
+            validFrom: new Date('2025-01-01'),
+            validTo: new Date('2025-06-30'),
+            priority: 2,
+            isActive: true,
+            companyId: mainCompany.id
+        },
+        {
+            pricingType: 'volume',
+            itemId: 'item3',
+            itemName: 'Stainless Steel Prep Table',
+            basePrice: 25000,
+            discountType: 'fixed',
+            discountValue: 2500,
+            finalPrice: 22500,
+            validFrom: new Date('2025-01-01'),
+            minQuantity: 10,
+            priority: 1,
+            isActive: true,
+            companyId: mainCompany.id
+        }
+    ];
+
+    for (const pricing of salesPricing) {
+        await prisma.salesPricing.create({ data: pricing });
+    }
+
+    // Sales Promotions
+    const salesPromotions = [
+        {
+            promotionCode: 'NEWYEAR25',
+            promotionName: 'New Year Sale 2025',
+            promotionType: 'percentage',
+            discountValue: 15,
+            minPurchaseAmount: 100000,
+            maxDiscountAmount: 50000,
+            startDate: new Date('2025-01-01'),
+            endDate: new Date('2025-01-31'),
+            usageLimit: 100,
+            usedCount: 45,
+            applicableCategories: ['Kitchen Equipment', 'Commercial Appliances'],
+            isActive: true,
+            companyId: mainCompany.id
+        },
+        {
+            promotionCode: 'BULK20',
+            promotionName: 'Bulk Order Discount',
+            promotionType: 'percentage',
+            discountValue: 20,
+            minPurchaseAmount: 500000,
+            startDate: new Date('2025-01-01'),
+            endDate: new Date('2025-12-31'),
+            usageLimit: 50,
+            usedCount: 12,
+            isActive: true,
+            companyId: mainCompany.id
+        },
+        {
+            promotionCode: 'FREESHIP',
+            promotionName: 'Free Shipping',
+            promotionType: 'free_shipping',
+            discountValue: 0,
+            minPurchaseAmount: 50000,
+            startDate: new Date('2025-02-01'),
+            endDate: new Date('2025-02-28'),
+            isActive: true,
+            companyId: mainCompany.id
+        }
+    ];
+
+    for (const promo of salesPromotions) {
+        await prisma.salesPromotion.upsert({
+            where: { promotionCode_companyId: { promotionCode: promo.promotionCode, companyId: mainCompany.id } },
+            update: promo,
+            create: promo
+        });
+    }
+
+    // Sales Targets
+    const salesTargets = [
+        {
+            targetType: 'individual',
+            salesPersonId: 'user1',
+            salesPersonName: 'Rahul Sharma',
+            periodType: 'monthly',
+            periodYear: 2025,
+            periodMonth: 1,
+            revenueTarget: 5000000,
+            revenueActual: 4250000,
+            revenueAchievement: 85,
+            ordersTarget: 25,
+            ordersActual: 22,
+            ordersAchievement: 88,
+            newCustomersTarget: 5,
+            newCustomersActual: 4,
+            newCustomersAchievement: 80,
+            companyId: mainCompany.id
+        },
+        {
+            targetType: 'team',
+            teamId: 'sales-team-1',
+            teamName: 'Enterprise Sales',
+            periodType: 'quarterly',
+            periodYear: 2025,
+            periodQuarter: 1,
+            revenueTarget: 25000000,
+            revenueActual: 8500000,
+            revenueAchievement: 34,
+            ordersTarget: 100,
+            ordersActual: 35,
+            ordersAchievement: 35,
+            companyId: mainCompany.id
+        },
+        {
+            targetType: 'company',
+            periodType: 'yearly',
+            periodYear: 2025,
+            revenueTarget: 100000000,
+            revenueActual: 8500000,
+            revenueAchievement: 8.5,
+            ordersTarget: 500,
+            ordersActual: 45,
+            ordersAchievement: 9,
+            newCustomersTarget: 100,
+            newCustomersActual: 12,
+            newCustomersAchievement: 12,
+            companyId: mainCompany.id
+        }
+    ];
+
+    for (const target of salesTargets) {
+        await prisma.salesTarget.create({ data: target });
+    }
+
+    console.log('Sales Masters seeded successfully!');
 
     console.log('Seeding completed successfully!');
 }

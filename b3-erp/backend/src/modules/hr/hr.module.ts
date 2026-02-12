@@ -43,6 +43,9 @@ import {
   ProficiencyLevelController,
   UserSkillController,
   SkillGapController,
+  BonusController,
+  LoanController,
+  AdvanceController,
 } from './controllers';
 
 // Services
@@ -65,20 +68,37 @@ import {
   ProficiencyLevelService,
   UserSkillService,
   SkillGapService,
+  BonusService,
+  LoanService,
+  AdvanceService,
+  IncentiveService,
+  PayrollProcessingService,
+  StatutoryService,
 } from './services';
-import { OnboardingWorkflowService } from './services/onboarding-workflow.service';
-import { SeparationService } from './services/separation.service';
-import { TrainingService } from './services/training.service';
-import { SkillSeederService } from './services/skill-seeder.service';
 import { DepartmentSeederService } from './services/department-seeder.service';
 import { DesignationSeederService } from './services/designation-seeder.service';
-import { ShiftSeederService } from './services/shift-seeder.service';
+import { EmployeeSeederService } from './services/employee-seeder.service';
 import { HolidaySeederService } from './services/holiday-seeder.service';
 import { LeaveTypeSeederService } from './services/leave-type-seeder.service';
-import { EmployeeSeederService } from './services/employee-seeder.service';
+import { OffboardingService } from './services/offboarding.service';
+import { OnboardingWorkflowService } from './services/onboarding-workflow.service';
+import { OnboardingService } from './services/onboarding.service';
+import { PayrollSeederService } from './services/payroll-seeder.service';
+import { ProbationService } from './services/probation.service';
+import { SeparationService } from './services/separation.service';
+import { ShiftSeederService } from './services/shift-seeder.service';
+import { SkillSeederService } from './services/skill-seeder.service';
+import { TrainingService } from './services/training.service';
+import { AssetManagementService } from './services/asset-management.service';
+import { DocumentManagementService } from './services/document-management.service';
+import { PerformanceManagementService } from './services/performance-management.service';
+import { TrainingDevelopmentService } from './services/training-development.service';
+import { HRComplianceService } from './services/hr-compliance.service';
+import { PrismaModule } from '../prisma/prisma.module';
 
 @Module({
   imports: [
+    PrismaModule,
     TypeOrmModule.forFeature([
       // Core HR
       Department,
@@ -132,6 +152,10 @@ import { EmployeeSeederService } from './services/employee-seeder.service';
     ProficiencyLevelController,
     UserSkillController,
     SkillGapController,
+    // Payroll Management (Prisma-based)
+    BonusController,
+    LoanController,
+    AdvanceController,
   ],
   providers: [
     DepartmentService,
@@ -148,6 +172,9 @@ import { EmployeeSeederService } from './services/employee-seeder.service';
     SalarySlipService,
     PerformanceReviewService,
     OnboardingWorkflowService,
+    OnboardingService,
+    ProbationService,
+    OffboardingService,
     SeparationService,
     TrainingService,
     SkillCategoryService,
@@ -162,6 +189,22 @@ import { EmployeeSeederService } from './services/employee-seeder.service';
     HolidaySeederService,
     LeaveTypeSeederService,
     EmployeeSeederService,
+    PayrollSeederService,
+    // Payroll Management (Prisma-based)
+    BonusService,
+    LoanService,
+    AdvanceService,
+    IncentiveService,
+    PayrollProcessingService,
+    StatutoryService,
+    // Asset & Document Management
+    AssetManagementService,
+    DocumentManagementService,
+    // Performance Management & Training Development
+    PerformanceManagementService,
+    TrainingDevelopmentService,
+    // HR Compliance
+    HRComplianceService,
   ],
   exports: [
     DepartmentService,
@@ -178,6 +221,9 @@ import { EmployeeSeederService } from './services/employee-seeder.service';
     SalarySlipService,
     PerformanceReviewService,
     OnboardingWorkflowService,
+    OnboardingService,
+    ProbationService,
+    OffboardingService,
     SeparationService,
     TrainingService,
     SkillCategoryService,
@@ -185,6 +231,21 @@ import { EmployeeSeederService } from './services/employee-seeder.service';
     ProficiencyLevelService,
     UserSkillService,
     SkillGapService,
+    // Payroll Management (Prisma-based)
+    BonusService,
+    LoanService,
+    AdvanceService,
+    IncentiveService,
+    PayrollProcessingService,
+    StatutoryService,
+    // Asset & Document Management
+    AssetManagementService,
+    DocumentManagementService,
+    // Performance Management & Training Development
+    PerformanceManagementService,
+    TrainingDevelopmentService,
+    // HR Compliance
+    HRComplianceService,
   ],
 })
 export class HrModule {}

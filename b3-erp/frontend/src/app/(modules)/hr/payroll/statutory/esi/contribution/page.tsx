@@ -1,0 +1,259 @@
+'use client';
+
+import React, { useState } from 'react';
+import {
+    Shield,
+    Search,
+    Filter,
+    Download,
+    Eye,
+    Users,
+    Calendar
+} from 'lucide-react';
+
+interface ESIContribution {
+    id: string;
+    employeeId: string;
+    employeeName: string;
+    department: string;
+    esicNumber: string;
+    grossWage: number;
+    employeeContribution: number;
+    employerContribution: number;
+    totalContribution: number;
+    month: string;
+    isEligible: boolean;
+}
+
+export default function ESIContributionPage() {
+    const [searchTerm, setSearchTerm] = useState('');
+    const [monthFilter, setMonthFilter] = useState('January 2025');
+
+    const contributions: ESIContribution[] = [
+        {
+            id: '1',
+            employeeId: 'EMP002',
+            employeeName: 'Michael Chen',
+            department: 'Production',
+            esicNumber: '31-00-123456-000-0001',
+            grossWage: 20000,
+            employeeContribution: 150,
+            employerContribution: 650,
+            totalContribution: 800,
+            month: 'January 2025',
+            isEligible: true
+        },
+        {
+            id: '2',
+            employeeId: 'EMP004',
+            employeeName: 'David Wilson',
+            department: 'Production',
+            esicNumber: '31-00-123456-000-0002',
+            grossWage: 18000,
+            employeeContribution: 135,
+            employerContribution: 585,
+            totalContribution: 720,
+            month: 'January 2025',
+            isEligible: true
+        },
+        {
+            id: '3',
+            employeeId: 'EMP007',
+            employeeName: 'Lisa Wong',
+            department: 'Production',
+            esicNumber: '31-00-123456-000-0003',
+            grossWage: 17500,
+            employeeContribution: 131,
+            employerContribution: 569,
+            totalContribution: 700,
+            month: 'January 2025',
+            isEligible: true
+        },
+        {
+            id: '4',
+            employeeId: 'EMP008',
+            employeeName: 'James Kumar',
+            department: 'Warehouse',
+            esicNumber: '31-00-123456-000-0004',
+            grossWage: 15000,
+            employeeContribution: 113,
+            employerContribution: 488,
+            totalContribution: 600,
+            month: 'January 2025',
+            isEligible: true
+        },
+        {
+            id: '5',
+            employeeId: 'EMP009',
+            employeeName: 'Priya Sharma',
+            department: 'Production',
+            esicNumber: '31-00-123456-000-0005',
+            grossWage: 19000,
+            employeeContribution: 143,
+            employerContribution: 618,
+            totalContribution: 760,
+            month: 'January 2025',
+            isEligible: true
+        }
+    ];
+
+    const filteredContributions = contributions.filter(c => {
+        const matchesSearch = c.employeeName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            c.employeeId.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            c.esicNumber.includes(searchTerm);
+        return matchesSearch;
+    });
+
+    const formatCurrency = (value: number) => {
+        return `₹${value.toLocaleString()}`;
+    };
+
+    const totalEmployeeContribution = contributions.reduce((sum, c) => sum + c.employeeContribution, 0);
+    const totalEmployerContribution = contributions.reduce((sum, c) => sum + c.employerContribution, 0);
+    const totalContribution = contributions.reduce((sum, c) => sum + c.totalContribution, 0);
+
+    const months = ['January 2025', 'December 2024', 'November 2024', 'October 2024'];
+
+    return (
+        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 p-3">
+            <div className="w-full space-y-3">
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
+                    <div>
+                        <h1 className="text-3xl font-bold text-white flex items-center gap-3">
+                            <Shield className="w-8 h-8 text-teal-500" />
+                            ESI Contribution
+                        </h1>
+                        <p className="text-gray-400 mt-1">Employee State Insurance contributions</p>
+                    </div>
+                    <div className="flex gap-2">
+                        <select
+                            value={monthFilter}
+                            onChange={(e) => setMonthFilter(e.target.value)}
+                            className="px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-teal-500"
+                        >
+                            {months.map(month => (
+                                <option key={month} value={month}>{month}</option>
+                            ))}
+                        </select>
+                        <button className="flex items-center gap-2 px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition-colors">
+                            <Download className="w-4 h-4" />
+                            Export
+                        </button>
+                    </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+                    <div className="bg-teal-500/10 border border-teal-500/30 rounded-xl p-4">
+                        <p className="text-teal-400 text-sm">Eligible Employees</p>
+                        <p className="text-3xl font-bold text-white">{contributions.filter(c => c.isEligible).length}</p>
+                        <p className="text-xs text-gray-400 mt-1">Gross ≤ ₹21,000/month</p>
+                    </div>
+                    <div className="bg-green-500/10 border border-green-500/30 rounded-xl p-4">
+                        <p className="text-green-400 text-sm">Employee (0.75%)</p>
+                        <p className="text-3xl font-bold text-white">{formatCurrency(totalEmployeeContribution)}</p>
+                    </div>
+                    <div className="bg-purple-500/10 border border-purple-500/30 rounded-xl p-4">
+                        <p className="text-purple-400 text-sm">Employer (3.25%)</p>
+                        <p className="text-3xl font-bold text-white">{formatCurrency(totalEmployerContribution)}</p>
+                    </div>
+                    <div className="bg-orange-500/10 border border-orange-500/30 rounded-xl p-4">
+                        <p className="text-orange-400 text-sm">Total Contribution</p>
+                        <p className="text-3xl font-bold text-white">{formatCurrency(totalContribution)}</p>
+                    </div>
+                </div>
+
+                <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-3 border border-gray-700 flex flex-wrap gap-2 items-center">
+                    <div className="flex-1 min-w-[300px] relative">
+                        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                        <input
+                            type="text"
+                            placeholder="Search by name, ID, or ESIC number..."
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            className="w-full pl-10 pr-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500"
+                        />
+                    </div>
+                </div>
+
+                <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl border border-gray-700 overflow-hidden">
+                    <div className="overflow-x-auto">
+                        <table className="w-full">
+                            <thead>
+                                <tr className="border-b border-gray-700">
+                                    <th className="text-left p-4 text-gray-400 font-medium">Employee</th>
+                                    <th className="text-center p-4 text-gray-400 font-medium">ESIC Number</th>
+                                    <th className="text-right p-4 text-gray-400 font-medium">Gross Wage</th>
+                                    <th className="text-right p-4 text-gray-400 font-medium">Employee (0.75%)</th>
+                                    <th className="text-right p-4 text-gray-400 font-medium">Employer (3.25%)</th>
+                                    <th className="text-right p-4 text-gray-400 font-medium">Total</th>
+                                    <th className="text-center p-4 text-gray-400 font-medium">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {filteredContributions.map((contribution) => (
+                                    <tr key={contribution.id} className="border-b border-gray-700/50 hover:bg-gray-700/30">
+                                        <td className="p-4">
+                                            <div className="flex items-center gap-3">
+                                                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-teal-500 to-blue-600 flex items-center justify-center text-white font-bold">
+                                                    {contribution.employeeName.charAt(0)}
+                                                </div>
+                                                <div>
+                                                    <p className="text-white font-medium">{contribution.employeeName}</p>
+                                                    <p className="text-xs text-gray-400">{contribution.employeeId} • {contribution.department}</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td className="p-4 text-center">
+                                            <span className="font-mono text-xs text-gray-300">{contribution.esicNumber}</span>
+                                        </td>
+                                        <td className="p-4 text-right text-white">{formatCurrency(contribution.grossWage)}</td>
+                                        <td className="p-4 text-right text-green-400">{formatCurrency(contribution.employeeContribution)}</td>
+                                        <td className="p-4 text-right text-purple-400">{formatCurrency(contribution.employerContribution)}</td>
+                                        <td className="p-4 text-right text-orange-400 font-medium">{formatCurrency(contribution.totalContribution)}</td>
+                                        <td className="p-4">
+                                            <div className="flex items-center justify-center gap-2">
+                                                <button className="p-2 bg-gray-700 hover:bg-gray-600 text-white rounded">
+                                                    <Eye className="w-4 h-4" />
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                            <tfoot>
+                                <tr className="bg-gray-700/30">
+                                    <td className="p-4 text-white font-medium" colSpan={2}>Total</td>
+                                    <td className="p-4 text-right text-white font-medium">
+                                        {formatCurrency(contributions.reduce((sum, c) => sum + c.grossWage, 0))}
+                                    </td>
+                                    <td className="p-4 text-right text-green-400 font-medium">{formatCurrency(totalEmployeeContribution)}</td>
+                                    <td className="p-4 text-right text-purple-400 font-medium">{formatCurrency(totalEmployerContribution)}</td>
+                                    <td className="p-4 text-right text-orange-400 font-medium">{formatCurrency(totalContribution)}</td>
+                                    <td className="p-4"></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+
+                <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
+                    <h2 className="text-lg font-semibold text-white mb-4">ESI Eligibility Criteria</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                        <div className="p-4 bg-gray-700/50 rounded-lg">
+                            <p className="text-teal-400 font-medium mb-2">Wage Ceiling</p>
+                            <p className="text-gray-400">Employees earning up to ₹21,000 per month are covered under ESI</p>
+                        </div>
+                        <div className="p-4 bg-gray-700/50 rounded-lg">
+                            <p className="text-green-400 font-medium mb-2">Employee Rate</p>
+                            <p className="text-gray-400">0.75% of gross wages deducted from employee salary</p>
+                        </div>
+                        <div className="p-4 bg-gray-700/50 rounded-lg">
+                            <p className="text-purple-400 font-medium mb-2">Employer Rate</p>
+                            <p className="text-gray-400">3.25% of gross wages contributed by employer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}

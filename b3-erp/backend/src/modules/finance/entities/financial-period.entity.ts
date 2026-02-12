@@ -52,7 +52,7 @@ export class FinancialYear {
   @Column({ type: 'text', nullable: true })
   description: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   closedBy: string;
 
   @Column({ type: 'timestamp', nullable: true })
@@ -122,13 +122,13 @@ export class FinancialPeriod {
   @Column({ type: 'text', nullable: true })
   description: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   closedBy: string;
 
   @Column({ type: 'timestamp', nullable: true })
   closedAt: Date;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   openedBy: string;
 
   @Column({ type: 'timestamp', nullable: true })

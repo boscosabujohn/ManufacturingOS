@@ -22,7 +22,7 @@ export class PurchaseRequisition {
     @JoinColumn({ name: 'project_id' })
     project: Project;
 
-    @Column({ name: 'bom_header_id', nullable: true })
+    @Column({ name: 'bom_header_id', type: 'varchar', nullable: true })
     bomHeaderId: string;
 
     @ManyToOne(() => BOMHeader)

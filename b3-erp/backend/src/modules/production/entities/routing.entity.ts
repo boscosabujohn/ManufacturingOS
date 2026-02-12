@@ -42,7 +42,7 @@ export class Routing {
   itemName: string;
 
   // BOM reference
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   bomId: string;
 
   @Column({ length: 100, nullable: true })

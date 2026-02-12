@@ -54,7 +54,7 @@ export class WarrantyTypeEntity {
   @Column({ type: 'decimal', precision: 15, scale: 2, nullable: true })
   maxClaimAmount: number;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   icon: string;
 
   @Column({ length: 20, nullable: true })

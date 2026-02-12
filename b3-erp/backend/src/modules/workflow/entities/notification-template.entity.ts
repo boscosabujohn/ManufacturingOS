@@ -13,7 +13,7 @@ export class NotificationTemplate {
     @Column()
     channel: 'email' | 'sms' | 'push' | 'in_app';
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     subjectTemplate: string; // Handlebars or simple string replacement
 
     @Column({ type: 'text' })

@@ -36,19 +36,19 @@ export class ToolDeployment {
     @Column({ name: 'returned_at', type: 'timestamp', nullable: true })
     returnedAt: Date;
 
-    @Column({ name: 'condition_at_issue', nullable: true })
+    @Column({ name: 'condition_at_issue', type: 'varchar', nullable: true })
     conditionAtIssue: string;
 
-    @Column({ name: 'condition_at_return', nullable: true })
+    @Column({ name: 'condition_at_return', type: 'varchar', nullable: true })
     conditionAtReturn: string;
 
     @Column({ name: 'depreciation_value', type: 'decimal', precision: 10, scale: 2, default: 0 })
     depreciationValue: number;
 
-    @Column({ name: 'issued_by', nullable: true })
+    @Column({ name: 'issued_by', type: 'varchar', nullable: true })
     issuedBy: string;
 
-    @Column({ name: 'returned_by', nullable: true })
+    @Column({ name: 'returned_by', type: 'varchar', nullable: true })
     public returnedBy?: string;
 
     @CreateDateColumn({ name: 'created_at' })

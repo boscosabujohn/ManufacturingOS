@@ -27,16 +27,16 @@ export class Department {
   @Column({ type: 'text', nullable: true })
   description: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   parentDepartmentId: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   headOfDepartmentId: string;
 
   @Column({ nullable: true, length: 100 })
   headOfDepartmentName: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   costCenterId: string;
 
   @Column({ nullable: true, length: 100 })

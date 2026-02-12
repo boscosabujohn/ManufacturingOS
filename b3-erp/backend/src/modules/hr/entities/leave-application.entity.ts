@@ -93,7 +93,7 @@ export class LeaveApplication {
   status: LeaveApplicationStatus;
 
   // Approval Workflow
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   approver1Id: string;
 
   @Column({ nullable: true, length: 100 })
@@ -105,7 +105,7 @@ export class LeaveApplication {
   @Column({ type: 'text', nullable: true })
   approver1Remarks: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   approver2Id: string;
 
   @Column({ nullable: true, length: 100 })
@@ -117,7 +117,7 @@ export class LeaveApplication {
   @Column({ type: 'text', nullable: true })
   approver2Remarks: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   finalApproverId: string;
 
   @Column({ nullable: true, length: 100 })
@@ -129,7 +129,7 @@ export class LeaveApplication {
   @Column({ type: 'text', nullable: true })
   rejectionReason: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   rejectedBy: string;
 
   @Column({ type: 'timestamp', nullable: true })
@@ -138,7 +138,7 @@ export class LeaveApplication {
   @Column({ type: 'text', nullable: true })
   cancellationReason: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   cancelledBy: string;
 
   @Column({ type: 'timestamp', nullable: true })

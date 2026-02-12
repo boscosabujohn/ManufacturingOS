@@ -48,7 +48,7 @@ export class AuditLog {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   userId: string;
 
   @ManyToOne(() => User, (user) => user.auditLogs, { nullable: true })
@@ -110,10 +110,10 @@ export class AuditLog {
   @Column({ nullable: true, length: 20 })
   httpMethod: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   statusCode: number;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   responseTime: number; // milliseconds
 
   @Column({ default: true })

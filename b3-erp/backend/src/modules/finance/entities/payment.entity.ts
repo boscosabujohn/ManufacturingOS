@@ -82,7 +82,7 @@ export class Payment {
   baseCurrencyAmount: number;
 
   // Bank details
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   bankAccountId: string;
 
   @Column({ nullable: true, length: 100 })
@@ -118,13 +118,13 @@ export class Payment {
   @Column({ default: false })
   isPosted: boolean;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   journalEntryId: string;
 
   @Column({ type: 'timestamp', nullable: true })
   postedAt: Date;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   postedBy: string;
 
   // Reconciliation
@@ -134,7 +134,7 @@ export class Payment {
   @Column({ type: 'date', nullable: true })
   reconciledDate: Date;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   reconciledBy: string;
 
   // Bounced payment
@@ -179,7 +179,7 @@ export class Payment {
   }[];
 
   // Approval
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   approvedBy: string;
 
   @Column({ type: 'timestamp', nullable: true })

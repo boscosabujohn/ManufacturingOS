@@ -92,7 +92,7 @@ export class WorkOrder {
   pendingQuantity: number;
 
   // BOM and Routing
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   bomId: string;
 
   @Column({ length: 100, nullable: true })
@@ -101,7 +101,7 @@ export class WorkOrder {
   @Column({ type: 'int', nullable: true })
   bomVersion: number;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   routingId: string;
 
   @Column({ length: 100, nullable: true })
@@ -124,7 +124,7 @@ export class WorkOrder {
   requiredByDate: Date;
 
   // Work center
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   workCenterId: string;
 
   @Column({ length: 100, nullable: true })
@@ -134,26 +134,26 @@ export class WorkOrder {
   workCenterName: string;
 
   // Source references
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   salesOrderId: string;
 
   @Column({ length: 100, nullable: true })
   salesOrderNumber: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   productionPlanId: string;
 
   @Column({ length: 100, nullable: true })
   productionPlanNumber: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   projectId: string;
 
   @Column({ length: 100, nullable: true })
   projectCode: string;
 
   // Customer/Job details
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   customerId: string;
 
   @Column({ length: 255, nullable: true })
@@ -223,13 +223,13 @@ export class WorkOrder {
   serialNumbers: string[];
 
   // Warehouse
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   sourceWarehouseId: string; // For raw materials
 
   @Column({ length: 100, nullable: true })
   sourceWarehouseName: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   targetWarehouseId: string; // For finished goods
 
   @Column({ length: 100, nullable: true })
@@ -239,7 +239,7 @@ export class WorkOrder {
   @Column({ default: false })
   requiresInspection: boolean;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   qcTemplateId: string;
 
   @Column({ length: 50, nullable: true })

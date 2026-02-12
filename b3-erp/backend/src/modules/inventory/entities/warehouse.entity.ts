@@ -96,18 +96,18 @@ export class Warehouse {
   currentUtilization: number; // percentage
 
   // Company/Branch assignment
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   companyId: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   branchId: string;
 
   // Parent warehouse for hierarchical structure
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   parentWarehouseId: string;
 
   // Manager information
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   managerId: string;
 
   @Column({ length: 100, nullable: true })

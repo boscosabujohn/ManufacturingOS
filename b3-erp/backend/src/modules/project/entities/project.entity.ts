@@ -37,16 +37,16 @@ export class Project {
     @Column()
     name: string;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     clientName: string;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     description: string;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     salesOrderId: string;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     managerId: string;
 
     @Column({ default: 'active' })
@@ -94,22 +94,22 @@ export class Project {
     @Column({ name: 'profit_margin', type: 'decimal', precision: 5, scale: 2, default: 0 })
     profitMargin: number;
 
-    @Column({ name: 'project_manager_id', nullable: true })
+    @Column({ name: 'project_manager_id', type: 'varchar', nullable: true })
     projectManagerId: string;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     location: string;
 
-    @Column({ name: 'project_type', nullable: true })
+    @Column({ name: 'project_type', type: 'varchar', nullable: true })
     projectType: string;
 
     @Column({ name: 'award_date', type: 'date', nullable: true })
     awardDate: Date;
 
-    @Column({ name: 'client_contact_person', nullable: true })
+    @Column({ name: 'client_contact_person', type: 'varchar', nullable: true })
     clientContactPerson: string;
 
-    @Column({ name: 'client_contact_email', nullable: true })
+    @Column({ name: 'client_contact_email', type: 'varchar', nullable: true })
     clientContactEmail: string;
 
     @Column({

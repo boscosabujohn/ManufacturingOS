@@ -8,6 +8,10 @@
 // =============================================================================
 export * from './employee.service';
 export * from './skill.service';
+export * from './onboarding.service';
+export * from './offboarding.service';
+export * from './asset-management.service';
+export * from './document-management.service';
 
 // =============================================================================
 // Finance Services
@@ -98,6 +102,21 @@ export * from './customer.service';
 // After-Sales Services
 // =============================================================================
 export * from './asset.service';
+
+// =============================================================================
+// Production - Sustainability Services
+// =============================================================================
+export * from './sustainability.service';
+
+// =============================================================================
+// Production - Resilience Services
+// =============================================================================
+export * from './resilience.service';
+
+// =============================================================================
+// Production - Collaboration Services
+// =============================================================================
+export * from './collaboration.service';
 
 // =============================================================================
 // API Services

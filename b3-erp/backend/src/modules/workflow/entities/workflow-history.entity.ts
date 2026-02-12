@@ -58,14 +58,14 @@ export class WorkflowHistory {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   instanceId: string;
 
   @ManyToOne(() => WorkflowInstance, (instance) => instance.history)
   @JoinColumn({ name: 'instanceId' })
   instance: WorkflowInstance;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   stepId: string;
 
   @Column({
@@ -82,7 +82,7 @@ export class WorkflowHistory {
   @Column()
   message: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   details: string;
 
   // Event data
@@ -97,21 +97,21 @@ export class WorkflowHistory {
   newState: Record<string, any>;
 
   // Source information
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   sourceEvent: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   sourceModule: string;
 
   // User who triggered this
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   userId: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   userName: string;
 
   // IP address for audit
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   ipAddress: string;
 
   @CreateDateColumn()

@@ -24,10 +24,10 @@ export class BOMDetail {
     @Column({ type: 'decimal', precision: 15, scale: 3, default: 0 })
     quantity: number;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     uom: string;
 
-    @Column({ name: 'parent_detail_id', nullable: true })
+    @Column({ name: 'parent_detail_id', type: 'varchar', nullable: true })
     parentDetailId: string;
 
     @ManyToOne(() => BOMDetail, detail => detail.subDetails)
@@ -37,7 +37,7 @@ export class BOMDetail {
     @OneToMany(() => BOMDetail, detail => detail.parentDetail)
     subDetails: BOMDetail[];
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     notes: string;
 
     @CreateDateColumn({ name: 'created_at' })

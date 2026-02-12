@@ -62,7 +62,7 @@ export class ProductionEntry {
   itemName: string;
 
   // Operation details
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   operationId: string;
 
   @Column({ length: 100, nullable: true })
@@ -72,7 +72,7 @@ export class ProductionEntry {
   operationName: string;
 
   // Work center
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   workCenterId: string;
 
   @Column({ length: 100, nullable: true })
@@ -159,7 +159,7 @@ export class ProductionEntry {
   downtimeMinutes: number;
 
   // Warehouse
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   targetWarehouseId: string;
 
   @Column({ length: 100, nullable: true })
@@ -191,14 +191,14 @@ export class ProductionEntry {
   @Column({ length: 50, nullable: true })
   qualityStatus: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   qcReportId: string;
 
   @Column({ type: 'text', nullable: true })
   rejectionReason: string;
 
   // Operator
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   operatorId: string;
 
   @Column({ length: 255, nullable: true })
@@ -217,7 +217,7 @@ export class ProductionEntry {
   @Column({ type: 'timestamp', nullable: true })
   inventoryPostedAt: Date;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   stockEntryId: string;
 
   @Column({ length: 100, nullable: true })
@@ -230,7 +230,7 @@ export class ProductionEntry {
   @Column({ type: 'timestamp', nullable: true })
   glPostedAt: Date;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   journalEntryId: string;
 
   @Column({ length: 100, nullable: true })
@@ -240,7 +240,7 @@ export class ProductionEntry {
   @Column({ default: false })
   isReversed: boolean;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   reversalEntryId: string;
 
   @Column({ length: 100, nullable: true })

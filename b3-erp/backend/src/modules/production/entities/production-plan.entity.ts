@@ -62,7 +62,7 @@ export class ProductionPlan {
   frozenDate: Date; // Date when plan is frozen
 
   // Item/Product
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   itemId: string;
 
   @Column({ length: 100, nullable: true })
@@ -123,7 +123,7 @@ export class ProductionPlan {
   hasCapacityConstraint: boolean;
 
   // Work center
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   workCenterId: string;
 
   @Column({ length: 100, nullable: true })
@@ -133,16 +133,16 @@ export class ProductionPlan {
   workCenterName: string;
 
   // Source references
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   salesForecastId: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   salesOrderId: string;
 
   @Column({ length: 100, nullable: true })
   salesOrderNumber: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   customerId: string;
 
   @Column({ length: 255, nullable: true })

@@ -905,22 +905,22 @@ const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 class CoreServiceClass {
   // ==========================================================================
   // UOM Methods
-  // ==========================================================================  /**
-  * Get all UOMs
-  */
-  static async getAllUOMs(companyId ?: string): Promise < UOM[] > {
-  if(USE_MOCK_DATA) {
-    await new Promise((resolve) => setTimeout(resolve, 300));
-    return [...MOCK_UOMS];
-  }
+  // ==========================================================================
+
+  /**
+   * Get all UOMs
+   */
+  static async getAllUOMs(companyId?: string): Promise<UOM[]> {
+    if (USE_MOCK_DATA) {
+      await new Promise((resolve) => setTimeout(resolve, 300));
+      return [...MOCK_UOMS];
+    }
     const params = new URLSearchParams();
-  if(companyId) params.append('companyId', companyId);
-  // Assuming 'this.request' is a static method or 'apiClient' is accessible
-  // For this change, we'll adapt to the existing 'apiClient.get' pattern
-  const queryString = params.toString();
-  const response = await apiClient.get<UOM[]>(`/core/uom${queryString ? `?${queryString}` : ''}`);
-  return response.data;
-}
+    if (companyId) params.append('companyId', companyId);
+    const queryString = params.toString();
+    const response = await apiClient.get<UOM[]>(`/core/uom${queryString ? `?${queryString}` : ''}`);
+    return response.data;
+  }
 
   /**
    * Get all Currencies

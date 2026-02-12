@@ -115,7 +115,7 @@ export class BOM {
   requiresQualityInspection: boolean;
 
   // Routing
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   defaultRoutingId: string;
 
   @Column({ length: 100, nullable: true })

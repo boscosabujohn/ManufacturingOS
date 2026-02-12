@@ -48,7 +48,7 @@ export class Designation {
   })
   level: DesignationLevel;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   reportsTo: string;
 
   @Column({ nullable: true, length: 100 })

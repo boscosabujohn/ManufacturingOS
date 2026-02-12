@@ -56,7 +56,7 @@ export class Operation {
   status: OperationStatus;
 
   // Work center
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   defaultWorkCenterId: string;
 
   @Column({ length: 100, nullable: true })
@@ -125,7 +125,7 @@ export class Operation {
   @Column({ default: false })
   requiresQualityInspection: boolean;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   qcTemplateId: string;
 
   @Column({ length: 100, nullable: true })
@@ -225,7 +225,7 @@ export class Operation {
   @Column({ default: false })
   isOutsourced: boolean;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   outsourcedVendorId: string;
 
   @Column({ length: 255, nullable: true })

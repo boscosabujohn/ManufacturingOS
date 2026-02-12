@@ -77,7 +77,7 @@ export class WorkOrderItem {
   totalCost: number;
 
   // Operation link
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   operationId: string;
 
   @Column({ length: 100, nullable: true })
@@ -87,14 +87,14 @@ export class WorkOrderItem {
   backflush: boolean;
 
   // Source BOM
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   bomItemId: string;
 
   @Column({ type: 'decimal', precision: 5, scale: 2, default: 0 })
   scrapPercentage: number;
 
   // Warehouse
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   warehouseId: string;
 
   @Column({ length: 100, nullable: true })
@@ -143,7 +143,7 @@ export class WorkOrderItem {
   @Column({ default: false })
   isAlternativeItem: boolean;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   originalItemId: string;
 
   @Column({ length: 100, nullable: true })

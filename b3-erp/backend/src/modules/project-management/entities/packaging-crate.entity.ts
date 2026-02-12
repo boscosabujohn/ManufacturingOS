@@ -23,7 +23,7 @@ export class PackagingCrate {
     @Column({ name: 'crate_number' })
     crateNumber: string;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     dimensions: string;
 
     @Column({ name: 'actual_weight', type: 'decimal', precision: 10, scale: 2, default: 0 })
@@ -39,7 +39,7 @@ export class PackagingCrate {
     })
     status: CrateStatus;
 
-    @Column({ name: 'qr_code', nullable: true })
+    @Column({ name: 'qr_code', type: 'varchar', nullable: true })
     qrCode: string;
 
     @OneToMany(() => PackagingItem, item => item.crate)

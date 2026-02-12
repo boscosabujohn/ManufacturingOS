@@ -93,7 +93,7 @@ export interface CampaignFilters {
 
 // ============== Mock Data ==============
 
-const USE_MOCK_DATA = true;
+const USE_MOCK_DATA = false;
 
 export const MOCK_CAMPAIGNS: Campaign[] = [
   {

@@ -104,7 +104,7 @@ export class PayrollService {
           payrollId: payroll.id,
           employeeId: employee.id,
           employeeCode: employee.employeeCode,
-          employeeName: employee.fullName,
+          employeeName: employee.fullName || `${employee.firstName} ${employee.lastName}`,
           designation: employee.designationId,
           department: employee.departmentId,
           month: payroll.month,

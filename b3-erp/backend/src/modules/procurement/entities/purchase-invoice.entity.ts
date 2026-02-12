@@ -74,7 +74,7 @@ export class PurchaseInvoice {
   invoiceType: InvoiceType;
 
   // Purchase Order Reference
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   purchaseOrderId: string;
 
   @Column({ length: 50, nullable: true })
@@ -299,7 +299,7 @@ export class PurchaseInvoice {
   @Column({ nullable: true, length: 100 })
   accountingPostedBy: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   journalEntryId: string;
 
   @Column({ length: 50, nullable: true })

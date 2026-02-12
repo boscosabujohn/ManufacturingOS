@@ -55,7 +55,7 @@ export class Role {
   @Column({ default: 0 })
   hierarchyLevel: number;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   parentRoleId: string;
 
   @ManyToOne(() => Role, (role) => role.childRoles, { nullable: true })

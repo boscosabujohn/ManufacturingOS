@@ -65,7 +65,7 @@ export class StockTransfer {
   @Column({ length: 255 })
   fromWarehouseName: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   fromLocationId: string;
 
   @Column({ length: 255, nullable: true })
@@ -78,20 +78,20 @@ export class StockTransfer {
   @Column({ length: 255 })
   toWarehouseName: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   toLocationId: string;
 
   @Column({ length: 255, nullable: true })
   toLocationName: string;
 
   // Branch/Company details for inter-branch transfers
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   fromBranchId: string;
 
   @Column({ length: 255, nullable: true })
   fromBranchName: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   toBranchId: string;
 
   @Column({ length: 255, nullable: true })
@@ -101,14 +101,14 @@ export class StockTransfer {
   @Column({ nullable: true, length: 100 })
   referenceType: string; // Sales Order, Work Order, etc.
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   referenceId: string;
 
   @Column({ nullable: true, length: 100 })
   referenceNumber: string;
 
   // Initiated by
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   requestedBy: string;
 
   @Column({ length: 100, nullable: true })
@@ -118,7 +118,7 @@ export class StockTransfer {
   @Column({ default: false })
   requiresApproval: boolean;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   approvedBy: string;
 
   @Column({ length: 100, nullable: true })
@@ -131,26 +131,26 @@ export class StockTransfer {
   @Column({ type: 'timestamp', nullable: true })
   dispatchedAt: Date;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   dispatchedBy: string;
 
   @Column({ length: 100, nullable: true })
   dispatchedByName: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   dispatchStockEntryId: string; // Stock entry for dispatch
 
   // Receipt details
   @Column({ type: 'timestamp', nullable: true })
   receivedAt: Date;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   receivedBy: string;
 
   @Column({ length: 100, nullable: true })
   receivedByName: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   receiptStockEntryId: string; // Stock entry for receipt
 
   // Transport details
@@ -195,14 +195,14 @@ export class StockTransfer {
   @Column({ default: false })
   requiresInspection: boolean;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   inspectionId: string;
 
   @Column({ length: 50, nullable: true })
   inspectionStatus: string;
 
   // Cancellation
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   cancelledBy: string;
 
   @Column({ type: 'timestamp', nullable: true })
@@ -212,13 +212,13 @@ export class StockTransfer {
   cancellationReason: string;
 
   // Project/Cost Center
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   projectId: string;
 
   @Column({ length: 255, nullable: true })
   projectName: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   costCenterId: string;
 
   @Column({ length: 255, nullable: true })
@@ -313,13 +313,13 @@ export class StockTransferLine {
   uom: string;
 
   // Batch and Serial
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   batchId: string;
 
   @Column({ length: 100, nullable: true })
   batchNumber: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   serialNumberId: string;
 
   @Column({ length: 100, nullable: true })
@@ -333,13 +333,13 @@ export class StockTransferLine {
   amount: number;
 
   // Location details
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   fromLocationId: string;
 
   @Column({ length: 255, nullable: true })
   fromLocationName: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   toLocationId: string;
 
   @Column({ length: 255, nullable: true })

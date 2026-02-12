@@ -33,19 +33,19 @@ export class WorkflowDocument {
     @Column({ type: 'bigint', nullable: true })
     fileSize: number;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     mimeType: string;
 
     @Column({ default: 'draft' })
     status: 'draft' | 'pending_review' | 'approved' | 'rejected' | 'archived';
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     uploadedBy: string;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     reviewedBy: string;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     approvedBy: string;
 
     @Column({ type: 'timestamp', nullable: true })

@@ -64,10 +64,10 @@ export class UserSession {
   @Column({ nullable: true, length: 100 })
   location: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   latitude: number;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   longitude: number;
 
   @Column({ type: 'timestamp' })

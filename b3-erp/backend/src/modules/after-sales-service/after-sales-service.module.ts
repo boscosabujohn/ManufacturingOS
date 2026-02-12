@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { PrismaModule } from '../prisma/prisma.module';
 
 // Entities
 import { ServiceType } from './entities/service-type.entity';
@@ -35,10 +36,12 @@ import { ServiceBillingService } from './service-billing/service-billing.service
 import { ServiceTypeSeederService } from './services/service-type-seeder.service';
 import { WarrantyTypeSeederService } from './services/warranty-type-seeder.service';
 import { AfterSalesService } from './services/after-sales.service';
+import { AfterSalesManagementService } from './services/after-sales-management.service';
 import { AfterSalesController } from './after-sales.controller';
 
 @Module({
   imports: [
+    PrismaModule,
     TypeOrmModule.forFeature([
       ServiceType,
       WarrantyTypeEntity,
@@ -65,6 +68,7 @@ import { AfterSalesController } from './after-sales.controller';
     ServiceTypeSeederService,
     WarrantyTypeSeederService,
     AfterSalesService,
+    AfterSalesManagementService,
   ],
   exports: [
     ServiceContractsService,
@@ -74,6 +78,7 @@ import { AfterSalesController } from './after-sales.controller';
     FieldServiceService,
     ServiceBillingService,
     AfterSalesService,
+    AfterSalesManagementService,
   ],
 })
 export class AfterSalesServiceModule { }

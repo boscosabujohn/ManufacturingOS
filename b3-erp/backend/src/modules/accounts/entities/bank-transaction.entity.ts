@@ -19,7 +19,7 @@ export class BankTransaction {
     @Column()
     description: string;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     referenceNumber: string;
 
     @Column('decimal', { precision: 15, scale: 2, default: 0 })
@@ -37,10 +37,10 @@ export class BankTransaction {
     @Column({ type: 'date', nullable: true })
     reconciledDate: Date | null;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     reconciledBy: string;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     statementLineId: string;
 
     @Column({ type: 'uuid', nullable: true })

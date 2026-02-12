@@ -37,13 +37,13 @@ export class CycleCountPlan {
     @Column({ type: 'date' })
     scheduledDate: Date;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     warehouseId: string;
 
     @Column({ length: 255, nullable: true })
     warehouseName: string;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     locationId: string;
 
     @Column({ length: 10, nullable: true })
@@ -55,10 +55,10 @@ export class CycleCountPlan {
     @Column({ type: 'text', nullable: true })
     remarks: string;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     assignedTo: string;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     adjustmentId: string; // Reference to the StockAdjustment created
 
     @CreateDateColumn()

@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Query } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Body, Param, Query } from '@nestjs/common';
 import { CommonMastersService } from './common-masters.service';
 
 @Controller('common-masters')
@@ -18,6 +18,16 @@ export class CommonMastersController {
     @Post('departments')
     createDepartment(@Body() data: { name: string; companyId: string; branchId?: string }) {
         return this.commonMastersService.createDepartment(data);
+    }
+
+    @Put('departments/:id')
+    updateDepartment(@Param('id') id: string, @Body() data: { name?: string; branchId?: string; isActive?: boolean }) {
+        return this.commonMastersService.updateDepartment(id, data);
+    }
+
+    @Delete('departments/:id')
+    deleteDepartment(@Param('id') id: string) {
+        return this.commonMastersService.deleteDepartment(id);
     }
 
     @Get('designations')
@@ -252,6 +262,438 @@ export class CommonMastersController {
     @Get('number-series')
     findAllNumberSeries(@Query('companyId') companyId: string) {
         return this.commonMastersService.findAllNumberSeries(companyId);
+    }
+
+    // ===========================
+    // DESIGNATION CRUD
+    // ===========================
+    @Post('designations')
+    createDesignation(@Body() data: { code: string; name: string; level?: number; grade?: string; companyId: string }) {
+        return this.commonMastersService.createDesignation(data);
+    }
+
+    @Put('designations/:id')
+    updateDesignation(@Param('id') id: string, @Body() data: { code?: string; name?: string; level?: number; grade?: string; isActive?: boolean }) {
+        return this.commonMastersService.updateDesignation(id, data);
+    }
+
+    @Delete('designations/:id')
+    deleteDesignation(@Param('id') id: string) {
+        return this.commonMastersService.deleteDesignation(id);
+    }
+
+    // ===========================
+    // COST CENTER CRUD
+    // ===========================
+    @Post('cost-centers')
+    createCostCenter(@Body() data: { code: string; name: string; companyId: string }) {
+        return this.commonMastersService.createCostCenter(data);
+    }
+
+    @Put('cost-centers/:id')
+    updateCostCenter(@Param('id') id: string, @Body() data: { code?: string; name?: string; isActive?: boolean }) {
+        return this.commonMastersService.updateCostCenter(id, data);
+    }
+
+    @Delete('cost-centers/:id')
+    deleteCostCenter(@Param('id') id: string) {
+        return this.commonMastersService.deleteCostCenter(id);
+    }
+
+    // ===========================
+    // PLANT CRUD
+    // ===========================
+    @Post('plants')
+    createPlant(@Body() data: { code: string; name: string; companyId: string; branchId?: string }) {
+        return this.commonMastersService.createPlant(data);
+    }
+
+    @Put('plants/:id')
+    updatePlant(@Param('id') id: string, @Body() data: { code?: string; name?: string; branchId?: string; isActive?: boolean }) {
+        return this.commonMastersService.updatePlant(id, data);
+    }
+
+    @Delete('plants/:id')
+    deletePlant(@Param('id') id: string) {
+        return this.commonMastersService.deletePlant(id);
+    }
+
+    // ===========================
+    // WAREHOUSE CRUD
+    // ===========================
+    @Post('warehouses')
+    createWarehouse(@Body() data: { code: string; name: string; companyId: string; branchId?: string; address?: string }) {
+        return this.commonMastersService.createWarehouse(data);
+    }
+
+    @Put('warehouses/:id')
+    updateWarehouse(@Param('id') id: string, @Body() data: { code?: string; name?: string; branchId?: string; address?: string; isActive?: boolean }) {
+        return this.commonMastersService.updateWarehouse(id, data);
+    }
+
+    @Delete('warehouses/:id')
+    deleteWarehouse(@Param('id') id: string) {
+        return this.commonMastersService.deleteWarehouse(id);
+    }
+
+    // ===========================
+    // UOM CRUD
+    // ===========================
+    @Post('uoms')
+    createUom(@Body() data: { code: string; name: string; companyId: string }) {
+        return this.commonMastersService.createUom(data);
+    }
+
+    @Put('uoms/:id')
+    updateUom(@Param('id') id: string, @Body() data: { code?: string; name?: string; isActive?: boolean }) {
+        return this.commonMastersService.updateUom(id, data);
+    }
+
+    @Delete('uoms/:id')
+    deleteUom(@Param('id') id: string) {
+        return this.commonMastersService.deleteUom(id);
+    }
+
+    // ===========================
+    // ITEM CATEGORY CRUD
+    // ===========================
+    @Post('item-categories')
+    createItemCategory(@Body() data: { name: string; companyId: string }) {
+        return this.commonMastersService.createItemCategory(data);
+    }
+
+    @Put('item-categories/:id')
+    updateItemCategory(@Param('id') id: string, @Body() data: { name?: string; isActive?: boolean }) {
+        return this.commonMastersService.updateItemCategory(id, data);
+    }
+
+    @Delete('item-categories/:id')
+    deleteItemCategory(@Param('id') id: string) {
+        return this.commonMastersService.deleteItemCategory(id);
+    }
+
+    // ===========================
+    // ITEM GROUP CRUD
+    // ===========================
+    @Post('item-groups')
+    createItemGroup(@Body() data: { name: string; categoryId: string; companyId: string }) {
+        return this.commonMastersService.createItemGroup(data);
+    }
+
+    @Put('item-groups/:id')
+    updateItemGroup(@Param('id') id: string, @Body() data: { name?: string; categoryId?: string; isActive?: boolean }) {
+        return this.commonMastersService.updateItemGroup(id, data);
+    }
+
+    @Delete('item-groups/:id')
+    deleteItemGroup(@Param('id') id: string) {
+        return this.commonMastersService.deleteItemGroup(id);
+    }
+
+    // ===========================
+    // BRAND CRUD
+    // ===========================
+    @Post('brands')
+    createBrand(@Body() data: { name: string; companyId: string }) {
+        return this.commonMastersService.createBrand(data);
+    }
+
+    @Put('brands/:id')
+    updateBrand(@Param('id') id: string, @Body() data: { name?: string; isActive?: boolean }) {
+        return this.commonMastersService.updateBrand(id, data);
+    }
+
+    @Delete('brands/:id')
+    deleteBrand(@Param('id') id: string) {
+        return this.commonMastersService.deleteBrand(id);
+    }
+
+    // ===========================
+    // HSN/SAC CRUD
+    // ===========================
+    @Post('hsn-sacs')
+    createHsnSac(@Body() data: { code: string; description?: string; gstPercentage?: number; companyId: string }) {
+        return this.commonMastersService.createHsnSac(data);
+    }
+
+    @Put('hsn-sacs/:id')
+    updateHsnSac(@Param('id') id: string, @Body() data: { code?: string; description?: string; gstPercentage?: number; isActive?: boolean }) {
+        return this.commonMastersService.updateHsnSac(id, data);
+    }
+
+    @Delete('hsn-sacs/:id')
+    deleteHsnSac(@Param('id') id: string) {
+        return this.commonMastersService.deleteHsnSac(id);
+    }
+
+    // ===========================
+    // ITEM CRUD
+    // ===========================
+    @Post('items')
+    createItem(@Body() data: any) {
+        return this.commonMastersService.createItem(data);
+    }
+
+    @Put('items/:id')
+    updateItem(@Param('id') id: string, @Body() data: any) {
+        return this.commonMastersService.updateItem(id, data);
+    }
+
+    @Delete('items/:id')
+    deleteItem(@Param('id') id: string) {
+        return this.commonMastersService.deleteItem(id);
+    }
+
+    // ===========================
+    // CUSTOMER CATEGORY CRUD
+    // ===========================
+    @Post('customer-categories')
+    createCustomerCategory(@Body() data: any) {
+        return this.commonMastersService.createCustomerCategory(data);
+    }
+
+    @Put('customer-categories/:id')
+    updateCustomerCategory(@Param('id') id: string, @Body() data: any) {
+        return this.commonMastersService.updateCustomerCategory(id, data);
+    }
+
+    @Delete('customer-categories/:id')
+    deleteCustomerCategory(@Param('id') id: string) {
+        return this.commonMastersService.deleteCustomerCategory(id);
+    }
+
+    // ===========================
+    // CUSTOMER CRUD
+    // ===========================
+    @Post('customers')
+    createCustomer(@Body() data: any) {
+        return this.commonMastersService.createCustomer(data);
+    }
+
+    @Put('customers/:id')
+    updateCustomer(@Param('id') id: string, @Body() data: any) {
+        return this.commonMastersService.updateCustomer(id, data);
+    }
+
+    @Delete('customers/:id')
+    deleteCustomer(@Param('id') id: string) {
+        return this.commonMastersService.deleteCustomer(id);
+    }
+
+    // ===========================
+    // VENDOR CATEGORY CRUD
+    // ===========================
+    @Post('vendor-categories')
+    createVendorCategory(@Body() data: { name: string; description?: string; companyId: string }) {
+        return this.commonMastersService.createVendorCategory(data);
+    }
+
+    @Put('vendor-categories/:id')
+    updateVendorCategory(@Param('id') id: string, @Body() data: { name?: string; description?: string; isActive?: boolean }) {
+        return this.commonMastersService.updateVendorCategory(id, data);
+    }
+
+    @Delete('vendor-categories/:id')
+    deleteVendorCategory(@Param('id') id: string) {
+        return this.commonMastersService.deleteVendorCategory(id);
+    }
+
+    // ===========================
+    // VENDOR CRUD
+    // ===========================
+    @Post('vendors')
+    createVendor(@Body() data: any) {
+        return this.commonMastersService.createVendor(data);
+    }
+
+    @Put('vendors/:id')
+    updateVendor(@Param('id') id: string, @Body() data: any) {
+        return this.commonMastersService.updateVendor(id, data);
+    }
+
+    @Delete('vendors/:id')
+    deleteVendor(@Param('id') id: string) {
+        return this.commonMastersService.deleteVendor(id);
+    }
+
+    // ===========================
+    // TAX CRUD
+    // ===========================
+    @Post('taxes')
+    createTax(@Body() data: any) {
+        return this.commonMastersService.createTax(data);
+    }
+
+    @Put('taxes/:id')
+    updateTax(@Param('id') id: string, @Body() data: any) {
+        return this.commonMastersService.updateTax(id, data);
+    }
+
+    @Delete('taxes/:id')
+    deleteTax(@Param('id') id: string) {
+        return this.commonMastersService.deleteTax(id);
+    }
+
+    // ===========================
+    // PAYMENT TERMS CRUD
+    // ===========================
+    @Post('payment-terms')
+    createPaymentTerm(@Body() data: any) {
+        return this.commonMastersService.createPaymentTerm(data);
+    }
+
+    @Put('payment-terms/:id')
+    updatePaymentTerm(@Param('id') id: string, @Body() data: any) {
+        return this.commonMastersService.updatePaymentTerm(id, data);
+    }
+
+    @Delete('payment-terms/:id')
+    deletePaymentTerm(@Param('id') id: string) {
+        return this.commonMastersService.deletePaymentTerm(id);
+    }
+
+    // ===========================
+    // EMPLOYEE CRUD
+    // ===========================
+    @Post('employees')
+    createEmployee(@Body() data: any) {
+        return this.commonMastersService.createEmployee(data);
+    }
+
+    @Put('employees/:id')
+    updateEmployee(@Param('id') id: string, @Body() data: any) {
+        return this.commonMastersService.updateEmployee(id, data);
+    }
+
+    @Delete('employees/:id')
+    deleteEmployee(@Param('id') id: string) {
+        return this.commonMastersService.deleteEmployee(id);
+    }
+
+    // ===========================
+    // SHIFT CRUD
+    // ===========================
+    @Post('shifts')
+    createShift(@Body() data: { code: string; name: string; companyId: string; startTime?: string; endTime?: string }) {
+        return this.commonMastersService.createShift(data);
+    }
+
+    @Put('shifts/:id')
+    updateShift(@Param('id') id: string, @Body() data: { code?: string; name?: string; startTime?: string; endTime?: string; isActive?: boolean }) {
+        return this.commonMastersService.updateShift(id, data);
+    }
+
+    @Delete('shifts/:id')
+    deleteShift(@Param('id') id: string) {
+        return this.commonMastersService.deleteShift(id);
+    }
+
+    // ===========================
+    // MACHINE CRUD
+    // ===========================
+    @Post('machines')
+    createMachine(@Body() data: any) {
+        return this.commonMastersService.createMachine(data);
+    }
+
+    @Put('machines/:id')
+    updateMachine(@Param('id') id: string, @Body() data: any) {
+        return this.commonMastersService.updateMachine(id, data);
+    }
+
+    @Delete('machines/:id')
+    deleteMachine(@Param('id') id: string) {
+        return this.commonMastersService.deleteMachine(id);
+    }
+
+    // ===========================
+    // WORK CENTER CRUD
+    // ===========================
+    @Post('work-centers')
+    createWorkCenter(@Body() data: any) {
+        return this.commonMastersService.createWorkCenter(data);
+    }
+
+    @Put('work-centers/:id')
+    updateWorkCenter(@Param('id') id: string, @Body() data: any) {
+        return this.commonMastersService.updateWorkCenter(id, data);
+    }
+
+    @Delete('work-centers/:id')
+    deleteWorkCenter(@Param('id') id: string) {
+        return this.commonMastersService.deleteWorkCenter(id);
+    }
+
+    // ===========================
+    // OPERATION CRUD
+    // ===========================
+    @Post('operations')
+    createOperation(@Body() data: any) {
+        return this.commonMastersService.createOperation(data);
+    }
+
+    @Put('operations/:id')
+    updateOperation(@Param('id') id: string, @Body() data: any) {
+        return this.commonMastersService.updateOperation(id, data);
+    }
+
+    @Delete('operations/:id')
+    deleteOperation(@Param('id') id: string) {
+        return this.commonMastersService.deleteOperation(id);
+    }
+
+    // ===========================
+    // TOOL CRUD
+    // ===========================
+    @Post('tools')
+    createTool(@Body() data: { code: string; name: string; companyId: string; description?: string; category?: string }) {
+        return this.commonMastersService.createTool(data);
+    }
+
+    @Put('tools/:id')
+    updateTool(@Param('id') id: string, @Body() data: { code?: string; name?: string; description?: string; category?: string; status?: string; isActive?: boolean }) {
+        return this.commonMastersService.updateTool(id, data);
+    }
+
+    @Delete('tools/:id')
+    deleteTool(@Param('id') id: string) {
+        return this.commonMastersService.deleteTool(id);
+    }
+
+    // ===========================
+    // QUALITY PARAMETER CRUD
+    // ===========================
+    @Post('quality-parameters')
+    createQualityParameter(@Body() data: any) {
+        return this.commonMastersService.createQualityParameter(data);
+    }
+
+    @Put('quality-parameters/:id')
+    updateQualityParameter(@Param('id') id: string, @Body() data: any) {
+        return this.commonMastersService.updateQualityParameter(id, data);
+    }
+
+    @Delete('quality-parameters/:id')
+    deleteQualityParameter(@Param('id') id: string) {
+        return this.commonMastersService.deleteQualityParameter(id);
+    }
+
+    // ===========================
+    // TERRITORY CRUD
+    // ===========================
+    @Post('territories')
+    createTerritory(@Body() data: { code: string; name: string; companyId: string }) {
+        return this.commonMastersService.createTerritory(data);
+    }
+
+    @Put('territories/:id')
+    updateTerritory(@Param('id') id: string, @Body() data: { code?: string; name?: string; isActive?: boolean }) {
+        return this.commonMastersService.updateTerritory(id, data);
+    }
+
+    @Delete('territories/:id')
+    deleteTerritory(@Param('id') id: string) {
+        return this.commonMastersService.deleteTerritory(id);
     }
 
 }

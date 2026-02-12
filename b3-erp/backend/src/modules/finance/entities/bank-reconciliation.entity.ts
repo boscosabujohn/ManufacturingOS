@@ -96,19 +96,19 @@ export class BankReconciliation {
   isBalanced: boolean;
 
   // Workflow
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   reconciledBy: string;
 
   @Column({ type: 'timestamp', nullable: true })
   reconciledAt: Date;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   reviewedBy: string;
 
   @Column({ type: 'timestamp', nullable: true })
   reviewedAt: Date;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   approvedBy: string;
 
   @Column({ type: 'timestamp', nullable: true })
@@ -161,7 +161,7 @@ export class BankStatement {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   reconciliationId: string;
 
   @ManyToOne(() => BankReconciliation, (reconciliation) => reconciliation.bankStatements)
@@ -205,7 +205,7 @@ export class BankStatement {
   @Column({ default: false })
   isMatched: boolean;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   matchedPaymentId: string;
 
   @Column({ type: 'text', nullable: true })
@@ -230,13 +230,13 @@ export class ReconciliationMatch {
   @JoinColumn({ name: 'reconciliationId' })
   reconciliation: BankReconciliation;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   bankStatementId: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   paymentId: string; // Link to Payment entity
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   generalLedgerId: string; // Link to General Ledger
 
   @Column({ length: 100 })
@@ -248,7 +248,7 @@ export class ReconciliationMatch {
   @Column({ type: 'date' })
   matchedDate: Date;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   matchedBy: string;
 
   @Column({ type: 'int', nullable: true })

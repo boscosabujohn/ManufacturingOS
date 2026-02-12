@@ -171,7 +171,7 @@ export class WorkCenter {
   @Column({ type: 'timestamp', nullable: true })
   nextMaintenanceDate: Date;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   maintenanceScheduleId: string;
 
   @Column({ type: 'json', nullable: true })
@@ -213,7 +213,7 @@ export class WorkCenter {
   firstPassYield: number;
 
   // Supervisor
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   supervisorId: string;
 
   @Column({ length: 255, nullable: true })
@@ -265,13 +265,13 @@ export class WorkCenter {
   nonWorkingDays: string[]; // e.g., ['Sunday', 'Saturday']
 
   // Current status
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   currentWorkOrderId: string;
 
   @Column({ length: 100, nullable: true })
   currentWorkOrderNumber: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   currentOperationId: string;
 
   @Column({ type: 'timestamp', nullable: true })

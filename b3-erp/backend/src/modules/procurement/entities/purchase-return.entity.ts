@@ -48,13 +48,13 @@ export class PurchaseReturn {
   status: PurchaseReturnStatus;
 
   // References
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   goodsReceiptId: string;
 
   @Column({ length: 50, nullable: true })
   goodsReceiptNumber: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   purchaseOrderId: string;
 
   @Column({ length: 50, nullable: true })
@@ -179,7 +179,7 @@ export class PurchaseReturn {
   @Column({ type: 'decimal', precision: 15, scale: 2, nullable: true })
   creditNoteAmount: number;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   creditNoteId: string;
 
   // Approval Workflow
@@ -236,7 +236,7 @@ export class PurchaseReturn {
   @Column({ nullable: true, length: 100 })
   accountingPostedBy: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   journalEntryId: string;
 
   @Column({ length: 50, nullable: true })

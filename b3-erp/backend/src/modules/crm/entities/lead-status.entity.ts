@@ -25,7 +25,7 @@ export class LeadStatusEntity {
   @Column({ type: 'text', nullable: true })
   description: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   color: string;
 
   @Column({ type: 'int', default: 0 })

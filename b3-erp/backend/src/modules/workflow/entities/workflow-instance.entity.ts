@@ -36,7 +36,7 @@ export class WorkflowInstance {
   @Column()
   instanceNumber: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   definitionId: string;
 
   @ManyToOne(() => WorkflowDefinition, (definition) => definition.instances)
@@ -55,20 +55,20 @@ export class WorkflowInstance {
   })
   priority: InstancePriority;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   currentStepId: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   currentStepName: string;
 
   // Source reference (e.g., order, rfp, purchase order)
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   sourceType: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   sourceId: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   sourceNumber: string;
 
   // Workflow context data
@@ -76,7 +76,7 @@ export class WorkflowInstance {
   context: Record<string, any>;
 
   // Error information
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   errorMessage: string;
 
   @Column({ type: 'jsonb', nullable: true })
@@ -103,10 +103,10 @@ export class WorkflowInstance {
   progressPercentage: number;
 
   // Audit
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   createdBy: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   updatedBy: string;
 
   @CreateDateColumn()

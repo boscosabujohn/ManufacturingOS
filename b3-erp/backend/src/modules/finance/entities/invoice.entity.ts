@@ -70,13 +70,13 @@ export class Invoice {
   @Column({ nullable: true, length: 100 })
   referenceNumber: string; // PO, SO, etc.
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   referenceId: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   projectId: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   companyId: string;
 
   @ManyToOne(() => Project)
@@ -134,13 +134,13 @@ export class Invoice {
   @Column({ default: false })
   isPosted: boolean;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   journalEntryId: string;
 
   @Column({ type: 'timestamp', nullable: true })
   postedAt: Date;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   postedBy: string;
 
   // Tax details
@@ -200,7 +200,7 @@ export class InvoiceLine {
   @Column({ type: 'int' })
   lineNumber: number;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   productId: string;
 
   @Column({ length: 255 })
@@ -240,7 +240,7 @@ export class InvoiceLine {
   totalAmount: number;
 
   // GL Account mapping
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   glAccountId: string;
 
   @CreateDateColumn()

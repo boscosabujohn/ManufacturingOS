@@ -25,7 +25,7 @@ export class ProjectTypeEntity {
   @Column({ type: 'text', nullable: true })
   description: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   icon: string;
 
   @Column({ length: 20, nullable: true })

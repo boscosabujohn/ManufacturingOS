@@ -81,7 +81,7 @@ export class AuditFindings {
   requirement: string;
 
   // Location
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   departmentId: string;
 
   @Column({ length: 255, nullable: true })
@@ -90,13 +90,13 @@ export class AuditFindings {
   @Column({ length: 255, nullable: true })
   process: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   processId: string;
 
   @Column({ length: 255, nullable: true })
   location: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   workCenterId: string;
 
   @Column({ length: 100, nullable: true })
@@ -119,7 +119,7 @@ export class AuditFindings {
   riskAssessment: string;
 
   // Auditee
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   auditeeId: string;
 
   @Column({ length: 255, nullable: true })
@@ -132,7 +132,7 @@ export class AuditFindings {
   auditeeDepartment: string;
 
   // Auditor
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   auditorId: string;
 
   @Column({ length: 255, nullable: true })
@@ -152,7 +152,7 @@ export class AuditFindings {
   @Column({ type: 'text', nullable: true })
   proposedCorrectiveAction: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   assignedToId: string;
 
   @Column({ length: 255, nullable: true })
@@ -168,7 +168,7 @@ export class AuditFindings {
   @Column({ default: false })
   requiresCAPA: boolean;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   capaId: string;
 
   @Column({ length: 100, nullable: true })
@@ -184,7 +184,7 @@ export class AuditFindings {
   @Column({ default: false })
   requiresNCR: boolean;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   ncrId: string;
 
   @Column({ length: 100, nullable: true })

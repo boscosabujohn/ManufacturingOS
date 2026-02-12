@@ -61,7 +61,7 @@ export class BOMItem {
   @Column({ type: 'int', default: 0 })
   sequenceNumber: number;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   parentItemId: string;
 
   @Column({ type: 'int', default: 0 })
@@ -97,7 +97,7 @@ export class BOMItem {
   @Column({ default: false })
   backflush: boolean; // Auto-consume when operation completes
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   operationId: string; // Operation at which this item is consumed
 
   @Column({ length: 100, nullable: true })
@@ -117,7 +117,7 @@ export class BOMItem {
   }[];
 
   // Sourcing
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   preferredVendorId: string;
 
   @Column({ length: 255, nullable: true })
@@ -130,7 +130,7 @@ export class BOMItem {
   @Column({ default: false })
   requiresInspection: boolean;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   qcTemplateId: string;
 
   // Reference

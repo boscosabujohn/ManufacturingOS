@@ -63,7 +63,7 @@ export class StockAdjustment {
   @Column({ length: 255 })
   warehouseName: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   locationId: string;
 
   @Column({ length: 255, nullable: true })
@@ -73,7 +73,7 @@ export class StockAdjustment {
   @Column({ nullable: true, length: 100 })
   referenceType: string; // Cycle Count Plan, Physical Inventory, etc.
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   referenceId: string;
 
   @Column({ nullable: true, length: 100 })
@@ -89,7 +89,7 @@ export class StockAdjustment {
   @Column({ type: 'date', nullable: true })
   countDate: Date;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   counterId: string;
 
   @Column({ length: 100, nullable: true })
@@ -99,7 +99,7 @@ export class StockAdjustment {
   @Column({ default: true })
   requiresApproval: boolean;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   approvedBy: string;
 
   @Column({ length: 100, nullable: true })
@@ -112,7 +112,7 @@ export class StockAdjustment {
   approvalRemarks: string;
 
   // Rejection
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   rejectedBy: string;
 
   @Column({ type: 'timestamp', nullable: true })
@@ -128,17 +128,17 @@ export class StockAdjustment {
   @Column({ type: 'timestamp', nullable: true })
   postedAt: Date;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   postedBy: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   stockEntryId: string; // Generated stock entry
 
   // Financial posting
   @Column({ default: false })
   isFinanciallyPosted: boolean;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   journalEntryId: string;
 
   // Valuation impact
@@ -168,20 +168,20 @@ export class StockAdjustment {
   correctiveAction: string;
 
   // Project/Cost Center
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   projectId: string;
 
   @Column({ length: 255, nullable: true })
   projectName: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   costCenterId: string;
 
   @Column({ length: 255, nullable: true })
   costCenterName: string;
 
   // GL Account for expense/income
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   expenseAccountId: string;
 
   @Column({ length: 255, nullable: true })
@@ -248,20 +248,20 @@ export class StockAdjustmentLine {
   description: string;
 
   // Location
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   locationId: string;
 
   @Column({ length: 255, nullable: true })
   locationName: string;
 
   // Batch and Serial
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   batchId: string;
 
   @Column({ length: 100, nullable: true })
   batchNumber: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   serialNumberId: string;
 
   @Column({ length: 100, nullable: true })
@@ -297,7 +297,7 @@ export class StockAdjustmentLine {
   @Column({ type: 'timestamp', nullable: true })
   countedAt: Date;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   countedBy: string;
 
   @Column({ length: 100, nullable: true })
@@ -321,7 +321,7 @@ export class StockAdjustmentLine {
   remarks: string;
 
   // GL Account
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   glAccountId: string;
 
   @Column({ length: 255, nullable: true })

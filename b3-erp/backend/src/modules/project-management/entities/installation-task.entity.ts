@@ -20,7 +20,7 @@ export class InstallationTask {
     @JoinColumn({ name: 'project_id' })
     project: Project;
 
-    @Column({ name: 'installer_id', nullable: true })
+    @Column({ name: 'installer_id', type: 'varchar', nullable: true })
     installerId: string;
 
     @Column({ name: 'task_name' })

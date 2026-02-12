@@ -140,13 +140,19 @@ export interface WarehouseFilters {
 
 const USE_MOCK_DATA = false;
 
-// ... (skipping mock data)
+const MOCK_WAREHOUSES: Warehouse[] = [];
+const MOCK_WAREHOUSE_LOCATIONS: WarehouseLocation[] = [];
+
+class WarehouseService {
+  private async simulateDelay(ms: number = 300): Promise<void> {
+    await new Promise((resolve) => setTimeout(resolve, ms));
+  }
 
   /**
    * Get all warehouses with optional filters
    */
-  async getAllWarehouses(filters ?: WarehouseFilters \u0026 { companyId?: string }): Promise < Warehouse[] > {
-  if(USE_MOCK_DATA) {
+  async getAllWarehouses(filters?: WarehouseFilters & { companyId?: string }): Promise<Warehouse[]> {
+    if (USE_MOCK_DATA) {
     await this.simulateDelay();
     let result = [...MOCK_WAREHOUSES];
 
@@ -168,7 +174,7 @@ const USE_MOCK_DATA = false;
         (w) =>
           w.name.toLowerCase().includes(searchLower) ||
           w.code.toLowerCase().includes(searchLower) ||
-          (w.description \u0026\u0026 w.description.toLowerCase().includes(searchLower))
+          (w.description && w.description.toLowerCase().includes(searchLower))
         );
     }
 
@@ -190,7 +196,7 @@ const USE_MOCK_DATA = false;
   /**
    * Get warehouse by ID
    */
-  async getWarehouseById(id: string): Promise < Warehouse > {
+  async getWarehouseById(id: string): Promise<Warehouse>  {
   if(USE_MOCK_DATA) {
     await this.simulateDelay(200);
     const warehouse = MOCK_WAREHOUSES.find((w) => w.id === id);
@@ -207,7 +213,7 @@ const USE_MOCK_DATA = false;
   /**
    * Get all active warehouses
    */
-  async getActiveWarehouses(): Promise < Warehouse[] > {
+  async getActiveWarehouses(): Promise<Warehouse[]>  {
   if(USE_MOCK_DATA) {
     await this.simulateDelay();
     return MOCK_WAREHOUSES.filter((w) => w.status === WarehouseStatus.ACTIVE);
@@ -220,7 +226,7 @@ const USE_MOCK_DATA = false;
   /**
    * Get capacity utilization for all warehouses
    */
-  async getCapacityUtilization(): Promise < CapacityUtilization[] > {
+  async getCapacityUtilization(): Promise<CapacityUtilization[]>  {
   if(USE_MOCK_DATA) {
     await this.simulateDelay();
     return MOCK_WAREHOUSES.map((w) => {
@@ -248,7 +254,7 @@ const USE_MOCK_DATA = false;
   /**
    * Get locations for a specific warehouse
    */
-  async getWarehouseLocations(warehouseId: string): Promise < WarehouseLocation[] > {
+  async getWarehouseLocations(warehouseId: string): Promise<WarehouseLocation[]>  {
   if(USE_MOCK_DATA) {
     await this.simulateDelay();
     return MOCK_WAREHOUSE_LOCATIONS.filter((loc) => loc.warehouseId === warehouseId);
@@ -261,7 +267,7 @@ const USE_MOCK_DATA = false;
   /**
    * Get stock summary for a specific warehouse
    */
-  async getWarehouseStockSummary(warehouseId: string): Promise < WarehouseStockSummary > {
+  async getWarehouseStockSummary(warehouseId: string): Promise<WarehouseStockSummary>  {
   if(USE_MOCK_DATA) {
     await this.simulateDelay();
     const warehouse = MOCK_WAREHOUSES.find((w) => w.id === warehouseId);
@@ -296,7 +302,7 @@ const USE_MOCK_DATA = false;
   /**
    * Create a new warehouse
    */
-  async createWarehouse(data: CreateWarehouseDto): Promise < Warehouse > {
+  async createWarehouse(data: CreateWarehouseDto): Promise<Warehouse>  {
   if(USE_MOCK_DATA) {
     await this.simulateDelay(500);
     const newWarehouse = {
@@ -318,7 +324,7 @@ const USE_MOCK_DATA = false;
   /**
    * Update an existing warehouse
    */
-  async updateWarehouse(id: string, data: UpdateWarehouseDto): Promise < Warehouse > {
+  async updateWarehouse(id: string, data: UpdateWarehouseDto): Promise<Warehouse>  {
   if(USE_MOCK_DATA) {
     await this.simulateDelay(500);
     const index = MOCK_WAREHOUSES.findIndex((w) => w.id === id);
@@ -342,7 +348,7 @@ const USE_MOCK_DATA = false;
   /**
    * Activate a warehouse
    */
-  async activateWarehouse(id: string): Promise < Warehouse > {
+  async activateWarehouse(id: string): Promise<Warehouse>  {
   if(USE_MOCK_DATA) {
     await this.simulateDelay(300);
     const index = MOCK_WAREHOUSES.findIndex((w) => w.id === id);
@@ -365,7 +371,7 @@ const USE_MOCK_DATA = false;
   /**
    * Deactivate a warehouse
    */
-  async deactivateWarehouse(id: string): Promise < Warehouse > {
+  async deactivateWarehouse(id: string): Promise<Warehouse>  {
   if(USE_MOCK_DATA) {
     await this.simulateDelay(300);
     const index = MOCK_WAREHOUSES.findIndex((w) => w.id === id);

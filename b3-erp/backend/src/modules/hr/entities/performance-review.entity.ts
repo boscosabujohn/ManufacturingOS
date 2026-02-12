@@ -57,7 +57,7 @@ export class PerformanceReview {
   @JoinColumn({ name: 'employeeId' })
   employee: Employee;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   reviewerId: string;
 
   @Column({ nullable: true, length: 100 })

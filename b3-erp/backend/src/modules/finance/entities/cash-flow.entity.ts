@@ -76,11 +76,11 @@ export class CashFlowTransaction {
   @Column({ nullable: true, length: 50 })
   referenceType: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   referenceId: string;
 
   // Party
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   partyId: string;
 
   @Column({ nullable: true, length: 255 })
@@ -90,11 +90,11 @@ export class CashFlowTransaction {
   partyType: string;
 
   // Bank account
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   bankAccountId: string;
 
   // GL Account
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   glAccountId: string;
 
   // Classification
@@ -147,7 +147,7 @@ export class AnticipatedReceipt {
   description: string;
 
   // Customer/Party
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   customerId: string;
 
   @Column({ length: 255 })
@@ -160,7 +160,7 @@ export class AnticipatedReceipt {
   @Column({ nullable: true, length: 50 })
   referenceType: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   referenceId: string;
 
   // Status
@@ -177,7 +177,7 @@ export class AnticipatedReceipt {
   @Column({ nullable: true, length: 100 })
   expectedPaymentMethod: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   bankAccountId: string;
 
   // Probability and confidence
@@ -228,7 +228,7 @@ export class AnticipatedPayment {
   description: string;
 
   // Vendor/Party
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   vendorId: string;
 
   @Column({ length: 255 })
@@ -241,7 +241,7 @@ export class AnticipatedPayment {
   @Column({ nullable: true, length: 50 })
   referenceType: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   referenceId: string;
 
   // Priority
@@ -265,7 +265,7 @@ export class AnticipatedPayment {
   @Column({ nullable: true, length: 100 })
   plannedPaymentMethod: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   bankAccountId: string;
 
   // Approval
@@ -275,7 +275,7 @@ export class AnticipatedPayment {
   @Column({ default: false })
   isApproved: boolean;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   approvedBy: string;
 
   @Column({ type: 'timestamp', nullable: true })

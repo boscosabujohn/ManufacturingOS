@@ -12,17 +12,17 @@ export class BOQItem {
     @JoinColumn({ name: 'boqId' })
     boq: BOQ;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     itemId: string;
 
     @ManyToOne(() => Item, { nullable: true })
     @JoinColumn({ name: 'itemId' })
     item: Item;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     itemCode: string;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     itemName: string;
 
     @Column()
@@ -40,9 +40,9 @@ export class BOQItem {
     @Column('decimal', { precision: 10, scale: 2 })
     amount: number;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     category: string; // e.g., 'material', 'labor', 'overhead'
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     specifications: string;
 }

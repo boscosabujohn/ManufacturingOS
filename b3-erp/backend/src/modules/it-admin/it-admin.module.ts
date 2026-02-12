@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { PrismaModule } from '../prisma/prisma.module';
 
 // Entities
 import { User } from './entities/user.entity';
@@ -27,6 +28,7 @@ import { PasswordHistoryService } from './services/password-history.service';
 import { SystemConfigService } from './services/system-config.service';
 import { NotificationService } from './services/notification.service';
 import { NotificationPreferenceService } from './services/notification-preference.service';
+import { AdminManagementService } from './services/admin-management.service';
 
 // Seeders
 import { RoleSeederService } from './services/role-seeder.service';
@@ -50,6 +52,7 @@ import { UserPreferenceService } from './services/user-preference.service';
 
 @Module({
   imports: [
+    PrismaModule,
     TypeOrmModule.forFeature([
       User,
       Role,
@@ -89,6 +92,7 @@ import { UserPreferenceService } from './services/user-preference.service';
     NotificationService,
     NotificationPreferenceService,
     UserPreferenceService,
+    AdminManagementService,
     // Seeders
     RoleSeederService,
     PermissionSeederService,
@@ -109,6 +113,7 @@ import { UserPreferenceService } from './services/user-preference.service';
     NotificationService,
     NotificationPreferenceService,
     UserPreferenceService,
+    AdminManagementService,
   ],
 })
 export class ItAdminModule { }

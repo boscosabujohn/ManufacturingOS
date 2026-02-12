@@ -35,7 +35,7 @@ export class ExternalApproval {
     })
     status: ApprovalStatus;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     signatureUrl?: string;
 
     @Column('text', { nullable: true })

@@ -15,7 +15,7 @@ export class BOQ {
     @JoinColumn({ name: 'projectId' })
     project: Project;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     name: string;
 
     @Column({ default: 'draft' })
@@ -27,7 +27,7 @@ export class BOQ {
     @OneToMany(() => BOQItem, item => item.boq, { cascade: true })
     items: BOQItem[];
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     createdBy: string;
 
     @CreateDateColumn()

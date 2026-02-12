@@ -21,7 +21,7 @@ export class InventoryReservation {
     @JoinColumn({ name: 'project_id' })
     project: Project;
 
-    @Column({ name: 'bom_detail_id', nullable: true })
+    @Column({ name: 'bom_detail_id', type: 'varchar', nullable: true })
     bomDetailId: string;
 
     @ManyToOne(() => BOMDetail)

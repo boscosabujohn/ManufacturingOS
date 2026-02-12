@@ -333,7 +333,7 @@ export class VendorEvaluation {
   approvalNotes: string;
 
   // Historical Comparison
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   previousEvaluationId: string;
 
   @Column({ type: 'decimal', precision: 5, scale: 2, nullable: true })

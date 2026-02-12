@@ -28,7 +28,7 @@ export class ServiceType {
   @Column({ type: 'decimal', precision: 5, scale: 2, default: 0 })
   defaultDurationHours: number;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   icon: string;
 
   @Column({ length: 20, nullable: true })

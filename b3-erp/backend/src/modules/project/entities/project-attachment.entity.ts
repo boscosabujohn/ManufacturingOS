@@ -32,7 +32,7 @@ export class ProjectAttachment {
     })
     category: AttachmentCategory;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     mimeType: string;
 
     @Column({ type: 'int', nullable: true })

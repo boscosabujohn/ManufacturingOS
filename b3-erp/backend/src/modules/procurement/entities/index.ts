@@ -9,3 +9,6 @@ export * from './purchase-return.entity';
 export * from './purchase-invoice.entity';
 export * from './vendor-evaluation.entity';
 export * from './vendor-contract.entity';
+export * from './audit-trail.entity';
+export * from './vendor-message.entity';
+export * from './sourcing-rule.entity';

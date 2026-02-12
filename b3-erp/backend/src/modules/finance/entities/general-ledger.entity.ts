@@ -101,7 +101,7 @@ export class GeneralLedger {
   @Column({ nullable: true, length: 50 })
   referenceType: string; // Invoice, Payment, PO, etc.
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   referenceId: string; // UUID of the source document
 
   // Multi-dimensional accounting
@@ -118,7 +118,7 @@ export class GeneralLedger {
   location: string;
 
   // Party information (Customer/Vendor)
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   partyId: string;
 
   @Column({ nullable: true, length: 255 })
@@ -145,7 +145,7 @@ export class GeneralLedger {
   })
   status: EntryStatus;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   postedBy: string;
 
   @Column({ type: 'timestamp', nullable: true })
@@ -155,17 +155,17 @@ export class GeneralLedger {
   @Column({ default: false })
   isReversed: boolean;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   reversedBy: string;
 
   @Column({ type: 'timestamp', nullable: true })
   reversedAt: Date;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   reversalEntryId: string; // Link to the reversing entry
 
   // Journal Entry pairing (for double-entry validation)
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   journalEntryId: string; // Groups debit and credit entries together
 
   @Column({ type: 'int', nullable: true })
@@ -178,7 +178,7 @@ export class GeneralLedger {
   @Column({ type: 'timestamp', nullable: true })
   reconciledDate: Date;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   reconciledBy: string;
 
   // Audit fields

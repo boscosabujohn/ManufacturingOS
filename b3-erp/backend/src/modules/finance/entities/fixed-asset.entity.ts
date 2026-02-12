@@ -47,7 +47,7 @@ export class FixedAsset {
   @Column({ length: 100, nullable: true })
   assetSubCategory: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   glAccountId: string; // Link to Chart of Accounts
 
   // Acquisition details
@@ -112,7 +112,7 @@ export class FixedAsset {
   @Column({ nullable: true, length: 100 })
   costCenter: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   assignedToEmployeeId: string;
 
   @Column({ nullable: true, length: 255 })
@@ -246,13 +246,13 @@ export class AssetDepreciation {
   @Column({ type: 'decimal', precision: 15, scale: 2 })
   accumulatedDepreciation: number;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   journalEntryId: string;
 
   @Column({ default: false })
   isPosted: boolean;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   postedBy: string;
 
   @Column({ type: 'timestamp', nullable: true })

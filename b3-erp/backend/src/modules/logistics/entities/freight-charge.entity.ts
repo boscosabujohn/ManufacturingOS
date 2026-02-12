@@ -59,7 +59,7 @@ export class FreightCharge {
   id: string;
 
   // Charge Identification
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   shipmentId: string;
 
   @ManyToOne(() => Shipment, (shipment) => shipment.freightChargeDetails, {
@@ -68,7 +68,7 @@ export class FreightCharge {
   @JoinColumn({ name: 'shipmentId' })
   shipment: Shipment;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   tripId: string;
 
   @Column({ nullable: true, length: 100 })
@@ -175,7 +175,7 @@ export class FreightCharge {
   @Column({ nullable: true, length: 100 })
   payableBy: string; // Shipper, Consignee, Third Party
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   payerId: string;
 
   @Column({ nullable: true, length: 200 })
@@ -194,20 +194,20 @@ export class FreightCharge {
   paymentReferenceNumber: string;
 
   // Service Provider
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   serviceProviderId: string;
 
   @Column({ nullable: true, length: 200 })
   serviceProviderName: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   transportCompanyId: string;
 
   @Column({ nullable: true, length: 200 })
   transportCompanyName: string;
 
   // Billing Information
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   invoiceId: string;
 
   @Column({ nullable: true, length: 100 })

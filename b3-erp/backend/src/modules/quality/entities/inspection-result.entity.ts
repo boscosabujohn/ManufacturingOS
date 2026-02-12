@@ -25,7 +25,7 @@ export class InspectionResult {
   @Column()
   inspectionId: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   qcParameterId: string;
 
   @Column({ length: 100, nullable: true })

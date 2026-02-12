@@ -224,19 +224,19 @@ export class Vehicle {
   }>;
 
   // Ownership and Assignment
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   transportCompanyId: string;
 
   @Column({ nullable: true, length: 200 })
   transportCompanyName: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   currentDriverId: string;
 
   @Column({ nullable: true, length: 100 })
   currentDriverName: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   assignedToWarehouseId: string;
 
   @Column({ nullable: true, length: 200 })

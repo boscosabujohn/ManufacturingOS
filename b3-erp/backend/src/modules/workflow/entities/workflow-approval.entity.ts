@@ -22,7 +22,7 @@ export class WorkflowApproval {
     @Column()
     approvalType: string; // 'document', 'boq', 'qc', 'payment', 'design', 'client_drawing', etc.
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     referenceId: string; // ID of document/qc report/etc.
 
     @Column({ default: 'sequential' })
@@ -35,7 +35,7 @@ export class WorkflowApproval {
     @Index()
     status: 'pending' | 'in_review' | 'approved' | 'rejected' | 'cancelled';
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     createdBy: string;
 
     @Column({ type: 'timestamp', nullable: true })
