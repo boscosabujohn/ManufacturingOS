@@ -87,14 +87,15 @@ export class Employee {
   @Column({ type: 'varchar', length: 150, nullable: true })
   fullName: string | null;
 
-  @Column({ type: 'date' })
-  dateOfBirth: Date;
+  @Column({ type: 'date', nullable: true })
+  dateOfBirth: Date | null;
 
   @Column({
     type: 'enum',
     enum: Gender,
+    nullable: true,
   })
-  gender: Gender;
+  gender: Gender | null;
 
   @Column({
     type: 'enum',
@@ -117,20 +118,20 @@ export class Employee {
   religion: string;
 
   // Contact Information
-  @Column({ unique: true, length: 100 })
-  personalEmail: string;
+  @Column({ type: 'varchar', length: 100, nullable: true })
+  personalEmail: string | null;
 
   @Column({ unique: true, length: 100, nullable: true })
   companyEmail: string;
 
-  @Column({ length: 20 })
-  mobileNumber: string;
+  @Column({ type: 'varchar', length: 20, nullable: true })
+  mobileNumber: string | null;
 
   @Column({ length: 20, nullable: true })
   alternateNumber: string;
 
-  @Column({ type: 'text' })
-  currentAddress: string;
+  @Column({ type: 'text', nullable: true })
+  currentAddress: string | null;
 
   @Column({ type: 'text', nullable: true })
   permanentAddress: string;
@@ -148,15 +149,15 @@ export class Employee {
   country: string;
 
   // Employment Details
-  @Column()
-  departmentId: string;
+  @Column({ nullable: true })
+  departmentId: string | null;
 
   @ManyToOne(() => Department, (department) => department.employees)
   @JoinColumn({ name: 'departmentId' })
   department: Department;
 
-  @Column()
-  designationId: string;
+  @Column({ nullable: true })
+  designationId: string | null;
 
   @ManyToOne(() => Designation, (designation) => designation.employees)
   @JoinColumn({ name: 'designationId' })
@@ -169,8 +170,8 @@ export class Employee {
   })
   employmentType: EmploymentType;
 
-  @Column({ type: 'date' })
-  joiningDate: Date;
+  @Column({ type: 'date', nullable: true })
+  joiningDate: Date | null;
 
   @Column({ type: 'date', nullable: true })
   confirmationDate: Date;
@@ -204,11 +205,11 @@ export class Employee {
   status: EmployeeStatus;
 
   // Salary Information
-  @Column({ type: 'decimal', precision: 15, scale: 2 })
-  basicSalary: number;
+  @Column({ type: 'decimal', precision: 15, scale: 2, nullable: true })
+  basicSalary: number | null;
 
-  @Column({ type: 'decimal', precision: 15, scale: 2 })
-  grossSalary: number;
+  @Column({ type: 'decimal', precision: 15, scale: 2, nullable: true })
+  grossSalary: number | null;
 
   @Column({ type: 'decimal', precision: 15, scale: 2, nullable: true })
   ctc: number;

@@ -39,14 +39,14 @@ export class Shift {
   })
   type: ShiftType;
 
-  @Column({ type: 'time' })
-  startTime: string;
+  @Column({ type: 'time', nullable: true })
+  startTime: string | null;
 
-  @Column({ type: 'time' })
-  endTime: string;
+  @Column({ type: 'time', nullable: true })
+  endTime: string | null;
 
-  @Column({ type: 'decimal', precision: 5, scale: 2 })
-  workingHours: number;
+  @Column({ type: 'decimal', precision: 5, scale: 2, nullable: true })
+  workingHours: number | null;
 
   @Column({ type: 'time', nullable: true })
   breakStartTime: string;

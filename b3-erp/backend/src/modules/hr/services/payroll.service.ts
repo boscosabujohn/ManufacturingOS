@@ -95,46 +95,47 @@ export class PayrollService {
       // Generate salary slips for each employee
       for (const employee of employees) {
         const slipNumber = await this.generateSlipNumber(payroll.id);
+        const grossSalary = employee.grossSalary ?? 0;
+        const basicSalary = employee.basicSalary ?? 0;
 
         // Calculate Statutory Deductions
-        const deductions = this.calculateStatutoryDeductions(employee.grossSalary);
+        const deductions = this.calculateStatutoryDeductions(grossSalary);
 
-        const salarySlip = manager.create(SalarySlip, {
-          slipNumber,
-          payrollId: payroll.id,
-          employeeId: employee.id,
-          employeeCode: employee.employeeCode,
-          employeeName: employee.fullName || `${employee.firstName} ${employee.lastName}`,
-          designation: employee.designationId,
-          department: employee.departmentId,
-          month: payroll.month,
-          year: payroll.year,
-          paymentDate: payroll.paymentDate,
-          workingDays: 26,
-          presentDays: 26,
-          paidDays: 26,
-          earnings: [
-            { component: 'Basic Salary', amount: employee.basicSalary, isTaxable: true },
-          ],
-          grossSalary: employee.grossSalary,
-          deductions: [
-            { component: 'PF', amount: deductions.pf },
-            { component: 'ESI', amount: deductions.esi },
-            { component: 'TDS', amount: deductions.tds },
-          ],
-          totalDeductions: deductions.total,
-          netSalary: employee.grossSalary - deductions.total,
-          pfEmployeeContribution: deductions.pf,
-          esiEmployeeContribution: deductions.esi,
-          tds: deductions.tds,
-          status: SalarySlipStatus.GENERATED,
-        });
+        const salarySlip = new SalarySlip();
+        salarySlip.slipNumber = slipNumber;
+        salarySlip.payrollId = payroll.id;
+        salarySlip.employeeId = employee.id;
+        salarySlip.employeeCode = employee.employeeCode;
+        salarySlip.employeeName = employee.fullName || `${employee.firstName} ${employee.lastName}`;
+        salarySlip.designation = employee.designationId || '';
+        salarySlip.department = employee.departmentId || '';
+        salarySlip.month = payroll.month;
+        salarySlip.year = payroll.year;
+        salarySlip.paymentDate = payroll.paymentDate;
+        salarySlip.workingDays = 26;
+        salarySlip.presentDays = 26;
+        salarySlip.paidDays = 26;
+        salarySlip.earnings = [
+          { component: 'Basic Salary', amount: basicSalary, isTaxable: true },
+        ];
+        salarySlip.grossSalary = grossSalary;
+        salarySlip.deductions = [
+          { component: 'PF', amount: deductions.pf },
+          { component: 'ESI', amount: deductions.esi },
+          { component: 'TDS', amount: deductions.tds },
+        ];
+        salarySlip.totalDeductions = deductions.total;
+        salarySlip.netSalary = grossSalary - deductions.total;
+        salarySlip.pfEmployeeContribution = deductions.pf;
+        salarySlip.esiEmployeeContribution = deductions.esi;
+        salarySlip.tds = deductions.tds;
+        salarySlip.status = SalarySlipStatus.GENERATED;
 
         await manager.save(SalarySlip, salarySlip);
 
-        totalGross += employee.grossSalary;
+        totalGross += grossSalary;
         totalDeductions += deductions.total;
-        totalNet += (employee.grossSalary - deductions.total);
+        totalNet += (grossSalary - deductions.total);
       }
 
       payroll.totalEmployees = employees.length;

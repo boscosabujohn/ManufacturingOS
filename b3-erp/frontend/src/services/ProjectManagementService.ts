@@ -384,10 +384,24 @@ class ProjectManagementService {
     ];
 
     private drawings: Drawing[] = [
-        { id: 'DRW-001', name: 'Ground Floor Layout', type: 'Layout', version: 'v1.0', status: 'Pending', uploadDate: '2023-10-20', url: '#' },
-        { id: 'DRW-002', name: 'Structural Columns', type: 'Structural', version: 'v1.2', status: 'Verified', uploadDate: '2023-10-22', url: '#' },
-        { id: 'DRW-003', name: 'HVAC Plan', type: 'MEP', version: 'v0.5', status: 'Rejected', uploadDate: '2023-10-25', url: '#', notes: 'Clash with beams' },
-        { id: 'DRW-004', name: 'Electrical Layout', type: 'MEP', version: 'v1.0', status: 'Pending', uploadDate: '2023-10-26', url: '#' },
+        // Project 1: Taj Hotel Commercial Kitchen
+        { id: 'DRW-001', projectId: 'proj-001', name: 'Kitchen Equipment Layout Plan - Ground Floor', type: 'Layout', version: 'v2.1', status: 'Pending', uploadDate: '2026-02-10', url: '/drawings/taj-kitchen-layout-gf.pdf' },
+        { id: 'DRW-002', projectId: 'proj-001', name: 'Kitchen Equipment Layout Plan - First Floor', type: 'Layout', version: 'v1.5', status: 'Pending', uploadDate: '2026-02-09', url: '/drawings/taj-kitchen-layout-ff.pdf' },
+        { id: 'DRW-003', projectId: 'proj-001', name: 'Cold Room & Walk-in Freezer Layout', type: 'Layout', version: 'v1.2', status: 'Pending', uploadDate: '2026-02-08', url: '/drawings/taj-cold-room-layout.pdf' },
+        { id: 'DRW-004', projectId: 'proj-001', name: 'Electrical Distribution - Main Panel SLD', type: 'MEP', version: 'v2.0', status: 'Verified', uploadDate: '2026-02-05', url: '/drawings/taj-electrical-sld.pdf' },
+        { id: 'DRW-005', projectId: 'proj-001', name: 'Plumbing & Drainage Layout', type: 'MEP', version: 'v1.8', status: 'Pending', uploadDate: '2026-02-07', url: '/drawings/taj-plumbing-drainage.pdf' },
+        { id: 'DRW-006', projectId: 'proj-001', name: 'HVAC & Kitchen Exhaust System', type: 'MEP', version: 'v1.4', status: 'Rejected', uploadDate: '2026-02-04', url: '/drawings/taj-hvac-exhaust.pdf', notes: 'CFM calculations need revision - exhaust capacity insufficient for cooking stations' },
+        { id: 'DRW-007', projectId: 'proj-001', name: 'Fire Suppression System Layout', type: 'MEP', version: 'v1.0', status: 'Verified', uploadDate: '2026-02-03', url: '/drawings/taj-fire-suppression.pdf' },
+        { id: 'DRW-008', projectId: 'proj-001', name: 'Structural Foundation Details', type: 'Structural', version: 'v1.2', status: 'Verified', uploadDate: '2026-01-28', url: '/drawings/taj-structural-foundation.pdf' },
+        { id: 'DRW-009', projectId: 'proj-001', name: 'Equipment Load Bearing Structure', type: 'Structural', version: 'v1.0', status: 'Pending', uploadDate: '2026-02-06', url: '/drawings/taj-load-bearing.pdf' },
+        { id: 'DRW-010', projectId: 'proj-001', name: 'Gas Pipeline & Safety System', type: 'MEP', version: 'v1.3', status: 'Pending', uploadDate: '2026-02-08', url: '/drawings/taj-gas-pipeline.pdf' },
+
+        // Project 2: BigBasket Cold Storage
+        { id: 'DRW-011', projectId: 'proj-002', name: 'Cold Room Layout - Zone A (-18°C)', type: 'Layout', version: 'v1.5', status: 'Pending', uploadDate: '2026-02-08', url: '/drawings/bb-cold-zone-a.pdf' },
+        { id: 'DRW-012', projectId: 'proj-002', name: 'Cold Room Layout - Zone B (+4°C)', type: 'Layout', version: 'v1.3', status: 'Pending', uploadDate: '2026-02-07', url: '/drawings/bb-cold-zone-b.pdf' },
+        { id: 'DRW-013', projectId: 'proj-002', name: 'Refrigeration P&ID', type: 'MEP', version: 'v2.0', status: 'Verified', uploadDate: '2026-02-05', url: '/drawings/bb-refrigeration-pid.pdf' },
+        { id: 'DRW-014', projectId: 'proj-002', name: 'Compressor Room Layout', type: 'Layout', version: 'v1.1', status: 'Pending', uploadDate: '2026-02-06', url: '/drawings/bb-compressor-room.pdf' },
+        { id: 'DRW-015', projectId: 'proj-002', name: 'PUF Panel Installation Details', type: 'Structural', version: 'v1.0', status: 'Pending', uploadDate: '2026-02-04', url: '/drawings/bb-puf-panel.pdf' },
     ];
 
     private boqItems: BOQItem[] = [
@@ -1153,10 +1167,12 @@ class ProjectManagementService {
         try {
             const response = await apiClient.get<Drawing[]>(`/drawings?projectId=${projectId}`);
             if (response.data?.length > 0) return response.data;
-            return [...this.drawings];
+            // Filter mock drawings by projectId
+            return this.drawings.filter(d => d.projectId === projectId);
         } catch (error) {
             console.warn('API error fetching drawings, using mock data:', error);
-            return [...this.drawings];
+            // Filter mock drawings by projectId
+            return this.drawings.filter(d => d.projectId === projectId);
         }
     }
 

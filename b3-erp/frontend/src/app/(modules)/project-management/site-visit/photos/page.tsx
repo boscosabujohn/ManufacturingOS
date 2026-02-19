@@ -19,7 +19,8 @@ import {
   Camera,
   FileImage,
   CheckCircle,
-  Calendar
+  Calendar,
+  Image as ImageIcon
 } from 'lucide-react';
 
 interface SitePhoto {

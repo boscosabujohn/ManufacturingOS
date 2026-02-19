@@ -30,7 +30,7 @@ export function ScheduleSurveyModal({ isOpen, onClose, onSchedule }: ScheduleSur
   const isValid = formData.projectId && formData.surveyDate && formData.siteName && formData.siteAddress && formData.surveyorName;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[9999] p-3">
       <div className="bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-hidden flex flex-col">
         <div className="bg-gradient-to-r from-blue-500 to-blue-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -223,7 +223,7 @@ export function EditSurveyModal({ isOpen, onClose, onEdit, survey }: EditSurveyM
   if (!isOpen || !survey) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[9999] p-3">
       <div className="bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-hidden flex flex-col">
         <div className="bg-gradient-to-r from-green-500 to-green-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -386,7 +386,7 @@ export function UpdateMeasurementsModal({ isOpen, onClose, onUpdate, survey }: U
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[9999] p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-hidden flex flex-col">
         <div className="bg-gradient-to-r from-purple-500 to-purple-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -526,7 +526,7 @@ export function UploadPhotosModal({ isOpen, onClose, onUpload, survey }: UploadP
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[9999] p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full">
         <div className="bg-gradient-to-r from-orange-500 to-orange-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -640,7 +640,7 @@ export function AddDrawingsModal({ isOpen, onClose, onAdd, survey }: AddDrawings
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[9999] p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full">
         <div className="bg-gradient-to-r from-indigo-500 to-indigo-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -766,7 +766,7 @@ export function RecordSiteConditionsModal({ isOpen, onClose, onRecord, survey }:
   if (!isOpen || !survey) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[9999] p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-hidden flex flex-col">
         <div className="bg-gradient-to-r from-teal-500 to-teal-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -893,7 +893,7 @@ export function AddIssuesModal({ isOpen, onClose, onAdd, survey }: AddIssuesModa
   if (!isOpen || !survey) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[9999] p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full">
         <div className="bg-gradient-to-r from-red-500 to-red-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -980,7 +980,7 @@ export function AddRecommendationsModal({ isOpen, onClose, onAdd, survey }: AddR
   if (!isOpen || !survey) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[9999] p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full">
         <div className="bg-gradient-to-r from-green-500 to-green-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -1083,7 +1083,7 @@ export function UpdateStatusModal({ isOpen, onClose, onUpdate, survey }: UpdateS
   if (!isOpen || !survey) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[9999] p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-xl w-full">
         <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -1185,7 +1185,7 @@ export function GenerateReportModal({ isOpen, onClose, onGenerate }: GenerateRep
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[9999] p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full">
         <div className="bg-gradient-to-r from-emerald-500 to-emerald-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -1315,7 +1315,7 @@ export function ExportDataModal({ isOpen, onClose, onExport }: ExportDataModalPr
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[9999] p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-xl w-full">
         <div className="bg-gradient-to-r from-amber-500 to-amber-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -1420,7 +1420,7 @@ export function ViewFullDetailsModal({ isOpen, onClose, survey }: ViewFullDetail
   if (!isOpen || !survey) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[9999] p-3">
       <div className="bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-hidden flex flex-col">
         <div className="bg-gradient-to-r from-slate-700 to-slate-800 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
