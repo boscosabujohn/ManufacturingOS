@@ -208,10 +208,38 @@ ManufacturingOS is an ambitious, feature-rich ERP system with **27 backend modul
 - **But:** `ThrottlerModule` is **NOT registered** in `app.module.ts` and `CustomThrottlerGuard` is **NOT applied** globally
 - **Impact:** All API endpoints are completely unprotected against brute-force and DoS attacks
 
-### 2.7 Transaction Handling (MEDIUM)
-- TypeORM modules use `QueryRunner` transactions in some services (Finance journal entries, Inventory stock)
+### 2.7 Race Conditions in Inventory Stock Management (HIGH)
+
+**File:** `b3-erp/backend/src/modules/inventory/services/stock-entry.service.ts`
+
+| Vulnerability | Lines | Details |
+|---------------|-------|---------|
+| Non-atomic balance reads | 216-217 | `StockBalance` read without `SELECT FOR UPDATE` lock; concurrent transactions can read stale balance |
+| Check-then-act pattern | 260, 277-279 | Checks `availableQuantity < quantity` then updates later; another transaction can modify between check and update |
+| No pessimistic locking | Throughout | No `FOR UPDATE` lock on any stock balance query |
+
+**Scenario:** Two concurrent stock issue operations both read available quantity as 10, both pass the availability check for quantity 8, both issue 8 units -> final balance = -6 (negative stock).
+
+**Additional Transaction Gaps:**
+- `stock-transfer.service.ts`: Dispatch and Receive operations don't use transactions
+- `stock-balance.service.ts`: `getRealTimeBalance()` sums without locking, returns stale data during concurrent updates
+- Approval workflow state transitions lack transactions (could leave approvals in inconsistent state)
+- Support ticket operations have no transaction wrapping
+- **191 transaction patterns found** across codebase, but critical paths still unprotected
+
+**Recommendation:** Add `SELECT FOR UPDATE` (pessimistic write lock) to all stock balance reads within transactions; add optimistic locking (version column) to entities with high concurrent access
+
+### 2.8 Bull Queue Job Error Handling (MEDIUM)
+- 19 background jobs across workflow and notification queues
+- **No retry strategies** configured (no `attempts`, `backoff` options)
+- **No dead letter queue** for failed jobs
+- **No job result persistence** or monitoring
+- **No rate limiting** on queue processing
+
+### 2.9 Transaction Handling Summary (MEDIUM)
+- TypeORM modules use `QueryRunner` transactions in some services (Finance journal entries, Inventory stock entry create/delete)
 - Prisma modules rely on `prisma.$transaction()` in some places
-- **Gap:** Not all multi-step operations are wrapped in transactions (e.g., some approval state transitions, some stock adjustments)
+- **Gap:** Not all multi-step operations are wrapped in transactions (see 2.7 for inventory-specific issues)
 
 ---
 
@@ -739,13 +767,15 @@ CMD ["npm", "run", "start:dev"]  # Development mode!
 | **1.1.3** Remove JWT default secret | `b3-erp/backend/src/modules/auth/auth.module.ts:18` and `auth/strategies/jwt.strategy.ts:12` - Remove `'secretKey'` fallback, throw startup error if not configured | 2h | P0 |
 | **1.1.4** Register ThrottlerModule | `b3-erp/backend/src/app.module.ts` - Import and register `ThrottlerModule.forRoot()` with config from `rate-limit.config.ts`; apply `CustomThrottlerGuard` globally in `main.ts` | 3h | P0 |
 | **1.1.5** Fix synchronize:true | `b3-erp/backend/src/app.module.ts:63` - Change `synchronize: true` to `synchronize: configService.get('DB_SYNCHRONIZE') === 'true'` | 30min | P0 |
-| **1.1.6** Add Next.js middleware | Create `b3-erp/frontend/middleware.ts` - JWT token validation, protected route patterns, public route whitelist | 4h | P0 |
+| **1.1.6** Fix inventory race conditions | `b3-erp/backend/src/modules/inventory/services/stock-entry.service.ts` - Add `SELECT FOR UPDATE` lock to stock balance reads within transactions; add version column for optimistic locking on `StockBalance` entity | 6h | P0 |
+| **1.1.7** Add Next.js middleware | Create `b3-erp/frontend/middleware.ts` - JWT token validation, protected route patterns, public route whitelist | 4h | P0 |
 
 **Acceptance Criteria:**
 - [ ] All responses include CSP, HSTS, X-Frame-Options headers
 - [ ] API returns 429 after exceeding rate limits
 - [ ] App fails to start without JWT_SECRET env var
 - [ ] Database schema never auto-syncs unless explicitly enabled
+- [ ] Concurrent stock operations cannot produce negative inventory
 - [ ] Unauthenticated users are redirected to login from protected routes
 
 #### Sprint 1.2 - XSS Prevention & CSRF (Week 2)
@@ -966,7 +996,7 @@ CMD ["npm", "run", "start:dev"]  # Development mode!
 
 | Category | Estimated Hours | Story Points (approx) |
 |----------|----------------|----------------------|
-| Security hardening | 47h | 24 |
+| Security hardening | 53h | 27 |
 | Test infrastructure | 32h | 16 |
 | Backend unit tests | 86h | 43 |
 | E2E + frontend tests | 40h | 20 |
@@ -979,7 +1009,7 @@ CMD ["npm", "run", "start:dev"]  # Development mode!
 | Docker & deployment | 21h | 11 |
 | Observability | 26h | 13 |
 | CI/CD & docs | 54h | 27 |
-| **Total** | **~592h** | **~297 SP** |
+| **Total** | **~598h** | **~300 SP** |
 
 ---
 
@@ -1020,7 +1050,7 @@ CMD ["npm", "run", "start:dev"]  # Development mode!
 | Rate Limiting Active | No |
 | Route Protection | No |
 | Production Docker Ready | No |
-| Estimated Remediation | 592 hours / 20 weeks |
+| Estimated Remediation | 598 hours / 20 weeks |
 
 ---
 
