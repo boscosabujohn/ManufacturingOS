@@ -52,7 +52,12 @@ ManufacturingOS is an ambitious, feature-rich ERP system with **27 backend modul
 - **Problem:** No custom global exception filter exists. The app relies entirely on NestJS default error responses
 - **Recommendation:** Implement a global `HttpExceptionFilter` for consistent error formatting, logging, and correlation IDs
 
-### 1.6 Missing Middleware and Interceptors (MEDIUM)
+### 1.6 Cache Configuration Present but Underutilized (LOW)
+- `b3-erp/backend/src/common/security/cache.config.ts` provides Redis (prod) / in-memory (dev) caching with TTLs (SHORT=60s, MEDIUM=5min, LONG=15min, HOUR, DAY) and predefined cache keys for users, items, customers, workflows
+- **Gap:** Cache module is not registered in `app.module.ts`; no service currently uses caching
+- **Opportunity:** Ready-to-use infrastructure for API response caching and session management
+
+### 1.7 Missing Middleware and Interceptors (MEDIUM)
 - **Problem:** No request logging interceptor, no response transformation interceptor, no correlation ID middleware
 - **Risk:** No observability into request/response lifecycle; difficult debugging in production
 - **Recommendation:** Add a `LoggingInterceptor`, `ResponseTransformInterceptor`, and `CorrelationIdMiddleware`
@@ -831,7 +836,7 @@ CMD ["npm", "run", "start:dev"]  # Development mode!
 | **3.2.1** Implement email sending | `notification.processor.ts:72` - Integrate nodemailer with SMTP config, HTML templates | 8h |
 | **3.2.2** Implement in-app notifications | `notification.processor.ts:53` - Save to DB via NotificationService, emit WebSocket event | 6h |
 | **3.2.3** Connect user email lookup | `email.service.ts:27,170` - Wire to UserService to fetch email by userId | 2h |
-| **3.2.4** Set up WebSocket gateway | Create `b3-erp/backend/src/modules/notifications/notifications.gateway.ts` - Socket.IO gateway for real-time notifications | 6h |
+| **3.2.4** Set up WebSocket gateway | Create `b3-erp/backend/src/modules/notifications/notifications.gateway.ts` - Socket.IO gateway for real-time notifications. Note: Nginx already proxies `/socket.io/` (see `docker/nginx/nginx.conf`) | 6h |
 | **3.2.5** Implement SMS sending (optional) | `notification.processor.ts:88` - Twilio integration | 4h |
 | **3.2.6** Connect approval notifications | Wire `approval-workflow.service.ts` TODOs (lines 204, 279, 299, 300, 317) to NotificationService | 6h |
 
