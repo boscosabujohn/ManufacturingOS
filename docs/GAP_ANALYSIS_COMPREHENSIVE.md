@@ -500,7 +500,42 @@ secretOrKey: configService.get<string>('JWT_SECRET', 'secretKey'),
 - Prisma uses parameterized queries by default
 - No raw SQL queries found in audited services
 
-### 5.8 CSRF Protection (MISSING)
+### 5.8 Token Storage in localStorage (HIGH)
+
+**File:** `b3-erp/frontend/src/context/AuthContext.tsx`
+```typescript
+const token = localStorage.getItem('access_token');     // Line 36
+localStorage.setItem('access_token', token);            // Line 70
+localStorage.setItem('user', JSON.stringify(userData));  // Line 71
+```
+
+**File:** `b3-erp/frontend/src/lib/api-client.ts:36-39`
+```typescript
+const refreshToken = localStorage.getItem('refresh_token');
+const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/refresh`, {
+  refresh_token: refreshToken,  // Sent in request body, not HttpOnly cookie
+});
+```
+
+**Issues:**
+- localStorage tokens are accessible to any JavaScript (including XSS-injected scripts)
+- No token rotation on use
+- Refresh token sent in request body rather than HttpOnly cookie
+- Combined with XSS vulnerabilities in Section 5.3, tokens can be exfiltrated
+
+**Recommendation:** Move tokens to HttpOnly cookies with `SameSite=Strict`; implement refresh token rotation
+
+### 5.9 Swagger Docs Publicly Exposed (MEDIUM)
+
+**File:** `b3-erp/backend/src/main.ts:49`
+```typescript
+SwaggerModule.setup('api/docs', app, document);  // No auth required
+```
+
+- All API endpoints, request/response schemas, and auth requirements are publicly visible
+- Should be disabled in production or protected with basic auth
+
+### 5.10 CSRF Protection (MISSING)
 - `X-CSRF-Token` header listed in CORS config but no middleware generates or validates CSRF tokens
 - Frontend uses Bearer tokens in Authorization header (partially mitigates CSRF for API calls)
 - **Risk:** Cookie-based session operations (if any) are vulnerable
@@ -716,11 +751,15 @@ CMD ["npm", "run", "start:dev"]  # Development mode!
 | **1.2.2** Sanitize CommentModal | `b3-erp/frontend/src/components/modals/CommentModal.tsx:244` - Wrap `renderPreview()` with `DOMPurify.sanitize()` | 1h | P0 |
 | **1.2.3** Sanitize ChatbotAssistant | `b3-erp/frontend/src/components/advanced-features/ChatbotAssistant.tsx:552` - Sanitize `message.content` before rendering | 1h | P0 |
 | **1.2.4** Sanitize print components | `PrintStylesheet.tsx`, `PrintLayouts.tsx` - Add DOMPurify | 1h | P1 |
-| **1.2.5** Add health check endpoint | Create `b3-erp/backend/src/modules/health/health.module.ts` using `@nestjs/terminus` with DB, Redis, and disk indicators | 3h | P1 |
-| **1.2.6** Add global exception filter | Create `b3-erp/backend/src/common/filters/http-exception.filter.ts` - Consistent error response format with correlation IDs | 3h | P1 |
+| **1.2.5** Migrate token storage to HttpOnly cookies | Backend: Set JWT in HttpOnly cookie on login response; Frontend: Remove localStorage token storage from `AuthContext.tsx` and `api-client.ts`; Configure `SameSite=Strict` | 6h | P0 |
+| **1.2.6** Disable Swagger in production | `b3-erp/backend/src/main.ts` - Wrap SwaggerModule.setup in `if (process.env.NODE_ENV !== 'production')` or add basic auth | 1h | P1 |
+| **1.2.7** Add health check endpoint | Create `b3-erp/backend/src/modules/health/health.module.ts` using `@nestjs/terminus` with DB, Redis, and disk indicators | 3h | P1 |
+| **1.2.8** Add global exception filter | Create `b3-erp/backend/src/common/filters/http-exception.filter.ts` - Consistent error response format with correlation IDs | 3h | P1 |
 
 **Acceptance Criteria:**
 - [ ] All `dangerouslySetInnerHTML` usages pass through DOMPurify
+- [ ] JWT tokens stored in HttpOnly cookies, not localStorage
+- [ ] Swagger docs not accessible in production environment
 - [ ] `/health` endpoint returns DB, Redis, disk status
 - [ ] All API errors return consistent JSON format with correlation IDs
 
@@ -922,7 +961,7 @@ CMD ["npm", "run", "start:dev"]  # Development mode!
 
 | Category | Estimated Hours | Story Points (approx) |
 |----------|----------------|----------------------|
-| Security hardening | 40h | 20 |
+| Security hardening | 47h | 24 |
 | Test infrastructure | 32h | 16 |
 | Backend unit tests | 86h | 43 |
 | E2E + frontend tests | 40h | 20 |
@@ -935,7 +974,7 @@ CMD ["npm", "run", "start:dev"]  # Development mode!
 | Docker & deployment | 21h | 11 |
 | Observability | 26h | 13 |
 | CI/CD & docs | 54h | 27 |
-| **Total** | **~585h** | **~293 SP** |
+| **Total** | **~592h** | **~297 SP** |
 
 ---
 
@@ -976,7 +1015,7 @@ CMD ["npm", "run", "start:dev"]  # Development mode!
 | Rate Limiting Active | No |
 | Route Protection | No |
 | Production Docker Ready | No |
-| Estimated Remediation | 585 hours / 20 weeks |
+| Estimated Remediation | 592 hours / 20 weeks |
 
 ---
 
