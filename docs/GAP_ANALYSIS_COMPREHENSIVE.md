@@ -261,7 +261,14 @@ ManufacturingOS is an ambitious, feature-rich ERP system with **27 backend modul
   7. `LocaleContext` - locale formatting
 - **Missing Contexts:** No AuthContext, no global app state, no notification context beyond toast
 
-### 3.4 Custom Hooks Gap (MEDIUM)
+### 3.4 PWA & Offline Support (STRENGTH)
+- **Service Worker** (`public/sw.js`, 320 lines): Network-first, cache-first, and stale-while-revalidate strategies; offline page fallback; background sync for queued actions; push notification handling
+- **Manifest** (`public/manifest.json`): Standalone display, shortcuts (Dashboard, Production, Shop Floor, Scan), multiple icon sizes
+- **Offline Page** (`public/offline.html`): Network status detection, retry, navigation
+- **useOfflineStorage hook**: Full IndexedDB integration with caching, expiry, pending actions, form drafts
+- **Status:** Production-ready PWA infrastructure
+
+### 3.5 Custom Hooks Gap (MEDIUM)
 **Present:**
 - `useOfflineStorage` - Full IndexedDB-based offline support with caching, pending actions, form drafts
 - `usePageVisitLogger` - Analytics/tracking
@@ -275,16 +282,32 @@ ManufacturingOS is an ambitious, feature-rich ERP system with **27 backend modul
 - `useLocalStorage` - Simple localStorage wrapper
 - `useQuery`/`useMutation` wrappers around API services
 
-### 3.5 NextAuth Installed but Unused (MEDIUM)
+### 3.6 NextAuth Installed but Unused (MEDIUM)
 - NextAuth v4.24.13 installed with env configuration but the app uses custom localStorage token management
 - **Risk:** Custom auth may miss CSRF protection, session rotation, token refresh patterns
 
-### 3.6 Build Configuration Issues (MEDIUM)
+### 3.7 Build Configuration Issues (MEDIUM)
 - `next.config.js` has `eslint.ignoreDuringBuilds: true` and `typescript.ignoreBuildErrors: true`
 - Build passes even with type errors and lint violations
 - Custom build ID generation added to work around Next.js 14.1.0 bug
 
-### 3.7 Code Organization Issues (LOW)
+### 3.8 WebSocket & Real-Time Data (MEDIUM)
+- **Socket.io client v4.8.1** installed; referenced in `components/industry4/LiveOEEDashboard.tsx` and `app/(modules)/procurement/approvals/page.tsx`
+- **Gap:** No central WebSocket service/manager, no reconnection strategy, no real-time integration in core dashboards
+- **Backend Gap:** No Socket.IO gateway exists in NestJS backend to serve these connections
+
+### 3.9 File Upload Handling (MEDIUM)
+- Basic upload via `FileUploadModal` (payroll), `document-management.service.ts`
+- **Gap:** No centralized upload service, no progress tracking, no file size/type validation, no drag-drop component
+
+### 3.10 Frontend Strengths (for reference)
+- **Error Boundary** (`app/(dashboard)/error.tsx`): Animated display, error details toggle, copy to clipboard, contact support with error ID
+- **Loading/Skeleton System** (`components/performance/Skeleton.tsx`, 600+ lines): SkeletonText, SkeletonTable, SkeletonDashboard, SkeletonPage, etc. with pulse/shimmer animations
+- **Workflow Designer** (`components/workflow-designer/WorkflowDesigner.tsx`): Drag-and-drop node creation, 7 node types (start, end, task, decision, approval, notification, delay), connection drawing, conditional branching - fully functional
+- **PWA**: See Section 3.4
+- **i18n**: 7-language translation system with RTL support
+
+### 3.11 Code Organization Issues (LOW)
 - Deprecated finance module at `src/app/_finance_deprecated/` still present
 - Duplicate shop floor directories: `src/components/shop-floor/` and `src/components/shopfloor/`
 - Two toast systems: `ToastContext` and `EnhancedToastContext`
