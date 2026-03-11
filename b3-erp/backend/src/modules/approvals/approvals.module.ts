@@ -13,6 +13,7 @@ import { ApprovalChainService } from './services/approval-chain.service';
 import { ApprovalWorkflowService } from './services/approval-workflow.service';
 import { ApprovalChainSeederService } from './services/approval-chain-seeder.service';
 import { ApprovalsController } from './approvals.controller';
+import { NotificationsModule } from '../notifications/notifications.module';
 
 @Module({
     imports: [
@@ -25,6 +26,7 @@ import { ApprovalsController } from './approvals.controller';
             ApprovalAttachment,
             UserTask,
         ]),
+        NotificationsModule, // For approval/rejection notification delivery
     ],
     controllers: [ApprovalsController],
     providers: [ApprovalChainService, ApprovalWorkflowService, ApprovalChainSeederService],

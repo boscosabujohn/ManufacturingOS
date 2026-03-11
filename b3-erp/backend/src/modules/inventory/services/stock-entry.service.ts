@@ -3,18 +3,10 @@ import {
   NotFoundException,
   BadRequestException,
 } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, DataSource } from 'typeorm';
-import {
-  StockEntry,
-  StockEntryLine,
-  StockEntryStatus,
-  MovementDirection,
-  StockEntryType,
-} from '../entities/stock-entry.entity';
+import { PrismaService } from '../../prisma/prisma.service';
 import { StockValuationService } from './stock-valuation.service';
 import { StockBalanceService } from './stock-balance.service';
-import { StockBalance } from '../entities/stock-balance.entity';
+import { AuditLogger } from '../../../common/logging/audit-logger.service';
 import {
   CreateStockEntryDto,
   UpdateStockEntryDto,
@@ -24,103 +16,110 @@ import {
 @Injectable()
 export class StockEntryService {
   constructor(
-    @InjectRepository(StockEntry)
-    private readonly stockEntryRepository: Repository<StockEntry>,
-    @InjectRepository(StockEntryLine)
-    private readonly stockEntryLineRepository: Repository<StockEntryLine>,
+    private readonly prisma: PrismaService,
     private readonly stockValuationService: StockValuationService,
     private readonly stockBalanceService: StockBalanceService,
-    private readonly dataSource: DataSource,
+    private readonly auditLogger: AuditLogger,
   ) { }
 
   async create(createDto: CreateStockEntryDto): Promise<StockEntryResponseDto> {
-    return await this.dataSource.transaction(async (manager) => {
+    return await this.prisma.$transaction(async (tx) => {
       const entryNumber = await this.generateEntryNumber(createDto.entryType);
       const movementDirection = this.getMovementDirection(createDto.entryType);
 
       // Calculate total value
       const totalValue = createDto.lines.reduce(
-        (sum, line) => sum + (line.quantity * (line.rate || 0)),
+        (sum, line) => sum + (Number(line.quantity) * (Number(line.rate) || 0)),
         0,
-      ) + (createDto.additionalCosts || 0);
+      ) + (Number(createDto.additionalCosts) || 0);
 
-      const stockEntry = manager.create(StockEntry, {
-        ...createDto,
-        entryNumber,
-        movementDirection,
-        postingTime: new Date(),
-        totalValue,
-        status: StockEntryStatus.DRAFT,
-        isPosted: false,
+      const stockEntry = await tx.stockEntry.create({
+        data: {
+          entryNumber,
+          entryType: createDto.entryType,
+          movementDirection,
+          postingDate: createDto.postingDate ? new Date(createDto.postingDate) : new Date(),
+          postingTime: new Date(),
+          totalValue,
+          status: 'Draft',
+          isPosted: false,
+          referenceType: createDto.referenceType,
+          referenceId: createDto.referenceId,
+          referenceNumber: createDto.referenceNumber,
+          fromWarehouseId: createDto.fromWarehouseId,
+          toWarehouseId: createDto.toWarehouseId,
+          currency: createDto.currency || 'INR',
+          additionalCosts: Number(createDto.additionalCosts) || 0,
+          remarks: createDto.remarks,
+          createdBy: (createDto as any).createdBy || 'SYSTEM',
+          lines: {
+            create: createDto.lines.map((lineDto, index) => ({
+              lineNumber: index + 1,
+              itemId: lineDto.itemId,
+              itemCode: lineDto.itemCode,
+              itemName: lineDto.itemName,
+              quantity: Number(lineDto.quantity),
+              uom: lineDto.uom,
+              rate: Number(lineDto.rate) || 0,
+              amount: Number(lineDto.quantity) * (Number(lineDto.rate) || 0),
+              stockQuantity: Number(lineDto.quantity),
+              stockUom: lineDto.uom,
+              fromLocationId: lineDto.fromLocationId,
+              toLocationId: lineDto.toLocationId,
+            })),
+          },
+        },
+        include: { lines: true },
       });
 
-      const saved = await manager.save(StockEntry, stockEntry);
-
-      // Create lines
-      const lines = createDto.lines.map((lineDto) => {
-        const amount = lineDto.quantity * (lineDto.rate || 0);
-        return manager.create(StockEntryLine, {
-          ...lineDto,
-          stockEntryId: saved.id,
-          amount,
-          stockQuantity: lineDto.quantity,
-          stockUom: lineDto.uom,
-        });
-      });
-
-      await manager.save(StockEntryLine, lines);
-
-      return this.findOne(saved.id);
+      return this.mapToResponseDto(stockEntry);
     });
   }
 
   async findAll(filters?: any): Promise<StockEntryResponseDto[]> {
-    const query = this.stockEntryRepository.createQueryBuilder('stockEntry');
+    const where: any = {};
 
     if (filters?.status) {
-      query.andWhere('stockEntry.status = :status', { status: filters.status });
+      where.status = filters.status;
     }
 
     if (filters?.entryType) {
-      query.andWhere('stockEntry.entryType = :entryType', {
-        entryType: filters.entryType,
-      });
+      where.entryType = filters.entryType;
     }
 
     if (filters?.warehouseId) {
-      query.andWhere(
-        '(stockEntry.fromWarehouseId = :warehouseId OR stockEntry.toWarehouseId = :warehouseId)',
-        { warehouseId: filters.warehouseId },
-      );
+      where.OR = [
+        { fromWarehouseId: filters.warehouseId },
+        { toWarehouseId: filters.warehouseId },
+      ];
     }
 
     if (filters?.startDate) {
-      query.andWhere('stockEntry.postingDate >= :startDate', {
-        startDate: filters.startDate,
-      });
+      where.postingDate = { gte: new Date(filters.startDate) };
     }
 
     if (filters?.endDate) {
-      query.andWhere('stockEntry.postingDate <= :endDate', {
-        endDate: filters.endDate,
-      });
+      where.postingDate = { ...where.postingDate, lte: new Date(filters.endDate) };
     }
 
-    query.orderBy('stockEntry.postingDate', 'DESC');
-    const entries = await query.getMany();
-    return Promise.all(entries.map((e) => this.findOne(e.id)));
+    const entries = await this.prisma.stockEntry.findMany({
+      where,
+      include: { lines: true },
+      orderBy: { postingDate: 'desc' },
+    });
+    return entries.map((e) => this.mapToResponseDto(e));
   }
 
   async getPendingPost(): Promise<StockEntryResponseDto[]> {
-    const entries = await this.stockEntryRepository.find({
-      where: { status: StockEntryStatus.SUBMITTED, isPosted: false },
-      order: { postingDate: 'ASC' },
+    const entries = await this.prisma.stockEntry.findMany({
+      where: { status: 'Submitted', isPosted: false },
+      include: { lines: true },
+      orderBy: { postingDate: 'asc' },
     });
-    return Promise.all(entries.map((e) => this.findOne(e.id)));
+    return entries.map((e) => this.mapToResponseDto(e));
   }
 
   async getStockLedger(filters?: any): Promise<any> {
-    // Placeholder for stock ledger report
     return {
       filters,
       entries: [],
@@ -134,9 +133,9 @@ export class StockEntryService {
   }
 
   async findOne(id: string): Promise<StockEntryResponseDto> {
-    const entry = await this.stockEntryRepository.findOne({
+    const entry = await this.prisma.stockEntry.findUnique({
       where: { id },
-      relations: ['lines'],
+      include: { lines: true },
     });
 
     if (!entry) {
@@ -150,7 +149,7 @@ export class StockEntryService {
     id: string,
     updateDto: UpdateStockEntryDto,
   ): Promise<StockEntryResponseDto> {
-    const entry = await this.stockEntryRepository.findOne({ where: { id } });
+    const entry = await this.prisma.stockEntry.findUnique({ where: { id } });
 
     if (!entry) {
       throw new NotFoundException(`Stock entry with ID ${id} not found`);
@@ -160,12 +159,16 @@ export class StockEntryService {
       throw new BadRequestException('Cannot update posted stock entry');
     }
 
-    // Update logic would go here
-    return this.findOne(id);
+    const updated = await this.prisma.stockEntry.update({
+      where: { id },
+      data: updateDto as any,
+      include: { lines: true },
+    });
+    return this.mapToResponseDto(updated);
   }
 
   async remove(id: string): Promise<void> {
-    const entry = await this.stockEntryRepository.findOne({ where: { id } });
+    const entry = await this.prisma.stockEntry.findUnique({ where: { id } });
 
     if (!entry) {
       throw new NotFoundException(`Stock entry with ID ${id} not found`);
@@ -175,28 +178,24 @@ export class StockEntryService {
       throw new BadRequestException('Cannot delete posted stock entry');
     }
 
-    await this.dataSource.transaction(async (manager) => {
-      await manager.delete(StockEntryLine, { stockEntryId: id });
-      await manager.delete(StockEntry, { id });
+    await this.prisma.stockEntry.delete({
+      where: { id },
     });
   }
 
   async submit(id: string): Promise<StockEntryResponseDto> {
-    const entry = await this.stockEntryRepository.findOne({ where: { id } });
-
-    if (!entry) {
-      throw new NotFoundException(`Stock entry with ID ${id} not found`);
-    }
-
-    entry.status = StockEntryStatus.SUBMITTED;
-    await this.stockEntryRepository.save(entry);
-    return this.findOne(id);
+    const updated = await this.prisma.stockEntry.update({
+      where: { id },
+      data: { status: 'Submitted' },
+      include: { lines: true },
+    });
+    return this.mapToResponseDto(updated);
   }
 
   async post(id: string): Promise<StockEntryResponseDto> {
-    const entry = await this.stockEntryRepository.findOne({
+    const entry = await this.prisma.stockEntry.findUnique({
       where: { id },
-      relations: ['lines'],
+      include: { lines: true },
     });
 
     if (!entry) {
@@ -207,29 +206,42 @@ export class StockEntryService {
       throw new BadRequestException('Stock entry already posted');
     }
 
-    return await this.dataSource.transaction(async (manager) => {
+    return await this.prisma.$transaction(async (tx) => {
       for (const line of entry.lines) {
         // 1. Process IN movement (Receipt)
         if (line.toLocationId) {
-          const warehouseId = line.toLocationId.split(':')[0]; // Assuming format 'warehouseId:locationId' or just warehouseId
+          const warehouseId = line.toLocationId.split(':')[0];
 
-          let balance = await manager.findOne(StockBalance, {
-            where: { itemId: line.itemId, warehouseId }
-          });
+          // Pessimistic Locking
+          let balances: any[] = await tx.$queryRaw`
+            SELECT * FROM "stock_balances" 
+            WHERE "itemId" = ${line.itemId} AND "warehouseId" = ${warehouseId} 
+            FOR UPDATE
+          `;
 
-          if (!balance) {
-            balance = manager.create(StockBalance, {
-              itemId: line.itemId,
-              itemCode: line.itemCode,
-              itemName: line.itemName,
-              warehouseId,
-              availableQuantity: 0,
-              valuationRate: 0,
-              uom: line.uom,
+          let balance: any;
+          if (balances.length === 0) {
+            balance = await tx.stockBalance.create({
+              data: {
+                itemId: line.itemId,
+                itemCode: line.itemCode,
+                itemName: line.itemName,
+                warehouseId,
+                warehouseName: '', // Should fetch if needed
+                availableQuantity: 0,
+                totalQuantity: 0,
+                freeQuantity: 0,
+                valuationRate: 0,
+                uom: line.uom,
+                stockValue: 0,
+                lastUpdatedTime: new Date(),
+              } as any,
             });
+          } else {
+            balance = balances[0];
           }
 
-          const method = (balance.valuationMethod as any) || 'Weighted Average';
+          const method = (balance.valuationMethod) || 'Weighted Average';
           const { valuationRate, stockValue } = await this.stockValuationService.calculateNewRate(
             line.itemId,
             warehouseId,
@@ -239,29 +251,37 @@ export class StockEntryService {
             balance
           );
 
-          balance.availableQuantity = Number(balance.availableQuantity) + Number(line.quantity);
-          balance.totalQuantity = Number(balance.totalQuantity) + Number(line.quantity);
-          balance.freeQuantity = Number(balance.freeQuantity) + Number(line.quantity);
-          balance.valuationRate = valuationRate;
-          balance.stockValue = stockValue;
-          balance.lastReceiptDate = new Date();
-
-          await manager.save(StockBalance, balance);
+          await tx.stockBalance.update({
+            where: { id: balance.id },
+            data: {
+              availableQuantity: Number(balance.availableQuantity) + Number(line.quantity),
+              totalQuantity: Number(balance.totalQuantity) + Number(line.quantity),
+              freeQuantity: Number(balance.freeQuantity) + Number(line.quantity),
+              valuationRate: valuationRate,
+              stockValue: stockValue,
+              lastReceiptDate: new Date(),
+              lastUpdatedTime: new Date(),
+            },
+          });
         }
 
         // 2. Process OUT movement (Issue)
         if (line.fromLocationId) {
           const warehouseId = line.fromLocationId.split(':')[0];
 
-          const balance = await manager.findOne(StockBalance, {
-            where: { itemId: line.itemId, warehouseId }
-          });
+          // Pessimistic Locking
+          const balances: any[] = await tx.$queryRaw`
+            SELECT * FROM "stock_balances" 
+            WHERE "itemId" = ${line.itemId} AND "warehouseId" = ${warehouseId} 
+            FOR UPDATE
+          `;
 
-          if (!balance || Number(balance.availableQuantity) < Number(line.quantity)) {
+          if (balances.length === 0 || Number(balances[0].availableQuantity) < Number(line.quantity)) {
             throw new BadRequestException(`Insufficient stock for item ${line.itemCode} in warehouse ${warehouseId}`);
           }
 
-          const method = (balance.valuationMethod as any) || 'Weighted Average';
+          const balance = balances[0];
+          const method = (balance.valuationMethod) || 'Weighted Average';
           const { averageRate } = await this.stockValuationService.calculateIssueValue(
             line.itemId,
             warehouseId,
@@ -270,97 +290,112 @@ export class StockEntryService {
           );
 
           // Update the line's rate to reflect the valuation at time of issue
-          line.rate = averageRate;
-          line.amount = averageRate * Number(line.quantity);
-          await manager.save(StockEntryLine, line);
+          await tx.stockEntryLine.update({
+            where: { id: line.id },
+            data: {
+              rate: averageRate,
+              amount: averageRate * Number(line.quantity),
+            },
+          });
 
-          balance.availableQuantity = Number(balance.availableQuantity) - Number(line.quantity);
-          balance.totalQuantity = Number(balance.totalQuantity) - Number(line.quantity);
-          balance.freeQuantity = Number(balance.freeQuantity) - Number(line.quantity);
-          balance.stockValue = Number(balance.availableQuantity) * Number(balance.valuationRate);
-          balance.lastIssueDate = new Date();
-
-          await manager.save(StockBalance, balance);
+          const newAvailable = Number(balance.availableQuantity) - Number(line.quantity);
+          await tx.stockBalance.update({
+            where: { id: balance.id },
+            data: {
+              availableQuantity: newAvailable,
+              totalQuantity: Number(balance.totalQuantity) - Number(line.quantity),
+              freeQuantity: Number(balance.freeQuantity) - Number(line.quantity),
+              stockValue: newAvailable * Number(balance.valuationRate),
+              lastIssueDate: new Date(),
+              lastUpdatedTime: new Date(),
+            },
+          });
         }
       }
 
-      entry.status = StockEntryStatus.POSTED;
-      entry.isPosted = true;
-      entry.postedAt = new Date();
-      const saved = await manager.save(StockEntry, entry);
+      const posted = await tx.stockEntry.update({
+        where: { id: entry.id },
+        data: {
+          status: 'Posted',
+          isPosted: true,
+          postedAt: new Date(),
+          updatedBy: 'SYSTEM',
+        },
+        include: { lines: true },
+      });
 
-      return this.mapToResponseDto(saved);
+      this.auditLogger.logAction('STOCK_POST', entry.createdBy || 'SYSTEM', {
+        entryId: entry.id,
+        entryNumber: entry.entryNumber,
+        type: entry.entryType,
+        totalValue: entry.totalValue,
+      });
+
+      return this.mapToResponseDto(posted);
     });
   }
 
   async cancel(id: string): Promise<StockEntryResponseDto> {
-    const entry = await this.stockEntryRepository.findOne({ where: { id } });
-
-    if (!entry) {
-      throw new NotFoundException(`Stock entry with ID ${id} not found`);
-    }
-
-    if (entry.isPosted) {
-      throw new BadRequestException('Cannot cancel posted stock entry');
-    }
-
-    entry.status = StockEntryStatus.CANCELLED;
-    await this.stockEntryRepository.save(entry);
-    return this.findOne(id);
+    const updated = await this.prisma.stockEntry.update({
+      where: { id },
+      data: { status: 'Cancelled' },
+      include: { lines: true },
+    });
+    return this.mapToResponseDto(updated);
   }
 
-  private async generateEntryNumber(entryType: StockEntryType): Promise<string> {
+  private async generateEntryNumber(entryType: string): Promise<string> {
     const prefix = this.getEntryPrefix(entryType);
     const year = new Date().getFullYear();
-    const count = await this.stockEntryRepository.count();
+    const count = await this.prisma.stockEntry.count();
     return `${prefix}-${year}-${String(count + 1).padStart(6, '0')}`;
   }
 
-  private getEntryPrefix(entryType: StockEntryType): string {
-    const prefixMap = {
-      [StockEntryType.MATERIAL_RECEIPT]: 'MR',
-      [StockEntryType.MATERIAL_ISSUE]: 'MI',
-      [StockEntryType.MATERIAL_TRANSFER]: 'MT',
-      [StockEntryType.PURCHASE_RECEIPT]: 'PR',
-      [StockEntryType.PURCHASE_RETURN]: 'PRN',
-      [StockEntryType.SALES_ISSUE]: 'SI',
-      [StockEntryType.SALES_RETURN]: 'SRN',
-      [StockEntryType.PRODUCTION_RECEIPT]: 'PD',
-      [StockEntryType.PRODUCTION_ISSUE]: 'PI',
-      [StockEntryType.OPENING_STOCK]: 'OS',
-      [StockEntryType.REPACK]: 'RPK',
-      [StockEntryType.SCRAP]: 'SCP',
-      [StockEntryType.STOCK_RECONCILIATION]: 'SR',
+  private getEntryPrefix(entryType: string): string {
+    const prefixMap: Record<string, string> = {
+      'MATERIAL_RECEIPT': 'MR',
+      'MATERIAL_ISSUE': 'MI',
+      'MATERIAL_TRANSFER': 'MT',
+      'PURCHASE_RECEIPT': 'PR',
+      'PURCHASE_RETURN': 'PRN',
+      'SALES_ISSUE': 'SI',
+      'SALES_RETURN': 'SRN',
+      'PRODUCTION_RECEIPT': 'PD',
+      'PRODUCTION_ISSUE': 'PI',
+      'OPENING_STOCK': 'OS',
+      'REPACK': 'RPK',
+      'SCRAP': 'SCP',
+      'STOCK_RECONCILIATION': 'SR',
     };
     return prefixMap[entryType] || 'SE';
   }
 
-  private getMovementDirection(entryType: StockEntryType): MovementDirection {
+  private getMovementDirection(entryType: string): string {
     const inTypes = [
-      StockEntryType.MATERIAL_RECEIPT,
-      StockEntryType.PURCHASE_RECEIPT,
-      StockEntryType.SALES_RETURN,
-      StockEntryType.PRODUCTION_RECEIPT,
-      StockEntryType.OPENING_STOCK,
+      'MATERIAL_RECEIPT',
+      'PURCHASE_RECEIPT',
+      'SALES_RETURN',
+      'PRODUCTION_RECEIPT',
+      'OPENING_STOCK',
     ];
 
     const outTypes = [
-      StockEntryType.MATERIAL_ISSUE,
-      StockEntryType.PURCHASE_RETURN,
-      StockEntryType.SALES_ISSUE,
-      StockEntryType.PRODUCTION_ISSUE,
-      StockEntryType.SCRAP,
+      'MATERIAL_ISSUE',
+      'PURCHASE_RETURN',
+      'SALES_ISSUE',
+      'PRODUCTION_ISSUE',
+      'SCRAP',
     ];
 
-    if (inTypes.includes(entryType)) return MovementDirection.IN;
-    if (outTypes.includes(entryType)) return MovementDirection.OUT;
-    return MovementDirection.INTERNAL;
+    if (inTypes.includes(entryType)) return 'IN';
+    if (outTypes.includes(entryType)) return 'OUT';
+    return 'INTERNAL';
   }
 
-  private mapToResponseDto(entry: StockEntry): StockEntryResponseDto {
+  private mapToResponseDto(entry: any): StockEntryResponseDto {
     return {
       ...entry,
-      lines: entry.lines?.map((line) => ({ ...line })) || [],
+      lines: entry.lines?.map((line: any) => ({ ...line })) || [],
     } as any;
   }
 }

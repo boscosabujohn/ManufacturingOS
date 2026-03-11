@@ -1,4 +1,5 @@
 import { apiClient } from './api/client';
+import { USE_LIVE_API } from './api-flags';
 
 // ==================== TypeScript Interfaces ====================
 
@@ -99,9 +100,9 @@ export interface PurchaseRequisitionFilters {
   limit?: number;
 }
 
-// ==================== Mock Data ====================
+// ==================== Mock Data Toggle ====================
 
-const USE_MOCK_DATA = true;
+const USE_MOCK_DATA = !USE_LIVE_API;
 
 const MOCK_PURCHASE_REQUISITIONS: PurchaseRequisition[] = [
   {

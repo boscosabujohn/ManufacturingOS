@@ -11,13 +11,16 @@ import {
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { DocumentService } from '../services/document.service';
+import { documentFileFilter } from '../../../common/utils/file-upload.util';
+
 
 @Controller('workflow/documents')
 export class DocumentController {
     constructor(private readonly documentService: DocumentService) { }
 
     @Post('upload')
-    @UseInterceptors(FileInterceptor('file'))
+    @UseInterceptors(FileInterceptor('file', { fileFilter: documentFileFilter }))
+
     async uploadDocument(
         @UploadedFile() file: any,
         @Body('projectId') projectId: string,
@@ -36,7 +39,8 @@ export class DocumentController {
     }
 
     @Post(':id/version')
-    @UseInterceptors(FileInterceptor('file'))
+    @UseInterceptors(FileInterceptor('file', { fileFilter: documentFileFilter }))
+
     async createVersion(
         @Param('id') id: string,
         @UploadedFile() file: any,

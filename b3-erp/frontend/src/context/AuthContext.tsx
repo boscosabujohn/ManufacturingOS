@@ -1,9 +1,10 @@
 'use client';
 
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import * as React from 'react';
+import { createContext, useContext, useState, useEffect, useCallback, ReactNode } from 'react';
 import { useRouter } from 'next/navigation';
 
-interface User {
+export interface User {
     id: string;
     username: string;
     email: string;
@@ -11,6 +12,7 @@ interface User {
     lastName: string;
     fullName: string;
     userType: string;
+    companyId: string;         // required for multi-tenant API calls
     isSystemAdmin?: boolean;
     permissions?: string[];
 }
@@ -19,76 +21,78 @@ interface AuthContextType {
     user: User | null;
     isAuthenticated: boolean;
     isLoading: boolean;
-    login: (userData: any, token: string) => void;
+    login: (userData: User) => void;
     logout: () => void;
+    refreshUser: () => Promise<void>;
     hasPermission: (permission: string) => boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:8000/api/v1';
 
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const [user, setUser] = useState<User | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const router = useRouter();
 
+    const logout = useCallback(async () => {
+        try {
+            await fetch(`${API_URL}/auth/logout`, { method: 'POST', credentials: 'include' });
+        } catch {
+            // best-effort
+        }
+        localStorage.removeItem('user');
+        setUser(null);
+        router.push('/login');
+    }, [router]);
+
+    const refreshUser = useCallback(async () => {
+        try {
+            const response = await fetch(`${API_URL}/auth/profile`, { credentials: 'include' });
+            if (response.ok) {
+                const latestUser: User = await response.json();
+                setUser(latestUser);
+                localStorage.setItem('user', JSON.stringify(latestUser));
+            } else if (response.status === 401) {
+                await logout();
+            }
+        } catch {
+            // network error — keep current user state
+        }
+    }, [logout]);
+
     useEffect(() => {
         const initAuth = async () => {
-            const token = localStorage.getItem('access_token');
-            const savedUser = localStorage.getItem('user');
-
-            if (token && savedUser) {
+            const saved = localStorage.getItem('user');
+            if (saved) {
                 try {
-                    const initialUser = JSON.parse(savedUser);
-                    setUser(initialUser);
-
-                    // Fetch latest profile to ensure permissions/isSystemAdmin are up to date
-                    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
-                    const response = await fetch(`${apiUrl}/auth/profile`, {
-                        headers: {
-                            'Authorization': `Bearer ${token}`
-                        }
-                    });
-
-                    if (response.ok) {
-                        const latestUser = await response.json();
-                        setUser(latestUser);
-                        localStorage.setItem('user', JSON.stringify(latestUser));
-                    } else if (response.status === 401) {
-                        logout();
-                    }
-                } catch (error) {
-                    console.error('Failed to initialize auth:', error);
+                    setUser(JSON.parse(saved));
+                    await refreshUser();  // sync with server on every app load
+                } catch {
+                    // malformed localStorage data
                 }
             }
             setIsLoading(false);
         };
-
         initAuth();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const login = (userData: any, token: string) => {
-        localStorage.setItem('access_token', token);
+    const login = (userData: User) => {
         localStorage.setItem('user', JSON.stringify(userData));
         setUser(userData);
         router.push('/dashboard');
     };
 
-    const logout = () => {
-        localStorage.removeItem('access_token');
-        localStorage.removeItem('user');
-        setUser(null);
-        router.push('/login');
-    };
-
     const hasPermission = (permission: string): boolean => {
         if (!user) return false;
-        // System Admin bypass
         if (user.isSystemAdmin || user.permissions?.includes('SUPER_ADMIN') || user.permissions?.includes('*')) return true;
-        return user.permissions?.includes(permission) || false;
+        return user.permissions?.includes(permission) ?? false;
     };
 
     return (
-        <AuthContext.Provider value={{ user, isAuthenticated: !!user, isLoading, login, logout, hasPermission }}>
+        <AuthContext.Provider value={{ user, isAuthenticated: !!user, isLoading, login, logout, refreshUser, hasPermission }}>
             {children}
         </AuthContext.Provider>
     );

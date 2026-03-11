@@ -3,6 +3,14 @@ import { ValidationPipe } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { ConfigService } from '@nestjs/config';
 import { AppModule } from './app.module';
+import { configureSecurityHeaders, getCorsConfig } from './common/security/security.config';
+import cookieParser from 'cookie-parser';
+
+import { GlobalExceptionFilter } from './common/filters/global-exception.filter';
+import { LoggingInterceptor } from './common/interceptors/logging.interceptor';
+
+
+
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -12,11 +20,19 @@ async function bootstrap() {
   const apiPrefix = configService.get('API_PREFIX') || 'api/v1';
   app.setGlobalPrefix(apiPrefix);
 
+  // Cookie Parser
+  app.use(cookieParser());
+
+
+  // Security Headers
+  configureSecurityHeaders(app);
+
   // CORS
-  app.enableCors({
-    origin: configService.get('FRONTEND_URL') || 'http://localhost:3000',
-    credentials: true,
-  });
+  const frontendUrl = configService.get('FRONTEND_URL') || 'http://localhost:3000';
+  app.enableCors(getCorsConfig(frontendUrl));
+
+  // Filters
+  app.useGlobalFilters(new GlobalExceptionFilter());
 
   // Validation
   app.useGlobalPipes(
@@ -25,34 +41,45 @@ async function bootstrap() {
       transform: true,
       forbidNonWhitelisted: true,
     }),
+
   );
 
-  // Swagger documentation
-  const config = new DocumentBuilder()
-    .setTitle('OptiForge ERP API')
-    .setDescription('OptiForge ERP System API Documentation')
-    .setVersion('1.0')
-    .addBearerAuth()
-    .addTag('Authentication')
-    .addTag('CRM')
-    .addTag('Sales')
-    .addTag('Inventory')
-    .addTag('Production')
-    .addTag('Finance')
-    .addTag('HR')
-    .addTag('Procurement')
-    .addTag('Logistics')
-    .addTag('Support')
-    .addTag('IT Admin')
-    .build();
-  const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api/docs', app, document);
+  // Interceptors
+  app.useGlobalInterceptors(new LoggingInterceptor());
 
   const port = configService.get('PORT') || 8000;
+
+  // Swagger documentation (Disabled in production)
+
+  if (configService.get('NODE_ENV') !== 'production') {
+    const config = new DocumentBuilder()
+      .setTitle('OptiForge ERP API')
+      .setDescription('OptiForge ERP System API Documentation')
+      .setVersion('1.0')
+      .addBearerAuth()
+      .addTag('Authentication')
+      .addTag('CRM')
+      .addTag('Sales')
+      .addTag('Inventory')
+      .addTag('Production')
+      .addTag('Finance')
+      .addTag('HR')
+      .addTag('Procurement')
+      .addTag('Logistics')
+      .addTag('Support')
+      .addTag('IT Admin')
+      .build();
+    const document = SwaggerModule.createDocument(app, config);
+    SwaggerModule.setup('api/docs', app, document);
+    console.log(`📚 API Documentation: http://localhost:${port}/api/docs`);
+  }
+
+
   await app.listen(port);
 
+
   console.log(`🚀 Application is running on: http://localhost:${port}/${apiPrefix}`);
-  console.log(`📚 API Documentation: http://localhost:${port}/api/docs`);
+
 }
 
 bootstrap();

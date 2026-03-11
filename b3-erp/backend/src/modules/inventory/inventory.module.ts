@@ -1,6 +1,7 @@
 import { Module, forwardRef } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { WorkflowModule } from '../workflow/workflow.module';
+import { PrismaModule } from '../prisma/prisma.module';
 
 // Entities
 import {
@@ -58,11 +59,7 @@ import { VEDAnalysisService } from './services/ved-analysis.service';
 @Module({
   imports: [
     TypeOrmModule.forFeature([
-      Warehouse,
       StockLocation,
-      StockEntry,
-      StockEntryLine,
-      StockBalance,
       StockTransfer,
       StockTransferLine,
       StockAdjustment,
@@ -72,9 +69,9 @@ import { VEDAnalysisService } from './services/ved-analysis.service';
       AdjustmentReason,
       CycleCountPlan,
       CycleCountItem,
-      CycleCountItem,
     ]),
     forwardRef(() => WorkflowModule),
+    PrismaModule,
   ],
   controllers: [
     WarehouseController,

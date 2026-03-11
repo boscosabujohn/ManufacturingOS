@@ -142,7 +142,7 @@ export class CommonMastersService {
         return this.prisma.warehouse.findMany({
             where: { companyId },
             include: { branch: true },
-            orderBy: { name: 'asc' },
+            orderBy: { warehouseName: 'asc' },
         });
     }
 
@@ -490,12 +490,30 @@ export class CommonMastersService {
     // WAREHOUSE CRUD
     // ===========================
     async createWarehouse(data: { code: string; name: string; companyId: string; branchId?: string; address?: string }) {
-        return this.prisma.warehouse.create({ data });
+        return this.prisma.warehouse.create({
+            data: {
+                warehouseCode: data.code,
+                warehouseName: data.name,
+                companyId: data.companyId,
+                branchId: data.branchId,
+                address: data.address,
+                status: 'Active',
+            }
+        });
     }
 
     async updateWarehouse(id: string, data: { code?: string; name?: string; branchId?: string; address?: string; isActive?: boolean }) {
         await this.findByIdOrThrow(this.prisma.warehouse, id, 'Warehouse');
-        return this.prisma.warehouse.update({ where: { id }, data });
+        return this.prisma.warehouse.update({
+            where: { id },
+            data: {
+                warehouseCode: data.code,
+                warehouseName: data.name,
+                branchId: data.branchId,
+                address: data.address,
+                isActive: data.isActive,
+            }
+        });
     }
 
     async deleteWarehouse(id: string) {

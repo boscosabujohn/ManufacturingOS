@@ -1,4 +1,5 @@
 import { apiClient } from './api/client';
+import { USE_LIVE_API } from './api-flags';
 
 // ============================================================================
 // INTERFACES
@@ -140,7 +141,7 @@ export interface BOMFilters {
 // MOCK DATA
 // ============================================================================
 
-const USE_MOCK_DATA = true;
+const USE_MOCK_DATA = !USE_LIVE_API;
 
 export const MOCK_BOMS: BOM[] = [
   {

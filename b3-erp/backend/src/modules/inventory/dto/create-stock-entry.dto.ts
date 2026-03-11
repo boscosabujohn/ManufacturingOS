@@ -185,6 +185,11 @@ export class CreateStockEntryDto {
   @IsOptional()
   lrNumber?: string;
 
+  @ApiPropertyOptional({ default: 'INR' })
+  @IsString()
+  @IsOptional()
+  currency?: string;
+
   @ApiPropertyOptional()
   @IsString()
   @IsOptional()

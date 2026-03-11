@@ -2,6 +2,7 @@ import { Module, forwardRef } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { BullModule } from '@nestjs/bull';
 import { EventEmitterModule } from '@nestjs/event-emitter';
+import { ScheduleModule } from '@nestjs/schedule';
 
 // Entities
 import { OrderTracking } from './entities/order-tracking.entity';
@@ -31,6 +32,9 @@ import {
 import { ProductionModule } from '../production/production.module';
 import { InventoryModule } from '../inventory/inventory.module';
 import { ProjectManagementModule } from '../project-management/project-management.module';
+import { NotificationsModule } from '../notifications/notifications.module';
+import { SalesModule } from '../sales/sales.module';
+import { QualityModule } from '../quality/quality.module';
 
 // Services
 import {
@@ -99,6 +103,8 @@ import { WorkflowGateway } from './gateways/workflow.gateway';
       ignoreErrors: false,
     }),
 
+    ScheduleModule.forRoot(),
+
     // Database entities
     TypeOrmModule.forFeature([
       OrderTracking,
@@ -156,7 +162,10 @@ import { WorkflowGateway } from './gateways/workflow.gateway';
     // Import other modules with forwardRef to resolve circular dependencies
     forwardRef(() => ProductionModule),
     forwardRef(() => InventoryModule),
+    forwardRef(() => QualityModule),
     ProjectManagementModule,
+    NotificationsModule,
+    forwardRef(() => SalesModule),
   ],
   controllers: [
     OrderTrackingController,

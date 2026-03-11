@@ -11,10 +11,11 @@ import { SupportManagementService } from './services/support-management.service'
 import { SupportSeederService } from './services/support-seeder.service';
 import { SupportSettingsService } from './services/support-settings.service';
 import { TicketManagementService } from './services/ticket-management.service';
+import { SupportController } from './support.controller';
 
 @Module({
   imports: [PrismaModule],
-  controllers: [],
+  controllers: [SupportController],
   providers: [
     AIResponsesService,
     BacklogService,
@@ -41,4 +42,4 @@ import { TicketManagementService } from './services/ticket-management.service';
     SupportManagementService,
   ],
 })
-export class SupportModule {}
+export class SupportModule { }

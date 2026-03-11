@@ -2,6 +2,8 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { X, MessageSquare, AtSign, Eye, Edit3 } from 'lucide-react'
+import DOMPurify from 'dompurify'
+
 
 export interface Comment {
   id?: string
@@ -174,11 +176,10 @@ export default function CommentModal({ isOpen, onClose, onSave, comment, mode = 
             <button
               type="button"
               onClick={() => setShowPreview(false)}
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
-                !showPreview
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${!showPreview
                   ? 'bg-blue-600 text-white'
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-              }`}
+                }`}
             >
               <Edit3 className="w-4 h-4" />
               Write
@@ -186,11 +187,10 @@ export default function CommentModal({ isOpen, onClose, onSave, comment, mode = 
             <button
               type="button"
               onClick={() => setShowPreview(true)}
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
-                showPreview
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${showPreview
                   ? 'bg-blue-600 text-white'
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-              }`}
+                }`}
             >
               <Eye className="w-4 h-4" />
               Preview
@@ -211,9 +211,8 @@ export default function CommentModal({ isOpen, onClose, onSave, comment, mode = 
                   value={formData.content}
                   onChange={(e) => handleChange(e.target.value)}
                   rows={6}
-                  className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
-                    errors.content ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${errors.content ? 'border-red-500' : 'border-gray-300'
+                    }`}
                   placeholder="Write your comment... Use @ to mention users"
                   autoFocus
                 />
@@ -241,8 +240,9 @@ export default function CommentModal({ isOpen, onClose, onSave, comment, mode = 
             ) : (
               <div
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg min-h-[150px] bg-gray-50"
-                dangerouslySetInnerHTML={{ __html: renderPreview() || '<span class="text-gray-400">No content to preview</span>' }}
+                dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(renderPreview()) || '<span class="text-gray-400">No content to preview</span>' }}
               />
+
             )}
 
             <div className="mt-1 flex items-center justify-between">

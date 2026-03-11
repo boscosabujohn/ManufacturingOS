@@ -1,6 +1,8 @@
 'use client';
 
 import React, { ReactNode } from 'react';
+import DOMPurify from 'dompurify';
+
 
 // ============================================================================
 // Print Stylesheet Component
@@ -551,7 +553,8 @@ export function PrintButton({
               </style>
             </head>
             <body>
-              ${element.innerHTML}
+              ${DOMPurify.sanitize(element.innerHTML)}
+
             </body>
             </html>
           `);

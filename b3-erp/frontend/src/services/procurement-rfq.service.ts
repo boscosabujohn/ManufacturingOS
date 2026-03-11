@@ -1,4 +1,5 @@
 import { apiClient } from './api/client';
+import { USE_LIVE_API } from './api-flags';
 
 // ==================== TypeScript Interfaces ====================
 
@@ -183,9 +184,9 @@ export interface RFQFilters {
   limit?: number;
 }
 
-// ==================== Mock Data ====================
+// ==================== Mock Data Toggle ====================
 
-const USE_MOCK_DATA = true;
+const USE_MOCK_DATA = !USE_LIVE_API;
 
 const MOCK_RFQS: ProcurementRFQ[] = [
   {
@@ -1252,7 +1253,7 @@ class ProcurementRFQService {
       // Find recommended vendor (highest score)
       const recommendedVendor = vendorSummary.reduce((prev, curr) =>
         (curr.overallScore || 0) > (prev.overallScore || 0) ? curr : prev
-      , vendorSummary[0]);
+        , vendorSummary[0]);
 
       return {
         rfqId: rfq.id,

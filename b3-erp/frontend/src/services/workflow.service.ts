@@ -1,8 +1,7 @@
-// Workflow Service
-// Handles workflow template and instance management
+import { apiClient } from './api/client';
+import { USE_LIVE_API } from './api-flags';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
-const USE_MOCK_DATA = true;
+const USE_MOCK_DATA = !USE_LIVE_API;
 
 // ============================================================================
 // Types & Interfaces
@@ -691,19 +690,14 @@ export class WorkflowService {
     endpoint: string,
     options?: RequestInit
   ): Promise<T> {
-    const response = await fetch(`${API_BASE_URL}${endpoint}`, {
-      ...options,
-      headers: {
-        'Content-Type': 'application/json',
-        ...options?.headers,
-      },
+    const response = await apiClient.request<T>({
+      url: endpoint,
+      method: options?.method || 'GET',
+      data: options?.body ? JSON.parse(options.body as string) : undefined,
+      headers: options?.headers as any,
     });
 
-    if (!response.ok) {
-      throw new Error(`API Error: ${response.statusText}`);
-    }
-
-    return response.json();
+    return response.data;
   }
 
   // -------------------------------------------------------------------------

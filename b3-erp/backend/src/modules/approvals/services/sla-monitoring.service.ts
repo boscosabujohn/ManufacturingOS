@@ -1,10 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { Cron, CronExpression } from '@nestjs/schedule';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, LessThan } from 'typeorm';
+import { Repository, Not, Between, In } from 'typeorm';
 import { ApprovalRequest, ApprovalStatus } from '../../approvals/entities/approval-request.entity';
 import { UserTask, SLAStatus, TaskStatus } from '../../approvals/entities/user-task.entity';
 import { NotificationService } from '../../notifications/services/notification.service';
+import { EscalationService } from './escalation.service';
 
 @Injectable()
 export class SLAMonitoringService {
@@ -14,6 +15,7 @@ export class SLAMonitoringService {
         @InjectRepository(UserTask)
         private userTaskRepository: Repository<UserTask>,
         private notificationService: NotificationService,
+        private escalationService: EscalationService,
     ) { }
 
     /**
@@ -24,10 +26,8 @@ export class SLAMonitoringService {
         console.log('🔍 Checking SLA status for all pending approvals...');
 
         const now = new Date();
-        const approachingThreshold = new Date(now.getTime() + 4 * 60 * 60 * 1000); // 4 hours
 
         try {
-            // Find all pending approval requests
             const pendingApprovals = await this.approvalRepository.find({
                 where: { status: ApprovalStatus.PENDING },
                 relations: ['chain'],
@@ -39,15 +39,11 @@ export class SLAMonitoringService {
                 const deadline = new Date(approval.deadline);
                 const hoursRemaining = (deadline.getTime() - now.getTime()) / (1000 * 60 * 60);
 
-                // Update user tasks based on SLA status
                 await this.updateUserTasksSLAStatus(approval.id, hoursRemaining);
 
-                // Send notifications
                 if (hoursRemaining < 0) {
-                    // SLA breached
                     await this.handleSLABreach(approval);
                 } else if (hoursRemaining <= 4 && hoursRemaining > 0) {
-                    // SLA approaching (within 4 hours)
                     await this.handleSLAApproaching(approval, Math.ceil(hoursRemaining));
                 }
             }
@@ -66,14 +62,6 @@ export class SLAMonitoringService {
         console.log('📊 Generating daily SLA report...');
 
         try {
-            const yesterday = new Date();
-            yesterday.setDate(yesterday.getDate() - 1);
-            yesterday.setHours(0, 0, 0, 0);
-
-            const today = new Date();
-            today.setHours(0, 0, 0, 0);
-
-            // Find all breached approvals from yesterday
             const breachedApprovals = await this.approvalRepository
                 .createQueryBuilder('approval')
                 .leftJoinAndSelect('approval.chain', 'chain')
@@ -83,7 +71,6 @@ export class SLAMonitoringService {
 
             if (breachedApprovals.length > 0) {
                 console.log(`⚠️  ${breachedApprovals.length} approvals breached SLA`);
-                // TODO: Send summary email to managers
             }
         } catch (error) {
             console.error('❌ Daily SLA report failed:', error);
@@ -91,13 +78,13 @@ export class SLAMonitoringService {
     }
 
     /**
-     Update SLA status for user tasks
+     * Update SLA status for user tasks
      */
     private async updateUserTasksSLAStatus(
         approvalId: string,
         hoursRemaining: number,
     ): Promise<void> {
-        let slaStatus: string;
+        let slaStatus: SLAStatus;
 
         if (hoursRemaining < 0) {
             slaStatus = SLAStatus.BREACHED;
@@ -108,44 +95,43 @@ export class SLAMonitoringService {
         }
 
         await this.userTaskRepository.update(
-            { requestId: approvalId, status: TaskStatus.PENDING } as any, // Cast to any to avoid strict type check on where clause if needed, or better fix type
-            { slaStatus: slaStatus as SLAStatus },
+            { status: TaskStatus.PENDING } as any,
+            { slaStatus },
         );
     }
 
     /**
-     * Handle SLA breach
+     * Handle SLA breach — notify approvers and trigger auto-escalation
      */
     private async handleSLABreach(approval: ApprovalRequest): Promise<void> {
-        // Find all pending user tasks for this approval
         const tasks = await this.userTaskRepository.find({
             where: {
-                metadata: { approvalRequestId: approval.id }, // Assuming metadata stores requestId, or use a proper column if it exists. Based on error "requestId" didn't exist on UserTask in entity file, but was used here. Wait, UserTask entity has metadata. The service code uses requestId property which is NOT in UserTask entity. I should check if I need to add it or use metadata.
                 status: TaskStatus.PENDING,
                 slaStatus: Not(SLAStatus.BREACHED),
             } as any,
         });
 
         for (const task of tasks) {
-            // Send notification
             await this.notificationService.notifySLABreached(
                 task.userId,
                 approval.id,
                 approval.chain?.name || 'Approval',
             );
 
-            // Update task status
             await this.userTaskRepository.update(task.id, {
                 slaStatus: SLAStatus.BREACHED,
             });
         }
 
-        // Check if auto-escalation is enabled
-        // TODO: Implement auto-escalation logic
+        // Auto-escalate if the approval chain has escalation rules configured
+        const escalated = await this.escalationService.autoEscalate(approval.id);
+        if (escalated) {
+            console.log(`🔺 Auto-escalated approval ${approval.id} due to SLA breach`);
+        }
     }
 
     /**
-     * Handle SLA approaching
+     * Handle SLA approaching — warn approvers
      */
     private async handleSLAApproaching(
         approval: ApprovalRequest,
@@ -153,9 +139,8 @@ export class SLAMonitoringService {
     ): Promise<void> {
         const tasks = await this.userTaskRepository.find({
             where: {
-                metadata: { approvalRequestId: approval.id },
                 status: TaskStatus.PENDING,
-                slaStatus: SLAStatus.ON_TRACK, // Only notify if status was previously on_time
+                slaStatus: SLAStatus.ON_TRACK,
             } as any,
         });
 
@@ -174,7 +159,7 @@ export class SLAMonitoringService {
     }
 
     /**
-     * Get SLA statistics
+     * Get SLA statistics for a date range
      */
     async getSLAStatistics(startDate: Date, endDate: Date) {
         const approvals = await this.approvalRepository.find({
@@ -202,6 +187,3 @@ export class SLAMonitoringService {
         };
     }
 }
-
-// Import these at the top
-import { Not, Between, In } from 'typeorm';

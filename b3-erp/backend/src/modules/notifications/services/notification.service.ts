@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { Notification } from '../entities/notification.entity';
+import { PrismaService } from '../../prisma/prisma.service';
+import { Notification as PrismaNotification } from '@prisma/client';
 import { EmailService } from './email.service';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 
@@ -19,8 +18,7 @@ export interface CreateNotificationDto {
 @Injectable()
 export class NotificationService {
     constructor(
-        @InjectRepository(Notification)
-        private notificationRepository: Repository<Notification>,
+        private prisma: PrismaService,
         private emailService: EmailService,
         private eventEmitter: EventEmitter2,
     ) { }
@@ -28,40 +26,42 @@ export class NotificationService {
     /**
      * Create a new notification
      */
-    async createNotification(dto: CreateNotificationDto): Promise<Notification> {
-        const notification = this.notificationRepository.create({
-            userId: dto.userId,
-            type: dto.type,
-            title: dto.title,
-            message: dto.message,
-            metadata: dto.metadata || {},
-            priority: dto.priority || 'info',
-            actionUrl: dto.actionUrl,
+    async createNotification(dto: CreateNotificationDto): Promise<PrismaNotification> {
+        const notification = await this.prisma.notification.create({
+            data: {
+                userId: dto.userId,
+                type: dto.type,
+                title: dto.title,
+                message: dto.message,
+                metadata: (dto.metadata as any) || {},
+                priority: dto.priority || 'info',
+                actionUrl: dto.actionUrl,
+            },
         });
-
-        const saved = await this.notificationRepository.save(notification);
 
         // Emit event for real-time updates
         this.eventEmitter.emit('notification.created', {
             userId: dto.userId,
-            notification: saved,
+            notification,
         });
 
         // Send email if requested
         if (dto.sendEmail) {
-            await this.emailService.sendNotificationEmail(saved);
+            // Convert Prisma notification to expected type for EmailService if necessary
+            // In this case, the structures are identical enough
+            await this.emailService.sendNotificationEmail(notification as any);
         }
 
-        return saved;
+        return notification;
     }
 
     /**
      * Get unread notifications for a user
      */
-    async getUnreadNotifications(userId: string): Promise<Notification[]> {
-        return this.notificationRepository.find({
+    async getUnreadNotifications(userId: string): Promise<PrismaNotification[]> {
+        return this.prisma.notification.findMany({
             where: { userId, isRead: false },
-            order: { createdAt: 'DESC' },
+            orderBy: { createdAt: 'desc' },
             take: 50,
         });
     }
@@ -73,13 +73,18 @@ export class NotificationService {
         userId: string,
         page: number = 1,
         limit: number = 20,
-    ): Promise<{ notifications: Notification[]; total: number }> {
-        const [notifications, total] = await this.notificationRepository.findAndCount({
-            where: { userId },
-            order: { createdAt: 'DESC' },
-            skip: (page - 1) * limit,
-            take: limit,
-        });
+    ): Promise<{ notifications: PrismaNotification[]; total: number }> {
+        const [notifications, total] = await Promise.all([
+            this.prisma.notification.findMany({
+                where: { userId },
+                orderBy: { createdAt: 'desc' },
+                skip: (page - 1) * limit,
+                take: limit,
+            }),
+            this.prisma.notification.count({
+                where: { userId },
+            }),
+        ]);
 
         return { notifications, total };
     }
@@ -88,12 +93,12 @@ export class NotificationService {
      * Mark notification as read
      */
     async markAsRead(notificationId: string, userId: string): Promise<boolean> {
-        const result = await this.notificationRepository.update(
-            { id: notificationId, userId },
-            { isRead: true },
-        );
+        const result = await this.prisma.notification.updateMany({
+            where: { id: notificationId, userId },
+            data: { isRead: true },
+        });
 
-        if ((result.affected ?? 0) > 0) {
+        if (result.count > 0) {
             this.eventEmitter.emit('notification.read', { userId, notificationId });
             return true;
         }
@@ -104,20 +109,20 @@ export class NotificationService {
      * Mark all notifications as read for a user
      */
     async markAllAsRead(userId: string): Promise<number> {
-        const result = await this.notificationRepository.update(
-            { userId, isRead: false },
-            { isRead: true },
-        );
+        const result = await this.prisma.notification.updateMany({
+            where: { userId, isRead: false },
+            data: { isRead: true },
+        });
 
         this.eventEmitter.emit('notifications.all_read', { userId });
-        return result.affected || 0;
+        return result.count;
     }
 
     /**
      * Get unread count
      */
     async getUnreadCount(userId: string): Promise<number> {
-        return this.notificationRepository.count({
+        return this.prisma.notification.count({
             where: { userId, isRead: false },
         });
     }
@@ -129,12 +134,14 @@ export class NotificationService {
         const cutoffDate = new Date();
         cutoffDate.setDate(cutoffDate.getDate() - daysOld);
 
-        const result = await this.notificationRepository.delete({
-            isRead: true,
-            createdAt: { $lt: cutoffDate } as any,
+        const result = await this.prisma.notification.deleteMany({
+            where: {
+                isRead: true,
+                createdAt: { lt: cutoffDate },
+            },
         });
 
-        return result.affected || 0;
+        return result.count;
     }
 
     /**

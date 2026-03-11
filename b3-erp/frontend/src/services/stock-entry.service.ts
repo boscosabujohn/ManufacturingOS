@@ -1,4 +1,5 @@
 import { apiClient } from './api/client';
+import { USE_LIVE_API } from './api-flags';
 
 // ============================================================================
 // TypeScript Interfaces
@@ -142,7 +143,7 @@ export interface StockLedgerFilters {
 // Mock Data
 // ============================================================================
 
-const USE_MOCK_DATA = true;
+const USE_MOCK_DATA = !USE_LIVE_API;
 
 export const MOCK_STOCK_ENTRIES: StockEntry[] = [
   {

@@ -191,8 +191,14 @@ describe('UserService', () => {
       expect(result).toEqual(user);
       expect(mockRepository.findOne).toHaveBeenCalledWith({
         where: { id: user.id },
-        relations: ['userRoles', 'userRoles.role'],
+        relations: [
+          'userRoles',
+          'userRoles.role',
+          'userRoles.role.rolePermissions',
+          'userRoles.role.rolePermissions.permission',
+        ],
       });
+
     });
 
     it('should throw NotFoundException if user not found', async () => {

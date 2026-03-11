@@ -8,6 +8,8 @@ import {
   OneToOne,
   Index,
 } from 'typeorm';
+import { SensitiveData } from '../../../common/decorators/sensitive-data.decorator';
+
 
 export enum UserStatus {
   ACTIVE = 'Active',
@@ -36,7 +38,9 @@ export class User {
   username: string;
 
   @Column({ unique: true, length: 100 })
+  @SensitiveData()
   email: string;
+
 
   @Column({ select: false })
   passwordHash: string;
@@ -51,7 +55,9 @@ export class User {
   fullName: string;
 
   @Column({ nullable: true, length: 20 })
+  @SensitiveData()
   phoneNumber: string;
+
 
   @Column({ nullable: true, length: 50 })
   employeeId: string;

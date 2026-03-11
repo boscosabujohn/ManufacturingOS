@@ -1,16 +1,14 @@
 import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { Warehouse, WarehouseType, WarehouseStatus } from '../entities/warehouse.entity';
+import { PrismaService } from '../../prisma/prisma.service';
+import { WarehouseType, WarehouseStatus } from '../entities/warehouse.entity';
 
 @Injectable()
 export class WarehouseSeederService implements OnModuleInit {
   private readonly logger = new Logger(WarehouseSeederService.name);
 
   constructor(
-    @InjectRepository(Warehouse)
-    private readonly warehouseRepository: Repository<Warehouse>,
-  ) {}
+    private readonly prisma: PrismaService,
+  ) { }
 
   async onModuleInit(): Promise<void> {
     await this.seedWarehouses();
@@ -42,6 +40,7 @@ export class WarehouseSeederService implements OnModuleInit {
         currentUtilization: 0,
         facilities: ['Loading Dock', 'Forklift', 'CCTV', 'Fire Safety'],
         createdBy: 'system',
+        companyId: 'SYSTEM', // Added missing required fields
       },
       {
         warehouseCode: 'WH-RM',
@@ -65,6 +64,7 @@ export class WarehouseSeederService implements OnModuleInit {
         currentUtilization: 0,
         facilities: ['Loading Dock', 'Forklift', 'CCTV'],
         createdBy: 'system',
+        companyId: 'SYSTEM',
       },
       {
         warehouseCode: 'WH-FG',
@@ -88,6 +88,7 @@ export class WarehouseSeederService implements OnModuleInit {
         currentUtilization: 0,
         facilities: ['Loading Dock', 'Forklift', 'CCTV', 'Climate Control'],
         createdBy: 'system',
+        companyId: 'SYSTEM',
       },
       {
         warehouseCode: 'WH-WIP',
@@ -111,6 +112,7 @@ export class WarehouseSeederService implements OnModuleInit {
         currentUtilization: 0,
         facilities: ['Forklift', 'CCTV'],
         createdBy: 'system',
+        companyId: 'SYSTEM',
       },
       {
         warehouseCode: 'WH-QC',
@@ -134,6 +136,7 @@ export class WarehouseSeederService implements OnModuleInit {
         currentUtilization: 0,
         facilities: ['Climate Control', 'CCTV', 'Lab Access'],
         createdBy: 'system',
+        companyId: 'SYSTEM',
       },
       {
         warehouseCode: 'WH-REJ',
@@ -157,6 +160,7 @@ export class WarehouseSeederService implements OnModuleInit {
         currentUtilization: 0,
         facilities: ['CCTV', 'Safety Equipment'],
         createdBy: 'system',
+        companyId: 'SYSTEM',
       },
       {
         warehouseCode: 'WH-SPARE',
@@ -180,16 +184,23 @@ export class WarehouseSeederService implements OnModuleInit {
         currentUtilization: 0,
         facilities: ['CCTV', 'Tool Room'],
         createdBy: 'system',
+        companyId: 'SYSTEM',
       },
     ];
 
     for (const warehouse of warehouses) {
       try {
-        const existing = await this.warehouseRepository.findOne({
+        const existing = await this.prisma.warehouse.findUnique({
           where: { warehouseCode: warehouse.warehouseCode },
         });
         if (!existing) {
-          await this.warehouseRepository.save(warehouse);
+          await this.prisma.warehouse.create({
+            data: {
+              ...warehouse,
+              warehouseType: warehouse.warehouseType as any,
+              status: warehouse.status as any,
+            } as any,
+          });
           this.logger.log(`Created warehouse: ${warehouse.warehouseName}`);
         } else {
           this.logger.log(`Warehouse already exists: ${warehouse.warehouseName}`);
@@ -202,8 +213,8 @@ export class WarehouseSeederService implements OnModuleInit {
     this.logger.log('Warehouses seeding completed');
   }
 
-  async getWarehouseByCode(code: string): Promise<Warehouse | null> {
-    return this.warehouseRepository.findOne({
+  async getWarehouseByCode(code: string): Promise<any> {
+    return this.prisma.warehouse.findUnique({
       where: { warehouseCode: code },
     });
   }

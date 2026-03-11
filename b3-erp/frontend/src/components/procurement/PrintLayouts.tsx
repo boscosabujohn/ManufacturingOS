@@ -2,6 +2,8 @@
 
 import React, { useRef } from 'react'
 import { Printer, Download, Mail, Share2, FileText, Building, Calendar, User, Phone, MapPin } from 'lucide-react'
+import DOMPurify from 'dompurify'
+
 
 // ============= Print Utilities =============
 export const usePrint = () => {
@@ -101,7 +103,8 @@ export const usePrint = () => {
               </style>
             </head>
             <body>
-              ${printContent.outerHTML}
+              ${DOMPurify.sanitize(printContent.outerHTML)}
+
             </body>
           </html>
         `)

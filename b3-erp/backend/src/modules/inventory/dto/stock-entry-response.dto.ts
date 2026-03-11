@@ -46,6 +46,9 @@ export class StockEntryResponseDto {
   isPosted: boolean;
 
   @ApiPropertyOptional()
+  currency?: string;
+
+  @ApiPropertyOptional()
   remarks?: string;
 
   @ApiProperty()

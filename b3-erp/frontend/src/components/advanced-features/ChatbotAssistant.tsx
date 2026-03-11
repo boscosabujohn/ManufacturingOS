@@ -10,6 +10,8 @@ import React, {
   useMemo,
   ReactNode,
 } from 'react';
+import DOMPurify from 'dompurify';
+
 
 // ============================================================================
 // Chatbot Types
@@ -541,20 +543,22 @@ export function ChatWidget({
                 className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
               >
                 <div
-                  className={`max-w-[80%] rounded-2xl px-4 py-2 ${
-                    message.role === 'user'
+                  className={`max-w-[80%] rounded-2xl px-4 py-2 ${message.role === 'user'
                       ? 'bg-blue-600 text-white rounded-br-md'
                       : 'bg-gray-100 dark:bg-gray-800 rounded-bl-md'
-                  }`}
+                    }`}
                 >
                   <div
                     className="text-sm whitespace-pre-wrap"
                     dangerouslySetInnerHTML={{
-                      __html: message.content
-                        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-                        .replace(/\n/g, '<br/>'),
+                      __html: DOMPurify.sanitize(
+                        message.content
+                          .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+                          .replace(/\n/g, '<br/>')
+                      ),
                     }}
                   />
+
 
                   {/* Actions */}
                   {message.metadata?.actions && (
@@ -726,11 +730,10 @@ export function InlineChat({ className = '' }: InlineChatProps) {
             className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
           >
             <div
-              className={`max-w-[80%] rounded-lg px-3 py-2 text-sm ${
-                message.role === 'user'
+              className={`max-w-[80%] rounded-lg px-3 py-2 text-sm ${message.role === 'user'
                   ? 'bg-blue-600 text-white'
                   : 'bg-gray-100 dark:bg-gray-800'
-              }`}
+                }`}
             >
               {message.content}
             </div>

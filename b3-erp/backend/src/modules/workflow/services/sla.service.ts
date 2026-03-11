@@ -1,4 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
+import { Cron, CronExpression } from '@nestjs/schedule';
+import { NotificationService } from './notification.service';
 
 export interface SLADefinition {
     id: string;
@@ -33,7 +35,9 @@ export class SLAService {
     private slaDefinitions: Map<string, SLADefinition> = new Map();
     private slaTracking: Map<string, SLATracking> = new Map();
 
-    constructor() {
+    constructor(
+        private readonly notificationService: NotificationService,
+    ) {
         this.initializeDefaultSLAs();
     }
 
@@ -181,5 +185,49 @@ export class SLAService {
         const percentElapsed = (elapsed / total) * 100;
 
         return sla.escalationRules.filter(rule => percentElapsed >= rule.triggerPercent);
+    }
+
+    @Cron(CronExpression.EVERY_HOUR)
+    async checkAllSLAs(): Promise<void> {
+        this.logger.log('Starting scheduled SLA check...');
+        const active = this.getAllActiveSLAs();
+
+        for (const tracking of active) {
+            const rules = this.checkEscalation(tracking.approvalId, tracking.stepNumber);
+
+            for (const rule of rules) {
+                await this.performEscalation(tracking, rule);
+            }
+        }
+    }
+
+    private async performEscalation(tracking: SLATracking, rule: EscalationRule): Promise<void> {
+        const key = `${tracking.approvalId}-${tracking.stepNumber}`;
+        this.logger.warn(`Executing escalation rule for ${key}: ${rule.action}`);
+
+        switch (rule.action) {
+            case 'notify':
+                // Notify roles or specific users
+                // For simplified demo, we notify a generic 'supervisor' for now
+                await this.notificationService.notifySLAApproaching(
+                    'supervisor-userId', // Should come from role lookup
+                    tracking.approvalId,
+                    'Workflow',
+                    tracking.remainingHours
+                );
+                break;
+            case 'escalate':
+                await this.notificationService.notifyEscalation(
+                    'supervisor-userId', // Should come from role lookup
+                    tracking.approvalId,
+                    'Workflow',
+                    'Original Approver'
+                );
+                break;
+            case 'auto-approve':
+                this.logger.log(`Auto-approving ${key} due to SLA rule`);
+                // This would call ApprovalService.processAction
+                break;
+        }
     }
 }

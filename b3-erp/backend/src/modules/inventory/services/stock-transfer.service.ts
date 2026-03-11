@@ -24,7 +24,7 @@ export class StockTransferService {
     @InjectRepository(StockTransferLine)
     private readonly stockTransferLineRepository: Repository<StockTransferLine>,
     private readonly dataSource: DataSource,
-  ) {}
+  ) { }
 
   async create(
     createDto: CreateStockTransferDto,
@@ -167,40 +167,44 @@ export class StockTransferService {
   }
 
   async dispatch(id: string): Promise<StockTransferResponseDto> {
-    const transfer = await this.stockTransferRepository.findOne({
-      where: { id },
-      relations: ['lines'],
+    return await this.dataSource.transaction(async (manager) => {
+      const transfer = await manager.findOne(StockTransfer, {
+        where: { id },
+        relations: ['lines'],
+      });
+
+      if (!transfer) {
+        throw new NotFoundException(`Stock transfer with ID ${id} not found`);
+      }
+
+      // Create dispatch stock entry and update quantities
+      transfer.status = TransferStatus.IN_TRANSIT;
+      transfer.dispatchedAt = new Date();
+      const saved = await manager.save(StockTransfer, transfer);
+
+      return this.findOne(saved.id);
     });
-
-    if (!transfer) {
-      throw new NotFoundException(`Stock transfer with ID ${id} not found`);
-    }
-
-    // Create dispatch stock entry and update quantities
-    transfer.status = TransferStatus.IN_TRANSIT;
-    transfer.dispatchedAt = new Date();
-    await this.stockTransferRepository.save(transfer);
-
-    return this.findOne(id);
   }
 
   async receive(id: string, receiveData: any): Promise<StockTransferResponseDto> {
-    const transfer = await this.stockTransferRepository.findOne({
-      where: { id },
-      relations: ['lines'],
+    return await this.dataSource.transaction(async (manager) => {
+      const transfer = await manager.findOne(StockTransfer, {
+        where: { id },
+        relations: ['lines'],
+      });
+
+      if (!transfer) {
+        throw new NotFoundException(`Stock transfer with ID ${id} not found`);
+      }
+
+      // Create receipt stock entry and update quantities
+      transfer.status = TransferStatus.RECEIVED;
+      transfer.receivedAt = new Date();
+      transfer.actualReceiptDate = new Date();
+      const saved = await manager.save(StockTransfer, transfer);
+
+      return this.findOne(saved.id);
     });
-
-    if (!transfer) {
-      throw new NotFoundException(`Stock transfer with ID ${id} not found`);
-    }
-
-    // Create receipt stock entry and update quantities
-    transfer.status = TransferStatus.RECEIVED;
-    transfer.receivedAt = new Date();
-    transfer.actualReceiptDate = new Date();
-    await this.stockTransferRepository.save(transfer);
-
-    return this.findOne(id);
   }
 
   async cancel(id: string): Promise<StockTransferResponseDto> {

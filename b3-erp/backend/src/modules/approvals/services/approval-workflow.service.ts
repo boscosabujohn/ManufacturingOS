@@ -14,6 +14,7 @@ import {
 } from '../entities';
 import { ApprovalChainService } from './approval-chain.service';
 import { CreateApprovalRequestDto } from '../dto/create-approval-request.dto';
+import { NotificationService } from '../../notifications/services/notification.service';
 
 @Injectable()
 export class ApprovalWorkflowService {
@@ -25,6 +26,7 @@ export class ApprovalWorkflowService {
         @InjectRepository(UserTask)
         private taskRepository: Repository<UserTask>,
         private chainService: ApprovalChainService,
+        private notificationService: NotificationService,
     ) { }
 
     /**
@@ -201,8 +203,14 @@ export class ApprovalWorkflowService {
         // Cancel all pending tasks for this request
         await this.cancelPendingTasks(requestId);
 
-        // TODO: Notify requester of rejection
-        // TODO: Update entity status (e.g., PO status = "rejected")
+        // Notify requester of rejection
+        await this.notificationService.notifyApprovalRejected(
+            request.requestedBy,
+            requestId,
+            approverId,
+            request.entityType,
+            reason,
+        ).catch(() => { /* fire-and-forget */ });
 
         const rejectedResult = await this.requestRepository.findOne({
             where: { id: requestId },
@@ -296,8 +304,13 @@ export class ApprovalWorkflowService {
             status: ApprovalStatus.APPROVED,
         });
 
-        // TODO: Update entity status (e.g., PO status = "approved")
-        // TODO: Notify requester of approval
+        // Notify requester of full approval
+        await this.notificationService.notifyApprovalApproved(
+            request.requestedBy,
+            request.id,
+            'System',
+            request.entityType,
+        ).catch(() => { /* fire-and-forget */ });
 
         const completedResult = await this.requestRepository.findOne({
             where: { id: request.id },

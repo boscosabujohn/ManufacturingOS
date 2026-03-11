@@ -1,8 +1,5 @@
-import { Injectable, BadRequestException } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { StockEntryLine } from '../entities/stock-entry.entity';
-import { StockBalance } from '../entities/stock-balance.entity';
+import { Injectable } from '@nestjs/common';
+import { PrismaService } from '../../prisma/prisma.service';
 
 export enum ValuationMethod {
     FIFO = 'FIFO',
@@ -13,25 +10,22 @@ export enum ValuationMethod {
 @Injectable()
 export class StockValuationService {
     constructor(
-        @InjectRepository(StockBalance)
-        private readonly stockBalanceRepository: Repository<StockBalance>,
-        @InjectRepository(StockEntryLine)
-        private readonly stockLineRepository: Repository<StockEntryLine>,
+        private readonly prisma: PrismaService,
     ) { }
 
     async calculateNewRate(
         itemId: string,
         warehouseId: string,
-        method: ValuationMethod,
+        method: string,
         incomingQty: number,
         incomingRate: number,
-        currentBalance: StockBalance
+        currentBalance: any
     ): Promise<{ valuationRate: number; stockValue: number }> {
         const currentQty = Number(currentBalance.availableQuantity);
         const currentRate = Number(currentBalance.valuationRate);
 
         // For Weighted Average, it's a simple blend
-        if (method === ValuationMethod.WEIGHTED_AVERAGE) {
+        if (method === ValuationMethod.WEIGHTED_AVERAGE || method === 'Weighted Average') {
             const totalQty = currentQty + incomingQty;
             if (totalQty === 0) return { valuationRate: incomingRate, stockValue: 0 };
 
@@ -45,7 +39,6 @@ export class StockValuationService {
         }
 
         // For FIFO/LIFO, we calculate the total value based on remaining layers
-        // and then update the valuationRate to the average of those layers for visibility.
         const layers = await this.getValuationLayers(itemId, warehouseId);
         layers.push({ quantity: incomingQty, rate: incomingRate });
 
@@ -63,10 +56,15 @@ export class StockValuationService {
         itemId: string,
         warehouseId: string,
         issueQty: number,
-        method: ValuationMethod
+        method: string
     ): Promise<{ totalValue: number; averageRate: number }> {
-        if (method === ValuationMethod.WEIGHTED_AVERAGE) {
-            const balance = await this.stockBalanceRepository.findOne({ where: { itemId, warehouseId } });
+        if (method === ValuationMethod.WEIGHTED_AVERAGE || method === 'Weighted Average') {
+            const balance = await this.prisma.stockBalance.findUnique({
+                where: { itemId_warehouseId_locationId: { itemId, warehouseId, locationId: '' } } // This might need adjustment based on unique constraints
+            }) || await this.prisma.stockBalance.findFirst({
+                where: { itemId, warehouseId }
+            });
+
             const rate = balance ? Number(balance.valuationRate) : 0;
             return {
                 totalValue: parseFloat((issueQty * rate).toFixed(2)),
@@ -76,7 +74,7 @@ export class StockValuationService {
 
         let layers = await this.getValuationLayers(itemId, warehouseId);
 
-        if (method === ValuationMethod.LIFO) {
+        if (method === ValuationMethod.LIFO || method === 'LIFO') {
             layers = layers.reverse();
         }
 
@@ -93,7 +91,9 @@ export class StockValuationService {
 
         if (remainingToIssue > 0) {
             // Fallback for overselling/negative stock
-            const balance = await this.stockBalanceRepository.findOne({ where: { itemId, warehouseId } });
+            const balance = await this.prisma.stockBalance.findFirst({
+                where: { itemId, warehouseId }
+            });
             const rate = balance ? Number(balance.valuationRate) : 0;
             totalValue += remainingToIssue * rate;
         }
@@ -105,23 +105,32 @@ export class StockValuationService {
     }
 
     private async getValuationLayers(itemId: string, warehouseId: string): Promise<{ quantity: number; rate: number }[]> {
-        const inLines = await this.stockLineRepository.createQueryBuilder('line')
-            .innerJoin('line.stockEntry', 'entry')
-            .where('line.itemId = :itemId', { itemId })
-            .andWhere('line.toLocationId LIKE :warehousePattern', { warehousePattern: `${warehouseId}%` })
-            .andWhere('entry.status = :status', { status: 'Posted' })
-            .andWhere('entry.movementDirection = :direction', { direction: 'In' })
-            .orderBy('entry.postingDate', 'ASC')
-            .addOrderBy('entry.postingTime', 'ASC')
-            .getMany();
+        const inLines = await this.prisma.stockEntryLine.findMany({
+            where: {
+                itemId,
+                toLocationId: { startsWith: warehouseId },
+                stockEntry: {
+                    status: 'Posted',
+                    movementDirection: 'IN'
+                }
+            },
+            include: { stockEntry: true },
+            orderBy: [
+                { stockEntry: { postingDate: 'asc' } },
+                { stockEntry: { postingTime: 'asc' } }
+            ]
+        });
 
-        const outLines = await this.stockLineRepository.createQueryBuilder('line')
-            .innerJoin('line.stockEntry', 'entry')
-            .where('line.itemId = :itemId', { itemId })
-            .andWhere('line.fromLocationId LIKE :warehousePattern', { warehousePattern: `${warehouseId}%` })
-            .andWhere('entry.status = :status', { status: 'Posted' })
-            .andWhere('entry.movementDirection = :direction', { direction: 'Out' })
-            .getMany();
+        const outLines = await this.prisma.stockEntryLine.findMany({
+            where: {
+                itemId,
+                fromLocationId: { startsWith: warehouseId },
+                stockEntry: {
+                    status: 'Posted',
+                    movementDirection: 'OUT'
+                }
+            }
+        });
 
         let totalOut = outLines.reduce((sum, line) => sum + Number(line.quantity), 0);
 

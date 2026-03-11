@@ -235,21 +235,219 @@ model Plant {
 }
 
 model Warehouse {
-  id        String   @id @default(uuid())
-  code      String
-  name      String
-  companyId String
-  company   Company  @relation(fields: [companyId], references: [id])
-  branchId  String?
-  branch    Branch?  @relation(fields: [branchId], references: [id])
-  address   String?
-  isActive  Boolean  @default(true)
+  id                 String           @id @default(uuid())
+  warehouseCode      String           @unique @map("code")
+  warehouseName      String           @map("name")
+  companyId          String
+  company            Company          @relation(fields: [companyId], references: [id])
+  branchId           String?
+  branch             Branch?          @relation(fields: [branchId], references: [id])
+  address            String?
+  isActive           Boolean          @default(true)
   
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  warehouseType      String           @default("Main Warehouse")
+  status             String           @default("Active")
+  addressLine1       String?
+  addressLine2       String?
+  city               String?
+  state              String?
+  postalCode         String?
+  country            String?
+  contactPerson      String?
+  phone              String?
+  email              String?
+  totalArea          Decimal?         @db.Decimal(15, 2)
+  areaUnit           String?
+  storageCapacity    Decimal?         @db.Decimal(15, 2)
+  capacityUnit       String?
+  currentUtilization Decimal?         @db.Decimal(5, 2)
+  parentWarehouseId  String?
+  managerId          String?
+  managerName        String?
+  allowNegativeStock Boolean          @default(true)
+  requiresBatchTracking Boolean       @default(false)
+  requiresSerialTracking Boolean      @default(false)
+  autoReplenishment  Boolean          @default(false)
+  temperatureMin     Decimal?         @db.Decimal(5, 2)
+  temperatureMax     Decimal?         @db.Decimal(5, 2)
+  humidityMin        Decimal?         @db.Decimal(5, 2)
+  humidityMax        Decimal?         @db.Decimal(5, 2)
+  description        String?
+  remarks            String?
+  workingHours       Json?
+  facilities         Json?
+  certifications     Json?
+  createdBy          String?
+  updatedBy          String?
 
-  @@unique([code, companyId])
+  createdAt          DateTime         @default(now())
+  updatedAt          DateTime         @updatedAt
+
+  @@unique([warehouseCode, companyId])
   @@map("core_warehouses")
+}
+
+// --- Inventory Models ---
+
+model StockBalance {
+  id                String   @id @default(uuid())
+  itemId            String
+  itemCode          String
+  itemName          String
+  itemCategory      String?
+  itemGroup         String?
+  warehouseId       String
+  warehouseName     String
+  locationId        String?
+  locationName      String?
+  batchId           String?
+  batchNumber       String?
+  serialNumberId    String?
+  serialNumber      String?
+  availableQuantity Decimal  @default(0) @db.Decimal(15, 4)
+  reservedQuantity  Decimal  @default(0) @db.Decimal(15, 4)
+  inQualityInspection Decimal @default(0) @db.Decimal(15, 4)
+  quarantineQuantity Decimal @default(0) @db.Decimal(15, 4)
+  damageQuantity    Decimal  @default(0) @db.Decimal(15, 4)
+  inTransitQuantity Decimal  @default(0) @db.Decimal(15, 4)
+  committedQuantity Decimal  @default(0) @db.Decimal(15, 4)
+  uom               String
+  totalQuantity     Decimal  @default(0) @db.Decimal(15, 4)
+  freeQuantity      Decimal  @default(0) @db.Decimal(15, 4)
+  valuationRate     Decimal  @default(0) @db.Decimal(15, 2)
+  stockValue        Decimal  @default(0) @db.Decimal(15, 2)
+  valuationMethod   String   @default("Weighted Average")
+  currency          String   @default("INR")
+  reorderLevel      Decimal? @db.Decimal(15, 4)
+  reorderQuantity   Decimal? @db.Decimal(15, 4)
+  minimumOrderQuantity Decimal? @db.Decimal(15, 4)
+  maximumOrderQuantity Decimal? @db.Decimal(15, 4)
+  safetyStock       Decimal? @db.Decimal(15, 4)
+  belowReorderLevel Boolean  @default(false)
+  firstReceiptDate  DateTime? @db.Date
+  lastReceiptDate   DateTime? @db.Date
+  lastIssueDate     DateTime? @db.Date
+  daysInStock       Int?
+  daysSinceLastMovement Int?
+  isSlowMoving      Boolean  @default(false)
+  isNonMoving       Boolean  @default(false)
+  isObsolete        Boolean  @default(false)
+  isExpired         Boolean  @default(false)
+  expiryDate        DateTime? @db.Date
+  abcClassification String?
+  velocityClassification String?
+  lastCycleCountDate String? 
+  nextCycleCountDate String? 
+  cycleCountFrequency Int     @default(0)
+  projectId         String?
+  projectName       String?
+  costCenterId      String?
+  costCenterName    String?
+  ownerId           String?
+  ownerName         String?
+  ownershipType     String   @default("Own Stock")
+  lastStockEntryId  String?
+  lastStockEntryNumber String?
+  lastUpdatedTime   DateTime?
+  updatedBy         String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@unique([itemId, warehouseId, locationId])
+  @@index([itemId, warehouseId, batchId])
+  @@index([itemId, warehouseId])
+  @@map("stock_balances")
+}
+
+model StockEntry {
+  id                String   @id @default(uuid())
+  entryNumber       String   @unique
+  entryType         String   
+  movementDirection String
+  postingDate       DateTime @db.Date
+  postingTime       DateTime
+  status            String   @default("Draft")
+  referenceType     String?
+  referenceId       String?
+  referenceNumber   String?
+  fromWarehouseId   String?
+  fromWarehouseName String?
+  toWarehouseId     String?
+  toWarehouseName   String?
+  supplierId        String?
+  supplierName      String?
+  customerId        String?
+  customerName      String?
+  isPosted          Boolean  @default(false)
+  postedAt          DateTime?
+  postedBy          String?
+  journalEntryId    String?
+  totalValue        Decimal  @default(0) @db.Decimal(15, 2)
+  currency          String   @default("INR")
+  additionalCosts   Decimal  @default(0) @db.Decimal(15, 2)
+  costBreakup       Json?
+  requiresApproval  Boolean  @default(false)
+  approvedBy        String?
+  approvedAt        DateTime?
+  requiresInspection Boolean @default(false)
+  inspectionId      String?
+  inspectionStatus  String?
+  projectId         String?
+  projectName       String?
+  costCenterId      String?
+  costCenterName    String?
+  vehicleNumber     String?
+  driverName        String?
+  lrNumber          String?
+  lrDate            DateTime? @db.Date
+  transporterName   String?
+  remarks           String?
+  attachments       Json?
+  createdBy         String?
+  updatedBy         String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  lines             StockEntryLine[]
+
+  @@map("stock_entries")
+}
+
+model StockEntryLine {
+  id                String   @id @default(uuid())
+  stockEntryId      String
+  stockEntry        StockEntry @relation(fields: [stockEntryId], references: [id], onDelete: Cascade)
+  lineNumber        Int
+  itemId            String
+  itemCode          String
+  itemName          String
+  description       String?
+  quantity          Decimal  @db.Decimal(15, 4)
+  uom               String
+  conversionFactor  Decimal? @db.Decimal(15, 4)
+  stockUom          String?
+  stockQuantity     Decimal? @db.Decimal(15, 4)
+  fromLocationId    String?
+  fromLocationName  String?
+  toLocationId      String?
+  toLocationName    String?
+  batchId           String?
+  batchNumber       String?
+  serialNumberId    String?
+  serialNumber      String?
+  rate              Decimal  @default(0) @db.Decimal(15, 2)
+  amount            Decimal  @default(0) @db.Decimal(15, 2)
+  valuationMethod   String?
+  acceptedQuantity  Decimal? @db.Decimal(15, 4)
+  rejectedQuantity  Decimal? @db.Decimal(15, 4)
+  qualityStatus     String?
+  glAccountId       String?
+  glAccountName     String?
+  sourceDocumentLineId String?
+  remarks           String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@map("stock_entry_lines")
 }
 
 model ExchangeRate {
@@ -14911,4 +15109,24 @@ model ITAdminModuleSettings {
   updatedAt           DateTime @updatedAt
 
   @@map("admin_module_settings")
+}
+
+// --- Notifications ---
+
+model Notification {
+  id        String   @id @default(uuid())
+  userId    String
+  type      String   // 'approval_assigned', 'approval_approved', etc.
+  title     String
+  message   String
+  metadata  Json?    // { approvalId, workflowName, etc. }
+  isRead    Boolean  @default(false)
+  priority  String   @default("info") // 'info', 'warning', 'urgent'
+  actionUrl String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+  @@index([isRead])
+  @@map("notifications")
 }

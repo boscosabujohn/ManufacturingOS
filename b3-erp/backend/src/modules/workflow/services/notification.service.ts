@@ -337,5 +337,97 @@ export class NotificationService {
       });
     }
   }
+  /**
+   * Helper methods for specific notification types
+   */
+  async notifyApprovalAssigned(
+    userId: string,
+    approvalId: string,
+    workflowName: string,
+    entityId: string,
+  ) {
+    return this.notifyUser({
+      userId,
+      title: 'New Approval Request',
+      message: `You have a new ${workflowName} approval request for ${entityId}`,
+      priority: 'high',
+      data: { approvalId, workflowName, entityId },
+    });
+  }
+
+  async notifyApprovalApproved(
+    userId: string,
+    approvalId: string,
+    approverName: string,
+    workflowName: string,
+  ) {
+    return this.notifyUser({
+      userId,
+      title: 'Approval Granted',
+      message: `${approverName} approved your ${workflowName} request`,
+      priority: 'normal',
+      data: { approvalId, approverName, workflowName },
+    });
+  }
+
+  async notifyApprovalRejected(
+    userId: string,
+    approvalId: string,
+    approverName: string,
+    workflowName: string,
+    reason: string,
+  ) {
+    return this.notifyUser({
+      userId,
+      title: 'Approval Rejected',
+      message: `${approverName} rejected your ${workflowName} request: ${reason}`,
+      priority: 'high',
+      data: { approvalId, approverName, workflowName, reason },
+    });
+  }
+
+  async notifySLAApproaching(
+    userId: string,
+    approvalId: string,
+    workflowName: string,
+    hoursRemaining: number,
+  ) {
+    return this.notifyUser({
+      userId,
+      title: 'SLA Deadline Approaching',
+      message: `${workflowName} approval due in ${hoursRemaining} hours`,
+      priority: 'high',
+      data: { approvalId, workflowName, hoursRemaining },
+    });
+  }
+
+  async notifySLABreached(
+    userId: string,
+    approvalId: string,
+    workflowName: string,
+  ) {
+    return this.notifyUser({
+      userId,
+      title: 'SLA Deadline Breached',
+      message: `${workflowName} approval is overdue`,
+      priority: 'urgent',
+      data: { approvalId, workflowName },
+    });
+  }
+
+  async notifyEscalation(
+    userId: string,
+    approvalId: string,
+    workflowName: string,
+    originalApprover: string,
+  ) {
+    return this.notifyUser({
+      userId,
+      title: 'Approval Escalated to You',
+      message: `${workflowName} escalated from ${originalApprover} due to SLA breach`,
+      priority: 'urgent',
+      data: { approvalId, workflowName, originalApprover },
+    });
+  }
 }
 

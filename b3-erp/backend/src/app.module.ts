@@ -1,13 +1,22 @@
-import { Module } from '@nestjs/common';
+import { Module, MiddlewareConsumer, RequestMethod } from '@nestjs/common';
+import { APP_GUARD } from '@nestjs/core';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { BullModule } from '@nestjs/bull';
+import { ThrottlerModule } from '@nestjs/throttler';
+import { rateLimitConfig, CustomThrottlerGuard } from './common/security/rate-limit.config';
+import { AuditLogger } from './common/logging/audit-logger.service';
+import { CorrelationIdMiddleware } from './common/middleware/correlation-id.middleware';
+
+import { CacheModule } from '@nestjs/cache-manager';
+import { cacheConfigFactory } from './common/cache/cache.config';
 
 // Modules
 import { AccountsModule } from './modules/accounts/accounts.module';
 import { AfterSalesServiceModule } from './modules/after-sales-service/after-sales-service.module';
 import { ApprovalsModule } from './modules/approvals/approvals.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { HealthModule } from './modules/health/health.module';
 import { CommonMastersModule } from './modules/common-masters/common-masters.module';
 import { CoreModule } from './modules/core/core.module';
 import { CPQModule } from './modules/cpq/cpq.module';
@@ -18,6 +27,7 @@ import { HrModule } from './modules/hr/hr.module';
 import { InventoryModule } from './modules/inventory/inventory.module';
 import { ItAdminModule } from './modules/it-admin/it-admin.module';
 import { LogisticsModule } from './modules/logistics/logistics.module';
+import { NotificationsModule } from './modules/notifications/notifications.module';
 import { PrismaModule } from './modules/prisma/prisma.module';
 import { ProcurementModule } from './modules/procurement/procurement.module';
 import { ProductionModule } from './modules/production/production.module';
@@ -28,7 +38,6 @@ import { SalesModule } from './modules/sales/sales.module';
 import { SupportModule } from './modules/support/support.module';
 import { WorkflowModule } from './modules/workflow/workflow.module';
 
-
 @Module({
   imports: [
     // Configuration
@@ -37,7 +46,18 @@ import { WorkflowModule } from './modules/workflow/workflow.module';
       envFilePath: '.env',
     }),
 
-    // Database - Now enabled with comprehensive entities
+    // Rate Limiting
+    ThrottlerModule.forRoot(rateLimitConfig),
+
+    // Caching
+    CacheModule.registerAsync({
+      isGlobal: true,
+      imports: [ConfigModule],
+      useFactory: cacheConfigFactory,
+      inject: [ConfigService],
+    }),
+
+    // Database
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => {
@@ -49,7 +69,7 @@ import { WorkflowModule } from './modules/workflow/workflow.module';
             entities: [__dirname + '/**/*.entity{.ts,.js}'],
             synchronize: configService.get('DB_SYNCHRONIZE') === 'true',
             logging: configService.get('DB_LOGGING') === 'true',
-            ssl: { rejectUnauthorized: false }, // Neon requires SSL
+            ssl: { rejectUnauthorized: false },
           };
         }
         return {
@@ -60,7 +80,7 @@ import { WorkflowModule } from './modules/workflow/workflow.module';
           password: configService.get('DB_PASSWORD', 'postgres'),
           database: configService.get('DB_DATABASE', 'manufacturing_erp'),
           entities: [__dirname + '/**/*.entity{.ts,.js}'],
-          synchronize: true,
+          synchronize: configService.get('DB_SYNCHRONIZE') === 'true',
           logging: configService.get('DB_LOGGING') === 'true',
           ssl: configService.get('DB_SSL') === 'true' ? { rejectUnauthorized: false } : false,
         };
@@ -68,7 +88,7 @@ import { WorkflowModule } from './modules/workflow/workflow.module';
       inject: [ConfigService],
     }),
 
-    // Bull Queue - For async job processing
+    // Bull Queue
     BullModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
@@ -80,30 +100,45 @@ import { WorkflowModule } from './modules/workflow/workflow.module';
       inject: [ConfigService],
     }),
 
-    // Application Modules - Comprehensive Manufacturing ERP
-    CoreModule, // Customer, Vendor, Item, UOM, Category masters
+    // Application Modules
+    CoreModule,
     AccountsModule,
-    CrmModule, // Lead & Interaction management
-    CPQModule, // Configure, Price, Quote
-    SalesModule, // RFP, Quotes, Orders
-    AfterSalesServiceModule, // Service requests, contracts, warranties
-    EstimationModule, // Cost estimation & quotations
-    InventoryModule, // Stock management, warehousing, transfers
-    ProductionModule, // BOM, Work Orders, Shop Floor Control
-    ProcurementModule, // Purchase Orders, RFQ, Goods Receipt
-    FinanceModule, // GL, Journal Entries, Invoices, Payments
-    HrModule, // Employee, Payroll, Leave, Attendance
-    QualityModule, // QC, Inspections, NCR, CAPA
-    WorkflowModule, // Approval workflows
-    ApprovalsModule, // Multi-level approval system
-    ReportsModule, // Comprehensive reporting
-    LogisticsModule, // Shipment, Fleet, Route management
-    SupportModule, // Customer support
-    ItAdminModule, // User, Role, Permission, Audit management
-    ProjectManagementModule, // Project tracking, documents, handover
+    CrmModule,
+    CPQModule,
+    SalesModule,
+    AfterSalesServiceModule,
+    EstimationModule,
+    InventoryModule,
+    HealthModule,
+    ProductionModule,
+    ProcurementModule,
+    FinanceModule,
+    HrModule,
+    QualityModule,
+    WorkflowModule,
+    ApprovalsModule,
+    ReportsModule,
+    LogisticsModule,
+    NotificationsModule,
+    SupportModule,
+    ItAdminModule,
+    ProjectManagementModule,
     AuthModule,
     PrismaModule,
     CommonMastersModule,
   ],
+  providers: [
+    {
+      provide: APP_GUARD,
+      useClass: CustomThrottlerGuard,
+    },
+    AuditLogger,
+  ],
 })
-export class AppModule { }
+export class AppModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(CorrelationIdMiddleware)
+      .forRoutes({ path: '*', method: RequestMethod.ALL });
+  }
+}

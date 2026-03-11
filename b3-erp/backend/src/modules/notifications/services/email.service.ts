@@ -1,12 +1,14 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import * as nodemailer from 'nodemailer';
-import { Notification } from '../entities/notification.entity';
+import { Notification as PrismaNotification } from '@prisma/client';
+import { UserService } from '../../it-admin/services/user.service';
 
 @Injectable()
 export class EmailService {
     private transporter: nodemailer.Transporter;
+    private readonly logger = new Logger(EmailService.name);
 
-    constructor() {
+    constructor(private readonly userService: UserService) {
         // Configure email transporter
         this.transporter = nodemailer.createTransport({
             host: process.env.SMTP_HOST || 'smtp.gmail.com',
@@ -22,12 +24,11 @@ export class EmailService {
     /**
      * Send notification email
      */
-    async sendNotificationEmail(notification: Notification): Promise<boolean> {
+    async sendNotificationEmail(notification: PrismaNotification): Promise<boolean> {
         try {
-            // TODO: Fetch user email from user service
             const userEmail = await this.getUserEmail(notification.userId);
             if (!userEmail) {
-                console.warn(`No email found for user ${notification.userId}`);
+                this.logger.warn(`No email found for user ${notification.userId}`);
                 return false;
             }
 
@@ -40,10 +41,10 @@ export class EmailService {
                 html: htmlContent,
             });
 
-            console.log(`✅ Email sent to ${userEmail} for notification ${notification.id}`);
+            this.logger.log(`✅ Email sent to ${userEmail} for notification ${notification.id}`);
             return true;
         } catch (error) {
-            console.error('❌ Failed to send email:', error);
+            this.logger.error('❌ Failed to send email:', error);
             return false;
         }
     }
@@ -51,7 +52,7 @@ export class EmailService {
     /**
      * Send daily digest email
      */
-    async sendDailyDigest(userId: string, notifications: Notification[]): Promise<boolean> {
+    async sendDailyDigest(userId: string, notifications: PrismaNotification[]): Promise<boolean> {
         try {
             const userEmail = await this.getUserEmail(userId);
             if (!userEmail || notifications.length === 0) {
@@ -67,10 +68,10 @@ export class EmailService {
                 html: htmlContent,
             });
 
-            console.log(`✅ Daily digest sent to ${userEmail}`);
+            this.logger.log(`✅ Daily digest sent to ${userEmail}`);
             return true;
         } catch (error) {
-            console.error('❌ Failed to send daily digest:', error);
+            this.logger.error('❌ Failed to send daily digest:', error);
             return false;
         }
     }
@@ -78,7 +79,7 @@ export class EmailService {
     /**
      * Generate HTML email template
      */
-    private generateEmailTemplate(notification: Notification): string {
+    private generateEmailTemplate(notification: PrismaNotification): string {
         const priorityColors: Record<string, string> = {
             info: '#3b82f6',
             warning: '#f59e0b',
@@ -122,7 +123,7 @@ export class EmailService {
     /**
      * Generate daily digest template
      */
-    private generateDigestTemplate(notifications: Notification[]): string {
+    private generateDigestTemplate(notifications: PrismaNotification[]): string {
         const notificationItems = notifications
             .map(
                 (n) => `
@@ -164,11 +165,15 @@ export class EmailService {
     }
 
     /**
-     * Get user email (placeholder - integrate with user service)
+     * Get user email by ID
      */
     private async getUserEmail(userId: string): Promise<string | null> {
-        // TODO: Integrate with user service
-        // For now, return a placeholder
-        return `user${userId}@company.com`;
+        try {
+            const user = await this.userService.findOne(userId);
+            return user?.email || null;
+        } catch (error) {
+            this.logger.warn(`Failed to fetch email for user ${userId}: ${error.message}`);
+            return null;
+        }
     }
 }

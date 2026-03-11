@@ -2,9 +2,7 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { StockBalance } from '../entities/stock-balance.entity';
+import { PrismaService } from '../../prisma/prisma.service';
 import {
   CreateStockBalanceDto,
   UpdateStockBalanceDto,
@@ -15,50 +13,51 @@ import { EventBusService } from '../../workflow/services/event-bus.service';
 @Injectable()
 export class StockBalanceService {
   constructor(
-    @InjectRepository(StockBalance)
-    private readonly stockBalanceRepository: Repository<StockBalance>,
+    private readonly prisma: PrismaService,
     private readonly eventBus: EventBusService,
-  ) {}
+  ) { }
 
   async create(createDto: CreateStockBalanceDto): Promise<StockBalanceResponseDto> {
-    const balance = this.stockBalanceRepository.create({
-      ...createDto,
-      totalQuantity: createDto.availableQuantity,
-      freeQuantity: createDto.availableQuantity,
-      reservedQuantity: 0,
-      stockValue: createDto.availableQuantity * (createDto.valuationRate || 0),
+    const totalQuantity = Number(createDto.availableQuantity);
+    const balance = await this.prisma.stockBalance.create({
+      data: {
+        ...createDto,
+        availableQuantity: totalQuantity,
+        totalQuantity: totalQuantity,
+        freeQuantity: totalQuantity,
+        reservedQuantity: 0,
+        stockValue: totalQuantity * (createDto.valuationRate || 0),
+        lastUpdatedTime: new Date(),
+      } as any,
     });
 
-    const saved = await this.stockBalanceRepository.save(balance);
-    return this.mapToResponseDto(saved);
+    return this.mapToResponseDto(balance);
   }
 
   async findAll(filters?: any): Promise<StockBalanceResponseDto[]> {
-    const query = this.stockBalanceRepository.createQueryBuilder('balance');
+    const where: any = {};
 
     if (filters?.itemId) {
-      query.andWhere('balance.itemId = :itemId', { itemId: filters.itemId });
+      where.itemId = filters.itemId;
     }
 
     if (filters?.warehouseId) {
-      query.andWhere('balance.warehouseId = :warehouseId', {
-        warehouseId: filters.warehouseId,
-      });
+      where.warehouseId = filters.warehouseId;
     }
 
     if (filters?.locationId) {
-      query.andWhere('balance.locationId = :locationId', {
-        locationId: filters.locationId,
-      });
+      where.locationId = filters.locationId;
     }
 
-    query.orderBy('balance.itemCode', 'ASC');
-    const balances = await query.getMany();
+    const balances = await this.prisma.stockBalance.findMany({
+      where,
+      orderBy: { itemCode: 'asc' },
+    });
     return balances.map((b) => this.mapToResponseDto(b));
   }
 
   async getRealTimeBalance(itemId: string, warehouseId: string): Promise<any> {
-    const balances = await this.stockBalanceRepository.find({
+    const balances = await this.prisma.stockBalance.findMany({
       where: { itemId, warehouseId },
     });
 
@@ -89,13 +88,12 @@ export class StockBalanceService {
   }
 
   async getAgingReport(warehouseId?: string): Promise<any> {
-    const query = this.stockBalanceRepository.createQueryBuilder('balance');
-
+    const where: any = {};
     if (warehouseId) {
-      query.where('balance.warehouseId = :warehouseId', { warehouseId });
+      where.warehouseId = warehouseId;
     }
 
-    const balances = await query.getMany();
+    const balances = await this.prisma.stockBalance.findMany({ where });
 
     return {
       reportDate: new Date(),
@@ -111,13 +109,12 @@ export class StockBalanceService {
   }
 
   async getABCAnalysis(warehouseId?: string): Promise<any> {
-    const query = this.stockBalanceRepository.createQueryBuilder('balance');
-
+    const where: any = {};
     if (warehouseId) {
-      query.where('balance.warehouseId = :warehouseId', { warehouseId });
+      where.warehouseId = warehouseId;
     }
 
-    const balances = await query.getMany();
+    const balances = await this.prisma.stockBalance.findMany({ where });
 
     return {
       reportDate: new Date(),
@@ -129,14 +126,13 @@ export class StockBalanceService {
   }
 
   async getValuationReport(warehouseId?: string, asOfDate?: string): Promise<any> {
-    const query = this.stockBalanceRepository.createQueryBuilder('balance');
-
+    const where: any = {};
     if (warehouseId) {
-      query.where('balance.warehouseId = :warehouseId', { warehouseId });
+      where.warehouseId = warehouseId;
     }
 
-    const balances = await query.getMany();
-    const totalValue = balances.reduce((sum, b) => sum + Number(b.stockValue), 0);
+    const balances = await this.prisma.stockBalance.findMany({ where });
+    const totalValue = balances.reduce((sum: number, b: any) => sum + (Number(b.stockValue) || 0), 0);
 
     return {
       reportDate: asOfDate || new Date(),
@@ -148,35 +144,31 @@ export class StockBalanceService {
   }
 
   async getReorderAnalysis(warehouseId?: string): Promise<any> {
-    const query = this.stockBalanceRepository.createQueryBuilder('balance');
-
-    query.where('balance.belowReorderLevel = :belowReorder', {
-      belowReorder: true,
-    });
+    const where: any = {
+      isBelowReorderLevel: true, // Assuming this is the field name in Prisma
+    };
 
     if (warehouseId) {
-      query.andWhere('balance.warehouseId = :warehouseId', { warehouseId });
+      where.warehouseId = warehouseId;
     }
 
-    const balances = await query.getMany();
+    const balances = await this.prisma.stockBalance.findMany({ where });
 
     return {
-      reportDate: new Date(),
-      warehouseId,
-      itemsBelowReorder: balances.map((b) => ({
+      asOf: new Date(),
+      itemCount: balances.length,
+      itemsBelowReorder: balances.map((b: any) => ({
         itemId: b.itemId,
         itemCode: b.itemCode,
         itemName: b.itemName,
-        currentQuantity: b.availableQuantity,
+        available: b.availableQuantity,
         reorderLevel: b.reorderLevel,
-        reorderQuantity: b.reorderQuantity,
-        shortage: Number(b.reorderLevel) - Number(b.availableQuantity),
       })),
     };
   }
 
   async findOne(id: string): Promise<StockBalanceResponseDto> {
-    const balance = await this.stockBalanceRepository.findOne({
+    const balance = await this.prisma.stockBalance.findUnique({
       where: { id },
     });
 
@@ -191,16 +183,13 @@ export class StockBalanceService {
     id: string,
     updateDto: UpdateStockBalanceDto,
   ): Promise<StockBalanceResponseDto> {
-    const balance = await this.stockBalanceRepository.findOne({
+    const updated = await this.prisma.stockBalance.update({
       where: { id },
+      data: {
+        ...updateDto,
+        lastUpdatedTime: new Date(),
+      } as any,
     });
-
-    if (!balance) {
-      throw new NotFoundException(`Stock balance with ID ${id} not found`);
-    }
-
-    Object.assign(balance, updateDto);
-    const updated = await this.stockBalanceRepository.save(balance);
 
     // Check if stock is below reorder level and emit event
     await this.checkAndEmitStockEvents(updated);
@@ -211,7 +200,7 @@ export class StockBalanceService {
   /**
    * Check stock levels and emit appropriate events
    */
-  private async checkAndEmitStockEvents(balance: StockBalance): Promise<void> {
+  private async checkAndEmitStockEvents(balance: any): Promise<void> {
     const availableQty = Number(balance.availableQuantity);
     const reorderLevel = Number(balance.reorderLevel || 0);
 
@@ -259,33 +248,130 @@ export class StockBalanceService {
     adjustedBy: string,
     reason?: string,
   ): Promise<void> {
-    const balance = await this.stockBalanceRepository.findOne({
-      where: { itemId, warehouseId },
+    await this.prisma.$transaction(async (tx) => {
+      // Pessimistic Locking with Raw SQL
+      const balances: any[] = await tx.$queryRaw`
+        SELECT * FROM "stock_balances" 
+        WHERE "itemId" = ${itemId} AND "warehouseId" = ${warehouseId} 
+        FOR UPDATE
+      `;
+
+      if (balances.length > 0) {
+        const balance = balances[0];
+        const newAvailable = Number(balance.availableQuantity) + quantityChange;
+        const newTotal = Number(balance.totalQuantity) + quantityChange;
+        const newFree = Number(balance.freeQuantity) + quantityChange;
+
+        const updated = await tx.stockBalance.update({
+          where: { id: balance.id },
+          data: {
+            availableQuantity: newAvailable,
+            totalQuantity: newTotal,
+            freeQuantity: newFree,
+            lastUpdatedTime: new Date(),
+            updatedBy: adjustedBy,
+          },
+        });
+
+        await this.checkAndEmitStockEvents(updated);
+      }
     });
+  }
 
-    if (balance) {
-      balance.availableQuantity = Number(balance.availableQuantity) + quantityChange;
-      balance.totalQuantity = Number(balance.totalQuantity) + quantityChange;
-      balance.freeQuantity = Number(balance.freeQuantity) + quantityChange;
+  /**
+   * Reserve stock for a specific requirement
+   */
+  async reserveStock(
+    itemId: string,
+    warehouseId: string,
+    quantity: number,
+    userId: string,
+  ): Promise<{ success: boolean; shortage: number }> {
+    return await this.prisma.$transaction(async (tx) => {
+      // Pessimistic Locking
+      const balances: any[] = await tx.$queryRaw`
+        SELECT * FROM "stock_balances" 
+        WHERE "itemId" = ${itemId} AND "warehouseId" = ${warehouseId} 
+        FOR UPDATE
+      `;
 
-      const updated = await this.stockBalanceRepository.save(balance);
-      await this.checkAndEmitStockEvents(updated);
-    }
+      if (balances.length === 0) {
+        return { success: false, shortage: quantity };
+      }
+
+      const balance = balances[0];
+      const freeQty = Number(balance.freeQuantity);
+
+      if (freeQty < quantity) {
+        const shortage = quantity - freeQty;
+        // Reserve what is available
+        if (freeQty > 0) {
+          await tx.stockBalance.update({
+            where: { id: balance.id },
+            data: {
+              reservedQuantity: Number(balance.reservedQuantity) + freeQty,
+              freeQuantity: 0,
+              lastUpdatedTime: new Date(),
+              updatedBy: userId,
+            },
+          });
+        }
+        return { success: false, shortage };
+      }
+
+      await tx.stockBalance.update({
+        where: { id: balance.id },
+        data: {
+          reservedQuantity: Number(balance.reservedQuantity) + quantity,
+          freeQuantity: Number(balance.freeQuantity) - quantity,
+          lastUpdatedTime: new Date(),
+          updatedBy: userId,
+        },
+      });
+
+      return { success: true, shortage: 0 };
+    });
+  }
+
+  /**
+   * Release reserved stock
+   */
+  async releaseStock(
+    itemId: string,
+    warehouseId: string,
+    quantity: number,
+  ): Promise<void> {
+    await this.prisma.$transaction(async (tx) => {
+      // Pessimistic Locking
+      const balances: any[] = await tx.$queryRaw`
+        SELECT * FROM "stock_balances" 
+        WHERE "itemId" = ${itemId} AND "warehouseId" = ${warehouseId} 
+        FOR UPDATE
+      `;
+
+      if (balances.length > 0) {
+        const balance = balances[0];
+        const releaseQty = Math.min(Number(balance.reservedQuantity), quantity);
+
+        await tx.stockBalance.update({
+          where: { id: balance.id },
+          data: {
+            reservedQuantity: Number(balance.reservedQuantity) - releaseQty,
+            freeQuantity: Number(balance.freeQuantity) + releaseQty,
+            lastUpdatedTime: new Date(),
+          },
+        });
+      }
+    });
   }
 
   async remove(id: string): Promise<void> {
-    const balance = await this.stockBalanceRepository.findOne({
+    await this.prisma.stockBalance.delete({
       where: { id },
     });
-
-    if (!balance) {
-      throw new NotFoundException(`Stock balance with ID ${id} not found`);
-    }
-
-    await this.stockBalanceRepository.remove(balance);
   }
 
-  private mapToResponseDto(balance: StockBalance): StockBalanceResponseDto {
+  private mapToResponseDto(balance: any): StockBalanceResponseDto {
     return {
       ...balance,
     } as StockBalanceResponseDto;
