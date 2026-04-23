@@ -1,0 +1,10 @@
+{
+  "name": "manufacturing-os-root",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "cd b3-erp && pnpm run dev",
+    "start": "cd b3-erp && pnpm run start",
+    "build": "cd b3-erp && pnpm run build"
+  }
+}

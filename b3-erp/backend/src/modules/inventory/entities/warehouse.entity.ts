@@ -25,7 +25,7 @@ export enum WarehouseStatus {
   CLOSED = 'Closed',
 }
 
-@Entity('warehouses')
+@Entity('core_warehouses')
 export class Warehouse {
   @PrimaryGeneratedColumn('uuid')
   id: string;

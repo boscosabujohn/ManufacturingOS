@@ -2,6 +2,8 @@ import { Module, forwardRef } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { WorkflowModule } from '../workflow/workflow.module';
 import { PrismaModule } from '../prisma/prisma.module';
+import { AuditLogger } from '../../common/logging/audit-logger.service';
+import { NotificationsModule } from '../notifications/notifications.module';
 
 // Entities
 import {
@@ -59,6 +61,10 @@ import { VEDAnalysisService } from './services/ved-analysis.service';
 @Module({
   imports: [
     TypeOrmModule.forFeature([
+      Warehouse,
+      StockEntry,
+      StockEntryLine,
+      StockBalance,
       StockLocation,
       StockTransfer,
       StockTransferLine,
@@ -72,6 +78,7 @@ import { VEDAnalysisService } from './services/ved-analysis.service';
     ]),
     forwardRef(() => WorkflowModule),
     PrismaModule,
+    NotificationsModule,
   ],
   controllers: [
     WarehouseController,
@@ -103,6 +110,7 @@ import { VEDAnalysisService } from './services/ved-analysis.service';
     StockValuationService,
     InventoryAnalyticsService,
     CycleCountService,
+    AuditLogger,
   ],
   exports: [
     WarehouseService,

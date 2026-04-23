@@ -23,6 +23,9 @@ export class Company {
     @Column({ default: 'INR', length: 3 })
     baseCurrency: string;
 
+    @Column({ name: 'baseCurrencyId', nullable: true, length: 10 })
+    baseCurrencyId: string;
+
     @Column({ type: 'date', nullable: true })
     fiscalYearStart: Date | null;
 

@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, forwardRef } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { WorkflowModule } from '../workflow/workflow.module';
 
@@ -73,7 +73,7 @@ import {
       NCR,
       DefectCode,
     ]),
-    WorkflowModule,
+    forwardRef(() => WorkflowModule),
   ],
   controllers: [
     QCTemplateController,

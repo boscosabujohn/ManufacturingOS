@@ -14,6 +14,6 @@ import { ItAdminModule } from '../it-admin/it-admin.module';
     ],
     controllers: [NotificationsController],
     providers: [NotificationService, EmailService],
-    exports: [NotificationService],
+    exports: [NotificationService, EmailService],
 })
 export class NotificationsModule { }
