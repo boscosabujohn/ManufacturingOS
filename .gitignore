@@ -64,6 +64,14 @@ backend/.env
 **/backend/dist/
 **/backend/node_modules/
 
+# Python
+backend/.venv/
+**/.venv/
+**/__pycache__/
+**/*.pyc
+.pytest_cache/
+.mypy_cache/
+
 # Package manager files
 package-lock.json
 yarn.lock
