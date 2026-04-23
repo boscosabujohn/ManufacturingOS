@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'optiforge.platform.reporting',
     'optiforge.platform.documents',
     'optiforge.platform.integration',
+    'optiforge.platform.api_gateway',
     'optiforge.core.sales',
 ]
 
