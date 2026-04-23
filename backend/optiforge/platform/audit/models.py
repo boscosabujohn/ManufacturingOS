@@ -2,6 +2,7 @@ import uuid
 import hashlib
 import json
 from django.db import models
+from django.db.models import Q
 from django.utils import timezone
 
 
@@ -28,10 +29,19 @@ class AuditRecord(models.Model):
     previous_hash = models.CharField(max_length=64, blank=True, default='')
     this_hash = models.CharField(max_length=64)
 
+    is_archived = models.BooleanField(default=False, db_index=True,
+                                      help_text="Moved to archive tier after 5 years online")
+
     class Meta:
         ordering = ['timestamp']
         indexes = [
             models.Index(fields=['entity_type', 'entity_id', 'timestamp']),
+            models.Index(fields=['tenant_id', 'is_archived']),
+            models.Index(
+                fields=['tenant_id'],
+                name='audit_nullreason_idx',
+                condition=Q(reason_for_change=''),
+            ),
         ]
 
     def __str__(self):
@@ -92,6 +102,14 @@ class AuditRecord(models.Model):
         return record
 
     @classmethod
+    def active_online(cls, tenant_id=None):
+        """Rows still in the online tier (is_archived=False)."""
+        qs = cls.objects.filter(is_archived=False)
+        if tenant_id:
+            qs = qs.filter(tenant_id=tenant_id)
+        return qs
+
+    @classmethod
     def verify_chain(cls, entity_type, entity_id):
         """
         Verify the hash chain for a given entity. Returns (is_valid, broken_record_id).
@@ -111,3 +129,37 @@ class AuditRecord(models.Model):
             previous_hash = record.this_hash
 
         return True, None
+
+
+class AuditReaderGrant(models.Model):
+    """
+    Explicit grant of the audit-reader role to a user, per tenant. This is
+    distinct from tenant_admin: tenant admins do not read audit logs by
+    default.
+    """
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    tenant_id = models.UUIDField(db_index=True)
+    user = models.ForeignKey(
+        'auth.User', on_delete=models.CASCADE, related_name='audit_grants',
+    )
+    granted_by = models.UUIDField(null=True, blank=True)
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('tenant_id', 'user')
+
+
+class AuditArchive(models.Model):
+    """
+    Pointer row for an archived batch of audit records. The archive payload
+    is a JSON blob suitable for export to S3/Glacier. In Phase 2 we keep the
+    payload inline; swapping in a storage_key column is a one-liner.
+    """
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    tenant_id = models.UUIDField(db_index=True, null=True, blank=True)
+    record_count = models.IntegerField()
+    from_timestamp = models.DateTimeField()
+    to_timestamp = models.DateTimeField()
+    payload = models.JSONField()
+    created_at = models.DateTimeField(auto_now_add=True)
