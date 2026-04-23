@@ -49,7 +49,9 @@ class _StepHandlerRegistry:
             return None
         pack_id, handler = entry
         try:
-            return handler(step_id=step_id, step_type=step_type, context=context)
+            from optiforge.platform.extensions.context import pack_caller
+            with pack_caller(pack_id):
+                return handler(step_id=step_id, step_type=step_type, context=context)
         except Exception as exc:
             logger.error(
                 "[WorkflowRegistry] step handler failed: pack=%s step=%s type=%s err=%s",

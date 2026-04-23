@@ -61,7 +61,9 @@ class EventBus:
 
             for attempt in range(1, self.max_retries + 1):
                 try:
-                    result = handler(event_type, payload, tenant_id)
+                    from optiforge.platform.extensions.context import pack_caller
+                    with pack_caller(pack_id):
+                        result = handler(event_type, payload, tenant_id)
                     results[pack_id] = {'status': 'delivered', 'result': result, 'attempts': attempt}
                     self._subscriber_status[pack_id]['delivered'] += 1
                     self._subscriber_status[pack_id]['last_event_id'] = event_id
