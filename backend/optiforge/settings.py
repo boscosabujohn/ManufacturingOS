@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'optiforge.platform.audit',
     'optiforge.platform.extensions',
     'optiforge.platform.events',
+    'optiforge.platform.workflow',
     'optiforge.core.sales',
 ]
 
