@@ -1,0 +1,13 @@
+[importlinter]
+root_packages =
+    fixture.platform
+    fixture.core
+    fixture.packs
+
+[importlinter:contract:architecture]
+name = Fixture Five-Layer Architecture
+type = layers
+layers =
+    fixture.packs
+    fixture.core
+    fixture.platform
