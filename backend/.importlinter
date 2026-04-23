@@ -1,0 +1,17 @@
+[importlinter]
+root_packages =
+    platform
+    core
+    modes
+    compliance
+    packs
+
+[importlinter:contract:architecture]
+name = Five-Layer Architecture Contract
+type = layers
+layers =
+    packs
+    compliance
+    modes
+    core
+    platform
