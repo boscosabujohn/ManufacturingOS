@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'optiforge.platform.events',
     'optiforge.platform.workflow',
     'optiforge.platform.notifications',
+    'optiforge.platform.reporting',
     'optiforge.core.sales',
 ]
 
