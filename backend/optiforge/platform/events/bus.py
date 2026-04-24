@@ -1,11 +1,17 @@
 """
 Hardened event bus with DLQ, retry, replay, and per-subscriber status tracking.
-Phase 2 upgrade from the Phase 1 in-process stub.
+
+The actual delivery of `(event, payload, tenant_id) → handler` is delegated
+to a pluggable Publisher (see publishers.py). Phase 6 introduces this
+indirection so production can swap in a Celery publisher without touching
+callers; tests + dev keep the synchronous InProcessPublisher.
 """
 import logging
 import uuid
 from collections import defaultdict
 from datetime import datetime, timezone
+
+from .publishers import InProcessPublisher, Publisher
 
 logger = logging.getLogger(__name__)
 
@@ -32,15 +38,27 @@ class DeadLetterEntry:
 
 class EventBus:
     """
-    Production-grade in-process event bus (Phase 2).
+    Production-grade event bus.
     Features: at-least-once delivery, DLQ, replay, per-subscriber status.
+    Delivery is delegated to a pluggable Publisher.
     """
-    def __init__(self, max_retries=3):
+    def __init__(self, max_retries=3, publisher=None):
         self._subscribers = defaultdict(list)
         self._dlq = []
         self._event_log = []  # Ordered list of (event_id, event_type, payload, tenant_id, timestamp)
         self._subscriber_status = defaultdict(lambda: {'delivered': 0, 'failed': 0, 'last_event_id': None})
         self.max_retries = max_retries
+        self._publisher = publisher or InProcessPublisher()
+
+    @property
+    def publisher(self):
+        return self._publisher
+
+    def set_publisher(self, publisher):
+        """Swap publisher at runtime — used to flip from in-process to Celery."""
+        if not isinstance(publisher, Publisher):
+            raise TypeError("publisher must implement the Publisher interface")
+        self._publisher = publisher
 
     def subscribe(self, event_type, pack_id, handler):
         self._subscribers[event_type].append((pack_id, handler))
@@ -61,9 +79,10 @@ class EventBus:
 
             for attempt in range(1, self.max_retries + 1):
                 try:
-                    from optiforge.platform.extensions.context import pack_caller
-                    with pack_caller(pack_id):
-                        result = handler(event_type, payload, tenant_id)
+                    result = self._publisher.dispatch(
+                        event_id=event_id, event_type=event_type, payload=payload,
+                        tenant_id=tenant_id, pack_id=pack_id, handler=handler,
+                    )
                     results[pack_id] = {'status': 'delivered', 'result': result, 'attempts': attempt}
                     self._subscriber_status[pack_id]['delivered'] += 1
                     self._subscriber_status[pack_id]['last_event_id'] = event_id
@@ -88,7 +107,8 @@ class EventBus:
     def replay_from(self, event_type, from_timestamp, pack_id):
         """
         Replay events of a given type from a timestamp for a specific subscriber.
-        Returns results of the replay.
+        Goes through the active publisher so Celery deployments replay into
+        the broker just like first-time publishes.
         """
         handler = None
         for pid, h in self._subscribers.get(event_type, []):
@@ -106,7 +126,10 @@ class EventBus:
         for event_id, etype, payload, tenant_id, timestamp in self._event_log:
             if etype == event_type and timestamp >= from_timestamp:
                 try:
-                    result = handler(etype, payload, tenant_id)
+                    result = self._publisher.dispatch(
+                        event_id=event_id, event_type=etype, payload=payload,
+                        tenant_id=tenant_id, pack_id=pack_id, handler=handler,
+                    )
                     results.append({'event_id': event_id, 'status': 'delivered', 'result': result})
                 except Exception as e:
                     results.append({'event_id': event_id, 'status': 'failed', 'error': str(e)})
@@ -114,17 +137,14 @@ class EventBus:
         return results
 
     def get_dlq(self):
-        """Return all DLQ entries."""
         return list(self._dlq)
 
     def get_subscriber_status(self, pack_id=None):
-        """Return per-subscriber delivery status."""
         if pack_id:
             return dict(self._subscriber_status.get(pack_id, {}))
         return dict(self._subscriber_status)
 
     def dlq_depth(self):
-        """Return the number of entries in the DLQ."""
         return len(self._dlq)
 
     def clear(self):
