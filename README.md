@@ -2,18 +2,25 @@
 
 **A layered multi-industry manufacturing ERP.** OptiForge is structured as five layers — Platform → Core → Modes → Compliance → Industry Packs — with a strict core/pack seam: every layer depends only on layers below it, and industry-specific logic lives exclusively in packs. B3 MACBIS kitchen equipment is the first customer and the KitchenEquipment pack is the only industry pack shipping in v1.
 
-This repo holds the monorepo: Django + DRF + PostgreSQL 15 backend, Next.js 14 + TypeScript + shadcn frontend, Celery + RabbitMQ + Redis for background work.
+This repo holds the monorepo. The running system has **two backends**:
+
+- **OptiForge (Django + DRF + PostgreSQL 15)** at [`/backend/`](backend/) — platform services (tenancy, identity, audit, extensions, events, workflow, notifications, reporting, documents, integration, api_gateway, observability, localisation), plus the OptiForge layered Core/Modes/Compliance/Packs stack. Celery + RabbitMQ + Redis for background work.
+- **b3-erp (NestJS 10 + TypeORM)** at [`/b3-erp/backend/`](b3-erp/backend/) — 29 domain services (HR, CRM, Sales, Procurement, Inventory, Finance, Production, Logistics, Project-mgmt, Quality, Approvals, …).
+
+The feature-complete frontend is **[`/b3-erp/frontend/`](b3-erp/frontend/)** (Next.js 14 + TypeScript + shadcn, 1,719 pages). It routes to both backends via two base URLs (`NEXT_PUBLIC_PLATFORM_API_URL`, `NEXT_PUBLIC_DOMAIN_API_URL`). See [ADR-0004](docs/adr/0004-dual-backend-django-and-nestjs.md) and [`docs/architecture-dual-backend.md`](docs/architecture-dual-backend.md) for the full ownership split and live-system diagram.
 
 ---
 
 ## For a new developer: read these, in order
 
-1. [`docs/README.md`](./docs/README.md) — index of all project documentation.
-2. [`docs/brainstorms/2026-04-23-optiforge-layered-multi-industry.md`](./docs/brainstorms/2026-04-23-optiforge-layered-multi-industry.md) — why the architecture is layered, what was rejected, open questions resolved.
-3. [`docs/prds/optiforge-layered-multi-industry-architecture.md`](./docs/prds/optiforge-layered-multi-industry-architecture.md) — the Product Requirements Document. The source of truth every issue references.
-4. [`docs/plans/optiforge-layered-multi-industry-architecture.md`](./docs/plans/optiforge-layered-multi-industry-architecture.md) — the phased build plan. Phase 1 is the tracer bullet; start there.
-5. [`docs/adr/README.md`](./docs/adr/README.md) — decisions log. Read before making an architectural choice; add an ADR before committing one.
-6. [`docs/runbooks/phase-1-kickoff-checklist.md`](./docs/runbooks/phase-1-kickoff-checklist.md) — what must be decided and done before anyone picks up issue P1-01.
+1. [`docs/architecture-dual-backend.md`](./docs/architecture-dual-backend.md) — live-system diagram, which backend owns what, routing rules. **Start here.**
+2. [`docs/adr/0004-dual-backend-django-and-nestjs.md`](./docs/adr/0004-dual-backend-django-and-nestjs.md) — why two backends, what decisions are settled, what's still open.
+3. [`docs/README.md`](./docs/README.md) — index of all project documentation.
+4. [`docs/brainstorms/2026-04-23-optiforge-layered-multi-industry.md`](./docs/brainstorms/2026-04-23-optiforge-layered-multi-industry.md) — why the OptiForge architecture is layered, what was rejected, open questions resolved.
+5. [`docs/prds/optiforge-layered-multi-industry-architecture.md`](./docs/prds/optiforge-layered-multi-industry-architecture.md) — the Product Requirements Document. The source of truth every issue references.
+6. [`docs/plans/optiforge-layered-multi-industry-architecture.md`](./docs/plans/optiforge-layered-multi-industry-architecture.md) — the phased build plan.
+7. [`docs/adr/README.md`](./docs/adr/README.md) — decisions log. Read before making an architectural choice; add an ADR before committing one.
+8. [`docs/runbooks/phase-1-kickoff-checklist.md`](./docs/runbooks/phase-1-kickoff-checklist.md) — what must be decided and done before anyone picks up issue P1-01.
 
 The GitHub issues (labelled `phase:1`..`phase:5`) are the unit of work. Issues reference the PRD and plan; the PRD and plan reference the brainstorm. Nothing references code paths or file locations because those go stale.
 
@@ -42,21 +49,42 @@ Cross-layer import violations are strictly forbidden and enforced by CI linters.
 
 ## Getting started
 
+Preferred path: docker-compose brings up both backends + frontend + Postgres + Redis + RabbitMQ in the right topology.
+
 ```bash
 # Clone
 git clone https://github.com/boscosabujohn/ManufacturingOS.git
 cd ManufacturingOS
 
-# Backend
+# Configure env
+cp .env.example .env          # edit as needed
+
+# Full stack
+docker-compose up -d
+
+# Frontend:  http://localhost:3000
+# Django:    http://localhost:8000/api/v1
+# NestJS:    http://localhost:3001
+```
+
+To run components individually:
+
+```bash
+# Django backend (OptiForge platform) — port 8000
 cd backend
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt  # Or install dependencies manually as required
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+python manage.py migrate
 python manage.py runserver
 
-# Frontend
-cd ../frontend
-npm install
+# NestJS backend (b3-erp domain services) — port 3001
+cd b3-erp/backend
+npm ci
+npm run start:dev
+
+# Frontend — port 3000
+cd b3-erp/frontend
+npm ci
 npm run dev
 ```
 
@@ -72,12 +100,12 @@ npm run dev
 
 ## Status
 
-| | |
+| Phase | Status |
 |---|---|
-| **Phase 1 (Tracer Bullet)** | Not started |
-| **Phase 2 (Platform Depth)** | Not started |
-| **Phase 3 (Demand + Design Half)** | Not started |
-| **Phase 4 (Execution Half + Migration)** | Not started |
-| **Phase 5 (Hardening + Go-Live)** | Not started |
-
-First milestone: complete P1-01 (scaffolding + cross-layer lint canary).
+| **Phase 1 (Tracer Bullet)** | ✅ Merged ([#106](https://github.com/boscosabujohn/ManufacturingOS/pull/106)) |
+| **Phase 2 (Platform Depth)** | ✅ Merged ([#107](https://github.com/boscosabujohn/ManufacturingOS/pull/107)) |
+| **Phase 3 (Demand + Design Half)** | ✅ Merged ([#108](https://github.com/boscosabujohn/ManufacturingOS/pull/108)) |
+| **Phase 4 (Execution Half + Migration)** | ✅ Merged ([#109](https://github.com/boscosabujohn/ManufacturingOS/pull/109)) |
+| **Phase 5 (Hardening + Go-Live)** | ✅ Merged ([#110](https://github.com/boscosabujohn/ManufacturingOS/pull/110)) |
+| **Phase 6 (Celery publisher + BOQ upload UI)** | ✅ Merged ([#111](https://github.com/boscosabujohn/ManufacturingOS/pull/111)) |
+| **Backend-improvement milestone** | 🔄 In progress ([milestone 2](https://github.com/boscosabujohn/ManufacturingOS/milestone/2)) — docs, soft-delete/audit, pagination, compose, CI across both backends |
