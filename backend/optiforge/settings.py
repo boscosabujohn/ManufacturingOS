@@ -52,6 +52,16 @@ INSTALLED_APPS = [
     'optiforge.platform.observability',
     'optiforge.platform.localisation',
     'optiforge.core.sales',
+    'optiforge.core.crm',
+    'optiforge.core.procurement',
+    'optiforge.core.inventory',
+    'optiforge.core.project',
+    'optiforge.core.hr',
+    'optiforge.core.plm',
+    'optiforge.core.wms',
+    'optiforge.core.it_admin',
+    'optiforge.core.sop',
+    'optiforge.modes.eto',
 ]
 
 MIDDLEWARE = [
