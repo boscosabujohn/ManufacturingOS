@@ -61,6 +61,17 @@ INSTALLED_APPS = [
     'optiforge.core.wms',
     'optiforge.core.it_admin',
     'optiforge.core.sop',
+    'optiforge.core.cmms',
+    'optiforge.core.ehs',
+    'optiforge.core.production_planning',
+    'optiforge.core.mes',
+    'optiforge.core.finance',
+    'optiforge.core.qms',
+    'optiforge.core.analytics',
+    'optiforge.core.field_service',
+    'optiforge.core.commissioning',
+    'optiforge.core.logistics',
+    'optiforge.core.support',
     'optiforge.modes.eto',
 ]
 

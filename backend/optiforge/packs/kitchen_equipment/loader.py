@@ -13,6 +13,7 @@ def load_pack():
 
     extension_registry.register_parser('boq_import', 'kitchen-equipment', boq_parser)
 
+    from .execution import register_execution_extensions
     from .item_extensions import register_item_extensions
     from .taxonomy import register_taxonomy_and_validators
     from .workflow import register_workflow_extensions
@@ -20,3 +21,4 @@ def load_pack():
     register_item_extensions()
     register_taxonomy_and_validators()
     register_workflow_extensions()
+    register_execution_extensions()
