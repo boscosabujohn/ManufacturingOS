@@ -1,0 +1,42 @@
+# ManufacturingOS — local-dev overrides.
+# Copy to docker-compose.override.yml (gitignored) and edit as needed.
+# Docker Compose merges this file on top of docker-compose.yml automatically.
+#
+# Typical uses:
+#   - mount source for hot reload
+#   - expose debug ports (Django runserver, Node inspector)
+#   - swap production CMD for a dev CMD
+
+services:
+  django-backend:
+    command: python manage.py runserver 0.0.0.0:8000
+    environment:
+      DJANGO_DEBUG: "True"
+    volumes:
+      - ./backend:/app
+    # Keep the exposed host port on 8000 (already in base file).
+
+  nestjs-backend:
+    # For hot reload, run the dev server and bind-mount source.
+    command: npm run start:dev
+    environment:
+      NODE_ENV: development
+    volumes:
+      - ./b3-erp/backend:/app
+      # Preserve the image's node_modules (already-installed) when bind mount shadows /app
+      - /app/node_modules
+
+  frontend:
+    command: npm run dev
+    environment:
+      NODE_ENV: development
+    volumes:
+      - ./b3-erp/frontend:/app
+      - /app/node_modules
+      - /app/.next
+
+  postgres:
+    # Expose on the host's default Postgres port 5432 if nothing else has it.
+    # Comment out if you already run a Postgres on 5432 — the base file's 5433 mapping stays.
+    # ports:
+    #   - "5432:5432"

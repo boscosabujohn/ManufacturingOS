@@ -1,10 +1,176 @@
-version: '3.8'
+# ManufacturingOS — full-stack docker-compose.
+# See docs/architecture-dual-backend.md for the topology this models.
+#
+# Services:
+#   postgres          single cluster, two logical schemas (optiforge.*, b3_erp.*)
+#   redis             cache + Celery result backend
+#   rabbitmq          Celery broker + event bus
+#   django-backend    OptiForge platform (port 8000)
+#   django-celery     Celery worker for Django
+#   django-celery-beat  Celery scheduler for Django
+#   nestjs-backend    b3-erp domain services (port 3001)
+#   frontend          b3-erp/frontend Next.js (port 3000)
+#
+# Usage:
+#   cp .env.example .env          # edit as needed
+#   docker-compose up -d          # full stack
+#   docker-compose up postgres    # just Postgres (matches old compose behaviour)
+#
+# For local-dev overrides (source mounts, debug ports), copy
+# docker-compose.override.yml.example to docker-compose.override.yml.
+
 services:
   postgres:
     image: postgres:15
     environment:
-      POSTGRES_USER: test
-      POSTGRES_PASSWORD: test
-      POSTGRES_DB: test_db
+      POSTGRES_USER: ${POSTGRES_USER:-manufacturingos}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-change-me-in-local-and-prod}
+      POSTGRES_DB: ${POSTGRES_DB:-manufacturingos}
     ports:
+      # Expose on 5433 externally to avoid clashing with a host Postgres on 5432.
       - "5433:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./scripts/init-schemas.sql:/docker-entrypoint-initdb.d/init-schemas.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-manufacturingos} -d ${POSTGRES_DB:-manufacturingos}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER:-manufacturingos}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD:-change-me-in-local-and-prod}
+      RABBITMQ_DEFAULT_VHOST: ${RABBITMQ_VHOST:-manufacturingos}
+    ports:
+      - "5672:5672"   # AMQP
+      - "15672:15672" # management UI
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  django-backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    environment:
+      DJANGO_SETTINGS_MODULE: optiforge.settings
+      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY}
+      DJANGO_DEBUG: ${DJANGO_DEBUG:-True}
+      DJANGO_ALLOWED_HOSTS: ${DJANGO_ALLOWED_HOSTS:-localhost,127.0.0.1,django-backend}
+      DJANGO_CORS_ALLOWED_ORIGINS: ${DJANGO_CORS_ALLOWED_ORIGINS:-http://localhost:3000}
+      DATABASE_HOST: postgres
+      DATABASE_PORT: 5432
+      DATABASE_USER: ${POSTGRES_USER:-manufacturingos}
+      DATABASE_PASSWORD: ${POSTGRES_PASSWORD:-change-me-in-local-and-prod}
+      DATABASE_NAME: ${POSTGRES_DB:-manufacturingos}
+      REDIS_URL: redis://redis:6379/0
+      CELERY_BROKER_URL: amqp://${RABBITMQ_USER:-manufacturingos}:${RABBITMQ_PASSWORD:-change-me-in-local-and-prod}@rabbitmq:5672/${RABBITMQ_VHOST:-manufacturingos}
+      JWT_SECRET: ${JWT_SECRET:-optiforge-dev-secret-change-in-production-32bytes!}
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+
+  django-celery:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    command: celery -A optiforge worker --loglevel=info
+    environment:
+      DJANGO_SETTINGS_MODULE: optiforge.settings
+      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY}
+      DATABASE_HOST: postgres
+      DATABASE_USER: ${POSTGRES_USER:-manufacturingos}
+      DATABASE_PASSWORD: ${POSTGRES_PASSWORD:-change-me-in-local-and-prod}
+      DATABASE_NAME: ${POSTGRES_DB:-manufacturingos}
+      REDIS_URL: redis://redis:6379/0
+      CELERY_BROKER_URL: amqp://${RABBITMQ_USER:-manufacturingos}:${RABBITMQ_PASSWORD:-change-me-in-local-and-prod}@rabbitmq:5672/${RABBITMQ_VHOST:-manufacturingos}
+    depends_on:
+      django-backend:
+        condition: service_started
+
+  django-celery-beat:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    command: celery -A optiforge beat --loglevel=info
+    environment:
+      DJANGO_SETTINGS_MODULE: optiforge.settings
+      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY}
+      DATABASE_HOST: postgres
+      DATABASE_USER: ${POSTGRES_USER:-manufacturingos}
+      DATABASE_PASSWORD: ${POSTGRES_PASSWORD:-change-me-in-local-and-prod}
+      DATABASE_NAME: ${POSTGRES_DB:-manufacturingos}
+      REDIS_URL: redis://redis:6379/0
+      CELERY_BROKER_URL: amqp://${RABBITMQ_USER:-manufacturingos}:${RABBITMQ_PASSWORD:-change-me-in-local-and-prod}@rabbitmq:5672/${RABBITMQ_VHOST:-manufacturingos}
+    depends_on:
+      django-backend:
+        condition: service_started
+
+  nestjs-backend:
+    build:
+      context: ./b3-erp/backend
+      dockerfile: ../docker/backend/Dockerfile
+    environment:
+      NODE_ENV: ${NODE_ENV:-production}
+      PORT: ${NESTJS_PORT:-3001}
+      DATABASE_HOST: postgres
+      DATABASE_PORT: 5432
+      DATABASE_USER: ${POSTGRES_USER:-manufacturingos}
+      DATABASE_PASSWORD: ${POSTGRES_PASSWORD:-change-me-in-local-and-prod}
+      DATABASE_NAME: ${POSTGRES_DB:-manufacturingos}
+      DATABASE_SCHEMA: ${NESTJS_DATABASE_SCHEMA:-b3_erp}
+      JWT_SECRET: ${NESTJS_JWT_SECRET:-nestjs-dev-secret-change-in-production-32bytes!}
+      REDIS_URL: redis://redis:6379/1
+    ports:
+      - "3001:3001"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  frontend:
+    build:
+      context: ./b3-erp/frontend
+      dockerfile: ../docker/frontend/Dockerfile
+      args:
+        NEXT_PUBLIC_PLATFORM_API_URL: ${NEXT_PUBLIC_PLATFORM_API_URL:-http://localhost:8000/api/v1}
+        NEXT_PUBLIC_DOMAIN_API_URL: ${NEXT_PUBLIC_DOMAIN_API_URL:-http://localhost:3001}
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:8000/api/v1}
+    environment:
+      NODE_ENV: ${NODE_ENV:-production}
+    ports:
+      - "3000:3000"
+    depends_on:
+      - django-backend
+      - nestjs-backend
+
+volumes:
+  postgres-data:
+  redis-data:
+  rabbitmq-data:

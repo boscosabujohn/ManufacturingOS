@@ -30,12 +30,13 @@ COPY --from=builder /app/dist ./dist
 # Alpine already has a 'node' user
 USER node
 
-# Expose backend port
-EXPOSE 8000
+# Expose backend port (NestJS reads PORT env var at runtime; default 3001 per ADR-0004).
+ENV PORT=3001
+EXPOSE 3001
 
-# Health check using Terminus endpoint
+# Health check using Terminus endpoint on $PORT
 HEALTHCHECK --interval=30s --timeout=3s --start-period=30s --retries=3 \
-  CMD node -e "fetch('http://localhost:8000/health').then(r => r.ok ? process.exit(0) : process.exit(1)).catch(() => process.exit(1))"
+  CMD node -e "fetch('http://localhost:' + (process.env.PORT || 3001) + '/health').then(r => r.ok ? process.exit(0) : process.exit(1)).catch(() => process.exit(1))"
 
 # Run the application
 CMD ["node", "dist/main"]
