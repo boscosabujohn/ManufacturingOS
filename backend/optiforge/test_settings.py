@@ -13,3 +13,9 @@ DATABASES = {
 
 # JWT secret for testing
 JWT_SECRET = 'test-secret-key'
+
+# Register the test-only app that exercises the audit + soft-delete
+# mixins (see tests/audit_soft_delete/).
+INSTALLED_APPS = INSTALLED_APPS + [  # noqa: F405 (star import above)
+    'tests.audit_soft_delete.apps.AuditSoftDeleteTestConfig',
+]
