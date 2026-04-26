@@ -1,17 +1,27 @@
 [importlinter]
-root_packages =
-    platform
-    core
-    modes
-    compliance
-    packs
+root_package = optiforge
 
 [importlinter:contract:architecture]
 name = Five-Layer Architecture Contract
 type = layers
+containers =
+    optiforge
 layers =
     packs
     compliance
     modes
     core
     platform
+# Whitelisted cross-layer imports.
+#
+# Each entry must be justified — this list is a list of architectural
+# exceptions, not a list of TODOs.
+#
+# - test_tracer_bullet.py is the Phase 1 integration test that
+#   deliberately exercises the BOQ → CustomerRequirement → pack subscriber
+#   end-to-end flow. It needs to import pack loaders to set up the test.
+#   Moving it under backend/tests/integration/ would resolve the
+#   violation cleanly; tracked as a follow-up to issue #125.
+ignore_imports =
+    optiforge.core.sales.tests.test_tracer_bullet -> optiforge.packs.kitchen_equipment.loader
+    optiforge.core.sales.tests.test_tracer_bullet -> optiforge.packs.test_industry.loader
