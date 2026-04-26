@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { Input } from './input';
+import { Input } from './Input';
 import { Mail } from 'lucide-react';
 
 describe('Input Component', () => {

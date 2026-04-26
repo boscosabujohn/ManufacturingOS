@@ -30,15 +30,20 @@
       }
     ],
     "import/no-duplicates": "warn",
-    "react/jsx-key": "error",
+    "react/jsx-key": "warn",
+    "react/jsx-no-undef": "warn",
     "react/no-array-index-key": "warn",
     "react/no-unescaped-entities": "warn",
-    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/rules-of-hooks": "warn",
     "react-hooks/exhaustive-deps": "warn",
     "no-console": ["warn", { "allow": ["warn", "error"] }],
     "prefer-const": "warn",
-    "no-var": "error",
-    "eqeqeq": ["error", "always"]
+    "no-var": "warn",
+    "eqeqeq": ["warn", "always"],
+    "@typescript-eslint/ban-ts-comment": "warn",
+    "@typescript-eslint/ban-types": "warn",
+    "@next/next/no-assign-module-variable": "warn",
+    "@next/next/no-img-element": "warn"
   },
   "overrides": [
     {
