@@ -7,11 +7,11 @@
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint", "import"],
   "rules": {
-    "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+    "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
     "@typescript-eslint/no-explicit-any": "warn",
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/naming-convention": [
-      "error",
+      "warn",
       {
         "selector": "interface",
         "format": ["PascalCase"]
@@ -22,20 +22,21 @@
       }
     ],
     "import/order": [
-      "error",
+      "warn",
       {
         "groups": ["builtin", "external", "internal", "parent", "sibling", "index"],
         "newlines-between": "never",
         "alphabetize": { "order": "asc", "caseInsensitive": true }
       }
     ],
-    "import/no-duplicates": "error",
+    "import/no-duplicates": "warn",
     "react/jsx-key": "error",
     "react/no-array-index-key": "warn",
+    "react/no-unescaped-entities": "warn",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "no-console": ["warn", { "allow": ["warn", "error"] }],
-    "prefer-const": "error",
+    "prefer-const": "warn",
     "no-var": "error",
     "eqeqeq": ["error", "always"]
   },

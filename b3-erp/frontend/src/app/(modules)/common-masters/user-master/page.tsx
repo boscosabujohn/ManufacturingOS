@@ -133,7 +133,7 @@ export default function UserMasterPage() {
       render: (value, row) => (
         <div className="text-sm">
           <div className="text-gray-900">{value || 'No Email'}</div>
-          {/* @ts-ignore */}
+          {/* @ts-expect-error row.employee may be loosely typed by the table renderer */}
           <div className="text-xs text-gray-500">{row.employee?.phone || 'No Phone'}</div>
         </div>
       )
@@ -149,7 +149,7 @@ export default function UserMasterPage() {
             <Briefcase className="w-3 h-3 text-gray-400" />
             <span className="font-medium">{row.employee?.department?.name || 'Unassigned'}</span>
           </div>
-          {/* @ts-ignore */}
+          {/* @ts-expect-error row.employee may be loosely typed by the table renderer */}
           <div className="text-xs text-gray-500">{row.employee?.grade || '-'}</div>
         </div>
       )

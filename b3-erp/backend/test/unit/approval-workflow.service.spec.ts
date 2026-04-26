@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { NotFoundException, BadRequestException } from '@nestjs/common';
 import { ApprovalWorkflowService } from '../../src/modules/approvals/services/approval-workflow.service';
 import { ApprovalChainService } from '../../src/modules/approvals/services/approval-chain.service';
+import { NotificationService } from '../../src/modules/notifications/services/notification.service';
 import {
     ApprovalRequest,
     ApprovalHistory,
@@ -20,12 +21,25 @@ describe('ApprovalWorkflowService', () => {
     let historyRepository: jest.Mocked<Repository<ApprovalHistory>>;
     let taskRepository: jest.Mocked<Repository<UserTask>>;
     let chainService: jest.Mocked<ApprovalChainService>;
+    let notificationService: jest.Mocked<NotificationService>;
 
     beforeEach(async () => {
         requestRepository = createMockRepository<ApprovalRequest>();
         historyRepository = createMockRepository<ApprovalHistory>();
         taskRepository = createMockRepository<UserTask>();
         chainService = createMockService<ApprovalChainService>(['getChainForEntity']);
+        // ApprovalWorkflowService calls notifyApprovalApproved + notifyApprovalRejected
+        // (see approval-workflow.service.ts:207, :308) as fire-and-forget promises
+        // (`.catch(...)` chained on the call). Mocks must return a resolved Promise
+        // — `undefined.catch(...)` throws.
+        notificationService = createMockService<NotificationService>([
+            'notifyApprovalApproved',
+            'notifyApprovalRejected',
+        ]);
+        // mockResolvedValue's type is the method's return type; we don't care
+        // about the value, only that the awaited result is a settled Promise.
+        notificationService.notifyApprovalApproved.mockResolvedValue({} as never);
+        notificationService.notifyApprovalRejected.mockResolvedValue({} as never);
 
         const module: TestingModule = await Test.createTestingModule({
             providers: [
@@ -45,6 +59,10 @@ describe('ApprovalWorkflowService', () => {
                 {
                     provide: ApprovalChainService,
                     useValue: chainService,
+                },
+                {
+                    provide: NotificationService,
+                    useValue: notificationService,
                 },
             ],
         }).compile();
