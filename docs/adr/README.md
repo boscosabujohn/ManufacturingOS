@@ -41,6 +41,8 @@ Links to PRDs, brainstorms, issues, external sources.
 |---|---|---|---|
 | 0001 | [Five-layer architecture (Platform → Core → Modes → Compliance → Industry)](./0001-five-layer-architecture.md) | Accepted | 2026-04-23 |
 | 0002 | [Modular monolith deployment (defer microservices)](./0002-modular-monolith.md) | Accepted | 2026-04-23 |
+| 0003 | [Keycloak as OIDC Provider](./0003-oidc-provider-keycloak.md) | Accepted | 2026-04-23 |
+| 0004 | [Dual-backend architecture — OptiForge (Django) + b3-erp (NestJS)](./0004-dual-backend-django-and-nestjs.md) | Proposed | 2026-04-24 |
 
 _Add new ADRs at the bottom. Do not renumber existing ones._
 
