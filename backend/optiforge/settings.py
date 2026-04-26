@@ -167,3 +167,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # JWT settings
 JWT_SECRET = os.environ.get('JWT_SECRET', 'optiforge-dev-secret-change-in-production-32bytes!')
+
+# Django REST Framework defaults.
+# Pagination: every ListAPIView / ModelViewSet that doesn't override
+# `pagination_class` gets page-number pagination with a 50-item default
+# and a 500-item hard cap. Matches NestJS defaults per ADR-0004
+# §"Obligations accepted".
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': (
+        'optiforge.platform.api_gateway.pagination.DefaultPageNumberPagination'
+    ),
+    'PAGE_SIZE': 50,
+}
