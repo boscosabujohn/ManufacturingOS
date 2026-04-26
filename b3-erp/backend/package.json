@@ -4,6 +4,7 @@
   "description": "OptiForge ERP - Backend API (Node.js/NestJS)",
   "main": "dist/main.js",
   "scripts": {
+    "postinstall": "prisma generate || true",
     "prebuild": "rimraf dist",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
