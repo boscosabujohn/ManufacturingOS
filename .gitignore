@@ -74,6 +74,11 @@ backend/.venv/
 **/*.pyc
 .pytest_cache/
 .mypy_cache/
+.coverage
+**/.coverage
+coverage.xml
+**/coverage.xml
+htmlcov/
 
 # Package manager files
 package-lock.json
