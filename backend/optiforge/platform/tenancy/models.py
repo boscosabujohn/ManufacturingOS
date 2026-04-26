@@ -1,6 +1,11 @@
 import uuid
 from django.db import models
 
+from optiforge.platform.tenancy.mixins import (
+    AuditMixin,
+    SoftDeleteMixin,
+)
+
 
 class Tenant(models.Model):
     """Core Tenant model with full provisioning lifecycle."""
@@ -66,9 +71,43 @@ class TenantAwareModel(models.Model):
     """
     Abstract base model for all tenant-scoped entities.
     Enforces a non-nullable tenant_id and provides the base for RLS.
+
+    For new tables prefer `AuditedTenantModel` below, which composes
+    audit + soft-delete mixins. `TenantAwareModel` is kept unchanged so
+    existing migrations remain stable; adoption of the richer base is
+    an explicit per-model migration (separate issue).
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     tenant = models.ForeignKey(Tenant, on_delete=models.PROTECT, db_index=True)
 
     class Meta:
+        abstract = True
+
+
+class AuditedTenantModel(TenantAwareModel, AuditMixin, SoftDeleteMixin):
+    """
+    Tenant-scoped model with audit columns and soft-delete semantics.
+
+    This is the recommended base for new core / modes / pack models.
+    It adds:
+      - AuditMixin:       created_at, updated_at, created_by, updated_by
+      - SoftDeleteMixin:  deleted_at, deleted_by + soft-delete manager
+
+    Default querysets hide soft-deleted rows. Use `Model.all_objects`
+    to query across deleted rows (audit reports, compliance exports).
+
+    See `optiforge.platform.tenancy.mixins` for the semantics and
+    ADR-0004 §"Obligations accepted" for the cross-backend contract.
+
+    Usage:
+
+        class MyEntity(AuditedTenantModel):
+            name = models.CharField(max_length=255)
+
+            class Meta:
+                # If you define Meta, inherit abstract from parent explicitly:
+                abstract = False  # or omit — default is False for concrete models
+    """
+
+    class Meta(TenantAwareModel.Meta):
         abstract = True
