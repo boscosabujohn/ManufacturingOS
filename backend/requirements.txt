@@ -1,0 +1,30 @@
+# OptiForge Django backend — runtime + dev dependencies.
+# Pin only majors + minors where churn is common; leave patch floating.
+
+# Core framework
+Django~=4.2.0
+djangorestframework~=3.14.0
+
+# Auth / JWT
+PyJWT~=2.8.0
+
+# Database
+psycopg2-binary~=2.9.0
+
+# Background work (ADR-0002: Celery + RabbitMQ + Redis)
+celery~=5.3.0
+redis~=5.0.0
+kombu~=5.3.0
+
+# Cross-origin for the Next.js frontend at :3000
+django-cors-headers~=4.3.0
+
+# Production WSGI server
+gunicorn~=21.2.0
+
+# --- Dev / test ---
+pytest~=7.4.0
+pytest-django~=4.7.0
+pytest-cov~=4.1.0
+mypy~=1.7.0
+import-linter~=2.0
