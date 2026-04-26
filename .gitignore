@@ -6,6 +6,7 @@ node_modules/
 
 # Testing
 /coverage
+**/coverage/
 
 # Production
 /build
@@ -47,6 +48,10 @@ next-env.d.ts
 *.swp
 *.swo
 *~
+
+# Claude Code harness runtime artifacts
+.claude/scheduled_tasks.lock
+.claude/projects/
 
 # Logs
 logs/
