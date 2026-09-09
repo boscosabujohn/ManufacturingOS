@@ -30,6 +30,24 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
             return true;
         }
 
+        // DEMO MODE: frontend and backend live on different domains, so the
+        // auth cookie/token can't be shared. When DEMO_MODE=true, let every
+        // route through with a stub system-admin user so the demo UI can read
+        // data without a login. Never enable this in a real deployment.
+        if (process.env.DEMO_MODE === 'true') {
+            const req = context.switchToHttp().getRequest();
+            req.user = req.user ?? {
+                id: 'demo-admin',
+                sub: 'demo-admin',
+                username: 'admin',
+                companyId: 'demo-company',
+                isSystemAdmin: true,
+                roles: ['admin'],
+                permissions: ['*'],
+            };
+            return true;
+        }
+
         return super.canActivate(context);
     }
 }

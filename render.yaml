@@ -30,6 +30,10 @@ services:
         value: production
       - key: NODE_OPTIONS
         value: "--max-old-space-size=460"
+      # DEMO ONLY: bypass the global JWT guard (demo frontend sends no token,
+      # since it's on a different domain). Remove this for a real deployment.
+      - key: DEMO_MODE
+        value: "true"
       # TypeORM uses DATABASE_URL directly (ssl: rejectUnauthorized=false → Neon OK)
       - key: DATABASE_URL
         value: postgresql://neondb_owner:npg_WgKoApGEJR54@ep-sweet-recipe-ailz1ddp.c-4.us-east-1.aws.neon.tech/neondb?sslmode=require
