@@ -31,12 +31,34 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3001/api/v1';
 
+// DEMO MODE: when enabled (baked into the deployed image), auth is bypassed —
+// the app treats the visitor as a system admin and never calls the auth API.
+// Off by default so local dev keeps the real login flow. See middleware.ts.
+const DEMO_MODE = process.env.NEXT_PUBLIC_DEMO_MODE === 'true';
+const DEMO_USER: User = {
+    id: 'demo-admin',
+    username: 'admin',
+    email: 'admin@manufacturingos.com',
+    firstName: 'Demo',
+    lastName: 'Admin',
+    fullName: 'Demo Admin',
+    userType: 'admin',
+    companyId: 'demo-company',
+    isSystemAdmin: true,
+    permissions: ['*'],
+};
+
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-    const [user, setUser] = useState<User | null>(null);
-    const [isLoading, setIsLoading] = useState(true);
+    const [user, setUser] = useState<User | null>(DEMO_MODE ? DEMO_USER : null);
+    const [isLoading, setIsLoading] = useState(!DEMO_MODE);
     const router = useRouter();
 
     const logout = useCallback(async () => {
+        if (DEMO_MODE) {
+            // No real session to end in demo — stay signed in as the demo admin.
+            router.push('/dashboard');
+            return;
+        }
         try {
             await fetch(`${API_URL}/auth/logout`, { method: 'POST', credentials: 'include' });
         } catch {
@@ -48,6 +70,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     }, [router]);
 
     const refreshUser = useCallback(async () => {
+        if (DEMO_MODE) return; // no auth API in demo mode
         try {
             const response = await fetch(`${API_URL}/auth/profile`, { credentials: 'include' });
             if (response.ok) {
@@ -63,6 +86,13 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     }, [logout]);
 
     useEffect(() => {
+        if (DEMO_MODE) {
+            // Seed localStorage so service clients that read the cached user
+            // (e.g. companyId for API calls) work without a real login.
+            localStorage.setItem('user', JSON.stringify(DEMO_USER));
+            setIsLoading(false);
+            return;
+        }
         const initAuth = async () => {
             const saved = localStorage.getItem('user');
             if (saved) {

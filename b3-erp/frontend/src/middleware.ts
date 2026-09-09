@@ -5,8 +5,21 @@ import type { NextRequest } from 'next/server';
  * Next.js Middleware for Route Protection
  * Validates the presence of an access token in cookies
  */
+// DEMO MODE: baked into the deployed image. Auth is bypassed (frontend and
+// backend are on different domains, so the HttpOnly access_token cookie can't
+// be shared) and the entry points land straight on the dashboard. Off by
+// default so local dev keeps the real token gate. See context/AuthContext.tsx.
+const DEMO_MODE = process.env.NEXT_PUBLIC_DEMO_MODE === 'true';
+
 export function middleware(request: NextRequest) {
     const { pathname } = request.nextUrl;
+
+    if (DEMO_MODE) {
+        if (pathname === '/' || pathname === '/login') {
+            return NextResponse.redirect(new URL('/dashboard', request.url));
+        }
+        return NextResponse.next();
+    }
 
     // 1. Define public routes that don't require authentication
     const publicRoutes = ['/login', '/register', '/forgot-password', '/reset-password', '/offline'];

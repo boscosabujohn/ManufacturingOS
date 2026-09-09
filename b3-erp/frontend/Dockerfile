@@ -23,8 +23,12 @@ WORKDIR /app
 # NestJS backend; CI overrides via --build-arg if the URL changes.
 ARG NEXT_PUBLIC_API_URL=https://b3-erp-backend.onrender.com/api/v1
 ARG NEXT_PUBLIC_DOMAIN_API_URL=https://b3-erp-backend.onrender.com/api/v1
+# Demo build bypasses login and lands on the dashboard. Set to "false" for a
+# real auth build (requires same-domain frontend/backend for the cookie).
+ARG NEXT_PUBLIC_DEMO_MODE=true
 ENV NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL} \
     NEXT_PUBLIC_DOMAIN_API_URL=${NEXT_PUBLIC_DOMAIN_API_URL} \
+    NEXT_PUBLIC_DEMO_MODE=${NEXT_PUBLIC_DEMO_MODE} \
     NEXT_TELEMETRY_DISABLED=1
 
 COPY --from=deps /app/node_modules ./node_modules

@@ -18,6 +18,8 @@ env:
   # ARG defaults) if the backend URL changes.
   NEXT_PUBLIC_API_URL: https://b3-erp-backend.onrender.com/api/v1
   NEXT_PUBLIC_DOMAIN_API_URL: https://b3-erp-backend.onrender.com/api/v1
+  # Demo build: bypass login, land on the dashboard. Set "false" for real auth.
+  NEXT_PUBLIC_DEMO_MODE: "true"
 
 jobs:
   build-and-push:
@@ -51,5 +53,6 @@ jobs:
           build-args: |
             NEXT_PUBLIC_API_URL=${{ env.NEXT_PUBLIC_API_URL }}
             NEXT_PUBLIC_DOMAIN_API_URL=${{ env.NEXT_PUBLIC_DOMAIN_API_URL }}
+            NEXT_PUBLIC_DEMO_MODE=${{ env.NEXT_PUBLIC_DEMO_MODE }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
