@@ -39,6 +39,8 @@ export class ApprovalsModule implements OnModuleInit {
      * Initialize default approval chains on module startup
      */
     async onModuleInit() {
+        // Demo/perf: skip boot-time seeding unless explicitly enabled (DB already populated).
+        if (process.env.SEED_ON_BOOT === 'false') return;
         try {
             await this.chainService.initializeDefaultChains();
         } catch (error) {

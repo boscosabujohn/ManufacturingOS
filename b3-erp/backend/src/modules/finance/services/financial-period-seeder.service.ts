@@ -57,6 +57,8 @@ export class FinancialPeriodSeederService implements OnModuleInit {
    * This is idempotent - only creates periods if none exist
    */
   async onModuleInit(): Promise<void> {
+        // Demo/perf: skip boot-time seeding unless explicitly enabled (DB already populated).
+        if (process.env.SEED_ON_BOOT === 'false') return;
     this.logger.log('FinancialPeriodSeederService initializing...');
     try {
       const existingCount = await this.financialYearRepository.count();

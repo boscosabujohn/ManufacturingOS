@@ -24,6 +24,8 @@ export class RolePermissionSeederService implements OnModuleInit {
   ) {}
 
   async onModuleInit(): Promise<void> {
+        // Demo/perf: skip boot-time seeding unless explicitly enabled (DB already populated).
+        if (process.env.SEED_ON_BOOT === 'false') return;
     // Delay to ensure roles and permissions are seeded first
     setTimeout(() => this.seedRolePermissions(), 2000);
   }

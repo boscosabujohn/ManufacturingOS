@@ -20,6 +20,8 @@ env:
   NEXT_PUBLIC_DOMAIN_API_URL: https://b3-erp-backend.onrender.com/api/v1
   # Demo build: bypass login, land on the dashboard. Set "false" for real auth.
   NEXT_PUBLIC_DEMO_MODE: "true"
+  # Tenant scoping for demo data (B3 MACBIS company row).
+  NEXT_PUBLIC_DEFAULT_COMPANY_ID: b3000000-0000-4000-8000-000000000001
 
 jobs:
   build-and-push:
@@ -54,5 +56,6 @@ jobs:
             NEXT_PUBLIC_API_URL=${{ env.NEXT_PUBLIC_API_URL }}
             NEXT_PUBLIC_DOMAIN_API_URL=${{ env.NEXT_PUBLIC_DOMAIN_API_URL }}
             NEXT_PUBLIC_DEMO_MODE=${{ env.NEXT_PUBLIC_DEMO_MODE }}
+            NEXT_PUBLIC_DEFAULT_COMPANY_ID=${{ env.NEXT_PUBLIC_DEFAULT_COMPANY_ID }}
           cache-from: type=gha
           cache-to: type=gha,mode=max

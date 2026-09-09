@@ -279,6 +279,8 @@ export class TaxConfigSeederService implements OnModuleInit {
    * This is idempotent - only creates records that don't exist
    */
   async onModuleInit(): Promise<void> {
+        // Demo/perf: skip boot-time seeding unless explicitly enabled (DB already populated).
+        if (process.env.SEED_ON_BOOT === 'false') return;
     this.logger.log('TaxConfigSeederService initializing...');
     try {
       const existingCount = await this.taxMasterRepository.count();

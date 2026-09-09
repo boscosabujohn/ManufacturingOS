@@ -16,6 +16,8 @@ export class WorkflowSeederService implements OnModuleInit {
   ) {}
 
   async onModuleInit(): Promise<void> {
+        // Demo/perf: skip boot-time seeding unless explicitly enabled (DB already populated).
+        if (process.env.SEED_ON_BOOT === 'false') return;
     await this.seedWorkflowDefinitions();
   }
 

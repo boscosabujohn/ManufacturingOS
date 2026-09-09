@@ -105,6 +105,10 @@ export function getCorsConfig(frontendUrl: string): CorsOptions {
       'Accept',
       'Origin',
       'X-CSRF-Token',
+      // Tenant scoping: the frontend's shared API client sends this on every
+      // request. Without it in the allow-list the browser blocks the CORS
+      // preflight, silently emptying/erroring every page that uses that client.
+      'x-company-id',
     ],
     exposedHeaders: ['X-Total-Count', 'X-Page', 'X-Per-Page'],
     maxAge: 86400, // 24 hours

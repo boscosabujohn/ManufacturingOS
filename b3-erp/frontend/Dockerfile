@@ -26,9 +26,13 @@ ARG NEXT_PUBLIC_DOMAIN_API_URL=https://b3-erp-backend.onrender.com/api/v1
 # Demo build bypasses login and lands on the dashboard. Set to "false" for a
 # real auth build (requires same-domain frontend/backend for the cookie).
 ARG NEXT_PUBLIC_DEMO_MODE=true
+# Tenant scoping: the B3 MACBIS company row. Used by the shared client's
+# x-company-id header and companyId query params so seeded data is visible.
+ARG NEXT_PUBLIC_DEFAULT_COMPANY_ID=b3000000-0000-4000-8000-000000000001
 ENV NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL} \
     NEXT_PUBLIC_DOMAIN_API_URL=${NEXT_PUBLIC_DOMAIN_API_URL} \
     NEXT_PUBLIC_DEMO_MODE=${NEXT_PUBLIC_DEMO_MODE} \
+    NEXT_PUBLIC_DEFAULT_COMPANY_ID=${NEXT_PUBLIC_DEFAULT_COMPANY_ID} \
     NEXT_TELEMETRY_DISABLED=1
 
 COPY --from=deps /app/node_modules ./node_modules

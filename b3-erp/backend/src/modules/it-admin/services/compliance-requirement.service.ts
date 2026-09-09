@@ -13,6 +13,8 @@ export class ComplianceRequirementService implements OnModuleInit {
   // Seed a small demo catalog on first boot when the table is empty so the
   // compliance page has data immediately. Fixed rows keep this idempotent.
   async onModuleInit(): Promise<void> {
+        // Demo/perf: skip boot-time seeding unless explicitly enabled (DB already populated).
+        if (process.env.SEED_ON_BOOT === 'false') return;
     try {
       const count = await this.repository.count();
       if (count > 0) return;

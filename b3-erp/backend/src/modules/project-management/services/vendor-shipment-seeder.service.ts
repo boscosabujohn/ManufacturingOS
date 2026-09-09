@@ -13,6 +13,8 @@ export class VendorShipmentSeederService implements OnModuleInit {
   ) {}
 
   async onModuleInit(): Promise<void> {
+        // Demo/perf: skip boot-time seeding unless explicitly enabled (DB already populated).
+        if (process.env.SEED_ON_BOOT === 'false') return;
     try {
       const count = await this.repo.count();
       if (count > 0) return;

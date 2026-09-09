@@ -41,6 +41,8 @@ export class EmployeeSeederService implements OnModuleInit {
   ) {}
 
   async onModuleInit(): Promise<void> {
+        // Demo/perf: skip boot-time seeding unless explicitly enabled (DB already populated).
+        if (process.env.SEED_ON_BOOT === 'false') return;
     // Delay to ensure departments, designations, and shifts are seeded first
     setTimeout(() => this.seedEmployees(), 4000);
   }
