@@ -34,9 +34,16 @@ services:
       # since it's on a different domain). Remove this for a real deployment.
       - key: DEMO_MODE
         value: "true"
+      # DB is already populated; boot-time seeders re-run Prisma against tables
+      # that don't exist and crash boot once a company row exists. Keep them off.
+      - key: SEED_ON_BOOT
+        value: "false"
       # TypeORM uses DATABASE_URL directly (ssl: rejectUnauthorized=false → Neon OK)
+      # Secret — set in the Render dashboard, never committed. (The Neon
+      # password was previously in plaintext here; rotate it and set the new
+      # value in the dashboard. Render keeps the dashboard value on sync.)
       - key: DATABASE_URL
-        value: postgresql://neondb_owner:npg_WgKoApGEJR54@ep-sweet-recipe-ailz1ddp.c-4.us-east-1.aws.neon.tech/neondb?sslmode=require
+        sync: false
       - key: DB_SYNCHRONIZE
         value: "false"
       # No REDIS_URL on purpose: cache.config falls back to in-memory when it's
