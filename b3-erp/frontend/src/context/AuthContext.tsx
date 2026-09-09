@@ -43,7 +43,7 @@ const DEMO_USER: User = {
     lastName: 'Admin',
     fullName: 'Demo Admin',
     userType: 'admin',
-    companyId: 'demo-company',
+    companyId: 'b3000000-0000-4000-8000-000000000001', // B3 MACBIS (core_companies)
     isSystemAdmin: true,
     permissions: ['*'],
 };

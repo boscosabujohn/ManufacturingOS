@@ -40,7 +40,7 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
                 id: 'demo-admin',
                 sub: 'demo-admin',
                 username: 'admin',
-                companyId: 'demo-company',
+                companyId: 'b3000000-0000-4000-8000-000000000001',
                 isSystemAdmin: true,
                 roles: ['admin'],
                 permissions: ['*'],
