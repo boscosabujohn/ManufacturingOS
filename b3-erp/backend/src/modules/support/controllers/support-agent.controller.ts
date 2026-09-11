@@ -3,6 +3,7 @@ import {
   Controller,
   Delete,
   Get,
+  Headers,
   Param,
   Post,
   Put,
@@ -18,8 +19,11 @@ export class SupportAgentController {
   constructor(private readonly service: SupportAgentService) {}
 
   @Get()
-  findAll(@Query('companyId') companyId: string): Promise<SupportAgent[]> {
-    return this.service.findAll(companyId || 'company-1');
+  findAll(
+    @Query('companyId') companyId: string,
+    @Headers('x-company-id') headerCompanyId: string,
+  ): Promise<SupportAgent[]> {
+    return this.service.findAll(companyId || headerCompanyId || 'company-1');
   }
 
   @Get(':id')

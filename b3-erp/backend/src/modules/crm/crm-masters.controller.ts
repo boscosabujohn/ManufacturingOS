@@ -5,6 +5,7 @@ import {
     Put,
     Delete,
     Body,
+    Headers,
     Param,
     Query,
     HttpCode,
@@ -178,20 +179,24 @@ export class CrmMastersController {
     @Get('campaigns')
     async findAllCampaigns(
         @Query('companyId') companyId?: string,
+        @Headers('x-company-id') headerCompanyId?: string,
         @Query('search') search?: string,
         @Query('type') type?: string,
         @Query('status') status?: string,
         @Query('assignedToId') assignedToId?: string,
     ) {
         return this.crmMastersService.findAllCampaigns(
-            companyId || DEFAULT_COMPANY_ID,
+            companyId || headerCompanyId || DEFAULT_COMPANY_ID,
             { search, type, status, assignedToId }
         );
     }
 
     @Get('campaigns/stats')
-    async getCampaignStats(@Query('companyId') companyId?: string) {
-        return this.crmMastersService.getCampaignStats(companyId || DEFAULT_COMPANY_ID);
+    async getCampaignStats(
+        @Query('companyId') companyId?: string,
+        @Headers('x-company-id') headerCompanyId?: string,
+    ) {
+        return this.crmMastersService.getCampaignStats(companyId || headerCompanyId || DEFAULT_COMPANY_ID);
     }
 
     @Get('campaigns/:id')

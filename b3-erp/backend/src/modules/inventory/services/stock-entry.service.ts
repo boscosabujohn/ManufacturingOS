@@ -12,6 +12,11 @@ import {
   UpdateStockEntryDto,
   StockEntryResponseDto,
 } from '../dto';
+import {
+  StockEntryType,
+  StockEntryStatus,
+  MovementDirection,
+} from '../entities/stock-entry.entity';
 
 @Injectable()
 export class StockEntryService {
@@ -25,7 +30,8 @@ export class StockEntryService {
   async create(createDto: CreateStockEntryDto): Promise<StockEntryResponseDto> {
     return await this.prisma.$transaction(async (tx) => {
       const entryNumber = await this.generateEntryNumber(createDto.entryType);
-      const movementDirection = this.getMovementDirection(createDto.entryType);
+      const entryTypeName = this.toEnumName(StockEntryType, createDto.entryType);
+      const movementDirection = this.getMovementDirection(entryTypeName);
 
       // Calculate total value
       const totalValue = createDto.lines.reduce(
@@ -36,12 +42,12 @@ export class StockEntryService {
       const stockEntry = await tx.stockEntry.create({
         data: {
           entryNumber,
-          entryType: createDto.entryType,
-          movementDirection,
+          entryType: entryTypeName as any,
+          movementDirection: movementDirection as any,
           postingDate: createDto.postingDate ? new Date(createDto.postingDate) : new Date(),
           postingTime: new Date(),
           totalValue,
-          status: 'Draft',
+          status: 'DRAFT' as any,
           isPosted: false,
           referenceType: createDto.referenceType,
           referenceId: createDto.referenceId,
@@ -80,11 +86,11 @@ export class StockEntryService {
     const where: any = {};
 
     if (filters?.status) {
-      where.status = filters.status;
+      where.status = this.toEnumName(StockEntryStatus, filters.status);
     }
 
     if (filters?.entryType) {
-      where.entryType = filters.entryType;
+      where.entryType = this.toEnumName(StockEntryType, filters.entryType);
     }
 
     if (filters?.warehouseId) {
@@ -112,7 +118,7 @@ export class StockEntryService {
 
   async getPendingPost(): Promise<StockEntryResponseDto[]> {
     const entries = await this.prisma.stockEntry.findMany({
-      where: { status: 'Submitted', isPosted: false },
+      where: { status: 'SUBMITTED' as any, isPosted: false },
       include: { lines: true },
       orderBy: { postingDate: 'asc' },
     });
@@ -186,7 +192,7 @@ export class StockEntryService {
   async submit(id: string): Promise<StockEntryResponseDto> {
     const updated = await this.prisma.stockEntry.update({
       where: { id },
-      data: { status: 'Submitted' },
+      data: { status: 'SUBMITTED' as any },
       include: { lines: true },
     });
     return this.mapToResponseDto(updated);
@@ -316,7 +322,7 @@ export class StockEntryService {
       const posted = await tx.stockEntry.update({
         where: { id: entry.id },
         data: {
-          status: 'Posted',
+          status: 'POSTED' as any,
           isPosted: true,
           postedAt: new Date(),
           updatedBy: 'SYSTEM',
@@ -338,7 +344,7 @@ export class StockEntryService {
   async cancel(id: string): Promise<StockEntryResponseDto> {
     const updated = await this.prisma.stockEntry.update({
       where: { id },
-      data: { status: 'Cancelled' },
+      data: { status: 'CANCELLED' as any },
       include: { lines: true },
     });
     return this.mapToResponseDto(updated);
@@ -395,7 +401,24 @@ export class StockEntryService {
   private mapToResponseDto(entry: any): StockEntryResponseDto {
     return {
       ...entry,
+      // Prisma returns enum member names (e.g. MATERIAL_RECEIPT); the API
+      // contract is the entity enum's display strings (e.g. "Material Receipt").
+      entryType: this.toDisplay(StockEntryType, entry.entryType),
+      movementDirection: this.toDisplay(MovementDirection, entry.movementDirection),
+      status: this.toDisplay(StockEntryStatus, entry.status),
       lines: entry.lines?.map((line: any) => ({ ...line })) || [],
     } as any;
+  }
+
+  private toEnumName(
+    enumObj: Record<string, string>,
+    display: string,
+  ): string {
+    const hit = Object.entries(enumObj).find(([, value]) => value === display);
+    return hit ? hit[0] : display;
+  }
+
+  private toDisplay(enumObj: Record<string, string>, name: string): string {
+    return enumObj[name] ?? name;
   }
 }

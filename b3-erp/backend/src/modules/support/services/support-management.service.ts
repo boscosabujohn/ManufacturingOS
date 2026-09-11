@@ -1,10 +1,17 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { PrismaService } from '../../prisma/prisma.service';
 import { Prisma } from '@prisma/client';
+import { SupportAgent } from '../entities/support-agent.entity';
 
 @Injectable()
 export class SupportManagementService {
-  constructor(private prisma: PrismaService) {}
+  constructor(
+    private prisma: PrismaService,
+    @InjectRepository(SupportAgent)
+    private readonly supportAgentRepo: Repository<SupportAgent>,
+  ) {}
 
   // ============================================
   // TICKET MANAGEMENT
@@ -240,27 +247,20 @@ export class SupportManagementService {
   }) {
     const { companyId, status, teamId } = params;
 
-    return this.prisma.supportAgent.findMany({
+    // Live support_agents table has status/team columns (no availabilityStatus/teamId/relations).
+    return this.supportAgentRepo.find({
       where: {
-        companyId,
-        ...(status && { availabilityStatus: status }),
-        ...(teamId && { teamId }),
+        ...(companyId && { companyId }),
+        ...(status && { status }),
+        ...(teamId && { team: teamId }),
       },
-      include: {
-        skillMatrix: true,
-        tickets: { where: { status: { not: 'closed' } }, take: 5 },
-      },
-      orderBy: { agentName: 'asc' },
+      order: { name: 'ASC' },
     });
   }
 
   async getAgentById(id: string, companyId: string) {
-    return this.prisma.supportAgent.findFirst({
-      where: { id, companyId },
-      include: {
-        skillMatrix: true,
-        tickets: { orderBy: { createdAt: 'desc' }, take: 10 },
-      },
+    return this.supportAgentRepo.findOne({
+      where: { id, ...(companyId && { companyId }) },
     });
   }
 
@@ -275,27 +275,21 @@ export class SupportManagementService {
     maxActiveTickets?: number;
     supportedChannels?: string[];
   }) {
-    return this.prisma.supportAgent.create({
-      data: {
-        agentCode: data.agentCode,
-        agentName: data.agentName,
-        email: data.email,
-        teamId: data.teamId,
-        teamName: data.teamName,
-        role: data.role || 'agent',
-        availabilityStatus: 'online',
-        maxActiveTickets: data.maxActiveTickets || 10,
-        supportedChannels: data.supportedChannels || ['email', 'chat'],
-        companyId: data.companyId,
-      },
+    // Map onto the live support_agents columns (no agentCode/teamId/maxActiveTickets/supportedChannels).
+    const agent = this.supportAgentRepo.create({
+      companyId: data.companyId,
+      name: data.agentName,
+      email: data.email,
+      team: data.teamName ?? data.teamId,
+      role: data.role || 'agent',
+      status: 'Online',
     });
+    return this.supportAgentRepo.save(agent);
   }
 
   async updateAgentStatus(agentId: string, companyId: string, status: string) {
-    return this.prisma.supportAgent.update({
-      where: { id: agentId },
-      data: { availabilityStatus: status },
-    });
+    await this.supportAgentRepo.update({ id: agentId }, { status });
+    return this.supportAgentRepo.findOne({ where: { id: agentId } });
   }
 
   async getAgentSkillMatrix(companyId: string) {
@@ -341,25 +335,21 @@ export class SupportManagementService {
   }
 
   async getTeamPerformance(companyId: string) {
-    const agents = await this.prisma.supportAgent.findMany({
-      where: { companyId },
-      include: { tickets: true },
+    // Derived from the live support_agents metric columns (no tickets relation on the live table).
+    const agents = await this.supportAgentRepo.find({
+      where: { ...(companyId && { companyId }) },
+      order: { name: 'ASC' },
     });
 
-    return agents.map(agent => {
-      const tickets = agent.tickets;
-      const resolved = tickets.filter((t: { status: string }) => t.status === 'resolved' || t.status === 'closed');
-
-      return {
-        agentId: agent.id,
-        agentName: agent.agentName,
-        totalTickets: tickets.length,
-        resolvedTickets: resolved.length,
-        openTickets: tickets.length - resolved.length,
-        avgResolutionTime: agent.avgResolutionTime || 0,
-        slaCompliance: 95, // Default value
-      };
-    });
+    return agents.map(agent => ({
+      agentId: agent.id,
+      agentName: agent.name,
+      totalTickets: (agent.activeTickets || 0) + (agent.resolvedThisMonth || 0),
+      resolvedTickets: agent.resolvedThisMonth || 0,
+      openTickets: agent.activeTickets || 0,
+      avgResolutionTime: agent.avgResolutionTime || 0,
+      slaCompliance: Number(agent.slaCompliance) || 95,
+    }));
   }
 
   // ============================================

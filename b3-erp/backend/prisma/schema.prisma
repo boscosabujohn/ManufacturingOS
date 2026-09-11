@@ -396,14 +396,52 @@ model StockBalance {
   @@map("stock_balances")
 }
 
+// These three columns are Postgres enum types created by the TypeORM entity
+// (stock-entry.entity.ts). Prisma must declare matching enums — a plain String
+// field fails deserialization as soon as the table has rows.
+enum StockEntryType {
+  MATERIAL_RECEIPT     @map("Material Receipt")
+  MATERIAL_ISSUE       @map("Material Issue")
+  MATERIAL_TRANSFER    @map("Material Transfer")
+  STOCK_RECONCILIATION @map("Stock Reconciliation")
+  PURCHASE_RECEIPT     @map("Purchase Receipt")
+  PURCHASE_RETURN      @map("Purchase Return")
+  SALES_ISSUE          @map("Sales Issue")
+  SALES_RETURN         @map("Sales Return")
+  PRODUCTION_RECEIPT   @map("Production Receipt")
+  PRODUCTION_ISSUE     @map("Production Issue")
+  OPENING_STOCK        @map("Opening Stock")
+  REPACK               @map("Repack")
+  SCRAP                @map("Scrap")
+
+  @@map("stock_entries_entrytype_enum")
+}
+
+enum StockMovementDirection {
+  IN       @map("In")
+  OUT      @map("Out")
+  INTERNAL @map("Internal")
+
+  @@map("stock_entries_movementdirection_enum")
+}
+
+enum StockEntryStatus {
+  DRAFT     @map("Draft")
+  SUBMITTED @map("Submitted")
+  POSTED    @map("Posted")
+  CANCELLED @map("Cancelled")
+
+  @@map("stock_entries_status_enum")
+}
+
 model StockEntry {
   id                String   @id @default(uuid())
   entryNumber       String   @unique
-  entryType         String   
-  movementDirection String
+  entryType         StockEntryType
+  movementDirection StockMovementDirection
   postingDate       DateTime @db.Date
   postingTime       DateTime
-  status            String   @default("Draft")
+  status            StockEntryStatus @default(DRAFT)
   referenceType     String?
   referenceId       String?
   referenceNumber   String?

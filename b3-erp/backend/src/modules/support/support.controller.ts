@@ -6,6 +6,7 @@ import {
     Patch,
     Param,
     Body,
+    Headers,
     Query,
     HttpCode,
     HttpStatus,
@@ -132,10 +133,11 @@ export class SupportController {
     @ApiQuery({ name: 'teamId', required: false })
     getAgents(
         @Query('companyId') companyId: string,
+        @Headers('x-company-id') headerCompanyId?: string,
         @Query('status') status?: string,
         @Query('teamId') teamId?: string,
     ) {
-        return this.supportService.getSupportAgents({ companyId, status, teamId });
+        return this.supportService.getSupportAgents({ companyId: companyId || headerCompanyId || '', status, teamId });
     }
 
     @Get('agents/:id')

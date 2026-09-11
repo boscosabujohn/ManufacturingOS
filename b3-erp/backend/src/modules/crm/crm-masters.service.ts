@@ -1,9 +1,16 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { ILike, Repository } from 'typeorm';
 import { PrismaService } from '../prisma/prisma.service';
+import { CrmCampaign } from './entities/crm-campaign.entity';
 
 @Injectable()
 export class CrmMastersService {
-    constructor(private prisma: PrismaService) { }
+    constructor(
+        private prisma: PrismaService,
+        @InjectRepository(CrmCampaign)
+        private campaignRepo: Repository<CrmCampaign>,
+    ) { }
 
     // ===========================
     // GENERIC HELPER METHODS
@@ -341,70 +348,74 @@ export class CrmMastersService {
         status?: string;
         assignedToId?: string;
     }) {
-        const where: any = { companyId, isActive: true };
+        // Live crm_campaigns table has no assignedToId/isActive columns; those filters are not applicable.
+        const base: Record<string, any> = { companyId };
 
-        if (filters?.type) where.type = filters.type;
-        if (filters?.status) where.status = filters.status;
-        if (filters?.assignedToId) where.assignedToId = filters.assignedToId;
-        if (filters?.search) {
-            where.OR = [
-                { name: { contains: filters.search, mode: 'insensitive' } },
-                { campaignNumber: { contains: filters.search, mode: 'insensitive' } },
-                { description: { contains: filters.search, mode: 'insensitive' } },
-            ];
-        }
+        if (filters?.type) base.type = filters.type;
+        if (filters?.status) base.status = filters.status;
 
-        return this.prisma.crmCampaign.findMany({
+        const where = filters?.search
+            ? [
+                { ...base, name: ILike(`%${filters.search}%`) },
+                { ...base, description: ILike(`%${filters.search}%`) },
+            ]
+            : base;
+
+        return this.campaignRepo.find({
             where,
-            include: {
-                opportunities: { take: 5 },
-                parentCampaign: true,
-                childCampaigns: true,
-            },
-            orderBy: { createdAt: 'desc' },
+            order: { createdAt: 'DESC' },
         });
     }
 
     async findCampaignById(id: string) {
-        return this.prisma.crmCampaign.findUnique({
-            where: { id },
-            include: {
-                opportunities: true,
-                parentCampaign: true,
-                childCampaigns: true,
-            },
-        });
+        const campaign = await this.campaignRepo.findOne({ where: { id } });
+        if (!campaign) {
+            throw new NotFoundException(`Campaign with id ${id} not found`);
+        }
+        return campaign;
     }
 
     async createCampaign(data: any) {
-        const count = await this.prisma.crmCampaign.count({ where: { companyId: data.companyId } });
-        const campaignNumber = this.generateNumber('CMP', count + 1);
-
-        return this.prisma.crmCampaign.create({
-            data: {
-                ...data,
-                campaignNumber,
-            },
+        // Only persist the fields that exist on the live crm_campaigns table.
+        const campaign = this.campaignRepo.create({
+            companyId: data.companyId,
+            name: data.name,
+            type: data.type,
+            status: data.status,
+            description: data.description,
+            startDate: data.startDate,
+            endDate: data.endDate,
+            budget: data.budget,
+            owner: data.owner,
+            tags: data.tags,
         });
+        return this.campaignRepo.save(campaign);
     }
 
     async updateCampaign(id: string, data: any) {
-        await this.findByIdOrThrow(this.prisma.crmCampaign, id, 'Campaign');
-        return this.prisma.crmCampaign.update({ where: { id }, data });
+        const campaign = await this.findCampaignById(id);
+        const allowed = [
+            'name', 'type', 'status', 'description', 'startDate', 'endDate',
+            'targetAudience', 'budget', 'spent', 'stages', 'metrics', 'goals',
+            'owner', 'tags',
+        ];
+        const patch: Record<string, any> = {};
+        for (const key of allowed) {
+            if (data[key] !== undefined) patch[key] = data[key];
+        }
+        this.campaignRepo.merge(campaign, patch);
+        return this.campaignRepo.save(campaign);
     }
 
     async deleteCampaign(id: string) {
-        await this.findByIdOrThrow(this.prisma.crmCampaign, id, 'Campaign');
-        return this.prisma.crmCampaign.update({
-            where: { id },
-            data: { isActive: false },
-        });
+        // Live table has no isActive column — soft delete by cancelling the campaign.
+        const campaign = await this.findCampaignById(id);
+        campaign.status = 'cancelled';
+        return this.campaignRepo.save(campaign);
     }
 
     async getCampaignStats(companyId: string) {
-        const campaigns = await this.prisma.crmCampaign.findMany({
-            where: { companyId, isActive: true },
-        });
+        const campaigns = await this.campaignRepo.find({ where: { companyId } });
 
         let totalBudget = 0;
         let totalSpent = 0;
@@ -416,11 +427,12 @@ export class CrmMastersService {
         const byStatus: Record<string, number> = {};
 
         campaigns.forEach(campaign => {
-            totalBudget += campaign.budget || 0;
-            totalSpent += campaign.actualCost || 0;
-            totalRevenue += campaign.actualRevenue || 0;
-            totalLeads += campaign.totalLeads || 0;
-            totalConversions += campaign.convertedLeads || 0;
+            const metrics = campaign.metrics || {};
+            totalBudget += Number(campaign.budget) || 0;
+            totalSpent += Number(campaign.spent) || 0;
+            totalRevenue += Number(metrics.revenue) || 0;
+            totalLeads += Number(metrics.leadsGenerated) || 0;
+            totalConversions += Number(metrics.ordersWon ?? metrics.opportunities) || 0;
 
             byType[campaign.type] = (byType[campaign.type] || 0) + 1;
             byStatus[campaign.status] = (byStatus[campaign.status] || 0) + 1;
@@ -430,7 +442,7 @@ export class CrmMastersService {
 
         return {
             total: campaigns.length,
-            activeCount: byStatus['Active'] || 0,
+            activeCount: campaigns.filter(c => (c.status || '').toLowerCase() === 'active').length,
             byType,
             byStatus,
             totalBudget,

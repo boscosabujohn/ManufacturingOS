@@ -110,7 +110,7 @@ export class StockValuationService {
                 itemId,
                 toLocationId: { startsWith: warehouseId },
                 stockEntry: {
-                    status: 'Posted',
+                    status: 'POSTED',
                     movementDirection: 'IN'
                 }
             },
@@ -126,7 +126,7 @@ export class StockValuationService {
                 itemId,
                 fromLocationId: { startsWith: warehouseId },
                 stockEntry: {
-                    status: 'Posted',
+                    status: 'POSTED',
                     movementDirection: 'OUT'
                 }
             }
