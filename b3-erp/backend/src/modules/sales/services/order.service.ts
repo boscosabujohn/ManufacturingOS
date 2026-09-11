@@ -10,17 +10,56 @@ import {
   HandoverPackage,
   ApprovalRecord,
 } from '../entities/order.entity';
-import { RFP } from '../entities/rfp.entity';
+import { PrismaService } from '../../prisma/prisma.service';
 import { EventBusService } from '../../workflow/services/event-bus.service';
 import { WorkflowEventType } from '../../workflow/events/event-types';
 
+/** Anchor demo company — matches jwt-auth.guard and the seeded SO-DEMO-* rows. */
+const DEFAULT_COMPANY_ID = 'b3000000-0000-4000-8000-000000000001';
+
+/**
+ * SalesOrder interface fields that have no dedicated column in `sales_orders`.
+ * They round-trip through the `attachments` jsonb column (unused elsewhere)
+ * so the public API shape is preserved without any DDL change.
+ */
+const EXTRA_FIELDS: (keyof SalesOrder)[] = [
+  'rfpNumber',
+  'customerCode',
+  'contactPerson',
+  'poDate',
+  'poValue',
+  'advanceAmount',
+  'advanceReceived',
+  'creditLimit',
+  'creditUtilized',
+  'qualityRequirements',
+  'packagingRequirements',
+  'documents',
+  'validations',
+  'approvalStatus',
+  'currentApprovalLevel',
+  'requiredApprovalLevels',
+  'approvalHistory',
+  'productionOrderId',
+  'workOrderIds',
+  'assignedTeam',
+  'estimatedCost',
+  'estimatedMargin',
+  'marginPercentage',
+  'invoiceIds',
+  'shipmentIds',
+  'returnIds',
+  'updatedBy',
+  'customerNotes',
+  'tags',
+];
+
 @Injectable()
 export class OrderService {
-  private orders: SalesOrder[] = [];
-
-  constructor(private readonly eventBusService: EventBusService) {
-    this.seedMockData();
-  }
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly eventBusService: EventBusService,
+  ) {}
 
   async create(createOrderDto: Partial<SalesOrder>): Promise<SalesOrder> {
     const orderNumber = await this.generateOrderNumber();
@@ -88,16 +127,16 @@ export class OrderService {
     // Calculate totals
     this.calculateOrderTotals(order);
 
-    this.orders.push(order);
+    const created = await this.persistNew(order, (createOrderDto as any).companyId);
 
     // Emit event
     await this.eventBusService.emit<any>(WorkflowEventType.ORDER_CREATED, {
-      orderId: order.id,
-      orderNumber: order.orderNumber,
-      userId: order.createdBy,
+      orderId: created.id,
+      orderNumber: created.orderNumber,
+      userId: created.createdBy,
     });
 
-    return order;
+    return created;
   }
 
   async createFromRFP(rfpId: string, createdBy: string): Promise<SalesOrder> {
@@ -164,15 +203,15 @@ export class OrderService {
       updatedBy: createdBy,
     };
 
-    this.orders.push(order);
+    const created = await this.persistNew(order);
 
     await this.eventBusService.emit<any>(WorkflowEventType.ORDER_CREATED_FROM_RFP, {
-      orderId: order.id,
+      orderId: created.id,
       rfpId,
       userId: createdBy,
     });
 
-    return order;
+    return created;
   }
 
   async findAll(filters?: {
@@ -182,46 +221,54 @@ export class OrderService {
     fromDate?: string;
     toDate?: string;
   }): Promise<SalesOrder[]> {
-    let result = [...this.orders];
+    const where: any = {};
 
     if (filters?.status) {
-      result = result.filter(o => o.status === filters.status);
+      where.status = filters.status;
     }
     if (filters?.customerId) {
-      result = result.filter(o => o.customerId === filters.customerId);
+      where.customerId = filters.customerId;
     }
     if (filters?.salesPersonId) {
-      result = result.filter(o => o.salesPersonId === filters.salesPersonId);
+      where.salesPersonId = filters.salesPersonId;
     }
-    if (filters?.fromDate) {
-      result = result.filter(o => o.orderDate >= filters.fromDate!);
-    }
-    if (filters?.toDate) {
-      result = result.filter(o => o.orderDate <= filters.toDate!);
+    if (filters?.fromDate || filters?.toDate) {
+      where.orderDate = {};
+      if (filters?.fromDate) {
+        where.orderDate.gte = new Date(filters.fromDate);
+      }
+      if (filters?.toDate) {
+        where.orderDate.lte = new Date(filters.toDate);
+      }
     }
 
-    return result.sort((a, b) =>
-      new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-    );
+    const rows = await this.prisma.salesOrder.findMany({
+      where,
+      include: { items: true },
+      orderBy: { createdAt: 'desc' },
+    });
+
+    return rows.map((row) => this.mapOrder(row));
   }
 
   async findOne(id: string): Promise<SalesOrder> {
-    const order = this.orders.find(o => o.id === id);
-    if (!order) {
+    const row = await this.prisma.salesOrder.findUnique({
+      where: { id },
+      include: { items: true },
+    });
+    if (!row) {
       throw new NotFoundException(`Order with ID ${id} not found`);
     }
-    return order;
+    return this.mapOrder(row);
   }
 
   async update(id: string, updateOrderDto: Partial<SalesOrder>): Promise<SalesOrder> {
-    const index = this.orders.findIndex(o => o.id === id);
-    if (index === -1) {
-      throw new NotFoundException(`Order with ID ${id} not found`);
-    }
+    const existing = await this.findOne(id);
 
-    const updatedOrder = {
-      ...this.orders[index],
+    const updatedOrder: SalesOrder = {
+      ...existing,
       ...updateOrderDto,
+      id: existing.id,
       updatedAt: new Date().toISOString(),
     };
 
@@ -230,8 +277,36 @@ export class OrderService {
       this.calculateOrderTotals(updatedOrder);
     }
 
-    this.orders[index] = updatedOrder;
-    return updatedOrder;
+    const data = this.toOrderRow(updatedOrder);
+
+    const row = updateOrderDto.items
+      ? await this.prisma.$transaction(async (tx) => {
+          await tx.salesOrderItem.deleteMany({ where: { orderId: id } });
+          return tx.salesOrder.update({
+            where: { id },
+            data: {
+              ...data,
+              items: {
+                create: updatedOrder.items.map((item, index) => this.toItemRow(item, index)),
+              },
+            },
+            include: { items: true },
+          });
+        })
+      : await this.prisma.salesOrder.update({
+          where: { id },
+          data,
+          include: { items: true },
+        });
+
+    return this.mapOrder(row);
+  }
+
+  async remove(id: string): Promise<{ deleted: boolean }> {
+    await this.findOne(id);
+    // Items are removed by the ON DELETE CASCADE on sales_order_items
+    await this.prisma.salesOrder.delete({ where: { id } });
+    return { deleted: true };
   }
 
   async validatePO(orderId: string, poData: {
@@ -306,6 +381,11 @@ export class OrderService {
       updatedBy: confirmBy,
     });
 
+    await this.prisma.salesOrder.update({
+      where: { id: orderId },
+      data: { confirmedAt: new Date(), confirmedBy: confirmBy },
+    });
+
     await this.eventBusService.emit<any>(WorkflowEventType.ORDER_CONFIRMED, {
       orderId,
       orderNumber: order.orderNumber,
@@ -355,6 +435,13 @@ export class OrderService {
       updatedBy: approverId,
     });
 
+    if (isFullyApproved) {
+      await this.prisma.salesOrder.update({
+        where: { id: orderId },
+        data: { approvedAt: new Date(), approvedBy: approverId },
+      });
+    }
+
     await this.eventBusService.emit<any>(isFullyApproved ? WorkflowEventType.ORDER_APPROVED : WorkflowEventType.ORDER_APPROVAL_LEVEL_COMPLETED, {
       orderId,
       level,
@@ -390,6 +477,11 @@ export class OrderService {
       approvalStatus: 'rejected',
       status: OrderStatus.CANCELLED,
       updatedBy: approverId,
+    });
+
+    await this.prisma.salesOrder.update({
+      where: { id: orderId },
+      data: { cancelledAt: new Date(), cancellationReason: comments },
     });
 
     await this.eventBusService.emit<any>(WorkflowEventType.ORDER_REJECTED, {
@@ -475,7 +567,7 @@ export class OrderService {
       orderNumber: order.orderNumber,
       customerId: order.customerId,
       customerName: order.customerName,
-      items: order.items,
+      items: updatedOrder.items,
       requestedDeliveryDate: order.requestedDeliveryDate,
       userId: acceptedBy,
     });
@@ -532,19 +624,29 @@ export class OrderService {
     totalValue: number;
     averageValue: number;
   }> {
-    const byStatus: Record<string, number> = {};
-    let totalValue = 0;
+    const [total, grouped, aggregate] = await Promise.all([
+      this.prisma.salesOrder.count(),
+      this.prisma.salesOrder.groupBy({
+        by: ['status'],
+        _count: { status: true },
+      }),
+      this.prisma.salesOrder.aggregate({
+        _sum: { totalAmount: true },
+      }),
+    ]);
 
-    this.orders.forEach(order => {
-      byStatus[order.status] = (byStatus[order.status] || 0) + 1;
-      totalValue += order.totalAmount;
+    const byStatus: Record<string, number> = {};
+    grouped.forEach((group) => {
+      byStatus[group.status] = group._count.status;
     });
 
+    const totalValue = Number(aggregate._sum.totalAmount) || 0;
+
     return {
-      total: this.orders.length,
+      total,
       byStatus,
       totalValue,
-      averageValue: this.orders.length > 0 ? totalValue / this.orders.length : 0,
+      averageValue: total > 0 ? totalValue / total : 0,
     };
   }
 
@@ -603,46 +705,272 @@ export class OrderService {
     const date = new Date();
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
-    const sequence = String(this.orders.length + 1).padStart(5, '0');
-    return `SO-${year}${month}-${sequence}`;
+    const prefix = `SO-${year}${month}-`;
+
+    // Derive the next sequence from the DB max for the current period.
+    // Seeded SO-DEMO-* rows never match the prefix, so they cannot break it.
+    const last = await this.prisma.salesOrder.findFirst({
+      where: { orderNumber: { startsWith: prefix } },
+      orderBy: { orderNumber: 'desc' },
+      select: { orderNumber: true },
+    });
+
+    const lastSequence = last ? parseInt(last.orderNumber.slice(prefix.length), 10) : 0;
+    const nextSequence = (Number.isNaN(lastSequence) ? 0 : lastSequence) + 1;
+    return `${prefix}${String(nextSequence).padStart(5, '0')}`;
   }
 
-  private seedMockData(): void {
-    // Seed some sample orders
-    const sampleOrders: Partial<SalesOrder>[] = [
-      {
-        customerId: 'cust-001',
-        customerName: 'Acme Manufacturing Ltd',
-        contactPerson: 'John Smith',
-        contactEmail: 'john@acme.com',
-        contactPhone: '+91-9876543210',
-        items: [
-          {
-            id: uuidv4(),
-            itemId: 'item-001',
-            itemCode: 'PRD-001',
-            itemName: 'Industrial Motor',
-            quantity: 10,
-            unit: 'Nos',
-            unitPrice: 25000,
-            discount: 5,
-            discountType: 'percentage',
-            taxRate: 18,
-            taxAmount: 0,
-            lineTotal: 0,
-          },
-        ],
-        paymentTerms: 'Net 30',
-        deliveryTerms: 'DAP',
-        requestedDeliveryDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
-        salesPersonId: 'sp-001',
-        salesPersonName: 'Rahul Sharma',
-        createdBy: 'system',
+  private async persistNew(order: SalesOrder, companyId?: string): Promise<SalesOrder> {
+    const row = await this.prisma.salesOrder.create({
+      data: {
+        ...this.toOrderRow(order),
+        id: order.id,
+        companyId: companyId || DEFAULT_COMPANY_ID,
+        createdAt: new Date(order.createdAt),
+        items: {
+          create: order.items.map((item, index) => this.toItemRow(item, index)),
+        },
       },
-    ];
-
-    sampleOrders.forEach(orderData => {
-      this.create(orderData);
+      include: { items: true },
     });
+    return this.mapOrder(row);
+  }
+
+  /** Maps the API-shaped SalesOrder onto sales_orders columns. */
+  private toOrderRow(order: SalesOrder): any {
+    return {
+      orderNumber: order.orderNumber,
+      quotationId: order.quotationId ?? null,
+      quotationNumber: order.quotationNumber ?? null,
+      rfpId: order.rfpId ?? null,
+      customerId: order.customerId || null,
+      customerName: order.customerName,
+      customerEmail: order.contactEmail || null,
+      customerPhone: order.contactPhone || null,
+      shippingAddress: order.shippingAddress as any,
+      billingAddress: order.billingAddress as any,
+      orderDate: new Date(order.orderDate),
+      requestedDeliveryDate: order.requestedDeliveryDate ? new Date(order.requestedDeliveryDate) : null,
+      promisedDeliveryDate: order.promisedDeliveryDate ? new Date(order.promisedDeliveryDate) : null,
+      deliveredAt: order.actualDeliveryDate ? new Date(order.actualDeliveryDate) : null,
+      orderType: order.orderType,
+      priority: order.priority ?? 'normal',
+      currency: order.currency,
+      subtotal: order.subtotal,
+      discountAmount: order.totalDiscount,
+      taxAmount: order.totalTax,
+      totalAmount: order.totalAmount,
+      paymentTerms: order.paymentTerms || null,
+      paymentStatus: order.paymentStatus,
+      deliveryTerms: order.deliveryTerms || null,
+      status: order.status,
+      poNumber: order.poNumber ?? null,
+      notes: order.specialInstructions ?? null,
+      internalNotes: order.internalNotes ?? null,
+      handoverPackage: (order.handoverPackage as any) ?? undefined,
+      handoverStatus: order.handoverPackage?.acceptanceStatus ?? null,
+      handoverDate: order.handoverPackage?.handoverDate ? new Date(order.handoverPackage.handoverDate) : null,
+      salesPersonId: order.salesPersonId || null,
+      salesPersonName: order.salesPersonName || null,
+      createdBy: order.createdBy || null,
+      attachments: this.buildExtras(order),
+    };
+  }
+
+  /** Collects interface fields without a dedicated column into the jsonb envelope. */
+  private buildExtras(order: SalesOrder): Record<string, any> {
+    const extras: Record<string, any> = {};
+    for (const field of EXTRA_FIELDS) {
+      if (order[field] !== undefined) {
+        extras[field] = order[field];
+      }
+    }
+    return extras;
+  }
+
+  private toItemRow(item: OrderItem, index: number): any {
+    const quantity = Number(item.quantity) || 0;
+    const unitPrice = Number(item.unitPrice) || 0;
+    const discount = Number(item.discount) || 0;
+    const isPercentage = item.discountType === 'percentage';
+
+    return {
+      id: item.id || uuidv4(),
+      lineNumber: index + 1,
+      itemId: item.itemId || null,
+      itemCode: item.itemCode || null,
+      itemName: item.itemName,
+      description: item.description ?? null,
+      quantity,
+      uom: item.unit || null,
+      unitPrice,
+      discountPercent: isPercentage ? discount : 0,
+      discountAmount: isPercentage ? (quantity * unitPrice * discount) / 100 : discount,
+      taxRate: Number(item.taxRate) || 0,
+      taxAmount: Number(item.taxAmount) || 0,
+      lineTotal: Number(item.lineTotal) || 0,
+      requestedDate: item.deliveryDate ? new Date(item.deliveryDate) : null,
+      notes: item.notes ?? null,
+      specifications:
+        item.specifications !== undefined || item.bomId !== undefined
+          ? ({ text: item.specifications ?? null, bomId: item.bomId ?? null } as any)
+          : undefined,
+    };
+  }
+
+  /** Maps a sales_orders row (with items) back to the public SalesOrder shape. */
+  private mapOrder(row: any): SalesOrder {
+    const extras: Record<string, any> =
+      row.attachments && typeof row.attachments === 'object' && !Array.isArray(row.attachments)
+        ? row.attachments
+        : {};
+    const totalAmount = Number(row.totalAmount) || 0;
+    const requiredApprovalLevels =
+      extras.requiredApprovalLevels ?? this.determineApprovalLevels(totalAmount);
+    const approvalStatus = extras.approvalStatus ?? this.deriveApprovalStatus(row.status);
+    const currentApprovalLevel =
+      extras.currentApprovalLevel ?? (approvalStatus === 'approved' ? requiredApprovalLevels : 0);
+
+    const items: OrderItem[] = [...(row.items ?? [])]
+      .sort((a: any, b: any) => a.lineNumber - b.lineNumber)
+      .map((item: any) => this.mapItem(item));
+
+    return {
+      id: row.id,
+      orderNumber: row.orderNumber,
+      orderDate: row.orderDate.toISOString(),
+      orderType: row.orderType as OrderType,
+      status: row.status as OrderStatus,
+      rfpId: row.rfpId ?? undefined,
+      rfpNumber: extras.rfpNumber ?? undefined,
+      quotationId: row.quotationId ?? undefined,
+      quotationNumber: row.quotationNumber ?? undefined,
+      customerId: row.customerId ?? '',
+      customerName: row.customerName,
+      customerCode: extras.customerCode ?? undefined,
+      contactPerson: extras.contactPerson ?? '',
+      contactEmail: row.customerEmail ?? '',
+      contactPhone: row.customerPhone ?? '',
+      poNumber: row.poNumber ?? undefined,
+      poDate: extras.poDate ?? undefined,
+      poValue: extras.poValue ?? undefined,
+      items,
+      subtotal: Number(row.subtotal) || 0,
+      totalDiscount: Number(row.discountAmount) || 0,
+      totalTax: Number(row.taxAmount) || 0,
+      totalAmount,
+      currency: row.currency,
+      paymentTerms: row.paymentTerms ?? '',
+      paymentStatus: row.paymentStatus as PaymentStatus,
+      advanceAmount: extras.advanceAmount ?? undefined,
+      advanceReceived: extras.advanceReceived ?? undefined,
+      creditLimit: extras.creditLimit ?? undefined,
+      creditUtilized: extras.creditUtilized ?? undefined,
+      deliveryTerms: row.deliveryTerms ?? '',
+      shippingAddress: (row.shippingAddress as any) ?? this.emptyAddress(),
+      billingAddress: (row.billingAddress as any) ?? this.emptyAddress(),
+      requestedDeliveryDate: row.requestedDeliveryDate ? row.requestedDeliveryDate.toISOString() : '',
+      promisedDeliveryDate: row.promisedDeliveryDate ? row.promisedDeliveryDate.toISOString() : undefined,
+      actualDeliveryDate: row.deliveredAt ? row.deliveredAt.toISOString() : undefined,
+      specialInstructions: row.notes ?? undefined,
+      qualityRequirements: extras.qualityRequirements ?? undefined,
+      packagingRequirements: extras.packagingRequirements ?? undefined,
+      documents: extras.documents ?? {},
+      validations: extras.validations ?? this.deriveValidations(row),
+      approvalStatus,
+      currentApprovalLevel,
+      requiredApprovalLevels,
+      approvalHistory: extras.approvalHistory ?? [],
+      handoverPackage: (row.handoverPackage as any) ?? undefined,
+      productionOrderId: extras.productionOrderId ?? undefined,
+      workOrderIds: extras.workOrderIds ?? undefined,
+      salesPersonId: row.salesPersonId ?? '',
+      salesPersonName: row.salesPersonName ?? '',
+      assignedTeam: extras.assignedTeam ?? undefined,
+      estimatedCost: extras.estimatedCost ?? undefined,
+      estimatedMargin: extras.estimatedMargin ?? undefined,
+      marginPercentage: extras.marginPercentage ?? undefined,
+      invoiceIds: extras.invoiceIds ?? undefined,
+      shipmentIds: extras.shipmentIds ?? undefined,
+      returnIds: extras.returnIds ?? undefined,
+      createdAt: row.createdAt.toISOString(),
+      updatedAt: row.updatedAt.toISOString(),
+      createdBy: row.createdBy ?? 'system',
+      updatedBy: extras.updatedBy ?? row.createdBy ?? 'system',
+      internalNotes: row.internalNotes ?? undefined,
+      customerNotes: extras.customerNotes ?? undefined,
+      tags: extras.tags ?? undefined,
+      priority: this.mapPriority(row.priority),
+    };
+  }
+
+  private mapItem(row: any): OrderItem {
+    const spec =
+      row.specifications && typeof row.specifications === 'object' && !Array.isArray(row.specifications)
+        ? row.specifications
+        : null;
+    const discountPercent = Number(row.discountPercent) || 0;
+
+    return {
+      id: row.id,
+      itemId: row.itemId ?? '',
+      itemCode: row.itemCode ?? '',
+      itemName: row.itemName,
+      description: row.description ?? undefined,
+      quantity: Number(row.quantity) || 0,
+      unit: row.uom ?? '',
+      unitPrice: Number(row.unitPrice) || 0,
+      discount: discountPercent > 0 ? discountPercent : Number(row.discountAmount) || 0,
+      discountType: discountPercent > 0 ? 'percentage' : 'amount',
+      taxRate: Number(row.taxRate) || 0,
+      taxAmount: Number(row.taxAmount) || 0,
+      lineTotal: Number(row.lineTotal) || 0,
+      deliveryDate: row.requestedDate ? row.requestedDate.toISOString() : undefined,
+      specifications:
+        spec?.text ?? (typeof row.specifications === 'string' ? row.specifications : undefined),
+      bomId: spec?.bomId ?? undefined,
+      notes: row.notes ?? undefined,
+    };
+  }
+
+  /** Legacy/seeded rows carry no extras envelope — infer workflow state from status. */
+  private deriveApprovalStatus(status: string): SalesOrder['approvalStatus'] {
+    if (status === OrderStatus.DRAFT) return 'pending';
+    if (status === OrderStatus.CONFIRMED) return 'in_progress';
+    if (status === OrderStatus.CANCELLED) return 'rejected';
+    return 'approved';
+  }
+
+  private deriveValidations(row: any): OrderValidation {
+    const progressed =
+      row.status !== OrderStatus.DRAFT && row.status !== OrderStatus.CANCELLED;
+    return {
+      matchesRFP: !!row.rfpId || progressed,
+      termsAccepted: progressed,
+      deliveryConfirmed: progressed,
+      paymentTermsVerified: progressed,
+      technicalSpecsAligned: progressed,
+      creditVerified: progressed,
+      capacityAvailable: progressed,
+      profitabilityApproved: progressed,
+    };
+  }
+
+  private mapPriority(priority: string | null): SalesOrder['priority'] {
+    if (priority === 'low' || priority === 'medium' || priority === 'high' || priority === 'urgent') {
+      return priority;
+    }
+    if (priority === 'normal') return 'medium';
+    return undefined;
+  }
+
+  private emptyAddress(): SalesOrder['shippingAddress'] {
+    return {
+      addressLine1: '',
+      city: '',
+      state: '',
+      postalCode: '',
+      country: 'India',
+    };
   }
 }
